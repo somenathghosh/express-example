@@ -4,6 +4,8 @@
   <head>
     <meta charset="utf-8">
     <title>TCS Charlotte lab</title>
+	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
+	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://d396qusza40orc.cloudfront.net/startup%2Fcode%2Fbootstrap-combined.no-icons.min.css">
     <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/3.0.2/css/font-awesome.css">
@@ -112,56 +114,46 @@
 	  .resizedTextbox {width: 221px; height: 100px ;  padding: 1px}
     </style>
 	
-	<script type="text/javaScript">
+	<script>
 		function validateForm()
 		{
-			var empID=document.forms["myForm"]["empID"].value;
-			var name=document.forms["myForm"]["name"].value;
-			var stdate=document.forms["myForm"]["from"].value;
-			var endate=document.forms["myForm"]["to"].value;
-			var mc=document.forms["myForm"]["mc"].value;
-			
-			
-			if (empID <=99999)
+		var empID=document.forms["myForm"]["empID"].value;
+		var name=document.forms["myForm"]["name"].value;
+		var stdate=document.forms["myForm"]["from"].value;
+		var endate=document.forms["myForm"]["to"].value;
+		var mc=document.forms["myForm"]["mc"].value;
+		alert(from_1);
+		
+		if (empID <=99999)
+		{
+			alert(" Not a valid Employee Number");
+			return false;
+		}
+		
+		if (name == "")
+		{
+			alert("Please Enter a valid Name");
+			return false;
+		}
+		
+		
+		/*
+		var atpos=x.indexOf("@");
+		var dotpos=x.lastIndexOf(".");
+		if (atpos<1 || dotpos<atpos+2 || dotpos+2>=x.length)
+		  {
+		  alert("Not a valid e-mail address");
+		  return false;
+		  }
+		else {
+			var str = x.substring(atpos+1);
+			if (str.toLowerCase() != "tcs.com")
 			{
-				alert(" Not a valid Employee Number");
+				alert("Not a valid tcs e-mail address");
 				return false;
 			}
-			
-			if (empID <= "")
-			{
-				alert(" Not a valid Employee Number");
-				return false;
-			}
-			
-			if (name == "")
-			{
-				alert("Please Enter a valid Name");
-				return false;
-			}
-			
-			var fromDate = new Date(stdate);
-			var toDate = new Date(endate);
-			
-			//alert(fromDate);
-			//alert(toDate);
-
-			todayDate = new Date() - 5;
-			
-			if (fromDate <= todayDate)
-			{
-				alert(todayDate);
-				alert(fromDate);
-				alert(" From Date must be greater than today's");
-				return false;
-			}
-			
-			if (fromDate >= toDate)
-			{
-				alert(" From Date must be less than To Date & Time");
-				return false;
-			}
-			
+		}
+		*/
 		}
 		
 	</script>
@@ -222,8 +214,12 @@
       <div class="row-fluid section1">
       
         <div class="span5 copy">
-		<form name ="myForm" action="/new", onSubmit="return validateForm();" method ="POST">
-		<center>
+		<% if (message.length > 0) { %>
+		<div class="alert alert-danger"><%= message %></div>
+		<% } %>
+	
+		<form name ="myForm" action="/new", onsubmit="return validateForm(this);" method ="POST">
+			  <center>
   <table style="height: 253px; margin-left: 60px; width: 696px;">
     <tbody>
       <tr>

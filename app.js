@@ -7,6 +7,7 @@ var express = require('express');
 var http = require('http');
 var path = require('path');
 var mongoose = require('mongoose');
+var flash    = require('connect-flash');
 
 var app = express();
 
@@ -21,28 +22,42 @@ app.set('view engine', 'jade');
 app.use(express.methodOverride());
 app.use(express.bodyParser());
 app.use(app.router);
+app.use(flash());
 app.use(express.static(path.join(__dirname, 'public')));
 
-mongoose.connect('mongodb://root:root@novus.modulusmongo.net:27017/qy7nyXog');
+mongoose.connect('mongodb://heroku:97aa100aa71b190805c41b70bed0e20b@troup.mongohq.com:10097/app22192444');
+
 var Schema = new mongoose.Schema({
-	_id : Number,
+	id : Number,
 	name : String,
-	reason : String
+	from : Date,
+	to   : Date,
+	mc   : Number
+	
 });
 
-var user = mongoose.model('emp',Schema);
+var user = mongoose.model('reservation',Schema);
 app.post('/new',function(req,res){
-	new user({
-		_id: req.body.empID,
-		name : req.body.name,
-		reason : req.body.reason
-	}).save(function(err, doc){
-			if(err) {
-			console.log(err);
-			res.end("There is some system error");
-			}
-			else res.redirect("https://www.google.com");
-	});
+
+			
+			new user({
+				id   : req.body.empID,
+				name : req.body.name,
+				from : req.body.from,
+				to   : req.body.to,
+				mc   : req.body.mc
+			}).save(function(err, doc){
+					if(err) {
+					console.log(err);
+					res.end("There is some system error");
+					}
+					else res.redirect("https://www.google.com");
+			});
+});
+
+
+app.get('/dateError1',function(req,res){
+	res.render('login.ejs');
 });
 
 	
