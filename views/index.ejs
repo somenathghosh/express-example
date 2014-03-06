@@ -1,0 +1,51 @@
+<!doctype html>
+<html>
+<head>
+	<title>Password Retrieval</title>
+	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
+	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
+	<style>
+		body 		{ padding-top:80px; word-wrap:break-word; }
+	</style>
+</head>
+<body>
+<div class="container">
+
+	<div class="page-header text-center">
+		<h1><span class="fa fa-anchor"></span> Reservation Confirmed</h1>
+		
+	</div>
+	
+	
+
+		<!-- LOCAL INFORMATION -->
+		
+			<div class="well">
+				<center>
+				<h3><span class="fa fa-user"></span> User</h3>
+				</center>
+
+				<% if (R.id) { %>
+					<p>
+						<center>
+						<strong>User ID</strong>: <%= R.id %>&nbsp;&nbsp;&nbsp
+						<strong>mc</strong>: <%= R.mc %>
+						</center>
+					</p>
+					
+				
+				
+				<% } %>
+
+			</div>
+		
+
+		
+	
+	
+
+	
+
+</div>
+</body>
+</html>

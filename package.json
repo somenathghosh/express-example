@@ -9,6 +9,7 @@
     "express": "3.4.8",
     "jade": "*",
 	"connect-flash" : "~0.1.1", 
+	"ejs" : "~0.8.5", 	
 	"mongoose" : "*"
 	
   }

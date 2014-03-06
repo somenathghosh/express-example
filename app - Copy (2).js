@@ -19,8 +19,6 @@ app.set('view engine', 'ejs');
 
 
 
-
-
 app.use(express.methodOverride());
 app.use(express.bodyParser());
 app.use(app.router);
