@@ -137,14 +137,8 @@
 						<center>
 						<strong>Employee ID</strong>: <%= R.id %>&nbsp;&nbsp;&nbsp
 						<strong>MC#</strong>: <%= R.mc %> &nbsp;&nbsp;
-						<%  var date = new Date();
-							date = R.from;
-							fromDate = new Date(date.getUTCFullYear(),date.getUTCMonth(),date.getUTCDate(),date.getUTCHours(),date.getUTCMinutes(),date.getUTCSeconds());
-							date = R.to;
-							toDate = new Date(date.getUTCFullYear(),date.getUTCMonth(),date.getUTCDate(),date.getUTCHours(),date.getUTCMinutes(),date.getUTCSeconds());
-						%>
-						<strong>From</strong>: <%= fromDate %>&nbsp;&nbsp;&nbsp
-						<strong>To</strong>: <%= toDate %>
+						<strong>From</strong>: <%= R.from %>&nbsp;&nbsp;&nbsp
+						<strong>To</strong>: <%= R.to %>
 						</center>
 					</p>
 					

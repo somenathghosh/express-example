@@ -181,11 +181,6 @@
 			var endate=document.forms["myForm"]["to"].value;
 			var reason=document.forms["myForm"]["reason"].value;
 			
-			//date = new Date();
-			//alert(date);
-			//alert(stdate);
-			//todayDate = new Date(date.getUTCFullYear(),date.getUTCMonth(),date.getUTCDate(),date.getUTCHours(),date.getUTCMinutes(),date.getUTCSeconds());
-			//alert(todayDate);
 			
 			if (empID <=99999)
 			{
@@ -209,8 +204,8 @@
 			
 			var fromDate = new Date(stdate);
 			var toDate = new Date(endate);
-			//fromDate = fromDate.addHours(5);
-			//toDate = toDate.addHours(5);
+			fromDate = fromDate.addHours(5);
+			toDate = toDate.addHours(5);
 			
 			//alert(fromDate);
 			//alert(toDate);
@@ -225,20 +220,6 @@
 			}
 			
 			todayDate = new Date();
-			
-			//todayDate = new Date(date.getUTCFullYear(),date.getUTCMonth(),date.getUTCDate(),date.getUTCHours(),date.getUTCMinutes(),date.getUTCSeconds());
-			//alert(todayDate);
-			date = new Date();
-			date = fromDate;
-			//alert(date);
-			fromDate = new Date(date.getUTCFullYear(),date.getUTCMonth(),date.getUTCDate(),date.getUTCHours(),date.getUTCMinutes(),date.getUTCSeconds());
-			//alert(fromDate);
-			
-			date = toDate;
-			//alert(date);
-			toDate = new Date(date.getUTCFullYear(),date.getUTCMonth(),date.getUTCDate(),date.getUTCHours(),date.getUTCMinutes(),date.getUTCSeconds());
-			
-			//alert(toDate);
 			
 			if (fromDate <= todayDate)
 			{

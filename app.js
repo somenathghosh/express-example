@@ -28,6 +28,8 @@ app.use(flash());
 app.use(express.static(path.join(__dirname, 'public')));
 
 mongoose.connect('mongodb://heroku:97aa100aa71b190805c41b70bed0e20b@troup.mongohq.com:10097/app22192444');
+//mongoose.connect('mongodb://root:root@novus.modulusmongo.net:27017/qy7nyXog');
+
 
 var Schema = new mongoose.Schema({
 	id     : Number,
@@ -48,7 +50,8 @@ var User = mongoose.model('reservation',Schema);
 
 app.post('/new',function(req,res){
 
-	
+		console.log(req.body.from);
+		console.log(req.body.to);
 		User.findOne({to: {"$gt":req.body.from},from: {"$lt":req.body.to},mc: 5},function(err,user){
 			if (err) console.log(err);
 		
