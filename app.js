@@ -11,7 +11,7 @@ var flash    = require('connect-flash');
 var users = {};
 var app = express();
 var server = require('http').createServer(app);
-var io = require('socket.io').listen(server);
+var io = require('socket.io').listen(server,{log: false });
 
 server.listen(process.env.PORT || 5000);
 
@@ -49,7 +49,8 @@ var User = mongoose.model('reservation',Schema);
 
 io.sockets.on('connection', function(socket){
 	socket.on('new user', function(mcNumber, fromDate, toDate, callback){
-		User.find({to: {"$lte":toDate},from: {"$gte":fromDate},mc: mcNumber},function(err,docs){
+	
+		User.find({to: {"$gte":fromDate},from: {"$lte":toDate},mc: mcNumber},function(err,docs){
 			if(err) console.log(err);
 			if(!docs){
 				callback(false);

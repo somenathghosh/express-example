@@ -351,7 +351,7 @@
 		<p><font color="white">Check Booking Summary</font></p>
 		
 		<p id="nickError"></p>
-		<form name="socketForm" id="setNick" >
+		<form name="socketForm" id="setNick"  >
 			<!--<input size="20" id="nickname" type="number" placeholder="machine number"></input>-->
 			<select id="nickname" name="mc" >
 					
@@ -449,7 +449,7 @@
 						//$nickError.html('No Schedule available');
 					}
 				});
-				$nickBox.val('');
+				//$nickBox.val('');
 			});
 			
 			socket.on('usernames', function(data){
@@ -609,6 +609,7 @@
 			alert("Please select a machine number");
 			return false;
 		}
+		/*
 		var fromDate = new Date(stdate);
 		var toDate = new Date(endate);
 		
@@ -651,7 +652,7 @@
 				alert(" From Date must be less than To Date & Time");
 				return false;
 			}
-		
+			*/
 		
 	}
 	
