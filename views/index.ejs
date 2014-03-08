@@ -4,7 +4,22 @@
 	<title>Reservation Confirmation</title>
 	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
 	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
-	
+	<SCRIPT type="text/javascript">
+		window.history.forward();
+		function noBack() { window.history.forward(); }
+		
+		function closeWindow() {
+            netscape.security.PrivilegeManager.enablePrivilege("UniversalBrowserWrite");
+            alert("This will close the window");
+            window.open('','_self');
+            window.close();
+        }
+
+        <a href="#" onclick = "closeWindow();">close</a>
+		
+		
+		
+	</SCRIPT>
 	
 	<style type="text/css">
 
@@ -113,10 +128,85 @@
 	
 
     </style>
-</head>
-<body>
-<div class="container">
+	
+	
+<style type="text/css">
+.classname {
+	-moz-box-shadow:inset 0px 1px 0px 0px #caefab;
+	-webkit-box-shadow:inset 0px 1px 0px 0px #caefab;
+	box-shadow:inset 0px 1px 0px 0px #caefab;
+	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #77d42a), color-stop(1, #5cb811) );
+	background:-moz-linear-gradient( center top, #77d42a 5%, #5cb811 100% );
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#77d42a', endColorstr='#5cb811');
+	background-color:#77d42a;
+	-webkit-border-top-left-radius:0px;
+	-moz-border-radius-topleft:0px;
+	border-top-left-radius:0px;
+	-webkit-border-top-right-radius:0px;
+	-moz-border-radius-topright:0px;
+	border-top-right-radius:0px;
+	-webkit-border-bottom-right-radius:0px;
+	-moz-border-radius-bottomright:0px;
+	border-bottom-right-radius:0px;
+	-webkit-border-bottom-left-radius:0px;
+	-moz-border-radius-bottomleft:0px;
+	border-bottom-left-radius:0px;
+	text-indent:0;
+	border:1px solid #268a16;
+	display:inline-block;
+	color:#306108;
+	font-family:Arial;
+	font-size:15px;
+	font-weight:bold;
+	font-style:normal;
+	height:40px;
+	line-height:40px;
+	width:100px;
+	text-decoration:none;
+	text-align:center;
+	text-shadow:1px 1px 0px #aade7c;
+}
+.classname:hover {
+	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #5cb811), color-stop(1, #77d42a) );
+	background:-moz-linear-gradient( center top, #5cb811 5%, #77d42a 100% );
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#5cb811', endColorstr='#77d42a');
+	background-color:#5cb811;
+}.classname:active {
+	position:relative;
+	top:1px;
+}</style>
+<style>
+	
+	
+	.logoutLblPos{
 
+	   position:absolute;
+	   left:0px;
+	   top:0px;
+	}
+	
+	.logout2LblPos{
+
+	   position:absolute;
+	   right:0px;
+	   top:0px;
+	}
+</style>
+
+
+
+</head>
+<body onload="noBack();"
+    onpageshow="if (event.persisted) noBack();" onunload="">
+<div class="container">
+	<!--<FORM><INPUT Type="button" VALUE="Back" onClick="history.go(-1);return true;"></FORM>
+	<label class="logoutLblPos">
+		<FORM><INPUT Type="button" VALUE="Back" onClick="history.go(-1);return false;"></FORM>
+	</label>
+	<label class="logout2LblPos">
+		<a href="#" onclick = "closeWindow();">close</a>
+	</label>
+	-->
 	<div class="page-header text-center">
 		<h1><span class="fa fa-anchor"></span> Reservation Confirmed</h1>
 		

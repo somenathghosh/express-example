@@ -72,43 +72,65 @@ io.sockets.on('connection', function(socket){
 	
 	
 	
-
+var primeKey = "";
+var i = "";
+var fd = new Date();
+var td = new Date();
 
 app.post('/new',function(req,res){
 	
-	User.findOne({to: {"$gt":req.body.from},from: {"$lt":req.body.to},mc: req.body.mc},function(err,user){
-		if (err) {
+	//User.findOne({to: {"$gt":req.body.from},from: {"$lt":req.body.to},id: req.body.id},function(err,docs){
+	User.findOne({to: {"$gt":req.body.from},from: {"$lt":req.body.to},id: req.body.empID},function(err,docs){
+		//console.log(req.body.empID);
+		if(err){
 			console.log(err);
 			res.end("There is some DB system error");
 		}
-		if(user) {
-			console.log(user);
-			res.render("./views/reservationPage",{R:user});
+		if(docs){
+			console.log(docs);
+			console.log("already have a machine");
+			res.render("./views/reservationPageDuplicate",{R:docs});
 		}
-		else{
-			
-		
-			new User({
-						
-						id   : req.body.empID,
-						name : req.body.name,
-						from : req.body.from,
-						to   : req.body.to,
-						reason : req.body.reason,
-						mc     : req.body.mc
-					}).save(function(err, doc){
-						if(err) {
-						console.log(err);
-							res.end("There is some system error");
-						}
-							else res.render("./views/index",{R: doc});
-					});
+		else {
+			//console.log(docs);
+			User.findOne({to: {"$gt":req.body.from},from: {"$lt":req.body.to},mc: req.body.mc},function(err,user){
+			if (err) {
+				console.log(err);
+				res.end("There is some DB system error");
 			}
+			if(user) {
+				console.log(user);
+				res.render("./views/reservationPage",{R:user});
+			}
+			else{
+				i = req.body.empID;
+				fd = req.body.from;
+				td= req.body.to;
+				
+				primeKey= i + fd+ td;
+				console.log(primeKey);
+			
+				new User({
+							
+							id   : req.body.empID,
+							name : req.body.name,
+							from : req.body.from,
+							to   : req.body.to,
+							reason : req.body.reason,
+							mc     : req.body.mc
+						}).save(function(err, doc){
+							if(err) {
+							console.log(err);
+								res.end("There is some system error");
+							}
+								else res.render("./views/index",{R: doc});
+						});
+				}
+			});
+			
+		}
+
 	});
-		
-			
-			
-					
 });
 
 

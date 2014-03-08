@@ -1,0 +1,262 @@
+User.findOne({to: {"$gt":req.body.from},from: {"$lt":req.body.to},mc: 5},function(err,user){
+			if (err) console.log(err);
+		
+			if(user) {
+				console.log(user);
+				flag=true;
+				User.findOne({to: {"$gt":req.body.from},from: {"$lt":req.body.to}, mc: 6},function(err,user){
+					if (err) console.log(err);
+			
+					if(user) {
+						console.log(user);
+						flag = true;
+						User.findOne({to: {"$gt":req.body.from},from: {"$lt":req.body.to},mc: 7},function(err,user){
+							if (err) console.log(err);
+					
+							if(user) {
+								console.log(user);
+								flag= true;
+								User.findOne({to: {"$gt":req.body.from},from: {"$lt":req.body.to},mc: 8},function(err,user){
+									if (err) console.log(err);
+							
+									if(user) {
+										console.log(user);
+										flag=true;
+										User.findOne({to: {"$gt":req.body.from},from: {"$lt":req.body.to},mc: 9},function(err,user){
+											if (err) console.log(err);
+									
+											if(user) {
+												console.log(user);
+												flag = true;
+												User.findOne({to: {"$gt":req.body.from},from: {"$lt":req.body.to},mc: 10},function(err,user){
+													if (err) console.log(err);
+											
+													if(user) {
+														console.log(user);
+														flag = true;
+														User.findOne({to: {"$gt":req.body.from},from: {"$lt":req.body.to},mc:11},function(err,user){
+															if (err) console.log(err);
+													
+															if(user) {
+																console.log(user);
+																flag = true;
+																User.findOne({to: {"$gt":req.body.from},from: {"$lt":req.body.to},mc: 12},function(err,user){
+																	if (err) console.log(err);
+															
+																	if(user) {
+																		console.log(user);
+																		flag = true;
+																		User.findOne({to: {"$gt":req.body.from},from: {"$lt":req.body.to},mc: 13},function(err,user){
+																			if (err) console.log(err);
+																	
+																			if(user) {
+																				console.log(user);
+																				User.findOne({to: {"$gt":req.body.from},from: {"$lt":req.body.to},mc: 14},function(err,user){
+																					if (err) console.log(err);
+																			
+																					if(user) {
+																						console.log(user);
+																						res.render("./views/reservationPage",{R:user});
+																					}
+																					else {
+																						
+																						flag=false;
+																						new User({
+																							id   : req.body.empID,
+																							name : req.body.name,
+																							from : req.body.from,
+																							to   : req.body.to,
+																							reason : req.body.reason,
+																							mc     : 14
+																						}).save(function(err, doc){
+																								if(err) {
+																								console.log(err);
+																								res.end("There is some system error");
+																								}
+																								else res.render("./views/index",{R: doc});
+																						});
+																					}
+																				});
+																				
+																				
+																			}
+																			else {
+																				
+																				flag=false;
+																				new User({
+																					id   : req.body.empID,
+																					name : req.body.name,
+																					from : req.body.from,
+																					to   : req.body.to,
+																					reason : req.body.reason,
+																					mc     : 13
+																				}).save(function(err, doc){
+																						if(err) {
+																						console.log(err);
+																						res.end("There is some system error");
+																						}
+																						else res.render("./views/index",{R: doc});
+																				});
+																			}
+																		});
+																	}
+																	else {
+																		
+																		flag = false;
+																		new User({
+																			id   : req.body.empID,
+																			name : req.body.name,
+																			from : req.body.from,
+																			to   : req.body.to,
+																			reason : req.body.reason,
+																			mc     : 12
+																		}).save(function(err, doc){
+																				if(err) {
+																				console.log(err);
+																				res.end("There is some system error");
+																				}
+																				else res.render("./views/index",{R: doc});
+																		});
+																	}
+																});
+															}
+															else {
+																
+																flag= false;
+																new User({
+																	id   : req.body.empID,
+																	name : req.body.name,
+																	from : req.body.from,
+																	to   : req.body.to,
+																	reason : req.body.reason,
+																	mc     : 11
+																}).save(function(err, doc){
+																		if(err) {
+																		console.log(err);
+																		res.end("There is some system error");
+																		}
+																		else res.render("./views/index",{R: doc});
+																});
+															}
+														});
+													}
+													else {
+														
+														flag = false;
+														new User({
+															id   : req.body.empID,
+															name : req.body.name,
+															from : req.body.from,
+															to   : req.body.to,
+															reason : req.body.reason,
+															mc     : 10
+														}).save(function(err, doc){
+																if(err) {
+																console.log(err);
+																res.end("There is some system error");
+																}
+																else res.render("./views/index",{R: doc});
+														});
+													}
+												});
+											}
+											else {
+												
+												flag = false;
+												new User({
+													id   : req.body.empID,
+													name : req.body.name,
+													from : req.body.from,
+													to   : req.body.to,
+													reason : req.body.reason,
+													mc     : 9
+												}).save(function(err, doc){
+														if(err) {
+														console.log(err);
+														res.end("There is some system error");
+														}
+														else res.render("./views/index",{R: doc});
+												});
+											}
+										});
+									}
+									else {
+										
+										flag = false;
+										new User({
+											id   : req.body.empID,
+											name : req.body.name,
+											from : req.body.from,
+											to   : req.body.to,
+											reason : req.body.reason,
+											mc     : 8
+										}).save(function(err, doc){
+												if(err) {
+												console.log(err);
+												res.end("There is some system error");
+												}
+												else res.render("./views/index",{R: doc});
+										});
+									}
+								});
+							}
+							else {
+								
+								flag = false;
+								new User({
+									id   : req.body.empID,
+									name : req.body.name,
+									from : req.body.from,
+									to   : req.body.to,
+									reason : req.body.reason,
+									mc     : 7
+								}).save(function(err, doc){
+										if(err) {
+										console.log(err);
+										res.end("There is some system error");
+										}
+										else res.render("./views/index",{R: doc});
+								});
+							}
+						});
+					}
+						
+					else {
+						
+						flag = false;
+						new User({
+							id   : req.body.empID,
+							name : req.body.name,
+							from : req.body.from,
+							to   : req.body.to,
+							reason : req.body.reason,
+							mc     : 6
+						}).save(function(err, doc){
+								if(err) {
+								console.log(err);
+								res.end("There is some system error");
+								}
+								else res.render("./views/index",{R: doc});
+						});
+					}
+				});
+			}
+			else {
+					
+				flag = false;
+				new User({
+					id   : req.body.empID,
+					name : req.body.name,
+					from : req.body.from,
+					to   : req.body.to,
+					reason : req.body.reason,
+					mc     : 5
+				}).save(function(err, doc){
+					if(err) {
+					console.log(err);
+						res.end("There is some system error");
+					}
+						else res.render("./views/index",{R: doc});
+				});
+			}
+		});
