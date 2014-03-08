@@ -243,9 +243,9 @@
 		 <!-- <marquee behavior="alternate" direction="left"><font face="trebuchet MS" size="3">!!! For better result , please view this in Chrome or Safari !!!</font></marquee>
 		  <!--<font face="trebuchet MS" size="3">(For better result , please view this in Chrome or Safari)</font>-->
 		  
-		  <marquee direction="down" width="700" height="25" behavior="alternate" style="border:none">
+		  <marquee direction="down" width="700" height="30" behavior="alternate" style="border:none">
 			<marquee behavior="alternate">
-				<font face="trebuchet MS" size="3">(For better result , please view this in Chrome or Safari)</font>
+				<font face="trebuchet MS" size="3" >(For better result , please view this in Chrome or Safari)</font>
 			</marquee>
 		</marquee>
 
@@ -267,12 +267,12 @@
 			<tr>
 				<td style="width: 379px;"><font face="trebuchet MS" size="5"><span title="Your TCS Employee ID">EmployeeID:</span></font>
 				</td>
-				<td style="width: 0px;"><input name="empID" type="number"></td>
+				<td style="width: 0px;"><input name="empID" type="number" placeholder="your TCS Employee Number"></td>
 			</tr>
 			<tr>
 				<td style="width: 379px;"><font face="trebuchet MS" size="5"><span title =" Your Full Name as in TCS">Full Name:</span></font>
 				</td>
-				<td style="width: 0px;"><input name="name"  type="text"></td>
+				<td style="width: 0px;"><input name="name"  type="text" placeholder="Your Full Name as per TCS"></td>
 			</tr>
 			<tr>
 				<td style="width: 379px;"><font face="trebuchet MS" size="5"><span title="Choose Date & time from when you want to block the system">From:</span></font></td>
@@ -286,13 +286,30 @@
 			
 			<tr>
 				<td style="width: 379px;"><font face="trebuchet MS" size="5"><span title="Choose Machine number">Machine : </span></font></td>
-				<td style="width: 0px;"><input type="number" name="mc"></td>
+				<td style="width: 0px;">
+				<!--<input type="number" name="mc">-->
+				<select name="mc">
+					<option value=5>5</option>
+					<option value=6>6</option>
+					<option value=7>7</option>
+					<option value=8>8</option>
+					<option value=9>9</option>
+					<option value=10>10</option>
+					<option value=11>11</option>
+					<option value=12>12</option>
+					<option value=13>13</option>
+					<option value=14>14</option>
+					
+				</select>
+				
+				
+				</td>
 			</tr>
 	  
 			<tr>
 				<td style="width: 379px;"><font face="trebuchet MS" size="5"><span title="The Reason why you want to use LAB machine">Reason: </span></font></td>
 				<td style="width: 0px;">
-				<textarea name="reason" type="text" class=resizedTextbox></textarea>
+				<textarea name="reason" type="text" class=resizedTextbox placeholder="reason why you want to use LAB machine"></textarea>
 				</td>
 			</tr>
 			
@@ -331,12 +348,29 @@
 
 <label class="widgetLblPos">
 	<div id="nickWrap">
-		<p><font color="white">Schedule From & TO:</font></p>
+		<p><font color="white">Check Booking Summary</font></p>
+		
 		<p id="nickError"></p>
-		<form id="setNick">
-			<input size="20" id="nickname" type="number" placeholder="machine number"></input><br>
+		<form name="socketForm" id="setNick" >
+			<!--<input size="20" id="nickname" type="number" placeholder="machine number"></input>-->
+			<select id="nickname" name="mc" >
+					
+					<option value=5>5</option>
+					<option value=6>6</option>
+					<option value=7>7</option>
+					<option value=8>8</option>
+					<option value=9>9</option>
+					<option value=10>10</option>
+					<option value=11>11</option>
+					<option value=12>12</option>	
+					<option value=13>13</option>
+					<option value=14>14</option>
+					
+			</select>
+			
+			<br>
 			<input size="20" id="from" type="datetime-local"></input><br>
-			<input size="20" id="to" type="datetime-local"></input><br>
+			<input size="20" id="to" type="datetime-local" ></input><br>
 			<center><input type="submit" class="btn btn-success btn-large"></input></center>
 		</form>
 	</div>
@@ -349,7 +383,7 @@
 		<div id="chatWrap">
 			<div id="chat">
 			
-				<div id="schedule" style="width:219px;height:1px;border:1px solid #000;"></div>
+				<div id="schedule" style="width:221px;height:1px;border:1px solid #000;"></div>
 			
 			
 			</div>
@@ -405,14 +439,14 @@
 			var $toDate  = new Date();
 			$nickForm.submit(function(e){
 				e.preventDefault();
-				$("#chat").html("<font color='white'>--------Unavailable Schdules-------</font><br/>");
+				$("#chat").html("<font color='white'>--------Unavailable Schdules--------</font><br/>");
 				socket.emit('new user', $nickBox.val(), $nickBoxFrom.val(), $nickBoxTo.val(),function(data){
 					if(data){
 						//$('#nickWrap').hide();
 						//$('#contentWrap').show();
 						
 					} else{
-						$nickError.html('No Schedule available');
+						//$nickError.html('No Schedule available');
 					}
 				});
 				$nickBox.val('');
@@ -564,6 +598,63 @@
 	{
 		window.open("./index1.1.html");
 	}
+	
+	function validateSForm(){
+		var mc=document.forms["socketForm"]["mc"].value;
+		
+		var stdate=document.forms["socketForm"]["from"].value;
+		var endate=document.forms["socketForm"]["to"].value;
+		
+		if(isNaN(mc)){
+			alert("Please select a machine number");
+			return false;
+		}
+		var fromDate = new Date(stdate);
+		var toDate = new Date(endate);
+		
+		if(!fromDate.valid()){
+				alert("Enter a valid From date");
+				return false;
+		}
+			
+		if(!toDate.valid()){
+				alert("Enter a valid To date");
+				return false;
+		}
+		
+		todayDate = new Date();
+			
+			
+			date = new Date();
+			date = fromDate;
+		
+			fromDate = new Date(date.getUTCFullYear(),date.getUTCMonth(),date.getUTCDate(),date.getUTCHours(),date.getUTCMinutes(),date.getUTCSeconds());
+	
+			
+			date = toDate;
+			
+			
+			toDate = new Date(date.getUTCFullYear(),date.getUTCMonth(),date.getUTCDate(),date.getUTCHours(),date.getUTCMinutes(),date.getUTCSeconds());
+			
+		
+			
+			if (fromDate <= todayDate)
+			{
+				//alert(todayDate);
+				//alert(fromDate);
+				alert(" From Date must be greater than today's");
+				return false;
+			}
+			
+			if (fromDate >= toDate)
+			{
+				alert(" From Date must be less than To Date & Time");
+				return false;
+			}
+		
+		
+	}
+	
 	</script>
 
   </body>
