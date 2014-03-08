@@ -10,6 +10,7 @@
     "jade": "*",
 	"connect-flash" : "~0.1.1", 
 	"ejs" : "~0.8.5", 	
+	"socket.io":"0.9.16",
 	"mongoose" : "*"
 	
   }
