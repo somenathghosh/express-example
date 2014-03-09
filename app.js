@@ -59,7 +59,7 @@ io.sockets.on('connection', function(socket){
 				callback(true);
 				docs.forEach( function(doc){
 					
-					io.sockets.emit('usernames',{timeFrom: doc.from.toString(), timeTo: doc.to.toString()});
+					socket.emit('usernames',{timeFrom: doc.from.toString(), timeTo: doc.to.toString()});
 				});
 			}
 			
