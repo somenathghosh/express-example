@@ -72,11 +72,7 @@ io.sockets.on('connection', function(socket){
 
 	
 	
-	
-var primeKey = "";
-var i = "";
-var fd = new Date();
-var td = new Date();
+
 
 app.post('/new',function(req,res){
 	
@@ -104,12 +100,7 @@ app.post('/new',function(req,res){
 				res.render("./views/reservationPage",{R:user});
 			}
 			else{
-				i = req.body.empID;
-				fd = req.body.from;
-				td= req.body.to;
 				
-				primeKey= i + fd+ td;
-				console.log(primeKey);
 			
 				new User({
 							
