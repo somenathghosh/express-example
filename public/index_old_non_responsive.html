@@ -1,0 +1,663 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>TCS Charlotte lab</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://d396qusza40orc.cloudfront.net/startup%2Fcode%2Fbootstrap-combined.no-icons.min.css">
+    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/3.0.2/css/font-awesome.css">
+    <link rel="stylesheet" href="https://d396qusza40orc.cloudfront.net/startup%2Fcode%2Fsocial-buttons.css">    
+    <script src="https://d396qusza40orc.cloudfront.net/startup%2Fcode%2Fjquery.js"></script>
+    <script src="https://d396qusza40orc.cloudfront.net/startup%2Fcode%2Fbootstrap.js"></script>
+    <link href="http://fonts.googleapis.com/css?family=Ubuntu:300,400,500,700,300italic,400italic,500italic,700italic" rel="stylesheet" type="text/css">
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,300,400,600,700,800" 
+          rel="stylesheet" type="text/css">
+    <style type="text/css">
+
+      /* Large desktop */
+      @media (min-width: 980px) { 
+        body {
+			
+			background-color: #090448;
+         padding-top: 60px;
+        }
+       .linediv-l {
+         border-right: 1px white solid;
+        }
+       .linediv-r {
+         border-left: 1px white solid;
+       }
+      }
+		
+	font{
+		color: white;
+	}
+      /* Landscape phones and down */
+      @media (max-width: 480px) { 
+       .copy {
+         padding: 2.5% 10%;
+       }
+       .linediv-l {
+         border-bottom: 1px white solid;
+       }
+       .linediv-r {
+         border-top: 1px white solid;
+       }
+      }
+
+      /* All form factors */
+
+      /* Main body and headings */
+      body{
+        font-family: 'Open Sans', Helvetica, Arial, sans-serif;
+      }
+      .heading, .subheading {
+        font-family: 'Ubuntu', Helvetica, Arial, sans-serif;
+        text-align: center;
+      }
+      p.lead {
+        padding-top: 1.5%;
+        font-size: 24px;
+        line-height: 30px;
+      }
+      p {
+        font-size: 18px;
+        line-height: 24px;
+      }
+
+      /* Video pitch and Action */
+      .pitch {
+        padding: 2.5% 0%;
+      }
+      .order {
+        padding: 2% 0%;
+      }
+      .actions {
+        background-color: #343434;
+        padding: 3% 0%;
+      }
+      .video, .thermometer, .order, .social, .statistics {
+        text-align: center;
+      }
+      .statistics h3, .statistics p {
+        color: white;
+      }
+
+      /* Marketing Copy and Footer */
+      .copy {
+        padding-top: 2.5%;
+        padding-bottom: 2.5%;
+        text-align: justify;
+      }
+      .asset {
+        padding: 2.5% 0%;
+      }
+      .footer {
+        color: #cccccc;
+        text-align: center;
+      }
+      .footer p {
+        font-size: 11px;
+      }
+      .footer a {
+        color: #ccccff;
+      }
+	  h1 {
+	  color: white;
+	  }
+	  h3 {
+	  color : white;
+	 }
+	  
+	  .resizedTextbox {width: 217px; height: 60px ;  padding: 1px}
+	  
+	  .logoutLblPos{
+
+	   position:absolute;
+	   right:2px;
+	   top:0px;
+	}
+	
+	 .widgetLblPos{
+
+	   position:absolute;
+	   left:2px;
+	   top:0px;
+	}
+	
+	 .widget2LblPos{
+
+	   position:absolute;
+	   right:2px;
+	   top:0px;
+	}
+	
+	.widget3LblPos{
+
+	   position:absolute;
+	   left:2px;
+	   top:222px;
+	}
+	
+	.widget4LblPos{
+
+	   position:absolute;
+	   right:2px;
+	   top:217px;
+	}
+	
+
+    </style>
+	
+	<style type="text/css">
+	.classname {
+		-moz-box-shadow:inset 0px 1px 0px 0px #caefab;
+		-webkit-box-shadow:inset 0px 1px 0px 0px #caefab;
+		box-shadow:inset 0px 1px 0px 0px #caefab;
+		background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #77d42a), color-stop(1, #5cb811) );
+		background:-moz-linear-gradient( center top, #77d42a 5%, #5cb811 100% );
+		filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#77d42a', endColorstr='#5cb811');
+		background-color:#77d42a;
+		-webkit-border-top-left-radius:37px;
+		-moz-border-radius-topleft:37px;
+		border-top-left-radius:37px;
+		-webkit-border-top-right-radius:0px;
+		-moz-border-radius-topright:0px;
+		border-top-right-radius:0px;
+		-webkit-border-bottom-right-radius:37px;
+		-moz-border-radius-bottomright:37px;
+		border-bottom-right-radius:37px;
+		-webkit-border-bottom-left-radius:0px;
+		-moz-border-radius-bottomleft:0px;
+		border-bottom-left-radius:0px;
+		text-indent:0;
+		border:1px solid #268a16;
+		display:inline-block;
+		color:#306108;
+		font-family:Arial;
+		font-size:15px;
+		font-weight:bold;
+		font-style:normal;
+		height:65px;
+		line-height:65px;
+		width:86px;
+		text-decoration:none;
+		text-align:center;
+		text-shadow:1px 0px 0px #aade7c;
+	}
+	.classname:hover {
+		background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #5cb811), color-stop(1, #77d42a) );
+		background:-moz-linear-gradient( center top, #5cb811 5%, #77d42a 100% );
+		filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#5cb811', endColorstr='#77d42a');
+		background-color:#5cb811;
+	}.classname:active {
+		position:relative;
+		top:1px;
+		}
+	
+	
+	#chat{
+			height:500px;
+		}
+	#contentWrap{
+			display: block;
+		}
+	#chatWrap{
+			float: left;
+			border: 1px white solid;
+			border-color: white;
+		}
+	.error{
+			color: red;
+		}
+	.whisper{
+			color: gray;
+			font-style: italic;
+		}
+	#nickWrap{
+			float: left;
+			top : 50px;
+			border: 1px white solid;
+		}
+		
+	</style>
+
+
+
+	
+	
+	
+	
+	
+
+
+</head>
+
+<body>
+
+<div class="container">
+      
+    <div class="row-fluid heading">
+        <div class="span12">
+          
+		 <!-- <marquee behavior="alternate" direction="left"><font face="trebuchet MS" size="3">!!! For better result , please view this in Chrome or Safari !!!</font></marquee>
+		  <!--<font face="trebuchet MS" size="3">(For better result , please view this in Chrome or Safari)</font>-->
+		  
+		  <marquee direction="down" width="700" height="30" behavior="alternate" style="border:none">
+			<marquee behavior="alternate">
+				<font face="trebuchet MS" size="3" >(For better result , please view this in Chrome or Safari)</font>
+			</marquee>
+		</marquee>
+
+		  <br>
+		  <h1>TCS Charlotte lab Reservation</h1>
+		  <br><br>
+        </div>
+    </div> 
+   
+  
+<div class="row-fluid heading">
+      
+    <div class="span12">
+		<br> <br>
+		<form name ="myForm" action="/new", onSubmit="return validateForm();" method ="POST">
+		<center>
+			<table style="height: 253px; margin-left: 60px; width: 696px;">
+			
+			<tr>
+				<td style="width: 379px;"><font face="trebuchet MS" size="5"><span title="Your TCS Employee ID">EmployeeID:</span></font>
+				</td>
+				<td style="width: 0px;"><input name="empID" type="number" placeholder="your TCS Employee Number"></td>
+			</tr>
+			<tr>
+				<td style="width: 379px;"><font face="trebuchet MS" size="5"><span title =" Your Full Name as in TCS">Full Name:</span></font>
+				</td>
+				<td style="width: 0px;"><input name="name"  type="text" placeholder="Your Full Name as per TCS"></td>
+			</tr>
+			<tr>
+				<td style="width: 379px;"><font face="trebuchet MS" size="5"><span title="Choose Date & time from when you want to block the system">From:</span></font></td>
+				<td style="width: 0px;"><input type="datetime-local" name="from"></td>
+			</tr>
+	  
+			<tr>
+				<td style="width: 379px;"><font face="trebuchet MS" size="5"><span title="Choose Date & time from till when you want to use the system">To: </span></font></td>
+				<td style="width: 0px;"><input type="datetime-local" name="to"></td>
+			</tr>
+			
+			<tr>
+				<td style="width: 379px;"><font face="trebuchet MS" size="5"><span title="Choose Machine number">Machine : </span></font></td>
+				<td style="width: 0px;">
+				<!--<input type="number" name="mc">-->
+				<select name="mc">
+					<option value=5>5</option>
+					<option value=6>6</option>
+					<option value=7>7</option>
+					<option value=8>8</option>
+					<option value=9>9</option>
+					<option value=10>10</option>
+					<option value=11>11</option>
+					<option value=12>12</option>
+					<option value=13>13</option>
+					<option value=14>14</option>
+					
+				</select>
+				
+				
+				</td>
+			</tr>
+	  
+			<tr>
+				<td style="width: 379px;"><font face="trebuchet MS" size="5"><span title="The Reason why you want to use LAB machine">Reason: </span></font></td>
+				<td style="width: 0px;">
+				<textarea name="reason" type="text" class=resizedTextbox placeholder="reason why you want to use LAB machine"></textarea>
+				</td>
+			</tr>
+			
+			<tr>
+			
+				<td align="right"> </td>
+				
+			</tr>
+			<tr>
+			
+				<td align="right"> </td>
+				
+			</tr>
+			
+			<tr>
+			
+				<td align="right"> <button class="btn btn-success btn-large" type="submit">Reserve</button></td>
+				
+			</tr>
+			
+	
+    
+			</table>
+		</center>
+		</form>
+	</div>
+</div>
+</div>
+	
+     
+	
+  <label class="logoutLblPos">
+  <a href="#" class="classname" onclick="myFunction()" >Tell Us</a>
+  
+  </label>
+
+<label class="widgetLblPos">
+	<div id="nickWrap">
+		<p><font color="white">Check Booking Summary</font></p>
+		
+		<p id="nickError"></p>
+		<form name="socketForm" id="setNick"  >
+			<!--<input size="20" id="nickname" type="number" placeholder="machine number"></input>-->
+			<select id="nickname" name="mc" >
+					
+					<option value=5>5</option>
+					<option value=6>6</option>
+					<option value=7>7</option>
+					<option value=8>8</option>
+					<option value=9>9</option>
+					<option value=10>10</option>
+					<option value=11>11</option>
+					<option value=12>12</option>	
+					<option value=13>13</option>
+					<option value=14>14</option>
+					
+			</select>
+			
+			<br>
+			<input size="20" id="from" type="datetime-local"></input><br>
+			<input size="20" id="to" type="datetime-local" ></input><br>
+			<center><input type="submit" class="btn btn-success btn-large"></input></center>
+		</form>
+	</div>
+</label>
+
+
+
+<label class="widget3LblPos">
+	<div id="contentWrap">
+		<div id="chatWrap">
+			<div id="chat">
+			
+				<div id="schedule" style="width:221px;height:1px;border:1px solid #000;"></div>
+			
+			
+			</div>
+			<!--
+			<form id="send-message">
+				<input size="35" id="message"></input>
+				<input type="submit"></input>
+			</form>
+			-->
+		</div>
+		<!--<div id="users"></div>-->
+	</div>
+</label>
+
+
+<!----------->
+
+
+
+
+
+<div class="row-fluid pitch">
+	<div class="row-fluid footer">
+		<div class="span12">
+          <p>&copy;This work is licensed under
+            the <a href="http://www.tcs.com/Pages/default.aspx">Tata Consultacy Services
+            </a>, without all the craft that would otherwise be
+            put at the bottom of the page.</p>
+        </div>
+	</div>
+</div>
+	
+	
+
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+	<script src="/socket.io/socket.io.js"></script>
+	<script>
+		jQuery(function($){
+			var socket = io.connect();
+			var $nickForm = $('#setNick');
+			var $nickError = $('#nickError');
+			
+			var $nickBox = $('#nickname');
+			var $nickBoxFrom = $('#from');
+			var $nickBoxTo = $('#to');
+			
+			//var $users = $('#users');
+			var $messageForm = $('#send-message');
+			var $messageBox = $('#message');
+			var $chat = $('#chat');
+			var $schedule = $('#schedule');
+			var $fromDate = new Date();
+			var $toDate  = new Date();
+			$nickForm.submit(function(e){
+				e.preventDefault();
+				$("#chat").html("<font color='white'>--------Unavailable Schdules--------</font><br/>");
+				socket.emit('new user', $nickBox.val(), $nickBoxFrom.val(), $nickBoxTo.val(),function(data){
+					if(data){
+						//$('#nickWrap').hide();
+						//$('#contentWrap').show();
+						
+					} else{
+						//$nickError.html('No Schedule available');
+					}
+				});
+				//$nickBox.val('');
+			});
+			
+			socket.on('usernames', function(data){
+				fromDate = new Date(data.timeFrom);
+				toDate = new Date(data.timeTo);
+				$chat.append('<center><font color="white">' + fromDate.getUTCMonth() + "/"+fromDate.getUTCDate()+ " "+ fromDate.getUTCHours() + ":" + fromDate.getUTCMinutes()+" -- " + toDate.getUTCMonth() + "/"+ toDate.getUTCDate()+ " "+ toDate.getUTCHours() + ":" + toDate.getUTCMinutes() + "</font></center><br/>"); 
+								
+			
+			});
+			
+			$messageForm.submit(function(e){
+				e.preventDefault();
+				socket.emit('send message', $messageBox.val(), function(data){
+					$chat.append('<span class="error">' + data + "</span><br/>");
+				});
+				$messageBox.val('');
+			});
+			
+			socket.on('new message', function(data){
+				$chat.append('<span class="msg"><b>' + data.nick + ': </b>' + data.msg + "</span><br/>");
+			});
+			
+			socket.on('whisper', function(data){
+				$chat.append('<span class="whisper"><b>' + data.nick + ': </b>' + data.msg + "</span><br/>");
+			});
+		});
+	</script>
+	
+	<script type="text/javaScript">
+		function validateForm()
+		{
+			var empID=document.forms["myForm"]["empID"].value;
+			var name=document.forms["myForm"]["name"].value;
+			var stdate=document.forms["myForm"]["from"].value;
+			var endate=document.forms["myForm"]["to"].value;
+			var reason=document.forms["myForm"]["reason"].value;
+			var mc=document.forms["myForm"]["mc"].value;
+			
+			
+			//date = new Date();
+			//alert(date);
+			//alert(stdate);
+			//todayDate = new Date(date.getUTCFullYear(),date.getUTCMonth(),date.getUTCDate(),date.getUTCHours(),date.getUTCMinutes(),date.getUTCSeconds());
+			//alert(todayDate);
+			
+			if (empID <=99999)
+			{
+				alert(" Not a valid Employee Number");
+				return false;
+			}
+			
+			if (empID <= "")
+			{
+				alert(" Not a valid Employee Number");
+				return false;
+			}
+			
+			if (name == "")
+			{
+				alert("Please Enter a valid Name");
+				return false;
+			}
+			
+			
+			
+			var fromDate = new Date(stdate);
+			var toDate = new Date(endate);
+			//alert(toDate);
+			//fromDate = fromDate.addHours(5);
+			//toDate = toDate.addHours(5);
+			
+			//alert(fromDate);
+			//alert(toDate);
+			if(!fromDate.valid()){
+				alert("Enter a valid From date");
+				return false;
+			}
+			
+			if(!toDate.valid()){
+				alert("Enter a valid To date");
+				return false;
+			}
+			
+			todayDate = new Date();
+			
+			//todayDate = new Date(date.getUTCFullYear(),date.getUTCMonth(),date.getUTCDate(),date.getUTCHours(),date.getUTCMinutes(),date.getUTCSeconds());
+			//alert(todayDate);
+			date = new Date();
+			date = fromDate;
+			//alert(date);
+			fromDate = new Date(date.getUTCFullYear(),date.getUTCMonth(),date.getUTCDate(),date.getUTCHours(),date.getUTCMinutes(),date.getUTCSeconds());
+			//alert(fromDate);
+			
+			date = toDate;
+			//alert(date);
+			
+			toDate = new Date(date.getUTCFullYear(),date.getUTCMonth(),date.getUTCDate(),date.getUTCHours(),date.getUTCMinutes(),date.getUTCSeconds());
+			
+			//alert(toDate);
+			
+			if (fromDate <= todayDate)
+			{
+				//alert(todayDate);
+				//alert(fromDate);
+				alert(" From Date must be greater than today's");
+				return false;
+			}
+			
+			if (fromDate >= toDate)
+			{
+				alert(" From Date must be less than To Date & Time");
+				return false;
+			}
+			
+			if(mc <5 || mc > 14)
+			{
+				alert("Please enter Correct M/C number");
+				return false;
+			}
+			
+			
+			
+			if(reason =="")
+			{
+				alert("Please fill the proper reason why you are using the system");
+				return false;
+			}
+			
+		}
+		
+		Date.prototype.addHours= function(h){
+			var copiedDate = new Date(this.getTime());
+			
+			copiedDate.setHours(copiedDate.getHours()+h);
+			//alert("CopiedDate =" + copiedDate);
+			return copiedDate;
+		}
+		
+		Date.prototype.valid = function() {
+		  //alert("Hi");
+		  return isFinite(this);
+		}
+	
+	
+	function myFunction()
+	{
+		window.open("./index1.1.html");
+	}
+	
+	function validateSForm(){
+		var mc=document.forms["socketForm"]["mc"].value;
+		
+		var stdate=document.forms["socketForm"]["from"].value;
+		var endate=document.forms["socketForm"]["to"].value;
+		
+		if(isNaN(mc)){
+			alert("Please select a machine number");
+			return false;
+		}
+		/*
+		var fromDate = new Date(stdate);
+		var toDate = new Date(endate);
+		
+		if(!fromDate.valid()){
+				alert("Enter a valid From date");
+				return false;
+		}
+			
+		if(!toDate.valid()){
+				alert("Enter a valid To date");
+				return false;
+		}
+		
+		todayDate = new Date();
+			
+			
+			date = new Date();
+			date = fromDate;
+		
+			fromDate = new Date(date.getUTCFullYear(),date.getUTCMonth(),date.getUTCDate(),date.getUTCHours(),date.getUTCMinutes(),date.getUTCSeconds());
+	
+			
+			date = toDate;
+			
+			
+			toDate = new Date(date.getUTCFullYear(),date.getUTCMonth(),date.getUTCDate(),date.getUTCHours(),date.getUTCMinutes(),date.getUTCSeconds());
+			
+		
+			
+			if (fromDate <= todayDate)
+			{
+				//alert(todayDate);
+				//alert(fromDate);
+				alert(" From Date must be greater than today's");
+				return false;
+			}
+			
+			if (fromDate >= toDate)
+			{
+				alert(" From Date must be less than To Date & Time");
+				return false;
+			}
+			*/
+		
+	}
+	
+	</script>
+
+  </body>
+</html>
