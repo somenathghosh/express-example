@@ -142,7 +142,7 @@
 				<p class = "navbar-text pull-left">&copy;This work is licensed under
 					<a href="http://www.tcs.com/Pages/default.aspx">Tata Consultacy Services </a></p>
 					
-					<a href = "http://youtube.com/codersguide" class = "navbar-btn btn-default btn-sm btn pull-right"><span class="glyphicon glyphicon-thumbs-up"></span> Like</a>
+					<a href = "#" class = "navbar-btn btn-default btn-sm btn pull-right" id="btnSubmit"><span class="glyphicon glyphicon-thumbs-up"></span> Like</a>
 				
 			</div>
 		
@@ -250,6 +250,23 @@
 				});
 				$messageBox.val('');
 			});
+			
+			$("#btnSubmit").click(function(e){
+				e.preventDefault();
+				
+				socket.emit('like', function(data){
+					if(data){
+						//$('#feedForm').hide();
+						//$('#contentWrap').show();
+						
+					} else{
+						//$nickError.html('No Schedule available');
+					}
+				});
+				//$nickBox.val('');
+			});
+			
+			
 			
 			socket.on('new message', function(data){
 				$chat.append('<span class="msg"><b>' + data.nick + ': </b>' + data.msg + "</span><br/>");
