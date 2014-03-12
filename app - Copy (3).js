@@ -47,31 +47,18 @@ var Schema = new mongoose.Schema({
 });
 var User = mongoose.model('reservation',Schema);
 
-
-var Schema = new mongoose.Schema({
-	
-	id     : Number,
-	
-});
-var likeDB = mongoose.model('like',Schema);
-
-
-
 io.sockets.on('connection', function(socket){
 	socket.on('new user', function(mcNumber, fromDate, toDate, callback){
-		//console.log(fromDate);
-		//console.log(toDate);
-		//console.log(mcNumber);
+	
 		User.find({to: {"$gte":fromDate},from: {"$lte":toDate},mc: mcNumber},function(err,docs){
 			if(err) console.log(err);
 			if(!docs){
 				callback(false);
 			}
 			else {
-				
 				callback(true);
 				docs.forEach( function(doc){
-					console.log(doc.from)
+					
 					socket.emit('usernames',{timeFrom: doc.from.toString(), timeTo: doc.to.toString()});
 				});
 			}
@@ -80,71 +67,6 @@ io.sockets.on('connection', function(socket){
 		
 		});
 	});
-	
-
-
-
-	
-	socket.on('feedback', function(name, empID, feedback1, callback){
-		
-		new feedBack({
-			id : empID,
-			name : name,
-			feedback : feedback1,
-			postedON : new Date()
-			
-		}).save(function(err,doc){
-			if(err) {
-				console.log(err);
-				callback(false);
-			}
-			else {
-				callback(true);
-				socket.emit('thanks',{message: "Your feedback is successfully recorded"});
-			}
-		});
-	});
-	
-	socket.on('like', function(callback){
-		likeDB.findOne(function(err,doc){
-			if(err) console.log(err);
-			if(!doc) {
-				new likeDB({
-					id : 1
-					
-				}).save(function(err,doc){
-					if(err) {
-						console.log(err);
-						callback(false);
-					}
-					else {
-						callback(true);
-						socket.emit('thankYou',{message: "Thank You"});
-					}
-				});
-			
-			}
-			if(doc){
-				var updatedLikeCount = doc.id + 1;
-				//console.log(updatedLikeCount);
-				
-				likeDB.update({id: doc.id},{$set: {id: updatedLikeCount}},function(err){
-						
-					if(err) {
-						callback(false);
-						console.log(err);
-					}
-					else{
-						callback(true);
-						socket.emit('thankYou',{message: "Thank You"});
-					}
-				});
-				
-			}
-		
-		});
-	});
-	
 });
 
 
@@ -164,7 +86,7 @@ app.post('/new',function(req,res){
 		if(docs){
 			console.log(docs);
 			console.log("already have a machine");
-			res.render("./views/index_already_have_another_reservation",{R:docs});
+			res.render("./views/reservationPageDuplicate",{R:docs});
 		}
 		else {
 			//console.log(docs);
@@ -175,11 +97,11 @@ app.post('/new',function(req,res){
 			}
 			if(user) {
 				console.log(user);
-				res.render("./views/index_no_slot",{R:user});
+				res.render("./views/reservationPage",{R:user});
 			}
 			else{
 				
-				
+			
 				new User({
 							
 							id   : req.body.empID,
@@ -193,7 +115,7 @@ app.post('/new',function(req,res){
 							console.log(err);
 								res.end("There is some system error");
 							}
-								else res.render("./views/index_successful_reservation",{R: doc});
+								else res.render("./views/index",{R: doc});
 						});
 				}
 			});
@@ -202,6 +124,7 @@ app.post('/new',function(req,res){
 
 	});
 });
+
 
 var feedSchema = new mongoose.Schema({
 	id       : Number,
@@ -216,8 +139,6 @@ var feedSchema = new mongoose.Schema({
 
 var feedBack = mongoose.model('feedBack',feedSchema);
 
-
-/*
 app.post('/feedback',function(req,res){
 	
 	new feedBack({
@@ -239,22 +160,13 @@ app.post('/feedback',function(req,res){
 app.get('/dateError1',function(req,res){
 	res.render('login.ejs');
 });
-*/
-app.get('/',function(req,res){
-	res.render('./views/index');
-});
 
-app.get('/about',function(req,res){
-	var newDate = new Date();
-	res.render('./views/about',{msg: newDate.toString()}) ;
-});
 
-/*
 app.get('/reserveBack',function(req,res){
 	
 	res.render('./views/index');
 });
-*/	
+	
 
 /*
 http.createServer(app).listen(app.get('port'), function(){

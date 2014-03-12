@@ -1,27 +1,51 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
-	<head>
-		<title>TCS Lab Reservation System</title>
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<link href = "css/bootstrap.min.css" rel = "stylesheet">
-		<link href = "css/styles.css" rel = "stylesheet">
-		<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
-		<link rel="stylesheet" type="text/css" href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
-		<style type="text/css">
-			body {
-				background-color: darkblue;
-				
-			}
-			
-			#contentWrap{
-			display: none;
-			}
-			
-		</style>
-	</head>
-	<body>
+<head>
+	<title>Reservation Confirmation</title>
+	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
+	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
+	<SCRIPT type="text/javascript">
+		window.history.forward();
+		function noBack() { window.history.forward(); }
+		
+		function closeWindow() {
+            netscape.security.PrivilegeManager.enablePrivilege("UniversalBrowserWrite");
+            alert("This will close the window");
+            window.open('','_self');
+            window.close();
+        }
+
+        <a href="#" onclick = "closeWindow();">close</a>
+		
+		
+		
+	</SCRIPT>
 	
-		<div class = "navbar navbar-inverse navbar-static-top">
+	<style type="text/css">
+	body {
+				background-color: darkblue;			
+	}
+      
+	
+
+    </style>
+	
+	
+<style type="text/css">
+
+}</style>
+<style>
+	
+	
+</style>
+
+
+
+</head>
+<body onload="noBack();"
+    onpageshow="if (event.persisted) noBack();" onunload="">
+	
+	<div class = "navbar navbar-inverse navbar-static-top">
 			<div class = "container">
 				
 				<a href = "#" class = "navbar-brand"><font face="trebuchet MS" size="5" color="white">Reservation</font></a>
@@ -51,138 +75,102 @@
 						
 						</li>
 						-->
-						<li><a href = "/about">About</a></li>
+						<li><a href = "#">About</a></li>
 						<li><a href = "#contact" data-toggle="modal">feedback</a></li>
 					
 					</ul>
 				
 				</div>
 				
-			</div>
-		</div>
-		
-		<div class = "container">
-		
-			<div class = "jumbotron text-center">
-				<h1><span class="fa fa-lock"></span> TCS Charlotte Lab</h1>
-				
 				
 				
 			</div>
-		
 		</div>
 		
-        <div class="container">
-			
-				
-				<div class="row">
-					<div class="col-lg-3 col-md-3 col-sm-3">
-						<div class="panel panel-success">
-							<div class="panel-heading"><center><font face="trebuchet MS" size="5">Reservation check</font><br><font face="trebuchet MS" size="2">(Enter: Mc#,From Date, To Date)</font></center></div>
-							<div id="nickWrap">
-							<!--
-							<div class="alert alert-danger">
-								<p id="nickError"></p>
-							</div>
-							-->
-							<form class="form form-horizontal" id="setNick">
-								<div class="control-group">
-									<!--label class="control-label">Email</label-->
-									<div class="controls">
-										<input type="Number" id="nickname" name="mc" placeholder="Machine Number" class="form-control">
-										<input id="fromWidget" type="datetime-local" class="form-control" placeholder="From Date MM/DD/YYYY HH:MM PM/AM"></input>
-										<input id="toWidget" type="datetime-local" class="form-control"placeholder="To Date MM/DD/YYYY HH:MM PM/AM" ></input>
-										<center><button class = "btn btn-success btn-large" type = "submit">Check</button><center>
-										
-										<div id="contentWrap2">
-											<div id="chatWrap">
-												<div id="chat">											
-												
-												</div>
-							
-											</div>
-							<!--<div id="users"></div>-->
-										</div>
-									</div>
-								</div>
-							</form>
-							</div>
-							
-							
-						
+		
 	
-						</div>
-					</div>
-					
-								
-					
-					
-					<div class="col-lg-9 col-md-9 col-sm-9 ">
-						<div class="panel panel-success">
-							<div class="panel-heading"><center><font face="trebuchet MS" size="5">Make Reservation</font><br><font face="trebuchet MS" size="3"> (Enter: TCS Employee ID , Full Name, From Date , To Date, Machine# and  Reason for machine Usage)</font></center></div>
-							<!--
-							<div class="alert alert-danger">
-								<p id="Error"></p>
-							</div>
-							-->
-							<form name ="myForm" action="/new", onSubmit="return validateForm();" method ="POST" class="form form-horizontal">
-								<div class="control-group">
-									<!--label class="control-label">Email</label-->
-									<div class="controls">
-										
-										
-										<input name="empID" type="number" placeholder="your TCS Employee Number" class="form-control">
-										
-										<input name="name"  type="text" placeholder="Your Full Name as per TCS" class="form-control">
-										
-										<input name="from"  type="datetime-local"  class="form-control" placeholder="From Date MM/DD/YYYY HH:MM PM/AM">
-									
-										<input type="datetime-local" name="to" class="form-control" placeholder="To Date MM/DD/YYYY HH:MM PM/AM">
-									
-										<input type="Number" id="inputEmail" name="mc" placeholder="Machine Number" class="form-control">
-									
-										<textarea name="reason" type="text" placeholder="reason why you want to use LAB machine" class="form-control"></textarea>
-										<center><button class = "btn btn-success btn-large" type = "submit">Reserve</button><center>
-									</div>
-								</div>
-							</form>
-						</div>
-					</div>
-				</div>
-			
-		</div>
+<div class="container">
+	<!--<FORM><INPUT Type="button" VALUE="Back" onClick="history.go(-1);return true;"></FORM>
+	<label class="logoutLblPos">
+		<FORM><INPUT Type="button" VALUE="Back" onClick="history.go(-1);return false;"></FORM>
+	</label>
+	<label class="logout2LblPos">
+		<a href="#" onclick = "closeWindow();">close</a>
+	</label>
+	-->
+	<div class="page-header text-center">
+		<h1><span class="fa fa-anchor"></span> Reservation Confirmed</h1>
 		
-		<div class = "navbar navbar-inverse navbar-absolute-bottom">
+	</div>
+	
+	
+
+		<!-- LOCAL INFORMATION -->
+		
+			<div class="well">
+				
+
+				<% if (R.id) { %>
+					<center>
+				<h3><span class="fa fa-user"></span>User:<%= R.name %></h3>
+				</center>
+					<p>
+						<center>
+						<strong>Employee ID</strong>: <%= R.id %>&nbsp;&nbsp;&nbsp
+						<strong>MC#</strong>: <%= R.mc %> &nbsp;&nbsp;
+						<%  var date = new Date();
+							date = R.from;
+							fromDate = new Date(date.getUTCFullYear(),date.getUTCMonth(),date.getUTCDate(),date.getUTCHours(),date.getUTCMinutes(),date.getUTCSeconds());
+							date = R.to;
+							toDate = new Date(date.getUTCFullYear(),date.getUTCMonth(),date.getUTCDate(),date.getUTCHours(),date.getUTCMinutes(),date.getUTCSeconds());
+						%>
+						<strong>From</strong>: <%= fromDate %>&nbsp;&nbsp;&nbsp
+						<strong>To</strong>: <%= toDate %>
+						</center>
+					</p>
+					
+				
+				
+				<% } %>
+
+			</div>
+		
+		
+		
+	
+	
+
+	
+
+</div>
+<div class = "navbar navbar-inverse navbar-fixed-bottom">
 		
 			<div class = "container">
 				<p class = "navbar-text pull-left">&copy;This work is licensed under
 					<a href="http://www.tcs.com/Pages/default.aspx">Tata Consultacy Services </a></p>
 					
-					<a href = "#" class = "navbar-btn btn-default btn-sm btn pull-right" id="btnSubmit"><span class="glyphicon glyphicon-thumbs-up"></span> Like</a>
+					<a href = "http://youtube.com/codersguide" class = "navbar-btn btn-default btn-sm btn pull-right"><span class="glyphicon glyphicon-thumbs-up"></span> Like</a>
 				
 			</div>
 		
-		</div>
-		
-		<div class = "modal fade" id = "contact" role = "dialog">
+</div>
+
+
+<div class = "modal fade" id = "contact" role = "dialog">
 		    <div class = "modal-dialog">
-		        
-				
-				<div class = "modal-content">
+		        <div class = "modal-content">
 					
-					<!--
-					<div  id="contentWrap" class="alert alert-success">
-							<p id="success"><center>Thanks for your feedback</center></p>
-					</div>
-					-->
-					
-		            <form id="setNick1" class = "form-horizontal" action="/feedback" method ="POST">
+		            <form class = "form-horizontal" action="/feedback" onSubmit="return validateFeedbackForm();" method ="POST">
 		                <div class = "modal-header">
 		                    <h4>TCS Lab Reservation Team FeedBack</h4>
 		                </div>
-						<div id="thank"></div>
-		                <div  class = "modal-body" id="feedForm">
 						
+						<div class="alert alert-success">
+							<p id="success"></p>
+						</div>
+						
+		                <div class = "modal-body">
+		                
 		                    <div class = "form-group">
 		                        
 		                        <label for = "contact-name" class = "col-lg-2 control-label">Name:</label>
@@ -199,7 +187,7 @@
 		                        <label for = "contact-email" class = "col-lg-2 control-label">Employee ID</label>
 		                        <div class = "col-lg-10">
 		                            
-		                            <input name="empID" type = "number" class = "form-control" id = "contact-empID" placeholder = "your TCS ID">
+		                            <input name="empID" type = "number" class = "form-control" id = "contact-email" placeholder = "your TCS ID">
 		                            
 		                        </div>
 		                        
@@ -210,7 +198,7 @@
 		                        <label for = "contact-msg" class = "col-lg-2 control-label">Message:</label>
 		                        <div class = "col-lg-10">
 		                            
-		                            <textarea name="feedback" id="contact-feedback" class = "form-control" rows = "8"></textarea>
+		                            <textarea name="feedback" class = "form-control" rows = "8"></textarea>
 		                            
 		                        </div>
 		                        
@@ -222,7 +210,6 @@
 		                    <button class = "btn btn-primary" type = "submit">Send</button>
 		                </div>
 		            </form>
-					
 		        </div>
 		    </div>
 		</div>
@@ -234,104 +221,57 @@
 		<script>
 		jQuery(function($){
 			var socket = io.connect();
-			
 			var $nickForm = $('#setNick');
-			var $feedForm = $('#setNick1');
-			
 			var $nickError = $('#nickError');
 			
 			var $nickBox = $('#nickname');
-			var $nickBoxFrom = $('#fromWidget');
-			var $nickBoxTo = $('#toWidget');
-			
-			var $nameBox = $('#contact-name');
-			var $empIDBox = $('#contact-empID');
-			var $feedbackBox = $('#contact-feedback');
 			
 			
-			
-			//var $messageForm = $('#send-message');
-			//var $messageBox = $('#message');
-			
+			//var $users = $('#users');
+			var $messageForm = $('#send-message');
+			var $messageBox = $('#message');
 			var $chat = $('#chat');
-			var $thank = $('#thank');
-			
-			//var $schedule = $('#schedule');
-			
+			var $schedule = $('#schedule');
 			var $fromDate = new Date();
 			var $toDate  = new Date();
-			
 			$nickForm.submit(function(e){
 				e.preventDefault();
-				//alert($nickBox.val());
-				if ($nickBox.val() >= 5 && $nickBox.val() <= 14 ) {
-				
-					$("#chat").html("<font color='black'>Unavailable Schdules</font><br/>");
-					socket.emit('new user', $nickBox.val(), $nickBoxFrom.val(), $nickBoxTo.val(), function(data){
-						if(data){
-							//$('#nickWrap').hide();
-							//$('#contentWrap').show();
-							
-						} else{
-							//$nickError.html('No Schedule available');
-						}
-					});
-					
-				}
-				else {
-					alert("Machine number must be within 5 - 14 ");
-					return false;
-				}
-				
+				$("#chat").html("<font color='white'>--------Unavailable Schdules--------</font><br/>");
+				socket.emit('new user', $nickBox.val(), function(data){
+					if(data){
+						//$('#nickWrap').hide();
+						//$('#contentWrap').show();
+						
+					} else{
+						//$nickError.html('No Schedule available');
+					}
+				});
+				//$nickBox.val('');
 			});
-			
 			
 			socket.on('usernames', function(data){
 				fromDate = new Date(data.timeFrom);
 				toDate = new Date(data.timeTo);
-				$chat.append('<center><font color="black">' + fromDate.getUTCMonth() + "/"+fromDate.getUTCDate()+ " "+ fromDate.getUTCHours() + ":" + fromDate.getUTCMinutes()+" -- " + toDate.getUTCMonth() + "/"+ toDate.getUTCDate()+ " "+ toDate.getUTCHours() + ":" + toDate.getUTCMinutes() + "</font></center><br/>"); 
+				$chat.append('<center><font color="white">' + fromDate.getUTCMonth() + "/"+fromDate.getUTCDate()+ " "+ fromDate.getUTCHours() + ":" + fromDate.getUTCMinutes()+" -- " + toDate.getUTCMonth() + "/"+ toDate.getUTCDate()+ " "+ toDate.getUTCHours() + ":" + toDate.getUTCMinutes() + "</font></center><br/>"); 
 								
 			
 			});
 			
-			
-			$feedForm.submit(function(e){
+			$messageForm.submit(function(e){
 				e.preventDefault();
-				
-				socket.emit('feedback', $nameBox.val(), $empIDBox.val(), $feedbackBox.val(), function(data){
-					if(data){
-						$('#feedForm').hide();
-						//$('#contentWrap').show();
-						
-					} else{
-						//$nickError.html('No Schedule available');
-					}
+				socket.emit('send message', $messageBox.val(), function(data){
+					$chat.append('<span class="error">' + data + "</span><br/>");
 				});
-				//$nickBox.val('');
+				$messageBox.val('');
 			});
 			
-			
-			$("#btnSubmit").click(function(e){
-				e.preventDefault();
-				
-				socket.emit('like', function(data){
-					if(data){
-						//$('#feedForm').hide();
-						//$('#contentWrap').show();
-						
-					} else{
-						//$nickError.html('No Schedule available');
-					}
-				});
-				//$nickBox.val('');
+			socket.on('new message', function(data){
+				$chat.append('<span class="msg"><b>' + data.nick + ': </b>' + data.msg + "</span><br/>");
 			});
 			
-				
-			socket.on('thanks', function(data){
-				$thank.append('<br><center><font color="black">' + data.message + "</font></center><br/>"); 
+			socket.on('whisper', function(data){
+				$chat.append('<span class="whisper"><b>' + data.nick + ': </b>' + data.msg + "</span><br/>");
 			});
-			
-			
 		});
 	</script>
 	
@@ -475,8 +415,6 @@
 		
 	}
 	
-	
-	
 	</script>
-	</body>
+</body>
 </html>
