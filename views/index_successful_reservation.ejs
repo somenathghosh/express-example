@@ -120,9 +120,11 @@
 						<strong>MC#</strong>: <%= R.mc %> &nbsp;&nbsp;
 						<%  var date = new Date();
 							date = R.from;
-							fromDate = new Date(date.getUTCFullYear(),date.getUTCMonth(),date.getUTCDate(),date.getUTCHours(),date.getUTCMinutes(),date.getUTCSeconds());
+							//fromDate = new Date(date.getUTCFullYear(),date.getUTCMonth(),date.getUTCDate(),date.getUTCHours(),date.getUTCMinutes(),date.getUTCSeconds());
+							fromDate = new Date(date);
 							date = R.to;
-							toDate = new Date(date.getUTCFullYear(),date.getUTCMonth(),date.getUTCDate(),date.getUTCHours(),date.getUTCMinutes(),date.getUTCSeconds());
+							//toDate = new Date(date.getUTCFullYear(),date.getUTCMonth(),date.getUTCDate(),date.getUTCHours(),date.getUTCMinutes(),date.getUTCSeconds());
+							toDate = new Date(date);
 						%>
 						<strong>From</strong>: <%= fromDate %>&nbsp;&nbsp;&nbsp
 						<strong>To</strong>: <%= toDate %>
