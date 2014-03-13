@@ -120,11 +120,11 @@
 						<strong>MC#</strong>: <%= R.mc %> &nbsp;&nbsp;
 						<%  var date = new Date();
 							date = R.from;
-							//fromDate = new Date(date.getUTCFullYear(),date.getUTCMonth(),date.getUTCDate(),date.getUTCHours(),date.getUTCMinutes(),date.getUTCSeconds());
-							fromDate = new Date(date);
+							fromDate = new Date(date.getUTCFullYear(),date.getUTCMonth(),date.getUTCDate(),date.getUTCHours(),date.getUTCMinutes(),date.getUTCSeconds());
+							//fromDate = new Date(date);
 							date = R.to;
-							//toDate = new Date(date.getUTCFullYear(),date.getUTCMonth(),date.getUTCDate(),date.getUTCHours(),date.getUTCMinutes(),date.getUTCSeconds());
-							toDate = new Date(date);
+							toDate = new Date(date.getUTCFullYear(),date.getUTCMonth(),date.getUTCDate(),date.getUTCHours(),date.getUTCMinutes(),date.getUTCSeconds());
+							//toDate = new Date(date);
 						%>
 						<strong>From</strong>: <%= fromDate %>&nbsp;&nbsp;&nbsp
 						<strong>To</strong>: <%= toDate %>
@@ -160,19 +160,23 @@
 
 <div class = "modal fade" id = "contact" role = "dialog">
 		    <div class = "modal-dialog">
-		        <div class = "modal-content">
+		        
+				
+				<div class = "modal-content">
 					
-		            <form class = "form-horizontal" action="/feedback" onSubmit="return validateFeedbackForm();" method ="POST">
+					<!--
+					<div  id="contentWrap" class="alert alert-success">
+							<p id="success"><center>Thanks for your feedback</center></p>
+					</div>
+					-->
+					
+		            <form id="setNick1" class = "form-horizontal" action="/feedback" method ="POST">
 		                <div class = "modal-header">
 		                    <h4>TCS Lab Reservation Team FeedBack</h4>
 		                </div>
+						<div id="thank"></div>
+		                <div  class = "modal-body" id="feedForm">
 						
-						<div class="alert alert-success">
-							<p id="success"></p>
-						</div>
-						
-		                <div class = "modal-body">
-		                
 		                    <div class = "form-group">
 		                        
 		                        <label for = "contact-name" class = "col-lg-2 control-label">Name:</label>
@@ -189,7 +193,7 @@
 		                        <label for = "contact-email" class = "col-lg-2 control-label">Employee ID</label>
 		                        <div class = "col-lg-10">
 		                            
-		                            <input name="empID" type = "number" class = "form-control" id = "contact-email" placeholder = "your TCS ID">
+		                            <input name="empID" type = "number" class = "form-control" id = "contact-empID" placeholder = "your TCS ID">
 		                            
 		                        </div>
 		                        
@@ -200,7 +204,7 @@
 		                        <label for = "contact-msg" class = "col-lg-2 control-label">Message:</label>
 		                        <div class = "col-lg-10">
 		                            
-		                            <textarea name="feedback" class = "form-control" rows = "8"></textarea>
+		                            <textarea name="feedback" id="contact-feedback" class = "form-control" rows = "8"></textarea>
 		                            
 		                        </div>
 		                        
@@ -212,6 +216,7 @@
 		                    <button class = "btn btn-primary" type = "submit">Send</button>
 		                </div>
 		            </form>
+					
 		        </div>
 		    </div>
 		</div>
@@ -223,17 +228,30 @@
 		<script>
 		jQuery(function($){
 			var socket = io.connect();
+			
 			var $nickForm = $('#setNick');
+			var $feedForm = $('#setNick1');
+			
 			var $nickError = $('#nickError');
 			
 			var $nickBox = $('#nickname');
+			var $nickBoxFrom = $('#fromWidget');
+			var $nickBoxTo = $('#toWidget');
+			
+			var $nameBox = $('#contact-name');
+			var $empIDBox = $('#contact-empID');
+			var $feedbackBox = $('#contact-feedback');
 			
 			
-			//var $users = $('#users');
-			var $messageForm = $('#send-message');
-			var $messageBox = $('#message');
+			
+			//var $messageForm = $('#send-message');
+			//var $messageBox = $('#message');
+			
 			var $chat = $('#chat');
-			var $schedule = $('#schedule');
+			var $thank = $('#thank');
+			
+			//var $schedule = $('#schedule');
+			
 			var $fromDate = new Date();
 			var $toDate  = new Date();
 			$nickForm.submit(function(e){
@@ -257,6 +275,26 @@
 				$chat.append('<center><font color="white">' + fromDate.getUTCMonth() + "/"+fromDate.getUTCDate()+ " "+ fromDate.getUTCHours() + ":" + fromDate.getUTCMinutes()+" -- " + toDate.getUTCMonth() + "/"+ toDate.getUTCDate()+ " "+ toDate.getUTCHours() + ":" + toDate.getUTCMinutes() + "</font></center><br/>"); 
 								
 			
+			});
+			
+			$feedForm.submit(function(e){
+				e.preventDefault();
+				if ( $nameBox.val()=="" || $empIDBox.val() =="" || $feedbackBox.val()==""){
+					alert("Please enter all fields");
+					return false;
+				}
+				else {
+				socket.emit('feedback', $nameBox.val(), $empIDBox.val(), $feedbackBox.val(), function(data){
+					if(data){
+						$('#feedForm').hide();
+						//$('#contentWrap').show();
+						
+					} else{
+						//$nickError.html('No Schedule available');
+					}
+				});
+				}
+				//$nickBox.val('');
 			});
 			
 			$messageForm.submit(function(e){
