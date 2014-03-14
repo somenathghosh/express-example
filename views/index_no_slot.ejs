@@ -265,7 +265,7 @@
 					
 					if ($nickBoxFrom.val() =="" && $nickBoxTo.val()==""){
 						
-						$("#chat").html("<font color='black'>::Unavailable Schdules::</font><br/>");
+						$("#chat").html("<font color='black'>::Unavailable Schedules::</font><br/>");
 							socket.emit('new user', $nickBox.val(), $fDateNew, $tDateNew, function(data){
 								if(data){
 									//$('#nickWrap').hide();
@@ -280,7 +280,7 @@
 					else {
 					
 						if(isFinite($fDate) && $nickBoxTo.val()==""){
-							$("#chat").html("<font color='black'>::Unavailable Schdules::</font><br/>");
+							$("#chat").html("<font color='black'>::Unavailable Schedules::</font><br/>");
 								socket.emit('new user', $nickBox.val(), $fDate, $tDateNew, function(data){
 									if(data){
 										//$('#nickWrap').hide();
@@ -295,7 +295,7 @@
 						
 						
 							if($nickBoxFrom.val() =="" && isFinite($tDate)){
-								$("#chat").html("<font color='black'>::Unavailable Schdules::</font><br/>");
+								$("#chat").html("<font color='black'>::Unavailable Schedules::</font><br/>");
 									socket.emit('new user', $nickBox.val(), $fDateNew, $tDate, function(data){
 										if(data){
 											//$('#nickWrap').hide();
@@ -313,7 +313,7 @@
 								if (isFinite($fDate) && isFinite($tDate)) {
 										
 								
-										$("#chat").html("<font color='black'>::Unavailable Schdules::</font><br/>");
+										$("#chat").html("<font color='black'>::Unavailable Schedules::</font><br/>");
 										socket.emit('new user', $nickBox.val(), $nickBoxFrom.val(), $nickBoxTo.val(), function(data){
 											if(data){
 												//$('#nickWrap').hide();

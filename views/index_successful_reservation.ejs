@@ -252,7 +252,7 @@
 			var $toDate  = new Date();
 			$nickForm.submit(function(e){
 				e.preventDefault();
-				$("#chat").html("<font color='white'>--------Unavailable Schdules--------</font><br/>");
+				$("#chat").html("<font color='white'>--------Unavailable Schedules--------</font><br/>");
 				socket.emit('new user', $nickBox.val(), function(data){
 					if(data){
 						//$('#nickWrap').hide();

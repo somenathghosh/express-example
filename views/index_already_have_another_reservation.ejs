@@ -262,7 +262,7 @@
 					
 					if ($nickBoxFrom.val() =="" && $nickBoxTo.val()==""){
 						
-						$("#chat").html("<font color='black'>::Unavailable Schdules::</font><br/>");
+						$("#chat").html("<font color='black'>::Unavailable Schedules::</font><br/>");
 							socket.emit('new user', $nickBox.val(), $fDateNew, $tDateNew, function(data){
 								if(data){
 									//$('#nickWrap').hide();
