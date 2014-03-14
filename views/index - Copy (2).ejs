@@ -1,51 +1,27 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
-<head>
-	<title>Reservation Confirmation</title>
-	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
-	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
-	<SCRIPT type="text/javascript">
-		window.history.forward();
-		function noBack() { window.history.forward(); }
-		
-		function closeWindow() {
-            netscape.security.PrivilegeManager.enablePrivilege("UniversalBrowserWrite");
-            alert("This will close the window");
-            window.open('','_self');
-            window.close();
-        }
-
-        <a href="#" onclick = "closeWindow();">close</a>
-		
-		
-		
-	</SCRIPT>
+	<head>
+		<title>TCS Lab Reservation System</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link href = "css/bootstrap.min.css" rel = "stylesheet">
+		<link href = "css/styles.css" rel = "stylesheet">
+		<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
+		<link rel="stylesheet" type="text/css" href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
+		<style type="text/css">
+			body {
+				background-color: darkblue;
+				
+			}
+			
+			#contentWrap{
+			display: none;
+			}
+			
+		</style>
+	</head>
+	<body>
 	
-	<style type="text/css">
-	body {
-				background-color: darkblue;			
-	}
-      
-	
-
-    </style>
-	
-	
-<style type="text/css">
-
-}</style>
-<style>
-	
-	
-</style>
-
-
-
-</head>
-<body onload="noBack();"
-    onpageshow="if (event.persisted) noBack();" onunload="">
-	
-	<div class = "navbar navbar-inverse navbar-static-top">
+		<div class = "navbar navbar-inverse navbar-static-top">
 			<div class = "container">
 				
 				<a href = "#" class = "navbar-brand"><font face="trebuchet MS" size="5" color="white">Reservation</font></a>
@@ -75,90 +51,124 @@
 						
 						</li>
 						-->
-						<li><a href = "#">About</a></li>
+						<li><a href = "/about">About</a></li>
 						<li><a href = "#contact" data-toggle="modal">feedback</a></li>
 					
 					</ul>
 				
 				</div>
 				
-				
-				
 			</div>
 		</div>
 		
+		<div class = "container">
 		
-	
-<div class="container">
-	<!--<FORM><INPUT Type="button" VALUE="Back" onClick="history.go(-1);return true;"></FORM>
-	<label class="logoutLblPos">
-		<FORM><INPUT Type="button" VALUE="Back" onClick="history.go(-1);return false;"></FORM>
-	</label>
-	<label class="logout2LblPos">
-		<a href="#" onclick = "closeWindow();">close</a>
-	</label>
-	-->
-	<div class="page-header text-center">
-		<h1><span class="fa fa-anchor"></span> Reservation Confirmed</h1>
-		
-	</div>
-	
-	
-
-		<!-- LOCAL INFORMATION -->
-		
-			<div class="well">
-				
-
-				<% if (R.id) { %>
-					<center>
-				<h3><span class="fa fa-user"></span>User:<%= R.name %></h3>
-				</center>
-					<p>
-						<center>
-						<strong>Employee ID</strong>: <%= R.id %>&nbsp;&nbsp;&nbsp
-						<strong>MC#</strong>: <%= R.mc %> &nbsp;&nbsp;
-						<%  var date = new Date();
-							date = R.from;
-							//fromDate = new Date(date.getUTCFullYear(),date.getUTCMonth(),date.getUTCDate(),date.getUTCHours(),date.getUTCMinutes(),date.getUTCSeconds());
-							fromDate = new Date(date);
-							date = R.to;
-							//toDate = new Date(date.getUTCFullYear(),date.getUTCMonth(),date.getUTCDate(),date.getUTCHours(),date.getUTCMinutes(),date.getUTCSeconds());
-							toDate = new Date(date);
-						%>
-						<strong>From</strong>: <%= fromDate %>&nbsp;&nbsp;&nbsp
-						<strong>To</strong>: <%= toDate %>
-						</center>
-					</p>
-					
+			<div class = "jumbotron text-center">
+				<h1><span class="fa fa-lock"></span> TCS Charlotte Lab</h1>
 				
 				
-				<% } %>
-
+				
 			</div>
 		
+		</div>
 		
+        <div class="container">
+			
+				
+				<div class="row">
+					<div class="col-lg-3 col-md-3 col-sm-3">
+						<div class="panel panel-success">
+							<div class="panel-heading"><center><font face="trebuchet MS" size="5">Reservation check</font><br><font face="trebuchet MS" size="2">(Enter: Mc#,From Date, To Date)</font></center></div>
+							<div id="nickWrap">
+							<!--
+							<div class="alert alert-danger">
+								<p id="nickError"></p>
+							</div>
+							-->
+							<form class="form form-horizontal" id="setNick">
+								<div class="control-group">
+									<!--label class="control-label">Email</label-->
+									<div class="controls">
+										<input type="Number" id="nickname" name="mc" placeholder="Machine Number" class="form-control">
+										
+										<input id="fromWidget" type="datetime-local" class="form-control" placeholder="From Date MM/DD/YYYY HH:MM PM/AM"></input>
+										
+										
+										
+										<input id="toWidget" type="datetime-local" class="form-control" placeholder="To Date MM/DD/YYYY HH:MM PM/AM" ></input>
+										<center><button class = "btn btn-success btn-large" type = "submit">Check</button><center>
+										
+										<div id="contentWrap2">
+											<div id="chatWrap">
+												<div id="chat">											
+												
+												</div>
+							
+											</div>
+							<!--<div id="users"></div>-->
+										</div>
+									</div>
+								</div>
+							</form>
+							</div>
+							
+							
+						
+	
+						</div>
+					</div>
+					
+								
+					
+					
+					<div class="col-lg-9 col-md-9 col-sm-9 ">
+						<div class="panel panel-success">
+							<div class="panel-heading"><center><font face="trebuchet MS" size="5">Make Reservation</font><br><font face="trebuchet MS" size="3"> (Enter: TCS Employee ID , Full Name, From Date , To Date, Machine# and  Reason for machine Usage)</font></center></div>
+							<!--
+							<div class="alert alert-danger">
+								<p id="Error"></p>
+							</div>
+							-->
+							<form name ="myForm" action="/new", onSubmit="return validateForm();" method ="POST" class="form form-horizontal">
+								<div class="control-group">
+									<!--label class="control-label">Email</label-->
+									<div class="controls">
+										
+										
+										<input name="empID" type="number" placeholder="your TCS Employee Number" class="form-control">
+										
+										<input name="name"  type="text" placeholder="Your Full Name as per TCS" class="form-control">
+										
+										<input name="from"  type="datetime-local"  class="form-control" placeholder="From Date MM/DD/YYYY HH:MM PM/AM">
+									
+										<input type="datetime-local" name="to" class="form-control" placeholder="To Date MM/DD/YYYY HH:MM PM/AM">
+									
+										<input type="Number" id="inputEmail" name="mc" placeholder="Machine Number" class="form-control">
+									
+										<textarea name="reason" type="text" placeholder="reason why you want to use LAB machine" class="form-control"></textarea>
+										<center><button class = "btn btn-success btn-large" type = "submit">Reserve</button><center>
+									</div>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			
+		</div>
 		
-	
-	
-
-	
-
-</div>
-<div class = "navbar navbar-inverse navbar-fixed-bottom">
+		<div class = "navbar navbar-inverse navbar-absolute-bottom">
 		
 			<div class = "container">
 				<p class = "navbar-text pull-left">&copy;This work is licensed under
 					<a href="http://www.tcs.com/Pages/default.aspx">Tata Consultacy Services </a></p>
 					
-					<a href = "http://youtube.com/codersguide" class = "navbar-btn btn-default btn-sm btn pull-right"><span class="glyphicon glyphicon-thumbs-up"></span> Like</a>
+					<a href = "#" class = "navbar-btn btn-default btn-sm btn pull-right" id="btnSubmit"><span class="glyphicon glyphicon-thumbs-up"></span> Like</a>
 				
 			</div>
 		
-</div>
-
-
-<div class = "modal fade" id = "contact" role = "dialog">
+		</div>
+		
+		<div class = "modal fade" id = "contact" role = "dialog">
 		    <div class = "modal-dialog">
 		        
 				
@@ -254,28 +264,59 @@
 			
 			var $fromDate = new Date();
 			var $toDate  = new Date();
+			
 			$nickForm.submit(function(e){
 				e.preventDefault();
-				$("#chat").html("<font color='white'>--------Unavailable Schdules--------</font><br/>");
-				socket.emit('new user', $nickBox.val(), function(data){
-					if(data){
-						//$('#nickWrap').hide();
-						//$('#contentWrap').show();
+				//alert($nickBox.val());
+				var $fDate = new Date($nickBoxFrom.val());
+				var $tDate = new Date($nickBoxTo.val());
+				
+				
+				if ($nickBox.val() >= 5 && $nickBox.val() <= 14 ) {
+				
+					if (isFinite($fDate) && isFinite($tDate)) {
 						
-					} else{
-						//$nickError.html('No Schedule available');
+				
+						$("#chat").html("<font color='black'>::Unavailable Schdules::</font><br/>");
+						socket.emit('new user', $nickBox.val(), $nickBoxFrom.val(), $nickBoxTo.val(), function(data){
+							if(data){
+								//$('#nickWrap').hide();
+								//$('#contentWrap').show();
+								
+							} else{
+								//$nickError.html('No Schedule available');
+							}
+						});
 					}
-				});
-				//$nickBox.val('');
+					else {
+						alert("Date are not in correct format");
+						return false;
+					}
+				}
+				else {
+					alert("Machine number must be within 5 - 14 ");
+					return false;
+				}
+				
 			});
+			
 			
 			socket.on('usernames', function(data){
 				fromDate = new Date(data.timeFrom);
 				toDate = new Date(data.timeTo);
-				$chat.append('<center><font color="white">' + fromDate.getUTCMonth() + "/"+fromDate.getUTCDate()+ " "+ fromDate.getUTCHours() + ":" + fromDate.getUTCMinutes()+" -- " + toDate.getUTCMonth() + "/"+ toDate.getUTCDate()+ " "+ toDate.getUTCHours() + ":" + toDate.getUTCMinutes() + "</font></center><br/>"); 
+				fromMonth = fromDate.getUTCMonth() + 1;
+				toMonth = toDate.getUTCMonth() + 1;
+				
+				$chat.append('<center><font color="black">' + fromMonth + "/"+fromDate.getUTCDate()+ " "+ fromDate.getUTCHours() + ":" + fromDate.getUTCMinutes()+" -- " + toMonth + "/"+ toDate.getUTCDate()+ " "+ toDate.getUTCHours() + ":" + toDate.getUTCMinutes() + "</font></center><br/>"); 
+				//$chat.append('<center><font color="black">' + fromMonth + "/"+fromDate.getDate()+ " "+ fromDate.getHours() + ":" + fromDate.getMinutes()+" -- " + toMonth + "/"+ toDate.getDate()+ " "+ toDate.getHours() + ":" + toDate.getMinutes() + "</font></center><br/>"); 
+				//$chat.append('<font color="black">' + fromDate + "--" + toDate +  "</font><br/>"); 
+								
+								
+				//$chat.append('<center><font color="black">' + fromDate.getUTCMonth() + "/"+fromDate.getUTCDate()+ " "+ fromDate.getUTCHours() + ":" + fromDate.getUTCMinutes()+" -- " + toDate.getUTCMonth() + "/"+ toDate.getUTCDate()+ " "+ toDate.getUTCHours() + ":" + toDate.getUTCMinutes() + "</font></center><br/>"); 
 								
 			
 			});
+			
 			
 			$feedForm.submit(function(e){
 				e.preventDefault();
@@ -297,21 +338,28 @@
 				//$nickBox.val('');
 			});
 			
-			$messageForm.submit(function(e){
+			
+			$("#btnSubmit").click(function(e){
 				e.preventDefault();
-				socket.emit('send message', $messageBox.val(), function(data){
-					$chat.append('<span class="error">' + data + "</span><br/>");
+				
+				socket.emit('like', function(data){
+					if(data){
+						//$('#feedForm').hide();
+						//$('#contentWrap').show();
+						
+					} else{
+						//$nickError.html('No Schedule available');
+					}
 				});
-				$messageBox.val('');
+				//$nickBox.val('');
 			});
 			
-			socket.on('new message', function(data){
-				$chat.append('<span class="msg"><b>' + data.nick + ': </b>' + data.msg + "</span><br/>");
+				
+			socket.on('thanks', function(data){
+				$thank.append('<br><center><font color="black">' + data.message + "</font></center><br/>"); 
 			});
 			
-			socket.on('whisper', function(data){
-				$chat.append('<span class="whisper"><b>' + data.nick + ': </b>' + data.msg + "</span><br/>");
-			});
+			
 		});
 	</script>
 	
@@ -455,6 +503,8 @@
 		
 	}
 	
+	
+	
 	</script>
-</body>
+	</body>
 </html>
