@@ -330,7 +330,7 @@
 					}
 					else {
 					
-						if(isFinite($fDate) && $nickBoxTo.val()==""){
+						if($nickBoxFrom.val() !="" && $nickBoxTo.val()==""){
 							$("#chat").html("<font color='black'>::Unavailable Schdules::</font><br/>");
 								socket.emit('new user', $nickBox.val(), $fDate, $tDateNew, function(data){
 									if(data){
@@ -345,7 +345,7 @@
 						else{
 						
 						
-							if($nickBoxFrom.val() =="" && isFinite($tDate)){
+							if($nickBoxFrom.val() =="" && $nickBoxTo.val()!=""){
 								$("#chat").html("<font color='black'>::Unavailable Schdules::</font><br/>");
 									socket.emit('new user', $nickBox.val(), $fDateNew, $tDate, function(data){
 										if(data){
