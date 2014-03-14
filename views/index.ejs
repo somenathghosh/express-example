@@ -365,7 +365,7 @@
 										
 								
 										$("#chat").html("<font color='black'>::Unavailable Schdules::</font><br/>");
-										socket.emit('new user', $nickBox.val(), $nickBoxFrom.val(), $nickBoxTo.val(), function(data){
+										socket.emit('new user', $nickBox.val(), $fDate, $tDate, function(data){
 											if(data){
 												//$('#nickWrap').hide();
 												//$('#contentWrap').show();
