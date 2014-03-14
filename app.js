@@ -62,13 +62,14 @@ io.sockets.on('connection', function(socket){
 		//console.log(fromDate);
 		//console.log(toDate);
 		//console.log(mcNumber);
-		User.find({to: {"$gte":fromDate},from: {"$lte":toDate},mc: mcNumber},function(err,docs){
+		//User.find({to: {"$gte":fromDate},from: {"$lte":toDate},mc: mcNumber},function(err,docs){
+		User.find({to: {"$gte":fromDate},from: {"$lte":toDate},mc: mcNumber}).sort({from:1}).exec(function(err,docs){
 			if(err) console.log(err);
 			if(!docs){
 				callback(false);
 			}
 			else {
-				
+				//docs.sort({from: 1});
 				callback(true);
 				docs.forEach( function(doc){
 					//console.log(doc.from)
