@@ -72,7 +72,7 @@ io.sockets.on('connection', function(socket){
 				//docs.sort({from: 1});
 				callback(true);
 				docs.forEach( function(doc){
-					//console.log(doc.from)
+					console.log(doc.from)
 					socket.emit('usernames',{timeFrom: doc.from.toString(), timeTo: doc.to.toString()});
 				});
 			}

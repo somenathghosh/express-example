@@ -361,7 +361,7 @@
 							
 							
 							
-								//if (isFinite($fDate) && isFinite($tDate)) {
+								if ($nickBoxFrom.val() !="" && $nickBoxTo.val()!="") {
 										
 								
 										$("#chat").html("<font color='black'>::Unavailable Schdules::</font><br/>");
@@ -374,11 +374,11 @@
 												//$nickError.html('No Schedule available');
 											}
 										});
-								//}
-								//else {
-								//		alert("Date are not in correct format");
-								//		return false;
-								//}
+								}
+								else {
+										alert("Date are not in correct format");
+										return false;
+								}
 							}
 						}
 					}
@@ -496,7 +496,7 @@
 			//fromDate = fromDate.addHours(5);
 			//toDate = toDate.addHours(5);
 			
-			//alert(fromDate);
+			alert(fromDate);
 			//alert(toDate);
 			if(!fromDate.valid()){
 				alert("Enter a valid From date");
