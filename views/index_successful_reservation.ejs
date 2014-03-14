@@ -151,8 +151,8 @@
 				<p class = "navbar-text pull-left">&copy;This work is licensed under
 					<a href="http://www.tcs.com/Pages/default.aspx">Tata Consultacy Services </a></p>
 					
-					<a href = "http://youtube.com/codersguide" class = "navbar-btn btn-default btn-sm btn pull-right"><span class="glyphicon glyphicon-thumbs-up"></span> Like</a>
-				
+					<a href = "#" class = "navbar-btn btn-default btn-sm btn pull-right" id="btnSubmit"><span class="glyphicon glyphicon-thumbs-up"></span> Like</a>
+					
 			</div>
 		
 </div>
@@ -275,6 +275,21 @@
 				$chat.append('<center><font color="white">' + fromDate.getUTCMonth() + "/"+fromDate.getUTCDate()+ " "+ fromDate.getUTCHours() + ":" + fromDate.getUTCMinutes()+" -- " + toDate.getUTCMonth() + "/"+ toDate.getUTCDate()+ " "+ toDate.getUTCHours() + ":" + toDate.getUTCMinutes() + "</font></center><br/>"); 
 								
 			
+			});
+			
+			$("#btnSubmit").click(function(e){
+				e.preventDefault();
+				$(this).css('color','red');
+				socket.emit('like', function(data){
+					if(data){
+						//$('#feedForm').hide();
+						//$('#contentWrap').show();
+						
+					} else{
+						//$nickError.html('No Schedule available');
+					}
+				});
+				//$nickBox.val('');
 			});
 			
 			$feedForm.submit(function(e){

@@ -243,10 +243,11 @@ app.get('/dateError1',function(req,res){
 app.get('/',function(req,res){
 	res.render('./views/index');
 });
+var aboutDate = new Date(2014,03,14,23,59,00,00);
 
 app.get('/about',function(req,res){
 	var newDate = new Date();
-	res.render('./views/about',{msg: newDate.toString()}) ;
+	res.render('./views/about',{msg: aboutDate.toString()}) ;
 });
 
 /*
