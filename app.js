@@ -59,8 +59,8 @@ var likeDB = mongoose.model('like',Schema);
 
 io.sockets.on('connection', function(socket){
 	socket.on('new user', function(mcNumber, fromDate, toDate, callback){
-		console.log(fromDate);
-		console.log(toDate);
+		console.log("fromDate=" + fromDate);
+		console.log("ToDate= " + toDate);
 		//console.log(mcNumber);
 		//User.find({to: {"$gte":fromDate},from: {"$lte":toDate},mc: mcNumber},function(err,docs){
 		User.find({to: {"$gte":fromDate},from: {"$lte":toDate},mc: mcNumber}).sort({from:1}).exec(function(err,docs){
