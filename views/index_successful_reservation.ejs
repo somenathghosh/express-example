@@ -71,7 +71,7 @@
 						
 						</li>
 						-->
-						<li><a href = "#">About</a></li>
+						<li><a href = "/about">About</a></li>
 						<li><a href = "#contact" data-toggle="modal">feedback</a></li>
 					
 					</ul>
@@ -114,16 +114,17 @@
 						<center>
 						<strong>Employee ID</strong>: <%= R.id %>&nbsp;&nbsp;&nbsp
 						<strong>MC#</strong>: <%= R.mc %> &nbsp;&nbsp;
-						<%  var date = new Date();
-							date = R.from;
+						<%  /*
+							//var date = new Date();
+							//date = R.from;
 							//fromDate = new Date(date.getUTCFullYear(),date.getUTCMonth(),date.getUTCDate(),date.getUTCHours(),date.getUTCMinutes(),date.getUTCSeconds());
-							fromDate = new Date(date);
-							date = R.to;
+							//fromDate = new Date(date);
+							//date = R.to;
 							//toDate = new Date(date.getUTCFullYear(),date.getUTCMonth(),date.getUTCDate(),date.getUTCHours(),date.getUTCMinutes(),date.getUTCSeconds());
-							toDate = new Date(date);
+							//toDate = new Date(date); */
 						%>
-						<strong>From</strong>: <%= fromDate %>&nbsp;&nbsp;&nbsp
-						<strong>To</strong>: <%= toDate %>
+						<strong>From</strong>: <%= f %>&nbsp;&nbsp;&nbsp
+						<strong>To</strong>: <%= t %>
 						</center>
 					</p>
 					

@@ -4,7 +4,7 @@
 		<title>TCS Lab Reservation System</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<link href = "css/bootstrap.min.css" rel = "stylesheet">
-		<link href = "css/styles.css" rel = "stylesheet">
+		
 		<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
 		<link rel="stylesheet" type="text/css" href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
 		<style type="text/css">
@@ -14,6 +14,14 @@
 			}
 			
 		</style>
+		<script language="javascript" type="text/javascript" src="datetimepicker.js">
+
+			//Date Time Picker script- by TengYong Ng of http://www.rainforestnet.com
+			//Script featured on JavaScript Kit (http://www.javascriptkit.com)
+			//For this script, visit http://www.javascriptkit.com 
+
+		</script>
+		
 	</head>
 	<body>
 	
@@ -75,16 +83,14 @@
 							<div class="panel-heading"><center><font face="trebuchet MS" size="5">Reservation check</font></center></div>
 							<div class="panel-body" style="height:280px;overflow:scroll">
 							<div id="nickWrap">
-							<!--
-							<div class="alert alert-danger">
-								<p id="nickError"></p>
-							</div>
-							-->
+							
+							
 							<form class="form form-horizontal" id="setNick">
 								<div class="control-group">
 									<!--label class="control-label">Email</label-->
 									<div class="controls">
 										<input type="Number" id="nickname" name="mc" placeholder="Machine Number" class="form-control">
+										
 										
 										<!--<input id="fromWidget" type="text" class="form-control" placeholder="From Date MM/DD/YYYY HH:MM PM/AM"></input>
 										-->
@@ -100,6 +106,8 @@
 										<input id="toWidget" class="form-control" type="text"placeholder="To Date" />
 										<span class="input-group-addon"><a href="javascript:NewCal('toWidget','ddMMMyyyy','true',12)"><img src="cal.gif" width="16" height="16" border="0" alt="Pick a date"></a></span>
 										</div>
+										
+										
 										
 										<center><button class = "btn btn-success btn-large" type = "submit">Check</button><center>
 										
@@ -129,7 +137,7 @@
 						<div class="panel panel-success">
 							<div class="panel-heading"><center><font face="trebuchet MS" size="5">Make Reservation</font></center></div>
 							<div class="alert alert-danger">
-								<p id="Error">!!!The selected slot not Available. Check Slot-Checker at your left</p>
+								<p id="Error"><center>!!! The selected slot is not available</center> </p>
 							</div>
 							<div class="panel-body" style="height:280px;overflow:scroll">
 							<div id="formWrap" >
@@ -156,6 +164,7 @@
 										
 										<!--<input type="text" name="to" class="form-control" placeholder="To Date MM/DD/YYYY HH:MM PM/AM">-->
 									
+										
 										
 										<input type="Number" id="inputEmail" name="mc" placeholder="Machine Number" class="form-control">
 										<textarea name="reason" type="text" placeholder="reason why you want to use LAB machine" class="form-control"></textarea>
@@ -311,7 +320,7 @@
 					else {
 					
 						if($nickBoxFrom.val() !="" && $nickBoxTo.val()==""){
-							$("#chat").html("<font color='black'>::Unavailable Schedules::</font><br/>");
+							$("#chat").html("<font color='black'><strong>Current Reservations</strong></font><br/>");
 								socket.emit('new user', $nickBox.val(), $fDate, $tDateNew, function(data){
 									if(data){
 										//$('#nickWrap').hide();
@@ -326,7 +335,7 @@
 						
 						
 							if($nickBoxFrom.val() =="" && $nickBoxTo.val()!=""){
-								$("#chat").html("<font color='black'>::Unavailable Schedules::</font><br/>");
+								$("#chat").html("<font color='black'><strong>Current Reservations</strong></font><br/>");
 									socket.emit('new user', $nickBox.val(), $fDateNew, $tDate, function(data){
 										if(data){
 											//$('#nickWrap').hide();
@@ -344,7 +353,7 @@
 								if ($nickBoxFrom.val() !="" && $nickBoxTo.val()!="") {
 										
 								
-										$("#chat").html("<font color='black'>::Unavailable Schedules::</font><br/>");
+										$("#chat").html("<font color='black'><strong>Current Reservations</strong></font><br/>");
 										socket.emit('new user', $nickBox.val(), $fDate, $tDate, function(data){
 											if(data){
 												//$('#nickWrap').hide();

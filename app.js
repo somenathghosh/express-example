@@ -72,7 +72,7 @@ io.sockets.on('connection', function(socket){
 				//docs.sort({from: 1});
 				callback(true);
 				docs.forEach( function(doc){
-					console.log(doc.from)
+					//console.log(doc.from)
 					socket.emit('usernames',{timeFrom: doc.from.toString(), timeTo: doc.to.toString()});
 				});
 			}
@@ -163,7 +163,7 @@ app.post('/new',function(req,res){
 			res.end("There is some DB system error");
 		}
 		if(docs){
-			console.log(docs);
+			//console.log(docs);
 			console.log("already have a machine");
 			res.render("./views/index_already_have_another_reservation",{R:docs});
 		}
@@ -175,14 +175,14 @@ app.post('/new',function(req,res){
 				res.end("There is some DB system error");
 			}
 			if(user) {
-				console.log(user);
+				//console.log(user);
 				res.render("./views/index_no_slot",{R:user});
 			}
 			else{
 				
 				
 				console.log("From_reservation =" + req.body.from);
-				console.log("From_reservation =" + req.body.to);
+				console.log("To_reservation =" + req.body.to);
 				
 				
 				new User({
@@ -198,7 +198,11 @@ app.post('/new',function(req,res){
 							console.log(err);
 								res.end("There is some system error");
 							}
-								else res.render("./views/index_successful_reservation",{R: doc});
+								
+								else {
+									console.log(doc.from);
+									res.render("./views/index_successful_reservation",{R: doc, f: req.body.from, t: req.body.to});
+								}
 						});
 				}
 			});
@@ -248,7 +252,7 @@ app.get('/dateError1',function(req,res){
 app.get('/',function(req,res){
 	res.render('./views/index');
 });
-var aboutDate = new Date(2014,03,14,23,59,00,00);
+var aboutDate = new Date(2014,02,16,23,59,00,00);
 
 app.get('/about',function(req,res){
 	var newDate = new Date();

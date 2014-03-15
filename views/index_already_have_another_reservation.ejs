@@ -14,6 +14,14 @@
 			}
 			
 		</style>
+		<script language="javascript" type="text/javascript" src="datetimepicker.js">
+
+			//Date Time Picker script- by TengYong Ng of http://www.rainforestnet.com
+			//Script featured on JavaScript Kit (http://www.javascriptkit.com)
+			//For this script, visit http://www.javascriptkit.com 
+
+		</script>
+		
 	</head>
 	<body>
 	
@@ -129,7 +137,7 @@
 						<div class="panel panel-success">
 							<div class="panel-heading"><center><font face="trebuchet MS" size="5">Make Reservation</font></center></div>
 							<div class="alert alert-danger">
-								<p id="Error">!!! You already have M/C # <%=R.mc%> booked around same time</p>
+								<p id="Error"><center>!!! You already have M/C # <%=R.mc%> booked around same time</center></p>
 							</div>
 							<div class="panel-body" style="height:280px;overflow:scroll">
 							<div id="formWrap" >
@@ -312,7 +320,7 @@
 					else {
 					
 						if($nickBoxFrom.val() !="" && $nickBoxTo.val()==""){
-							$("#chat").html("<font color='black'>::Unavailable Schedules::</font><br/>");
+							$("#chat").html("<font color='black'><strong>Current Reservations</strong></font><br/>");
 								socket.emit('new user', $nickBox.val(), $fDate, $tDateNew, function(data){
 									if(data){
 										//$('#nickWrap').hide();
@@ -327,7 +335,7 @@
 						
 						
 							if($nickBoxFrom.val() =="" && $nickBoxTo.val()!=""){
-								$("#chat").html("<font color='black'>::Unavailable Schedules::</font><br/>");
+								$("#chat").html("<font color='black'><strong>Current Reservations</strong></font><br/>");
 									socket.emit('new user', $nickBox.val(), $fDateNew, $tDate, function(data){
 										if(data){
 											//$('#nickWrap').hide();
@@ -345,7 +353,7 @@
 								if ($nickBoxFrom.val() !="" && $nickBoxTo.val()!="") {
 										
 								
-										$("#chat").html("<font color='black'>::Unavailable Schedules::</font><br/>");
+										$("#chat").html("<font color='black'><strong>Current Reservations</strong></font><br/>");
 										socket.emit('new user', $nickBox.val(), $fDate, $tDate, function(data){
 											if(data){
 												//$('#nickWrap').hide();
