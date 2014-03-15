@@ -85,8 +85,22 @@
 									<!--label class="control-label">Email</label-->
 									<div class="controls">
 										<input type="Number" id="nickname" name="mc" placeholder="Machine Number" class="form-control">
-										<input id="fromWidget" type="text" class="form-control" placeholder="From Date MM/DD/YYYY HH:MM PM/AM"></input>
-										<input id="toWidget" type="text" class="form-control"placeholder="To Date MM/DD/YYYY HH:MM PM/AM" ></input>
+										
+										<!--<input id="fromWidget" type="text" class="form-control" placeholder="From Date MM/DD/YYYY HH:MM PM/AM"></input>
+										-->
+										<div class='input-group date' id='datetimepicker1'>
+										<input id="fromWidget" class="form-control" type="text" placeholder="From Date" />
+										<span class="input-group-addon"><a href="javascript:NewCal('fromWidget','ddMMMyyyy','true',12)"><img src="cal.gif" width="16" height="16" border="0" alt="Pick a date"></a></span>
+										</div>
+										
+										<!--<input id="toWidget" type="text" class="form-control" placeholder="To Date MM/DD/YYYY HH:MM PM/AM" ></input>
+										-->
+										
+										<div class='input-group date' id='datetimepicker1'>
+										<input id="toWidget" class="form-control" type="text"placeholder="To Date" />
+										<span class="input-group-addon"><a href="javascript:NewCal('toWidget','ddMMMyyyy','true',12)"><img src="cal.gif" width="16" height="16" border="0" alt="Pick a date"></a></span>
+										</div>
+										
 										<center><button class = "btn btn-success btn-large" type = "submit">Check</button><center>
 										
 										<div id="contentWrap">
@@ -127,8 +141,22 @@
 										
 										<input name="empID" type="number" placeholder="your TCS Employee Number" class="form-control">
 										<input name="name"  type="text" placeholder="Your Full Name as per TCS" class="form-control">
-										<input name="from"  type="text"  class="form-control" placeholder="From Date MM/DD/YYYY HH:MM PM/AM">
-										<input type="text" name="to" class="form-control" placeholder="To Date MM/DD/YYYY HH:MM PM/AM">
+										
+										<!--<input name="from"  type="text"  class="form-control" placeholder="From Date MM/DD/YYYY HH:MM PM/AM">
+										-->
+										<div class='input-group date' id='datetimepicker1'>
+										<input id="from" name="from" class="form-control" type="text" placeholder="From Date" />
+										<span class="input-group-addon"><a href="javascript:NewCal('from','ddMMMyyyy','true',12)"><img src="cal.gif" width="16" height="16" border="0" alt="Pick a date"></a></span>
+										</div>
+										
+										<div class='input-group date' id='datetimepicker1'>
+										<input id="to" name="to" class="form-control" type="text" placeholder="To Date" />
+										<span class="input-group-addon"><a href="javascript:NewCal('to','ddMMMyyyy','true',12)"><img src="cal.gif" width="16" height="16" border="0" alt="Pick a date"></a></span>
+										</div>
+										
+										<!--<input type="text" name="to" class="form-control" placeholder="To Date MM/DD/YYYY HH:MM PM/AM">-->
+									
+										
 										<input type="Number" id="inputEmail" name="mc" placeholder="Machine Number" class="form-control">
 										<textarea name="reason" type="text" placeholder="reason why you want to use LAB machine" class="form-control"></textarea>
 										<center><button class = "btn btn-success btn-large" type = "submit">Reserve</button><center>
@@ -252,6 +280,9 @@
 			var $fromDate = new Date();
 			var $toDate  = new Date();
 			
+			
+			
+			
 			$nickForm.submit(function(e){
 				e.preventDefault();
 				//alert($nickBox.val());
@@ -265,7 +296,7 @@
 					
 					if ($nickBoxFrom.val() =="" && $nickBoxTo.val()==""){
 						
-						$("#chat").html("<font color='black'>::Unavailable Schedules::</font><br/>");
+						$("#chat").html("<font color='black'><strong>Current Reservations</strong></font><br/>");
 							socket.emit('new user', $nickBox.val(), $fDateNew, $tDateNew, function(data){
 								if(data){
 									//$('#nickWrap').hide();
@@ -279,7 +310,7 @@
 					}
 					else {
 					
-						if(isFinite($fDate) && $nickBoxTo.val()==""){
+						if($nickBoxFrom.val() !="" && $nickBoxTo.val()==""){
 							$("#chat").html("<font color='black'>::Unavailable Schedules::</font><br/>");
 								socket.emit('new user', $nickBox.val(), $fDate, $tDateNew, function(data){
 									if(data){
@@ -294,7 +325,7 @@
 						else{
 						
 						
-							if($nickBoxFrom.val() =="" && isFinite($tDate)){
+							if($nickBoxFrom.val() =="" && $nickBoxTo.val()!=""){
 								$("#chat").html("<font color='black'>::Unavailable Schedules::</font><br/>");
 									socket.emit('new user', $nickBox.val(), $fDateNew, $tDate, function(data){
 										if(data){
@@ -310,11 +341,11 @@
 							
 							
 							
-								if (isFinite($fDate) && isFinite($tDate)) {
+								if ($nickBoxFrom.val() !="" && $nickBoxTo.val()!="") {
 										
 								
 										$("#chat").html("<font color='black'>::Unavailable Schedules::</font><br/>");
-										socket.emit('new user', $nickBox.val(), $nickBoxFrom.val(), $nickBoxTo.val(), function(data){
+										socket.emit('new user', $nickBox.val(), $fDate, $tDate, function(data){
 											if(data){
 												//$('#nickWrap').hide();
 												//$('#contentWrap').show();
@@ -344,10 +375,19 @@
 				fromDate = new Date(data.timeFrom);
 				toDate = new Date(data.timeTo);
 				fromMonth = fromDate.getMonth() + 1;
+				fromMonth = fromMonth < 10 ? '0'+fromMonth :fromMonth;
 				toMonth = toDate.getMonth() + 1;
+				toMonth = toMonth <10 ? '0'+toMonth :toMonth;
+				fromMin = fromDate.getMinutes() < 10 ? '0'+fromDate.getMinutes() : fromDate.getMinutes();
+				toMin = toDate.getMinutes() < 10 ? '0'+ toDate.getMinutes() : toDate.getMinutes();
+				fromDay = fromDate.getDate() < 10 ? '0'+fromDate.getDate() :fromDate.getDate();
+				toDay  =  toDate.getDate() < 10 ? '0'+toDate.getDate() : toDate.getDate() ;
+				fromHour = fromDate.getHours() < 10 ? '0'+fromDate.getHours() : fromDate.getHours();
+				toHour = toDate.getHours() < 10 ? '0'+toDate.getHours() : toDate.getHours() ;
 				
 				//$chat.append('<center><font color="black">' + fromMonth + "/"+fromDate.getUTCDate()+ " "+ fromDate.getUTCHours() + ":" + fromDate.getUTCMinutes()+" -- " + toMonth + "/"+ toDate.getUTCDate()+ " "+ toDate.getUTCHours() + ":" + toDate.getUTCMinutes() + "</font></center><br/>"); 
-				$chat.append('<center><font color="black">' + fromMonth + "/"+fromDate.getDate()+ " "+ fromDate.getHours() + ":" + fromDate.getMinutes()+" -- " + toMonth + "/"+ toDate.getDate()+ " "+ toDate.getHours() + ":" + toDate.getMinutes() + "</font></center><br/>"); 
+				$chat.append('<center><font color="black">' + fromMonth + "/"+fromDay+ " "+ fromHour + ":" + fromMin+" -- " + toMonth + "/"+ toDay + " "+ toHour + ":" + toMin + "</font></center><br>"); 
+				//$chat.append('<font color="black">' + fromDate + "--" + toDate +  "</font><br/>"); 
 								
 								
 				//$chat.append('<center><font color="black">' + fromDate.getUTCMonth() + "/"+fromDate.getUTCDate()+ " "+ fromDate.getUTCHours() + ":" + fromDate.getUTCMinutes()+" -- " + toDate.getUTCMonth() + "/"+ toDate.getUTCDate()+ " "+ toDate.getUTCHours() + ":" + toDate.getUTCMinutes() + "</font></center><br/>"); 
@@ -463,13 +503,13 @@
 			date = new Date();
 			date = fromDate;
 			//alert(date);
-			fromDate = new Date(date.getUTCFullYear(),date.getUTCMonth(),date.getUTCDate(),date.getUTCHours(),date.getUTCMinutes(),date.getUTCSeconds());
+			//fromDate = new Date(date.getUTCFullYear(),date.getUTCMonth(),date.getUTCDate(),date.getUTCHours(),date.getUTCMinutes(),date.getUTCSeconds());
 			//alert(fromDate);
 			
-			date = toDate;
+			//date = toDate;
 			//alert(date);
 			
-			toDate = new Date(date.getUTCFullYear(),date.getUTCMonth(),date.getUTCDate(),date.getUTCHours(),date.getUTCMinutes(),date.getUTCSeconds());
+			//toDate = new Date(date.getUTCFullYear(),date.getUTCMonth(),date.getUTCDate(),date.getUTCHours(),date.getUTCMinutes(),date.getUTCSeconds());
 			
 			//alert(toDate);
 			
@@ -540,8 +580,6 @@
 		
 		
 	}
-	
-	
 	
 	
 	</script>

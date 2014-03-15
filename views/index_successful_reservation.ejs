@@ -250,43 +250,122 @@
 			
 			var $fromDate = new Date();
 			var $toDate  = new Date();
+			
+			
+			
+			
 			$nickForm.submit(function(e){
 				e.preventDefault();
-				$("#chat").html("<font color='white'>--------Unavailable Schedules--------</font><br/>");
-				socket.emit('new user', $nickBox.val(), function(data){
-					if(data){
-						//$('#nickWrap').hide();
-						//$('#contentWrap').show();
+				//alert($nickBox.val());
+				var $fDate = new Date($nickBoxFrom.val());
+				var $tDate = new Date($nickBoxTo.val());
+				var $fDateNew = new Date();
+				var $tDateNew = new Date(2017,12,31,23,59,00,00);
+				
+				
+				if ($nickBox.val() >= 5 && $nickBox.val() <= 14 ) {
+					
+					if ($nickBoxFrom.val() =="" && $nickBoxTo.val()==""){
 						
-					} else{
-						//$nickError.html('No Schedule available');
+						$("#chat").html("<font color='black'><strong>Current Reservations</strong></font><br/>");
+							socket.emit('new user', $nickBox.val(), $fDateNew, $tDateNew, function(data){
+								if(data){
+									//$('#nickWrap').hide();
+									//$('#contentWrap').show();
+									
+								} else{
+									//$nickError.html('No Schedule available');
+								}
+							});
+						
 					}
-				});
-				//$nickBox.val('');
+					else {
+					
+						if($nickBoxFrom.val() !="" && $nickBoxTo.val()==""){
+							$("#chat").html("<font color='black'>::Unavailable Schedules::</font><br/>");
+								socket.emit('new user', $nickBox.val(), $fDate, $tDateNew, function(data){
+									if(data){
+										//$('#nickWrap').hide();
+										//$('#contentWrap').show();
+										
+									} else{
+										//$nickError.html('No Schedule available');
+									}
+								});
+						}
+						else{
+						
+						
+							if($nickBoxFrom.val() =="" && $nickBoxTo.val()!=""){
+								$("#chat").html("<font color='black'>::Unavailable Schedules::</font><br/>");
+									socket.emit('new user', $nickBox.val(), $fDateNew, $tDate, function(data){
+										if(data){
+											//$('#nickWrap').hide();
+											//$('#contentWrap').show();
+											
+										} else{
+											//$nickError.html('No Schedule available');
+										}
+									});
+							}
+							else{
+							
+							
+							
+								if ($nickBoxFrom.val() !="" && $nickBoxTo.val()!="") {
+										
+								
+										$("#chat").html("<font color='black'>::Unavailable Schedules::</font><br/>");
+										socket.emit('new user', $nickBox.val(), $fDate, $tDate, function(data){
+											if(data){
+												//$('#nickWrap').hide();
+												//$('#contentWrap').show();
+												
+											} else{
+												//$nickError.html('No Schedule available');
+											}
+										});
+								}
+								else {
+										alert("Date are not in correct format");
+										return false;
+								}
+							}
+						}
+					}
+				}
+				else {
+					alert("Machine number must be within 5 - 14 ");
+					return false;
+				}
+				
 			});
+			
 			
 			socket.on('usernames', function(data){
 				fromDate = new Date(data.timeFrom);
 				toDate = new Date(data.timeTo);
-				$chat.append('<center><font color="white">' + fromDate.getUTCMonth() + "/"+fromDate.getUTCDate()+ " "+ fromDate.getUTCHours() + ":" + fromDate.getUTCMinutes()+" -- " + toDate.getUTCMonth() + "/"+ toDate.getUTCDate()+ " "+ toDate.getUTCHours() + ":" + toDate.getUTCMinutes() + "</font></center><br/>"); 
+				fromMonth = fromDate.getMonth() + 1;
+				fromMonth = fromMonth < 10 ? '0'+fromMonth :fromMonth;
+				toMonth = toDate.getMonth() + 1;
+				toMonth = toMonth <10 ? '0'+toMonth :toMonth;
+				fromMin = fromDate.getMinutes() < 10 ? '0'+fromDate.getMinutes() : fromDate.getMinutes();
+				toMin = toDate.getMinutes() < 10 ? '0'+ toDate.getMinutes() : toDate.getMinutes();
+				fromDay = fromDate.getDate() < 10 ? '0'+fromDate.getDate() :fromDate.getDate();
+				toDay  =  toDate.getDate() < 10 ? '0'+toDate.getDate() : toDate.getDate() ;
+				fromHour = fromDate.getHours() < 10 ? '0'+fromDate.getHours() : fromDate.getHours();
+				toHour = toDate.getHours() < 10 ? '0'+toDate.getHours() : toDate.getHours() ;
+				
+				//$chat.append('<center><font color="black">' + fromMonth + "/"+fromDate.getUTCDate()+ " "+ fromDate.getUTCHours() + ":" + fromDate.getUTCMinutes()+" -- " + toMonth + "/"+ toDate.getUTCDate()+ " "+ toDate.getUTCHours() + ":" + toDate.getUTCMinutes() + "</font></center><br/>"); 
+				$chat.append('<center><font color="black">' + fromMonth + "/"+fromDay+ " "+ fromHour + ":" + fromMin+" -- " + toMonth + "/"+ toDay + " "+ toHour + ":" + toMin + "</font></center><br>"); 
+				//$chat.append('<font color="black">' + fromDate + "--" + toDate +  "</font><br/>"); 
+								
+								
+				//$chat.append('<center><font color="black">' + fromDate.getUTCMonth() + "/"+fromDate.getUTCDate()+ " "+ fromDate.getUTCHours() + ":" + fromDate.getUTCMinutes()+" -- " + toDate.getUTCMonth() + "/"+ toDate.getUTCDate()+ " "+ toDate.getUTCHours() + ":" + toDate.getUTCMinutes() + "</font></center><br/>"); 
 								
 			
 			});
 			
-			$("#btnSubmit").click(function(e){
-				e.preventDefault();
-				$(this).css('color','red');
-				socket.emit('like', function(data){
-					if(data){
-						//$('#feedForm').hide();
-						//$('#contentWrap').show();
-						
-					} else{
-						//$nickError.html('No Schedule available');
-					}
-				});
-				//$nickBox.val('');
-			});
 			
 			$feedForm.submit(function(e){
 				e.preventDefault();
@@ -308,10 +387,27 @@
 				//$nickBox.val('');
 			});
 			
-			socket.on('thanks', function(data){
-				console.log("in Thanks socket");
-				$thank.append('<br><center><font color="black">' + "Thank you for you feedback" + "</font></center><br/>"); 
+			
+			$("#btnSubmit").click(function(e){
+				e.preventDefault();
+				$(this).css('color','red');
+				socket.emit('like', function(data){
+					if(data){
+						//$('#feedForm').hide();
+						//$('#contentWrap').show();
+						
+					} else{
+						//$nickError.html('No Schedule available');
+					}
+				});
+				//$nickBox.val('');
 			});
+			
+				
+			socket.on('thanks', function(data){
+				$thank.append('<br><center><font color="black">' + data.message + "</font></center><br/>"); 
+			});
+			
 			
 		});
 	</script>
@@ -378,13 +474,13 @@
 			date = new Date();
 			date = fromDate;
 			//alert(date);
-			fromDate = new Date(date.getUTCFullYear(),date.getUTCMonth(),date.getUTCDate(),date.getUTCHours(),date.getUTCMinutes(),date.getUTCSeconds());
+			//fromDate = new Date(date.getUTCFullYear(),date.getUTCMonth(),date.getUTCDate(),date.getUTCHours(),date.getUTCMinutes(),date.getUTCSeconds());
 			//alert(fromDate);
 			
-			date = toDate;
+			//date = toDate;
 			//alert(date);
 			
-			toDate = new Date(date.getUTCFullYear(),date.getUTCMonth(),date.getUTCDate(),date.getUTCHours(),date.getUTCMinutes(),date.getUTCSeconds());
+			//toDate = new Date(date.getUTCFullYear(),date.getUTCMonth(),date.getUTCDate(),date.getUTCHours(),date.getUTCMinutes(),date.getUTCSeconds());
 			
 			//alert(toDate);
 			

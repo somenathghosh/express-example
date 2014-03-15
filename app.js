@@ -181,6 +181,10 @@ app.post('/new',function(req,res){
 			else{
 				
 				
+				console.log("From_reservation =" + req.body.from);
+				console.log("From_reservation =" + req.body.to);
+				
+				
 				new User({
 							
 							id   : req.body.empID,
