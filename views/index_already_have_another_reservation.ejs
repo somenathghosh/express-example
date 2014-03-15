@@ -528,6 +528,9 @@
 				return false;
 			}
 			
+			document.forms["myForm"]["from"].value = fromDate;
+			document.forms["myForm"]["to"].value = toDate;
+			
 			if(mc <5 || mc > 14)
 			{
 				alert("Please enter Correct M/C number");
