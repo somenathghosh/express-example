@@ -13,6 +13,38 @@ var app = express();
 var server = require('http').createServer(app);
 var io = require('socket.io').listen(server,{log: false });
 
+
+// sending email
+var dotenv = require('dotenv');
+dotenv.load();
+
+var nodemailer = require('nodemailer');
+var smtpapi    = require('smtpapi');
+
+var sendgrid_username   = 'sendGridEmailer';
+var sendgrid_password   = 'password';
+var fromSender          = 'tcscharlottelab@tcs.com';
+
+// Build the smtpapi header
+var header = new smtpapi.Header();
+header.addSubstitution('%how%', ['Owl']);
+
+// Add the smtpapi header to the general headers
+var headers    = { 'x-smtpapi': header.jsonString() };
+
+// Use nodemailer to send the email
+var settings  = {
+  host: "smtp.sendgrid.net",
+  port: parseInt(587, 10),
+  requiresAuth: true,
+  auth: {
+    user: sendgrid_username,
+    pass: sendgrid_password 
+  }
+};
+var smtpTransport = nodemailer.createTransport("SMTP", settings);
+//
+
 server.listen(process.env.PORT || 5000);
 
 // all environments
@@ -148,9 +180,23 @@ io.sockets.on('connection', function(socket){
 	
 });
 
+var Schema = new mongoose.Schema({
+	
+	EmployeeID : String,
+	password   : String,
+	EmailID   	: String,
+	FullName    : String
 
 	
+},{ collection : 'charlottelabauthentication' });
 	
+var CLTlab = mongoose.model('charlottelabauthentication',Schema);
+
+
+
+
+
+
 
 
 app.post('/new',function(req,res){
@@ -201,6 +247,48 @@ app.post('/new',function(req,res){
 								
 								else {
 									console.log(doc.from);
+									var emp = (req.body.empID).toString();
+									htmlBody = "Dear "+ req.body.name+ ",<br><br> Your reservation has been confirmed.<br> M/C# <strong>" + req.body.mc + "</strong>"+". " +" FROM : " + req.body.from + " TO : " + req.body.to +".";
+									htmlBody = htmlBody + "<br><br>Thanks,<br> TCS Charlotte Lab Team.<br><br>P.S. This is system-generated email. Please do not reply."; 
+									CLTlab.findOne({employeeID : emp },function(err,docs){
+										if(err) console.log(err);
+										if(docs) {
+											console.log("Entered");
+											
+											console.log(docs.EmailID);
+											
+											if (docs.EmailID) {
+											
+												var mailOptions = {
+												  from:     fromSender,
+												  to:       docs.EmailID,
+												  subject:  "Reservation Confirmation",
+												  text:     "hello",
+												  html:     htmlBody,
+												  headers:  headers
+												}
+												
+												
+												smtpTransport.sendMail(mailOptions, function(error, response) {
+												smtpTransport.close();
+
+													if (error) { 
+														console.log(error);
+													} else {
+														console.log("Message sent: " + response.message);
+													}
+												});
+											}
+											else{
+												console.log("Can't send email since email ID is present");
+											}
+										}
+										
+										if(!docs){
+											console.log("Can't send email since records is not present in Collection");
+										}
+										//res.render("./views/index_successful_reservation",{R: doc, f: req.body.from, t: req.body.to});
+									});
 									res.render("./views/index_successful_reservation",{R: doc, f: req.body.from, t: req.body.to});
 								}
 						});
