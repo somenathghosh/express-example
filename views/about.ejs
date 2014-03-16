@@ -260,7 +260,7 @@
 			
 			$("#btnSubmit").click(function(e){
 				e.preventDefault();
-				
+				$(this).css('color','red');
 				socket.emit('like', function(data){
 					if(data){
 						//$('#feedForm').hide();
