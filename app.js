@@ -248,12 +248,12 @@ app.post('/new',function(req,res){
 								else {
 									console.log(doc.from);
 									var emp = (req.body.empID).toString();
-									htmlBody = "Dear "+ req.body.name+ ",<br><br> Your reservation has been confirmed.<br> M/C# <strong>" + req.body.mc + "</strong>"+". " +" FROM : " + req.body.from + " TO : " + req.body.to +".";
+									htmlBody = "Dear "+ req.body.name+ ",<br><br> Your reservation has been confirmed.<br> M/C# <strong>" + req.body.mc + "</strong>"+". " + " FROM : <u>" + req.body.from + "</u> TO : <u>" + req.body.to +"</u>.";
 									htmlBody = htmlBody + "<br><br>Thanks,<br> TCS Charlotte Lab Team.<br><br>P.S. This is system-generated email. Please do not reply."; 
 									CLTlab.findOne({employeeID : emp },function(err,docs){
 										if(err) console.log(err);
 										if(docs) {
-											console.log("Entered");
+											//console.log("Entered");
 											
 											console.log(docs.EmailID);
 											
