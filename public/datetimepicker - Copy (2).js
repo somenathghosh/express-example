@@ -118,7 +118,7 @@ function NewCal(pCtrl,pFormat,pShowTime,pTimeMode)
 			Cal.SetSecond(strSecond);
 		}	
 	}
-	winCal=window.open("","DateTimePicker","toolbar=0,status=0,menubar=0,fullscreen=no,width=200,height=260,resizable=0,top="+cnTop+",left="+cnLeft);
+	winCal=window.open("","DateTimePicker","toolbar=0,status=0,menubar=0,fullscreen=no,width=195,height=245,resizable=0,top="+cnTop+",left="+cnLeft);
 	docCal=winCal.document;
 	RenderCal();
 }
@@ -213,11 +213,11 @@ function RenderCal()
 		var showHour;
 		showHour=Cal.getShowHour();		
 		vCalTime="<tr>\n<td colspan='7' align='center'>";
-		vCalTime+="<input type='text' name='hour' maxlength=2 size=1 style=\"WIDTH: 32px\" value="+showHour+" onchange=\"javascript:winMain.Cal.SetHour(this.value)\">";
+		vCalTime+="<input type='text' name='hour' maxlength=2 size=1 style=\"WIDTH: 22px\" value="+showHour+" onchange=\"javascript:winMain.Cal.SetHour(this.value)\">";
 		vCalTime+=" : ";
-		vCalTime+="<input type='text' name='minute' maxlength=2 size=1 style=\"WIDTH: 32px\" value="+Cal.Minutes+" onchange=\"javascript:winMain.Cal.SetMinute(this.value)\">";
+		vCalTime+="<input type='text' name='minute' maxlength=2 size=1 style=\"WIDTH: 22px\" value="+Cal.Minutes+" onchange=\"javascript:winMain.Cal.SetMinute(this.value)\">";
 		vCalTime+=" : ";
-		vCalTime+="<input type='text' name='second' maxlength=2 size=1 style=\"WIDTH: 32px\" value="+Cal.Seconds+" onchange=\"javascript:winMain.Cal.SetSecond(this.value)\">";
+		vCalTime+="<input type='text' name='second' maxlength=2 size=1 style=\"WIDTH: 22px\" value="+Cal.Seconds+" onchange=\"javascript:winMain.Cal.SetSecond(this.value)\">";
 		if (TimeMode==12)
 		{
 			var SelectAm =(parseInt(Cal.Hours,10)<12)? "Selected":"";

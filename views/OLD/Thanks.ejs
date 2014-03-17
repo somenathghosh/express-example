@@ -1,0 +1,345 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>TCS Charlotte lab</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://d396qusza40orc.cloudfront.net/startup%2Fcode%2Fbootstrap-combined.no-icons.min.css">
+    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/3.0.2/css/font-awesome.css">
+    <link rel="stylesheet" href="https://d396qusza40orc.cloudfront.net/startup%2Fcode%2Fsocial-buttons.css">    
+    <script src="https://d396qusza40orc.cloudfront.net/startup%2Fcode%2Fjquery.js"></script>
+    <script src="https://d396qusza40orc.cloudfront.net/startup%2Fcode%2Fbootstrap.js"></script>
+    <link href="http://fonts.googleapis.com/css?family=Ubuntu:300,400,500,700,300italic,400italic,500italic,700italic" rel="stylesheet" type="text/css">
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,300,400,600,700,800" 
+          rel="stylesheet" type="text/css">
+    <style type="text/css">
+
+      /* Large desktop */
+      @media (min-width: 980px) { 
+        body {
+			background-color: #09044;
+         padding-top: 60px;
+        }
+       .linediv-l {
+         border-right: 1px white solid;
+        }
+       .linediv-r {
+         border-left: 1px white solid;
+       }
+      }
+		
+	font{
+		color: white;
+	}
+      /* Landscape phones and down */
+      @media (max-width: 480px) { 
+       .copy {
+         padding: 2.5% 10%;
+       }
+       .linediv-l {
+         border-bottom: 1px white solid;
+       }
+       .linediv-r {
+         border-top: 1px white solid;
+       }
+      }
+
+      /* All form factors */
+
+      /* Main body and headings */
+      body{
+        font-family: 'Open Sans', Helvetica, Arial, sans-serif;
+      }
+      .heading, .subheading {
+        font-family: 'Ubuntu', Helvetica, Arial, sans-serif;
+        text-align: center;
+      }
+      p.lead {
+        padding-top: 1.5%;
+        font-size: 24px;
+        line-height: 30px;
+      }
+      p {
+        font-size: 18px;
+        line-height: 24px;
+      }
+
+      /* Video pitch and Action */
+      .pitch {
+        padding: 2.5% 0%;
+      }
+      .order {
+        padding: 2% 0%;
+      }
+      .actions {
+        background-color: #343434;
+        padding: 3% 0%;
+      }
+      .video, .thermometer, .order, .social, .statistics {
+        text-align: center;
+      }
+      .statistics h3, .statistics p {
+        color: white;
+      }
+
+      /* Marketing Copy and Footer */
+      .copy {
+        padding-top: 2.5%;
+        padding-bottom: 2.5%;
+        text-align: justify;
+      }
+      .asset {
+        padding: 2.5% 0%;
+      }
+      .footer {
+        color: #cccccc;
+        text-align: center;
+      }
+      .footer p {
+        font-size: 11px;
+      }
+      .footer a {
+        color: #ccccff;
+      }
+	  h1 {
+	  color: white;
+	  }
+	  h3 {
+	  color : white;
+	 }
+	  
+	  .resizedTextbox {width: 221px; height: 100px ;  padding: 1px}
+	  
+	  .logoutLblPos{
+
+	   position:fixed;
+	   right:2px;
+	   top:50px;
+	}
+	
+
+    </style>
+	
+	<style type="text/css">
+	.classname {
+		-moz-box-shadow:inset 0px 1px 0px 0px #caefab;
+		-webkit-box-shadow:inset 0px 1px 0px 0px #caefab;
+		box-shadow:inset 0px 1px 0px 0px #caefab;
+		background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #77d42a), color-stop(1, #5cb811) );
+		background:-moz-linear-gradient( center top, #77d42a 5%, #5cb811 100% );
+		filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#77d42a', endColorstr='#5cb811');
+		background-color:#77d42a;
+		-webkit-border-top-left-radius:37px;
+		-moz-border-radius-topleft:37px;
+		border-top-left-radius:37px;
+		-webkit-border-top-right-radius:0px;
+		-moz-border-radius-topright:0px;
+		border-top-right-radius:0px;
+		-webkit-border-bottom-right-radius:37px;
+		-moz-border-radius-bottomright:37px;
+		border-bottom-right-radius:37px;
+		-webkit-border-bottom-left-radius:0px;
+		-moz-border-radius-bottomleft:0px;
+		border-bottom-left-radius:0px;
+		text-indent:0;
+		border:1px solid #268a16;
+		display:inline-block;
+		color:#306108;
+		font-family:Arial;
+		font-size:15px;
+		font-weight:bold;
+		font-style:normal;
+		height:65px;
+		line-height:65px;
+		width:86px;
+		text-decoration:none;
+		text-align:center;
+		text-shadow:1px 0px 0px #aade7c;
+	}
+	.classname:hover {
+		background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #5cb811), color-stop(1, #77d42a) );
+		background:-moz-linear-gradient( center top, #5cb811 5%, #77d42a 100% );
+		filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#5cb811', endColorstr='#77d42a');
+		background-color:#5cb811;
+	}.classname:active {
+		position:relative;
+		top:1px;
+		}
+	
+	</style>
+
+
+
+	
+	<script type="text/javaScript">
+		function validateForm()
+		{
+			var empID=document.forms["myForm"]["empID"].value;
+			var name=document.forms["myForm"]["name"].value;
+			var stdate=document.forms["myForm"]["from"].value;
+			var endate=document.forms["myForm"]["to"].value;
+			var reason=document.forms["myForm"]["reason"].value;
+			
+			
+			if (empID <=99999)
+			{
+				alert(" Not a valid Employee Number");
+				return false;
+			}
+			
+			if (empID <= "")
+			{
+				alert(" Not a valid Employee Number");
+				return false;
+			}
+			
+			if (name == "")
+			{
+				alert("Please Enter a valid Name");
+				return false;
+			}
+			
+			
+			
+			var fromDate = new Date(stdate);
+			var toDate = new Date(endate);
+			fromDate = fromDate.addHours(5);
+			toDate = toDate.addHours(5);
+			
+			//alert(fromDate);
+			//alert(toDate);
+			if(!fromDate.valid()){
+				alert("Enter a valid From date");
+				return false;
+			}
+			
+			if(!toDate.valid()){
+				alert("Enter a valid To date");
+				return false;
+			}
+			
+			todayDate = new Date();
+			
+			if (fromDate <= todayDate)
+			{
+				//alert(todayDate);
+				//alert(fromDate);
+				alert(" From Date must be greater than today's");
+				return false;
+			}
+			
+			if (fromDate >= toDate)
+			{
+				alert(" From Date must be less than To Date & Time");
+				return false;
+			}
+			
+			if(reason =="")
+			{
+				alert("Please fill the proper reason why you are using the system");
+				return false;
+			}
+			
+		}
+		
+		Date.prototype.addHours= function(h){
+			var copiedDate = new Date(this.getTime());
+			
+			copiedDate.setHours(copiedDate.getHours()+h);
+			//alert("CopiedDate =" + copiedDate);
+			return copiedDate;
+		}
+		
+		Date.prototype.valid = function() {
+		  //alert("Hi");
+		  return isFinite(this);
+		}
+	
+	
+	function myFunction()
+	{
+		window.open("./index1.1.html");
+	}
+	</script>
+	
+	
+	
+
+
+  </head>
+  <body>
+	
+	
+	
+    <!-- Mobile-friendly navbar adapted from example. -->
+    <!-- http://twitter.github.io/bootstrap/examples/starter-template.html -->
+    <div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container">
+          <button type="button" class="btn btn-navbar"
+                  data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+   
+          <div class="nav-collapse collapse">
+            <ul class="nav">
+              
+            </ul>
+          </div><!--/.nav-collapse -->
+        </div>
+      </div>
+    </div>
+
+    <!-- We use row-fluid inside containers to achieve a resizable layout. -->
+    <!-- blogs.endjin.com/2013/04/tips-for-implementing-responsive-designs-using-bootstrap/ -->
+    <!-- http://stackoverflow.com/a/12270322 -->
+    <div class="container">
+      <!-- Font and paired font of .heading/.subheading and body from Google Fonts -->
+      <!-- www.google.com/fonts/specimen/Ubuntu -->
+      <!-- www.google.com/fonts/specimen/Ubuntu#pairings -->
+      <div class="row-fluid heading">
+        <div class="span12">
+          <h1>Thanks for your Feedback. We will review and try to incorporate your suggestion or feedback</h1>
+		  <br>
+		  
+        </div>
+      </div> 
+      <div class="row-fluid subheading">
+        <div class="span12">
+          <!-- Special typography from Bootstrap for lead paragraph. -->
+          <!-- http://twitter.github.io/bootstrap/base-css.html#typography -->
+         
+        </div>
+      </div>
+         <!-- We define a new 'actions' div to contain statistics, order, and share buttons.-->
+        
+
+      <!-- Beyond this part the marketing copy begins. -->
+      <!-- https://developer.mozilla.org/en-US/docs/Web/CSS/text-align -->
+      <!-- http://twitter.github.io/bootstrap/base-css.html#images -->
+      <!-- http://placehold.it -->
+      
+
+
+
+
+  <div class="row-fluid pitch">
+       
+
+
+      <!-- Not crucial, but we put this under a CC By-SA 3.0 license. -->
+      <!-- http://creativecommons.org/licenses/ -->
+      <div class="row-fluid footer">
+        <div class="span12">
+          <p>This work is licensed under
+            the <a href="http://www.tcs.com/Pages/default.aspx">Tata Consultacy Services
+            </a>, without all the craft that would otherwise be
+            put at the bottom of the page.</p>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

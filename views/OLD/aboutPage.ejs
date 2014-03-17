@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html>
+        <head>
+                <title>About</title>
+                <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                <link href = "css/bootstrap.min.css" rel = "stylesheet">
+                <link href = "css/styles.css" rel = "stylesheet">
+        
+		<style type="text/css">
+			body {
+				background-color: darkblue;
+				
+			}
+			
+			#contentWrap{
+			display: none;
+			}
+			
+		</style>
+		</head>
+		
+		
+        <body>
+               
+            <div class = "navbar navbar-inverse navbar-static-top">
+			<div class = "container">
+				
+				<a href = "#" class = "navbar-brand"><font face="trebuchet MS" size="5" color="white">Reservation</font></a>
+				
+				<button class = "navbar-toggle" data-toggle = "collapse" data-target = ".navHeaderCollapse">
+					<span class = "icon-bar"></span>
+					<span class = "icon-bar"></span>
+					<span class = "icon-bar"></span>
+				</button>
+				
+				<div class = "collapse navbar-collapse navHeaderCollapse">
+				
+					<ul class = "nav navbar-nav navbar-right">
+					
+						<li class = "active"><a href = "/">Home</a></li>
+						<!--
+						<li><a href = "#">Blog</a></li>
+						<li class = "dropdown">
+							
+							<a href = "#" class = "dropdown-toggle" data-toggle = "dropdown">Social Media <b class = "caret"></b></a>
+							<ul class = "dropdown-menu">
+								<li><a href = "#">Twitter</a></li>
+								<li><a href = "#">Facebook</a></li>
+								<li><a href = "#">Google+</a></li>
+								
+							</ul>
+						
+						</li>
+						-->
+						<li><a href = "#">About</a></li>
+						<li><a href = "#contact" data-toggle="modal">feedback</a></li>
+					
+					</ul>
+				
+				</div>
+				
+			</div>
+			</div>
+               
+        <div class = "container">
+                     <div class = "row">
+                   
+                        <div class = "col-lg-9">
+                       
+                            <div class = "panel panel-default">
+                           
+                                <div class = "panel-body">
+                                   
+                                    <div class = "page-header">
+																	
+                                        <h3>About This Project <small>Posted on <%=msg %></small></h3>
+                                    </div>
+                                   
+                                    
+                                   
+                                    <p> hello </p>
+                                   
+                                    <h4>heading</h4>
+                                   
+                                    <p> hello</p>
+                                   
+                                   
+                                </div>
+                           
+                            </div>
+                       
+                        </div>
+                       
+                      </div>
+                   
+                </div>
+               
+                	
+		<div class = "navbar navbar-inverse navbar-absolute-bottom">
+		
+			<div class = "container">
+				<p class = "navbar-text pull-left">&copy;This work is licensed under
+					<a href="http://www.tcs.com/Pages/default.aspx">Tata Consultacy Services </a></p>
+					
+					<a href = "#" class = "navbar-btn btn-default btn-sm btn pull-right" id="btnSubmit"><span class="glyphicon glyphicon-thumbs-up"></span> Like</a>
+				
+			</div>
+		
+		</div>
+               
+               <div class = "modal fade" id = "contact" role = "dialog">
+		    <div class = "modal-dialog">
+		        
+				
+				<div class = "modal-content">
+					
+					<!--
+					<div  id="contentWrap" class="alert alert-success">
+							<p id="success"><center>Thanks for your feedback</center></p>
+					</div>
+					-->
+					
+		            <form id="setNick1" class = "form-horizontal" action="/feedback" method ="POST">
+		                <div class = "modal-header">
+		                    <h4>TCS Lab Reservation Team FeedBack</h4>
+		                </div>
+						<div id="thank"></div>
+		                <div  class = "modal-body" id="feedForm">
+						
+		                    <div class = "form-group">
+		                        
+		                        <label for = "contact-name" class = "col-lg-2 control-label">Name:</label>
+		                        <div class = "col-lg-10">
+		                            
+		                            <input name="name" type = "text" class = "form-control" id = "contact-name" placeholder = "Full Name">
+		                            
+		                        </div>
+		                        
+		                    </div>
+		                    
+		                    <div class = "form-group">
+		                        
+		                        <label for = "contact-email" class = "col-lg-2 control-label">Employee ID</label>
+		                        <div class = "col-lg-10">
+		                            
+		                            <input name="empID" type = "number" class = "form-control" id = "contact-empID" placeholder = "your TCS ID">
+		                            
+		                        </div>
+		                        
+		                    </div>
+		                    
+		                    <div class = "form-group">
+		                        
+		                        <label for = "contact-msg" class = "col-lg-2 control-label">Message:</label>
+		                        <div class = "col-lg-10">
+		                            
+		                            <textarea name="feedback" id="contact-feedback" class = "form-control" rows = "8"></textarea>
+		                            
+		                        </div>
+		                        
+		                    </div>
+		                
+		                </div>
+		                <div class = "modal-footer">
+                            <a class = "btn btn-default" data-dismiss = "modal">Close</a>    
+		                    <button class = "btn btn-primary" type = "submit">Send</button>
+		                </div>
+		            </form>
+					
+		        </div>
+		    </div>
+		</div>
+		
+		<script src = "http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+		<script src = "js/bootstrap.js"></script>
+		<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+		<script src="/socket.io/socket.io.js"></script>
+		<script>
+		jQuery(function($){
+			var socket = io.connect();
+			
+			var $nickForm = $('#setNick');
+			var $feedForm = $('#setNick1');
+			
+			var $nickError = $('#nickError');
+			
+			var $nickBox = $('#nickname');
+			var $nickBoxFrom = $('#fromWidget');
+			var $nickBoxTo = $('#toWidget');
+			
+			var $nameBox = $('#contact-name');
+			var $empIDBox = $('#contact-empID');
+			var $feedbackBox = $('#contact-feedback');
+			
+			
+			
+			//var $messageForm = $('#send-message');
+			//var $messageBox = $('#message');
+			
+			var $chat = $('#chat');
+			var $thank = $('#thank');
+			
+			//var $schedule = $('#schedule');
+			
+			var $fromDate = new Date();
+			var $toDate  = new Date();
+			
+			$nickForm.submit(function(e){
+				e.preventDefault();
+				//alert($nickBox.val());
+				if ($nickBox.val() >= 5 && $nickBox.val() <= 14 ) {
+				
+					$("#chat").html("<font color='black'>Unavailable Schdules</font><br/>");
+					socket.emit('new user', $nickBox.val(), $nickBoxFrom.val(), $nickBoxTo.val(), function(data){
+						if(data){
+							//$('#nickWrap').hide();
+							//$('#contentWrap').show();
+							
+						} else{
+							//$nickError.html('No Schedule available');
+						}
+					});
+					
+				}
+				else {
+					alert("Machine number must be within 5 - 14 ");
+					return false;
+				}
+				
+			});
+			
+			
+			socket.on('usernames', function(data){
+				fromDate = new Date(data.timeFrom);
+				toDate = new Date(data.timeTo);
+				$chat.append('<center><font color="black">' + fromDate.getUTCMonth() + "/"+fromDate.getUTCDate()+ " "+ fromDate.getUTCHours() + ":" + fromDate.getUTCMinutes()+" -- " + toDate.getUTCMonth() + "/"+ toDate.getUTCDate()+ " "+ toDate.getUTCHours() + ":" + toDate.getUTCMinutes() + "</font></center><br/>"); 
+								
+			
+			});
+			
+			
+			$feedForm.submit(function(e){
+				e.preventDefault();
+				
+				socket.emit('feedback', $nameBox.val(), $empIDBox.val(), $feedbackBox.val(), function(data){
+					if(data){
+						$('#feedForm').hide();
+						//$('#contentWrap').show();
+						
+					} else{
+						//$nickError.html('No Schedule available');
+					}
+				});
+				//$nickBox.val('');
+			});
+			
+			
+			$("#btnSubmit").click(function(e){
+				e.preventDefault();
+				
+				socket.emit('like', function(data){
+					if(data){
+						//$('#feedForm').hide();
+						//$('#contentWrap').show();
+						
+					} else{
+						//$nickError.html('No Schedule available');
+					}
+				});
+				//$nickBox.val('');
+			});
+			
+				
+			socket.on('thanks', function(data){
+				$thank.append('<br><center><font color="black">' + data.message + "</font></center><br/>"); 
+			});
+			
+			
+		});
+	</script>
+	
+	<script type="text/javaScript">
+		function validateForm()
+		{
+			var empID=document.forms["myForm"]["empID"].value;
+			var name=document.forms["myForm"]["name"].value;
+			var stdate=document.forms["myForm"]["from"].value;
+			var endate=document.forms["myForm"]["to"].value;
+			var reason=document.forms["myForm"]["reason"].value;
+			var mc=document.forms["myForm"]["mc"].value;
+			
+			
+			//date = new Date();
+			//alert(date);
+			//alert(stdate);
+			//todayDate = new Date(date.getUTCFullYear(),date.getUTCMonth(),date.getUTCDate(),date.getUTCHours(),date.getUTCMinutes(),date.getUTCSeconds());
+			//alert(todayDate);
+			
+			if (empID <=99999)
+			{
+				alert(" Not a valid Employee Number");
+				return false;
+			}
+			
+			if (empID <= "")
+			{
+				alert(" Not a valid Employee Number");
+				return false;
+			}
+			
+			if (name == "")
+			{
+				alert("Please Enter a valid Name");
+				return false;
+			}
+			
+			
+			
+			var fromDate = new Date(stdate);
+			var toDate = new Date(endate);
+			//alert(toDate);
+			//fromDate = fromDate.addHours(5);
+			//toDate = toDate.addHours(5);
+			
+			//alert(fromDate);
+			//alert(toDate);
+			if(!fromDate.valid()){
+				alert("Enter a valid From date");
+				return false;
+			}
+			
+			if(!toDate.valid()){
+				alert("Enter a valid To date");
+				return false;
+			}
+			
+			todayDate = new Date();
+			
+			//todayDate = new Date(date.getUTCFullYear(),date.getUTCMonth(),date.getUTCDate(),date.getUTCHours(),date.getUTCMinutes(),date.getUTCSeconds());
+			//alert(todayDate);
+			date = new Date();
+			date = fromDate;
+			//alert(date);
+			fromDate = new Date(date.getUTCFullYear(),date.getUTCMonth(),date.getUTCDate(),date.getUTCHours(),date.getUTCMinutes(),date.getUTCSeconds());
+			//alert(fromDate);
+			
+			date = toDate;
+			//alert(date);
+			
+			toDate = new Date(date.getUTCFullYear(),date.getUTCMonth(),date.getUTCDate(),date.getUTCHours(),date.getUTCMinutes(),date.getUTCSeconds());
+			
+			//alert(toDate);
+			
+			if (fromDate <= todayDate)
+			{
+				//alert(todayDate);
+				//alert(fromDate);
+				alert(" From Date must be greater than today's");
+				return false;
+			}
+			
+			if (fromDate >= toDate)
+			{
+				alert(" From Date must be less than To Date & Time");
+				return false;
+			}
+			
+			if(mc <5 || mc > 14)
+			{
+				alert("Please enter Correct M/C number");
+				return false;
+			}
+			
+			
+			
+			if(reason =="")
+			{
+				alert("Please fill the proper reason why you are using the system");
+				return false;
+			}
+			
+		}
+		
+		Date.prototype.addHours= function(h){
+			var copiedDate = new Date(this.getTime());
+			
+			copiedDate.setHours(copiedDate.getHours()+h);
+			//alert("CopiedDate =" + copiedDate);
+			return copiedDate;
+		}
+		
+		Date.prototype.valid = function() {
+		  //alert("Hi");
+		  return isFinite(this);
+		}
+	
+	
+	function myFunction()
+	{
+		window.open("./index1.1.html");
+	}
+	
+	function validateSForm(){
+		var mc=document.forms["socketForm"]["mc"].value;
+		
+		var stdate=document.forms["socketForm"]["from"].value;
+		var endate=document.forms["socketForm"]["to"].value;
+		
+		if(isNaN(mc)){
+			alert("Please select a machine number");
+			return false;
+		}
+		if(mc <5 || mc > 14)
+		{
+				alert("Please enter Correct M/C number");
+				return false;
+		}
+		
+		
+	}
+	
+	
+	
+	</script>
+        </body>
+</html>
