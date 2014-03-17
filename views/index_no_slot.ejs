@@ -80,7 +80,7 @@
 				<div class="row">
 					<div class="col-lg-3 col-md-3 col-sm-3">
 						<div class="panel panel-success">
-							<div class="panel-heading"><center><font face="trebuchet MS" size="5">Reservation check</font></center></div>
+							<div class="panel-heading"><center><font face="trebuchet MS" size="5">Availability</font><br><font face="trebuchet MS" size="2">M/C Numbers are available from 5-14</font></center></div>
 							<div class="panel-body" style="height:280px;overflow:scroll">
 							<div id="nickWrap">
 							
@@ -108,7 +108,7 @@
 										</div>
 										
 										
-										
+										<br>
 										<center><button class = "btn btn-success btn-large" type = "submit">Check</button><center>
 										
 										<div id="contentWrap">
@@ -135,11 +135,12 @@
 					</div>
 					<div class="col-lg-9 col-md-9 col-sm-9 ">
 						<div class="panel panel-success">
-							<div class="panel-heading"><center><font face="trebuchet MS" size="5">Make Reservation</font></center></div>
+							<div class="panel-heading"><center><font face="trebuchet MS" size="5">Registration</font><br><font face="trebuchet MS" size="3" style="opacity: 0.0;"> Hi</font></center></div>
+							
+							<div class="panel-body" style="height:280px;overflow:scroll">
 							<div class="alert alert-danger">
 								<p id="Error"><center>!!! The selected slot is not available</center> </p>
 							</div>
-							<div class="panel-body" style="height:280px;overflow:scroll">
 							<div id="formWrap" >
 							<form name ="myForm" action="/new", onSubmit="return validateForm();" method ="POST" class="form form-horizontal">
 								<div class="control-group">
@@ -147,8 +148,8 @@
 									<div class="controls">
 										
 										
-										<input name="empID" type="number" placeholder="your TCS Employee Number" class="form-control">
-										<input name="name"  type="text" placeholder="Your Full Name as per TCS" class="form-control">
+										<input name="empID" type="number" placeholder="TCS Employee Number" class="form-control">
+										<input name="name"  type="text" placeholder="Full Name" class="form-control">
 										
 										<!--<input name="from"  type="text"  class="form-control" placeholder="From Date MM/DD/YYYY HH:MM PM/AM">
 										-->

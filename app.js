@@ -91,8 +91,8 @@ var likeDB = mongoose.model('like',Schema);
 
 io.sockets.on('connection', function(socket){
 	socket.on('new user', function(mcNumber, fromDate, toDate, callback){
-		console.log("fromDate=" + fromDate);
-		console.log("ToDate= " + toDate);
+		//console.log("fromDate=" + fromDate);
+		//console.log("ToDate= " + toDate);
 		//console.log(mcNumber);
 		//User.find({to: {"$gte":fromDate},from: {"$lte":toDate},mc: mcNumber},function(err,docs){
 		User.find({to: {"$gte":fromDate},from: {"$lte":toDate},mc: mcNumber}).sort({from:1}).exec(function(err,docs){
@@ -210,7 +210,7 @@ app.post('/new',function(req,res){
 		}
 		if(docs){
 			//console.log(docs);
-			console.log("already have a machine");
+			//console.log("already have a machine");
 			res.render("./views/index_already_have_another_reservation",{R:docs});
 		}
 		else {
@@ -227,8 +227,8 @@ app.post('/new',function(req,res){
 			else{
 				
 				
-				console.log("From_reservation =" + req.body.from);
-				console.log("To_reservation =" + req.body.to);
+				//console.log("From_reservation =" + req.body.from);
+				//console.log("To_reservation =" + req.body.to);
 				
 				
 				new User({
@@ -255,7 +255,7 @@ app.post('/new',function(req,res){
 										if(docs) {
 											//console.log("Entered");
 											
-											console.log(docs.EmailID);
+											//console.log(docs.EmailID);
 											
 											if (docs.EmailID) {
 											
@@ -280,7 +280,7 @@ app.post('/new',function(req,res){
 												});
 											}
 											else{
-												console.log("Can't send email since email ID is present");
+												console.log("Can't send email since email ID is not present");
 											}
 										}
 										

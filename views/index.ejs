@@ -83,7 +83,7 @@
 				<div class="row">
 					<div class="col-lg-3 col-md-3 col-sm-3">
 						<div class="panel panel-success">
-							<div class="panel-heading"><center><font face="trebuchet MS" size="5">Reservation check</font><br><font face="trebuchet MS" size="2">(Enter: Mc#,From Date, To Date)</font></center></div>
+							<div class="panel-heading"><center><font face="trebuchet MS" size="5">Availability</font><br><font face="trebuchet MS" size="2">M/C Numbers are available from 5-14</font></center></div>
 							<div class="panel-body" style="height:280px;overflow:scroll">
 							<div id="nickWrap" >
 							<!--
@@ -111,7 +111,7 @@
 										<input id="toWidget" class="form-control" type="text"placeholder="To Date" />
 										<span class="input-group-addon"><a href="javascript:NewCal('toWidget','mmddyyyy','true',12)"><img src="cal.gif" width="16" height="16" border="0" alt="Pick a date"></a></span>
 										</div>
-										
+										<br>
 										<center><button class = "btn btn-success btn-large" type = "submit">Check</button><center>
 										
 										<div id="contentWrap2">
@@ -139,7 +139,7 @@
 					
 					<div class="col-lg-9 col-md-9 col-sm-9 ">
 						<div class="panel panel-success">
-							<div class="panel-heading"><center><font face="trebuchet MS" size="5">Make Reservation</font><br><font face="trebuchet MS" size="3"> (Enter: TCS Employee ID , Full Name, From Date , To Date, Machine# and  Reason for machine Usage)</font></center></div>
+							<div class="panel-heading"><center><font face="trebuchet MS" size="5">Registration</font><br><font face="trebuchet MS" size="3" style="opacity: 0.0;"> Hi</font></center></div>
 							<!--
 							<div class="alert alert-danger">
 								<p id="Error"></p>
@@ -153,9 +153,9 @@
 									<div class="controls">
 										
 										
-										<input name="empID" type="number" placeholder="your TCS Employee Number" class="form-control">
+										<input name="empID" type="number" placeholder="TCS Employee Number" class="form-control">
 										
-										<input name="name"  type="text" placeholder="Your Full Name as per TCS" class="form-control">
+										<input name="name"  type="text" placeholder="Full Name" class="form-control">
 										
 										
 										
@@ -175,7 +175,8 @@
 									
 										<input type="Number" id="inputEmail" name="mc" placeholder="Machine Number" class="form-control">
 									
-										<textarea name="reason" type="text" placeholder="reason why you want to use LAB machine" class="form-control"></textarea>
+										<textarea name="reason" type="text" placeholder="Reason why you want to use LAB machine" class="form-control"></textarea>
+										
 										<center><button class = "btn btn-success btn-large" type = "submit">Reserve</button><center>
 									</div>
 								</div>
