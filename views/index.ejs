@@ -69,7 +69,7 @@
 		<div class = "container">
 		
 			<div class = "jumbotron text-center">
-				<h1><span class="fa fa-lock"></span> TCS Charlotte Lab</h1>
+				<h1><font face="trebuchet MS" size="8"><span class="fa fa-lock"></span> TCS Charlotte Lab</font></h1>
 				
 				
 				
@@ -79,12 +79,13 @@
 		-->
 		
 		
-		<br>
+	
+		
 		<div class = "container">
 		<div class="panel panel-success">
 			<div class = "panel-heading">
 			<center>
-				<h1><span class="fa fa-lock"></span> TCS Charlotte Lab</h1></center>
+				<h1><font face="trebuchet MS" size="8"><span class="fa fa-lock"></span> TCS Charlotte Lab</font></h1></center>
 							
 			</div>
 		</div>
@@ -97,7 +98,7 @@
 					<div class="col-lg-3 col-md-3 col-sm-3">
 						<div class="panel panel-success">
 							<div class="panel-heading"><center><font face="trebuchet MS" size="5">Availability</font><br><font face="trebuchet MS" size="2" style="opacity: 0.0;">M/C Numbers are available from 5-14</font></center></div>
-							<div class="panel-body" style="height:282px;overflow:scroll">
+							<div class="panel-body" style="height:302px;overflow:scroll">
 							<div id="nickWrap" >
 							<!--
 							<div class="alert alert-danger">
@@ -169,7 +170,7 @@
 								<p id="Error"></p>
 							</div>
 							-->
-							<div class="panel-body" style="height:280px;overflow:scroll">
+							<div class="panel-body" style="height:300px;">
 							<% if (message.length > 0) { %>
 								<div class="alert alert-danger">
 									<p id="Error"><center><%= message %></center> </p>
@@ -177,7 +178,7 @@
 							<% } %>
 							<div id="formWrap" >
 							<form name ="myForm" action="/new", onSubmit="return validateForm();" method ="POST" class="form form-horizontal">
-								<div class="control-group" style="hight:200px;overflow:scroll">
+								<div class="control-group">
 									<!--label class="control-label">Email</label-->
 									<div class="controls">
 										
@@ -271,10 +272,9 @@
 				</div>
 			
 		</div>
-		<br>
-		<br>
-		<br>
-		<div class = "navbar navbar-inverse navbar-fixed-bottom">
+		
+		
+		<div class = "navbar navbar-inverse navbar-absolute-bottom">
 		
 			<div class = "container">
 				<p class = "navbar-text pull-left">&copy;This work is licensed under
