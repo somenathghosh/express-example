@@ -13,7 +13,13 @@ var app = express();
 var server = require('http').createServer(app);
 var io = require('socket.io').listen(server,{log: false });
 
+var sendgrid  = require('sendgrid')( 
+  'sendGridEmailer', 
+  'password' 
+); 
 
+
+/*
 // sending email
 var dotenv = require('dotenv');
 dotenv.load();
@@ -24,6 +30,7 @@ var smtpapi    = require('smtpapi');
 var sendgrid_username   = 'sendGridEmailer';
 var sendgrid_password   = 'password';
 var fromSender          = 'tcscharlottelab@tcs.com';
+
 
 // Build the smtpapi header
 var header = new smtpapi.Header();
@@ -43,7 +50,7 @@ var settings  = {
   }
 };
 var smtpTransport = nodemailer.createTransport("SMTP", settings);
-//
+*/
 
 server.listen(process.env.PORT || 5000);
 
@@ -211,7 +218,8 @@ app.post('/new',function(req,res){
 		if(docs){
 			//console.log(docs);
 			//console.log("already have a machine");
-			res.render("./views/index_already_have_another_reservation",{R:docs});
+			//res.render("./views/index_already_have_another_reservation",{R:docs});
+			res.render('./views/index',{message:"You already have mc# " + docs.mc + " booked around same time"});
 		}
 		else {
 			//console.log(docs);
@@ -222,7 +230,7 @@ app.post('/new',function(req,res){
 			}
 			if(user) {
 				//console.log(user);
-				res.render("./views/index_no_slot",{R:user});
+				res.render('./views/index',{message:"The selected slot is not available"});
 			}
 			else{
 				
@@ -258,6 +266,26 @@ app.post('/new',function(req,res){
 											//console.log(docs.EmailID);
 											
 											if (docs.EmailID) {
+												//var EmailText= "Dear "+ employee.FullName + ",\n\n Your Password is " + employee.password + "\n\n**This is an Un-monitored Email Box** \n\n (c) TATA Consultancy Services Ltd"; 
+												sendgrid.send({ 
+														  to: docs.EmailID, 
+														  from: 'NoReply_TCSCharlottelab@tcs.com', 
+														  subject: 'Reservation Confirmation', 
+														  text: htmlBody 
+												}, function(err, json) { 
+														if (err) { 
+																console.log("Error with Sending Email to " + docs.EmailID); 
+																res.send("Error with sending email to " + docs.EmailID); 
+																return console.error(err); 
+														} 
+														console.log(json); 
+														//res.send("Dear "+ employee.FullName + "\nEmail has been sent to " + employee.EmailID); 
+												});
+											}
+										}
+
+											/*
+											if (docs.EmailID) {
 											
 												var mailOptions = {
 												  from:     fromSender,
@@ -287,6 +315,7 @@ app.post('/new',function(req,res){
 										if(!docs){
 											console.log("Can't send email since records is not present in Collection");
 										}
+										*/
 										//res.render("./views/index_successful_reservation",{R: doc, f: req.body.from, t: req.body.to});
 									});
 									res.render("./views/index_successful_reservation",{R: doc, f: req.body.from, t: req.body.to});
@@ -338,7 +367,7 @@ app.get('/dateError1',function(req,res){
 });
 */
 app.get('/',function(req,res){
-	res.render('./views/index');
+	res.render('./views/index',{message:""});
 });
 var aboutDate = new Date(2014,02,16,23,59,00,00);
 
