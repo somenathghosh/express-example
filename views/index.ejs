@@ -173,7 +173,7 @@
 								<p id="Error"></p>
 							</div>
 							-->
-							<div class="panel-body" style="height:300px;overflow:auto">
+							<div class="panel-body" style="height:300px;">
 							<% if (message.length > 0) { %>
 								<div class="alert alert-danger">
 									<p id="Error"><center><%= message %></center> </p>
@@ -205,7 +205,7 @@
 												
 										<div class='input-group date' id='datetimepicker1'>
 										<input id="from" name="from" class="form-control" type="text" placeholder="Select From Date" />
-										<span class="input-group-addon"><a href="javascript:NewCal('from','ddMMMyyyy','true',12)"><img src="cal.gif" width="16" height="16" border="0" alt="Pick a date"></a></span>
+										<span class="input-group-addon"><a href="javascript:NewCal('from','mmddyyyy','true',12)"><img src="cal.gif" width="16" height="16" border="0" alt="Pick a date"></a></span>
 										</div>
 										</tr>
 										
@@ -216,7 +216,7 @@
 												
 										<div class='input-group date' id='datetimepicker1'>
 										<input id="to" name="to" class="form-control" type="text" placeholder="Select To Date" />
-										<span class="input-group-addon"><a href="javascript:NewCal('to','ddMMMyyyy','true',12)"><img src="cal.gif" width="16" height="16" border="0" alt="Pick a date"></a></span>
+										<span class="input-group-addon"><a href="javascript:NewCal('to','mmddyyyy','true',12)"><img src="cal.gif" width="16" height="16" border="0" alt="Pick a date"></a></span>
 										</div>
 										</tr>
 										
@@ -253,7 +253,11 @@
 														
 										
 										<!--<input type="text" name="to" class="form-control" placeholder="To Date MM/DD/YYYY HH:MM PM/AM">-->
-									
+										
+																			
+										
+										</tr>
+										
 										<tr>
 												<td width="15%"></td>
 												<td width="85%">
@@ -262,6 +266,7 @@
 										
 										
 										</tr>
+										
 										
 										</table>
 										
