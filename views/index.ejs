@@ -5,7 +5,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<link href = "css/bootstrap.min.css" rel = "stylesheet">
 		
-		
+		<link rel="stylesheet" type="text/css" href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
 		
 		
 		<link rel="stylesheet" type="text/css" media="screen"
@@ -21,6 +21,8 @@
 			#contentWrap{
 			display: none;
 			}
+			
+			
 		</style>
 		
 		<script language="javascript" type="text/javascript" src="datetimepicker.js">
@@ -74,7 +76,7 @@
 		<div class = "container">
 		
 			<div class = "jumbotron text-center">
-				<h1><font face="trebuchet MS" ><span class="fa fa-lock"></span> TCS Charlotte Lab</font></h1>
+				<h1><font face="trebuchet MS" ><span class="fa fa-globe"></span> TCS Charlotte Lab</font></h1>
 				
 				
 				
@@ -205,18 +207,18 @@
 								<div class="control-group">
 									<!--label class="control-label">Email</label-->
 									<div class="controls">
-										
-										<table width="100%">
+										<div class="table-responsive">
+										<table class="table borderless" width="100%">
 										
 																		
 										<tr>
-												<td width="15%" class="label_text"> <font color="green">Employee ID:</font></td>
+												<td width="15%"> <font color="green">Employee ID</font></td>
 												<td width="85%"><input name="empID" type="number" placeholder="Enter TCS Employee Number" class="form-control"></td>
 										</tr>
 										
 										<tr>
 												<td width="15%"><font color="green">Full Name</font></td>
-												<td width="85%"><input name="name"  type="text" placeholder="Enter Full Name as per TCS" class="form-control"></td>
+												<td width="85%"><input name="name"  type="text" value="Enter Full Name" style="color:#aaa" onfocus="this.value='';this.style.color='#000';this.onfocus='';" class="form-control"></td>
 										</tr>	
 											
 										
@@ -304,7 +306,7 @@
 										
 										
 										</table>
-										
+										</div>
 										
 									</div>
 								</div>
@@ -351,8 +353,8 @@
 						
 		                    <div class = "form-group">
 		                        
-		                        <label for = "contact-name" class = "col-lg-2 control-label">Name:</label>
-		                        <div class = "col-lg-10">
+		                        <label for = "contact-name" class = "col-sm-2 control-label">Name:</label>
+		                        <div class = "col-sm-10">
 		                            
 		                            <input name="name" type = "text" class = "form-control" id = "contact-name" placeholder = "Full Name">
 		                            
@@ -362,10 +364,10 @@
 		                    
 		                    <div class = "form-group">
 		                        
-		                        <label for = "contact-email" class = "col-lg-2 control-label">Employee ID</label>
-		                        <div class = "col-lg-10">
+		                        <label for = "contact-email" class = "col-sm-2 control-label">Emp ID</label>
+		                        <div class = "col-sm-10">
 		                            
-		                            <input name="empID" type = "number" class = "form-control" id = "contact-empID" placeholder = "your TCS ID">
+		                            <input name="empID" type = "number" class = "form-control" id = "contact-empID" placeholder = "TCS ID">
 		                            
 		                        </div>
 		                        
@@ -373,8 +375,8 @@
 		                    
 		                    <div class = "form-group">
 		                        
-		                        <label for = "contact-msg" class = "col-lg-2 control-label">Message:</label>
-		                        <div class = "col-lg-10">
+		                        <label for = "contact-msg" class = "col-sm-2 control-label">Message:</label>
+		                        <div class = "col-sm-10">
 		                            
 		                            <textarea name="feedback" id="contact-feedback" class = "form-control" rows = "8"></textarea>
 		                            
@@ -1048,7 +1050,7 @@
 					}
 					else {
 					
-						if(($nickBoxFrom.val() !="From Date" || $nickBoxFrom.val() !="") && ($nickBoxTo.val()=="To Date" || $nickBoxTo.val()=="")){
+						if(($nickBoxFrom.val() !="From Date" || $nickBoxFrom.val() !="") && ($nickBoxTo.val()=="To Date" || $nickBoxTo.val()=="") && isFinite($fDate)){
 							$("#chat").html("<font color='black'><strong>Current Reservations</strong></font><br/>");
 								socket.emit('new user', $nickBox.val(), $fDate, $tDateNew, function(data){
 									if(data){
@@ -1063,7 +1065,7 @@
 						else{
 						
 						
-							if(($nickBoxFrom.val() =="From Date" || $nickBoxFrom.val() =="") && ($nickBoxTo.val()!="To Date" || $nickBoxTo.val()!="")){
+							if(($nickBoxFrom.val() =="From Date" || $nickBoxFrom.val() =="") && ($nickBoxTo.val()!="To Date" || $nickBoxTo.val()!="") && isFinite($tDate)){
 								$("#chat").html("<font color='black'><strong>Current Reservations</strong></font><br/>");
 									socket.emit('new user', $nickBox.val(), $fDateNew, $tDate, function(data){
 										if(data){
@@ -1079,7 +1081,7 @@
 							
 							
 							
-								if (($nickBoxFrom.val() !="From Date" || $nickBoxFrom.val() !="") && ($nickBoxTo.val()!="To Date" ||$nickBoxTo.val()!="")) {
+								if (($nickBoxFrom.val() !="From Date" || $nickBoxFrom.val() !="") && ($nickBoxTo.val()!="To Date" ||$nickBoxTo.val()!="") && isFinite($fDate) && isFinite($tDate) ) {
 										
 								
 										$("#chat").html("<font color='black'><strong>Current Reservations</strong></font><br/>");
