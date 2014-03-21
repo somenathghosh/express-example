@@ -185,6 +185,106 @@ io.sockets.on('connection', function(socket){
 		});
 	});
 	
+	socket.on('reservation', function(emp,name,fromDate, toDate,mc,reason, callback){
+		
+		console.log(emp+name+fromDate+toDate+mc+reason);
+		
+		User.findOne({to: {"$gt":fromDate},from: {"$lt":toDate},id: emp},function(err,docs){
+		//console.log(req.body.empID);
+		if(err){
+			console.log(err);
+			//res.end("There is some DB system error");
+			callback(false);
+		}
+		if(docs){
+			var msg = "You already have mc# " + docs.mc + " booked around same time";
+			callback(true);
+			socket.emit('message',{message: msg });
+			
+			//res.render('./views/index',{message:"You already have mc# " + docs.mc + " booked around same time"});
+		}
+		else {
+			//console.log(docs);
+			User.findOne({to: {"$gt":fromDate},from: {"$lt":toDate},mc: mc},function(err,user){
+			if (err) {
+				console.log(err);
+				callback(false);
+				//res.end("There is some DB system error");
+			}
+			if(user) {
+				//console.log(user);
+				var msg = "The selected slot is not available";
+				callback(true);
+				socket.emit('message',{message: msg });
+				//res.render('./views/index',{message:"The selected slot is not available"});
+			}
+			else{
+
+				new User({
+							
+							id   : emp,
+							name : name,
+							from : fromDate,
+							to   : toDate,
+							reason : reason,
+							mc     : mc
+						}).save(function(err, doc){
+							if(err) {
+							console.log(err);
+								//res.end("There is some system error");
+								callback(false);
+							}
+								
+								else {
+									console.log(doc.from);
+									var empID = (emp).toString();
+									htmlBody = "Dear "+ name+ ",<br><br> Your reservation has been confirmed.<br> M/C# <strong>" + mc + "</strong>"+". " + " FROM : <u>" + fromDate + "</u> TO : <u>" + toDate +"</u>.";
+									htmlBody = htmlBody + "<br><br>Thanks,<br> TCS Charlotte Lab Team.<br><br>P.S. This is system-generated email. Please do not reply."; 
+									CLTlab.findOne({employeeID : empID },function(err,docs){
+										if(err) console.log(err);
+										if(docs) {
+											//console.log("Entered");
+											
+											//console.log(docs.EmailID);
+											
+											if (docs.EmailID) {
+												//var EmailText= "Dear "+ employee.FullName + ",\n\n Your Password is " + employee.password + "\n\n**This is an Un-monitored Email Box** \n\n (c) TATA Consultancy Services Ltd"; 
+												sendgrid.send({ 
+														  to: docs.EmailID, 
+														  from: 'NoReply_TCSCharlottelab@tcs.com', 
+														  subject: 'Reservation Confirmation', 
+														  html: htmlBody 
+												}, function(err, json) { 
+														if (err) { 
+																console.log("Error with Sending Email to " + docs.EmailID); 
+																res.send("Error with sending email to " + docs.EmailID); 
+																return console.error(err); 
+														} 
+														console.log(json); 
+														//res.send("Dear "+ employee.FullName + "\nEmail has been sent to " + employee.EmailID); 
+												});
+											}
+										}
+
+											
+									});
+									//res.render("./views/index_successful_reservation",{R: doc, f: req.body.from, t: req.body.to});
+									var msg = "Your reservation is successful";
+									callback(true);
+									socket.emit('message',{message: msg });
+								}
+						});
+					}
+				});
+			
+			}
+
+		});
+	
+	});
+	
+	
+	
 });
 
 var Schema = new mongoose.Schema({
@@ -205,10 +305,12 @@ var CLTlab = mongoose.model('charlottelabauthentication',Schema);
 
 
 
-
+/*
 app.post('/new',function(req,res){
 	
-	//User.findOne({to: {"$gt":req.body.from},from: {"$lt":req.body.to},id: req.body.id},function(err,docs){
+	
+	
+	
 	User.findOne({to: {"$gt":req.body.from},from: {"$lt":req.body.to},id: req.body.empID},function(err,docs){
 		//console.log(req.body.empID);
 		if(err){
@@ -284,39 +386,7 @@ app.post('/new',function(req,res){
 											}
 										}
 
-											/*
-											if (docs.EmailID) {
 											
-												var mailOptions = {
-												  from:     fromSender,
-												  to:       docs.EmailID,
-												  subject:  "Reservation Confirmation",
-												  text:     "hello",
-												  html:     htmlBody,
-												  headers:  headers
-												}
-												
-												
-												smtpTransport.sendMail(mailOptions, function(error, response) {
-												smtpTransport.close();
-
-													if (error) { 
-														console.log(error);
-													} else {
-														console.log("Message sent: " + response.message);
-													}
-												});
-											}
-											else{
-												console.log("Can't send email since email ID is not present");
-											}
-										}
-										
-										if(!docs){
-											console.log("Can't send email since records is not present in Collection");
-										}
-										*/
-										//res.render("./views/index_successful_reservation",{R: doc, f: req.body.from, t: req.body.to});
 									});
 									res.render("./views/index_successful_reservation",{R: doc, f: req.body.from, t: req.body.to});
 								}
@@ -328,6 +398,8 @@ app.post('/new',function(req,res){
 
 	});
 });
+*/
+
 
 var feedSchema = new mongoose.Schema({
 	id       : Number,
