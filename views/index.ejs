@@ -106,7 +106,7 @@
 					<div class="col-lg-3 col-md-3 col-sm-3">
 						<div class="panel panel-success">
 							<div class="panel-heading"><center><font face="trebuchet MS" size="5">Availability</font><br></center></div>
-							<div class="panel-body" style="height:302px;overflow:auto">
+							<div class="panel-body" style="height:300px;overflow:auto">
 							<div id="nickWrap" >
 							<!--
 							<div class="alert alert-danger">
@@ -190,9 +190,7 @@
 					
 					<div class="col-lg-9 col-md-9 col-sm-9 ">
 						<div class="panel panel-success">
-							<div class="panel-heading"><center><font face="trebuchet MS" size="5">Registration</font><br><font face="trebuchet MS" size="3"><div id="msg">
-									
-							</div></font></center></div>
+							<div class="panel-heading"><center><font face="trebuchet MS" size="5">Registration</font><br><font face="trebuchet MS" size="3"></font></center></div>
 							<!--
 							<div class="alert alert-danger">
 								<p id="Error"></p>
@@ -208,9 +206,13 @@
 							<form name ="myForm" id="reservation" class="form form-horizontal">
 								<div class="control-group">
 									<!--label class="control-label">Email</label-->
+									
+									<div id="msg">
+									
+									</div>
 									<div class="controls">
 										<div class="table-responsive">
-										<table class="table borderless" width="100%">
+										<table class="table" width="100%">
 										
 																		
 										<tr>
@@ -1231,7 +1233,7 @@
 			});
 			
 			socket.on('message', function(data){
-				
+				alert(data.message);
 				$('#msg').append('<center><font color="red">' + "!!!" + data.message + "</font></center>"); 
 				
 			});

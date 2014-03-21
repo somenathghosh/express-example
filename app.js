@@ -187,7 +187,7 @@ io.sockets.on('connection', function(socket){
 	
 	socket.on('reservation', function(emp,name,fromDate, toDate,mc,reason, callback){
 		
-		console.log(emp+name+fromDate+toDate+mc+reason);
+		//console.log(emp+name+fromDate+toDate+mc+reason);
 		
 		User.findOne({to: {"$gt":fromDate},from: {"$lt":toDate},id: emp},function(err,docs){
 		//console.log(req.body.empID);
