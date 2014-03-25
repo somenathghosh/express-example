@@ -1,0 +1,1499 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>TCS Lab Reservation System</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link href = "css/bootstrap.min.css" rel = "stylesheet">
+		
+		<link rel="stylesheet" type="text/css" href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
+		
+		
+		<link rel="stylesheet" type="text/css" media="screen"
+						href="http://tarruda.github.com/bootstrap-datetimepicker/assets/css/bootstrap-datetimepicker.min.css">
+	
+		<style type="text/css">
+			body {
+				background-color: darkblue;
+				padding-bottom: 110px;
+				
+			}
+			
+			#contentWrap{
+			display: none;
+			}
+			
+			
+		</style>
+		
+		<script language="javascript" type="text/javascript" src="datetimepicker.js">
+
+			
+		</script>
+
+	</head>
+	<body>
+	
+		<div class = "navbar navbar-inverse navbar-static-top">
+			<div class = "container">
+				
+				<a href = "#" class = "navbar-brand"><font face="trebuchet MS" size="5" color="white">Reservation</font></a>
+				
+				<button class = "navbar-toggle" data-toggle = "collapse" data-target = ".navHeaderCollapse">
+					<span class = "icon-bar"></span>
+					<span class = "icon-bar"></span>
+					<span class = "icon-bar"></span>
+				</button>
+				
+				<div class = "collapse navbar-collapse navHeaderCollapse">
+				
+					<ul class = "nav navbar-nav navbar-right">
+					
+						<li class = "active"><a href = "/">Home</a></li>
+						<!--
+						<li><a href = "#">Blog</a></li>
+						<li class = "dropdown">
+							
+							<a href = "#" class = "dropdown-toggle" data-toggle = "dropdown">Social Media <b class = "caret"></b></a>
+							<ul class = "dropdown-menu">
+								<li><a href = "#">Twitter</a></li>
+								<li><a href = "#">Facebook</a></li>
+								<li><a href = "#">Google+</a></li>
+								
+							</ul>
+						
+						</li>
+						-->
+						<li><a href = "/about">About</a></li>
+						<li><a href = "#contact" data-toggle="modal">feedback</a></li>
+					
+					</ul>
+				
+				</div>
+				
+			</div>
+		</div>
+		
+		<div class = "container">
+		
+			<div class = "jumbotron text-center">
+				<h1><font face="trebuchet MS" ><span class="fa fa-globe"></span> TCS Charlotte Lab</font></h1>
+				
+				
+				
+			</div>
+		
+		</div>
+		
+		
+	
+		<!--
+		<div class = "container">
+		<div class="panel panel-success">
+			<div class = "panel-heading">
+			<center>
+				<h1><font face="trebuchet MS" size="8"><span class="fa fa-lock"></span> TCS Charlotte Lab</font></h1></center>
+							
+			</div>
+		</div>
+		</div>
+		-->
+		
+		
+        <div class="container">
+			
+		
+				<div class="row">
+					<div class="col-lg-3 col-md-3 col-sm-3">
+						<div class="panel panel-success">
+							<div class="panel-heading"><center><font face="trebuchet MS" size="5">Availability</font><br></center></div>
+							<div class="panel-body" style="height:300px;overflow:auto">
+							<div id="nickWrap" >
+							<!--
+							<div class="alert alert-danger">
+								<p id="nickError"></p>
+							</div>
+							-->
+							<form class="form form-horizontal" id="setNick">
+								<div class="control-group">
+									<!--label class="control-label">Email</label-->
+									<div class="controls">
+										<!--<input type="Number" id="nickname" name="mc" placeholder="Machine Number" class="form-control">-->
+										<select name="mc" class="form-control" id="nickname" required >
+											<option value=1>Select Machine Number</option>
+											<option value=5>5</option>
+											<option value=6>6</option>
+											<option value=7>7</option>
+											<option value=8>8</option>
+											<option value=9>9</option>
+											<option value=10>10</option>
+											<option value=11>11</option>
+											<option value=12>12</option>
+											<option value=13>13</option>
+											<option value=14>14</option>
+										</select>
+										<!--<input id="fromWidget" type="text" class="form-control" placeholder="From Date MM/DD/YYYY HH:MM PM/AM"></input>
+										
+										<div class='input-group date' id='datetimepicker1'>
+										<input id="fromWidget" class="form-control" type="text" value="From Date" style="color:#aaa" onfocus="this.value='';this.style.color='#000';this.onfocus='';"/>
+										<span class="input-group-addon"><a href="javascript:NewCal('fromWidget','mmddyyyy','true',12)"><img src="cal.gif" width="16" height="16" border="0" alt="Pick a date"></a></span>
+										</div>
+										-->
+										
+										
+										
+										<div class='input-group date' id='datetimepicker_1'>
+										<input id="fromWidget" class="form-control" type="text" value="From Date" style="color:#aaa" onfocus="this.value='';this.style.color='#000';this.onfocus='';"/>
+										<span class="input-group-addon"><a href="#datetime1" data-toggle="modal"><span class="glyphicon glyphicon-calendar"></span></a></span>
+										</div>
+										
+										
+										<div class='input-group date' id='datetimepicker_2'>
+										<input id="toWidget" class="form-control" type="text" value="To Date" style="color:#aaa" onfocus="this.value='';this.style.color='#000';this.onfocus='';"/>
+										<span class="input-group-addon"><a href="#datetime2" data-toggle="modal"><span class="glyphicon glyphicon-calendar"></span></a></span>
+										</div>
+										
+										
+										
+										<!--<input id="toWidget" type="text" class="form-control" placeholder="To Date MM/DD/YYYY HH:MM PM/AM" ></input>
+										
+										
+										<div class='input-group date' id='datetimepicker1'>
+										<input id="toWidget" class="form-control" type="text"value="To Date" style="color:#aaa" onfocus="this.value='';this.style.color='#000';this.onfocus='';" />
+										<span class="input-group-addon"><a href="javascript:NewCal('toWidget','mmddyyyy','true',12)"><img src="cal.gif" width="16" height="16" border="0" alt="Pick a date"></a></span>
+										</div>
+										-->
+										<br>
+										<center><button class = "btn btn-success btn-large" type = "submit">Check</button><center>
+										
+										<div id="contentWrap2">
+											<div id="chatWrap">
+												<div id="chat">											
+												
+												</div>
+							
+											</div>
+							<!--<div id="users"></div>-->
+										</div>
+									</div>
+								</div>
+							</form>
+							</div>
+							</div>
+							
+						
+	
+						</div>
+					</div>
+					
+								
+					
+					
+					<div class="col-lg-9 col-md-9 col-sm-9 ">
+						<div class="panel panel-success">
+							<div class="panel-heading"><center><font face="trebuchet MS" size="5">Registration</font><br><font face="trebuchet MS" size="3"></font></center></div>
+							<!--
+							<div class="alert alert-danger">
+								<p id="Error"></p>
+							</div>
+							-->
+							
+								
+							<div class="panel-body" style="height:300px;overflow:auto">
+							
+								
+							
+							<div id="formWrap" >
+							<form name ="myForm" id="reservation" class="form form-horizontal">
+								<div class="control-group">
+									<!--label class="control-label">Email</label-->
+									
+									<div id="msg">
+									
+									</div>
+									<div class="controls">
+										<div class="table-responsive">
+										<table class="table" width="100%">
+										
+																		
+										<tr>
+												<td width="15%"> <font color="green">Employee ID</font></td>
+												<td width="85%"><input name="empID" id="empID" type="number" placeholder="Enter TCS Employee Number" class="form-control"></td>
+										</tr>
+										
+										<tr>
+												<td width="15%"><font color="green">Full Name</font></td>
+												<td width="85%"><input name="name"  id="name" type="text" value="Enter Full Name" style="color:#aaa" onfocus="this.value='';this.style.color='#000';this.onfocus='';" class="form-control"></td>
+										</tr>	
+											
+										
+										<tr>
+												<td width="15%"><font color="green">From Date</font></td>
+												<td width="85%">
+										<!--		
+										<div class='input-group date' id='datetimepicker1'>
+										<input id="from" name="from" class="form-control" type="text" placeholder="Select From Date" />
+										<span class="input-group-addon"><a href="javascript:NewCal('from','mmddyyyy','true',12)"><img src="cal.gif" width="16" height="16" border="0" alt="Pick a date"></a></span>
+										</div> -->
+										
+										<div class='input-group date' id='datetimepicker_3'>
+										<input id="from"  name="from" class="form-control" type="text" value="From Date" style="color:#aaa" onfocus="this.value='';this.style.color='#000';this.onfocus='';"/>
+										<span class="input-group-addon"><a href="#datetime3" data-toggle="modal"><span class="glyphicon glyphicon-calendar"></span></a></span>
+										</div>
+										
+										
+										</tr>
+										
+										
+										<tr>
+												<td width="15%"><font color="green">To Date</font></td>
+												<td width="85%">
+												
+										<!--
+										<div class='input-group date' id='datetimepicker1'>
+										<input id="to" name="to" class="form-control" type="text" placeholder="Select To Date" />
+										<span class="input-group-addon"><a href="javascript:NewCal('to','mmddyyyy','true',12)"><img src="cal.gif" width="16" height="16" border="0" alt="Pick a date"></a></span>
+										</div> -->
+										
+										<div class='input-group date' id='datetimepicker_4'>
+										<input id="to"  name="from" class="form-control" type="text" value="To Date" style="color:#aaa" onfocus="this.value='';this.style.color='#000';this.onfocus='';"/>
+										<span class="input-group-addon"><a href="#datetime4" data-toggle="modal"><span class="glyphicon glyphicon-calendar"></span></a></span>
+										</div>
+										
+										</tr>
+										
+										<tr>
+												<td width="15%"><font color="green">Machine #</font></td>
+												<td width="85%">
+												
+										<!--<input type="Number" id="inputEmail" name="mc" placeholder="Provide Machine Number" class="form-control">-->
+										
+										<select name="mc" id="mc" class="form-control" id="inputEmail" required >
+											<option value=1>Select Machine number</option>
+											<option value=5>5</option>
+											<option value=6>6</option>
+											<option value=7>7</option>
+											<option value=8>8</option>
+											<option value=9>9</option>
+											<option value=10>10</option>
+											<option value=11>11</option>
+											<option value=12>12</option>
+											<option value=13>13</option>
+											<option value=14>14</option>
+										</select>
+										
+										</tr>
+										
+										<tr>
+												<td width="15%"><font color="green">Usage Reason</font></td>
+												<td width="85%">
+												
+										<textarea name="reason" id="reason" type="text" placeholder="Provide reason why you want to use LAB machine" class="form-control"></textarea>
+																								
+										</tr>
+										
+														
+										
+										<!--<input type="text" name="to" class="form-control" placeholder="To Date MM/DD/YYYY HH:MM PM/AM">-->
+										
+																			
+										
+										</tr>
+										
+										<tr>
+												<td width="15%"></td>
+												<td width="85%">
+												
+										<!--<center><button class = "btn btn-success btn-large" type = "submit">Reserve</button><center>-->
+										
+										
+										</tr>
+										
+										
+										</table>
+										<center><button class = "btn btn-success btn-large" type = "submit">Reserve</button><center>
+										</div>
+										
+									</div>
+								</div>
+							</form>
+							</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			
+		</div>
+		
+		
+		<div class = "navbar navbar-inverse navbar-fixed-bottom">
+		
+			<div class = "container-fluid">
+				<p class = "navbar-text pull-left">&copy;This work is licensed under
+					<a href="http://www.tcs.com/Pages/default.aspx">Tata Consultacy Services </a></p>
+					
+					<a href = "#" class = "navbar-btn btn-default btn-sm btn pull-right" id="btnSubmit"><span class="glyphicon glyphicon-thumbs-up"></span> Like</a>
+					
+			</div>
+		
+		</div>
+		
+		<div class = "modal fade" id = "contact" role = "dialog">
+		    <div class = "modal-dialog">
+		        
+				
+				<div class = "modal-content">
+					
+					<!--
+					<div  id="contentWrap" class="alert alert-success">
+							<p id="success"><center>Thanks for your feedback</center></p>
+					</div>
+					-->
+					
+		            <form id="setNick1" class = "form-horizontal" action="/feedback" method ="POST">
+		                <div class = "modal-header">
+		                    <h4>TCS Lab Reservation Team FeedBack</h4>
+		                </div>
+						<div id="thank"></div>
+		                <div  class = "modal-body" id="feedForm">
+						
+		                    <div class = "form-group">
+		                        
+		                        <label for = "contact-name" class = "col-sm-2 control-label">Name:</label>
+		                        <div class = "col-sm-10">
+		                            
+		                            <input name="name" type = "text" class = "form-control" id = "contact-name" placeholder = "Full Name">
+		                            
+		                        </div>
+		                        
+		                    </div>
+		                    
+		                    <div class = "form-group">
+		                        
+		                        <label for = "contact-email" class = "col-sm-2 control-label">Emp ID</label>
+		                        <div class = "col-sm-10">
+		                            
+		                            <input name="empID" type = "number" class = "form-control" id = "contact-empID" placeholder = "TCS ID">
+		                            
+		                        </div>
+		                        
+		                    </div>
+		                    
+		                    <div class = "form-group">
+		                        
+		                        <label for = "contact-msg" class = "col-sm-2 control-label">Message:</label>
+		                        <div class = "col-sm-10">
+		                            
+		                            <textarea name="feedback" id="contact-feedback" class = "form-control" rows = "8"></textarea>
+		                            
+		                        </div>
+		                        
+		                    </div>
+		                
+		                </div>
+		                <div class = "modal-footer">
+                            <a class = "btn btn-default" data-dismiss = "modal">Close</a>    
+		                    <button class = "btn btn-primary" type = "submit">Send</button>
+		                </div>
+		            </form>
+					
+		        </div>
+		    </div>
+		</div>
+		
+		<!--  From Date Availability -->
+		
+		<div class = "modal fade" id = "datetime1" role = "dialog">
+		    <div class = "modal-dialog">
+		        
+				
+				<div class = "modal-content">
+					
+					<!--
+					<div  id="contentWrap" class="alert alert-success">
+							<p id="success"><center>Thanks for your feedback</center></p>
+					</div>
+					-->
+					
+		            <form id="setDate1" class = "form-horizontal" >
+		                <div class = "modal-header">
+		                    <h4>Choose Date & Time</h4>
+		                </div>
+						
+		                <div  class = "modal-body" id="feedForm">
+						
+		                   <div class="row">
+						  <div class="col-xs-4">
+							<select name="MM" class="form-control" id="mm1" required >
+											<option value=0>month</option>
+											<option value=1>1</option>
+											<option value=2>2</option>
+											<option value=3>3</option>
+											<option value=4>4</option>
+											<option value=5>5</option>
+											<option value=6>6</option>
+											<option value=7>7</option>
+											<option value=8>8</option>
+											<option value=9>9</option>
+											<option value=10>10</option>
+											<option value=11>11</option>
+											<option value=12>12</option>
+											
+											
+							</select>
+						  </div>
+						  <div class="col-xs-4">
+							<select name="dd" class="form-control" id="dd1" required >
+											<option value=0>date</option>
+											<option value=1>1</option>
+											<option value=2>2</option>
+											<option value=3>3</option>
+											<option value=4>4</option>
+											<option value=5>5</option>
+											<option value=6>6</option>
+											<option value=7>7</option>
+											<option value=8>8</option>
+											<option value=9>9</option>
+											<option value=10>10</option>
+											<option value=11>11</option>
+											<option value=12>12</option>
+											<option value=13>13</option>
+											<option value=14>14</option>
+											<option value=15>15</option>
+											<option value=16>16</option>
+											<option value=17>17</option>
+											<option value=18>18</option>
+											<option value=19>19</option>
+											<option value=20>20</option>
+											<option value=21>21</option>
+											<option value=22>22</option>
+											<option value=23>23</option>
+											<option value=24>24</option>
+											<option value=25>25</option>
+											<option value=26>26</option>
+											<option value=27>27</option>
+											<option value=28>28</option>
+											<option value=29>29</option>
+											<option value=30>30</option>
+											<option value=31>31</option>
+											
+							</select>
+						  </div>
+						  <div class="col-xs-4">
+							<select name="YY" class="form-control" id="yy1" required >
+											<option value=0>year</option>
+											<option value=2014>2014</option>
+											<option value=2015>2015</option>
+											<option value=2016>2016</option>
+											<option value=2017>2017</option>
+											<option value=2018>2018</option>
+											<option value=2019>2019</option>
+											<option value=2020>2020</option>
+											
+											
+											
+							</select>
+						  </div>
+						  
+						  <div class="col-xs-4">
+							<select name="hh" class="form-control" id="hh1" required >
+											<option value=0>hour</option>
+											<option value=1>1</option>
+											<option value=2>2</option>
+											<option value=3>3</option>
+											<option value=4>4</option>
+											<option value=5>5</option>
+											<option value=6>6</option>
+											<option value=7>7</option>
+											<option value=8>8</option>
+											<option value=9>9</option>
+											<option value=10>10</option>
+											<option value=11>11</option>
+											<option value=12>12</option>
+											
+											
+							</select>
+						  </div>
+						  
+						  <div class="col-xs-4">
+							<select name="mm" class="form-control" id="mn1" required >
+											<option value=0>min</option>
+											<option value=00>00</option>
+											<option value=15>15</option>
+											<option value=30>30</option>
+											<option value=45>45</option>
+																	
+							</select>
+						  </div>
+						  
+						  <div class="col-xs-4">
+							<select name="Tformat" class="form-control" id="tf1" required >
+											<option value="AM">AM</option>
+											<option value="PM">PM</option>
+																											
+							</select>
+						  </div>
+						  
+						</div>
+		                
+		                </div>
+		                <div class = "modal-footer">
+                            <a class = "btn btn-default" data-dismiss = "modal" id="btnSubmit1">OK</a>
+		                    <!--<button class = "btn btn-primary" type = "submit">OK</button>-->
+		                </div>
+		            </form>
+					
+		        </div>
+		    </div>
+		</div>
+		
+		<!-- This is for TO DATE -Availability -->
+		
+		<div class = "modal fade" id = "datetime2" role = "dialog">
+		    <div class = "modal-dialog">
+		        
+				
+				<div class = "modal-content">
+					
+					<!--
+					<div  id="contentWrap" class="alert alert-success">
+							<p id="success"><center>Thanks for your feedback</center></p>
+					</div>
+					-->
+					
+		            <form id="setDate2" class = "form-horizontal" >
+		                <div class = "modal-header">
+		                    <h4>Choose Date & Time</h4>
+		                </div>
+						
+		                <div  class = "modal-body" id="feedForm">
+						
+		                   <div class="row">
+						  <div class="col-xs-4">
+							<select name="MM" class="form-control" id="mm2" required >
+											<option value=0>month</option>
+											<option value=1>1</option>
+											<option value=2>2</option>
+											<option value=3>3</option>
+											<option value=4>4</option>
+											<option value=5>5</option>
+											<option value=6>6</option>
+											<option value=7>7</option>
+											<option value=8>8</option>
+											<option value=9>9</option>
+											<option value=10>10</option>
+											<option value=11>11</option>
+											<option value=12>12</option>
+											
+											
+							</select>
+						  </div>
+						  <div class="col-xs-4">
+							<select name="dd" class="form-control" id="dd2" required >
+											<option value=0>date</option>
+											<option value=1>1</option>
+											<option value=2>2</option>
+											<option value=3>3</option>
+											<option value=4>4</option>
+											<option value=5>5</option>
+											<option value=6>6</option>
+											<option value=7>7</option>
+											<option value=8>8</option>
+											<option value=9>9</option>
+											<option value=10>10</option>
+											<option value=11>11</option>
+											<option value=12>12</option>
+											<option value=13>13</option>
+											<option value=14>14</option>
+											<option value=15>15</option>
+											<option value=16>16</option>
+											<option value=17>17</option>
+											<option value=18>18</option>
+											<option value=19>19</option>
+											<option value=20>20</option>
+											<option value=21>21</option>
+											<option value=22>22</option>
+											<option value=23>23</option>
+											<option value=24>24</option>
+											<option value=25>25</option>
+											<option value=26>26</option>
+											<option value=27>27</option>
+											<option value=28>28</option>
+											<option value=29>29</option>
+											<option value=30>30</option>
+											<option value=31>31</option>
+											
+							</select>
+						  </div>
+						  <div class="col-xs-4">
+							<select name="YY" class="form-control" id="yy2" required >
+											<option value=0>year</option>
+											<option value=2014>2014</option>
+											<option value=2015>2015</option>
+											<option value=2016>2016</option>
+											<option value=2017>2017</option>
+											<option value=2018>2018</option>
+											<option value=2019>2019</option>
+											<option value=2020>2020</option>
+											
+											
+											
+							</select>
+						  </div>
+						  
+						  <div class="col-xs-4">
+							<select name="hh" class="form-control" id="hh2" required >
+											<option value=0>hour</option>
+											<option value=1>1</option>
+											<option value=2>2</option>
+											<option value=3>3</option>
+											<option value=4>4</option>
+											<option value=5>5</option>
+											<option value=6>6</option>
+											<option value=7>7</option>
+											<option value=8>8</option>
+											<option value=9>9</option>
+											<option value=10>10</option>
+											<option value=11>11</option>
+											<option value=12>12</option>
+											
+											
+							</select>
+						  </div>
+						  
+						  <div class="col-xs-4">
+							<select name="mm" class="form-control" id="mn2" required >
+											<option value=0>min</option>
+											<option value=00>00</option>
+											<option value=15>15</option>
+											<option value=30>30</option>
+											<option value=45>45</option>
+																	
+							</select>
+						  </div>
+						  
+						  <div class="col-xs-4">
+							<select name="Tformat" class="form-control" id="tf2" required >
+											<option value="AM">AM</option>
+											<option value="PM">PM</option>
+																											
+							</select>
+						  </div>
+						  
+						</div>
+		                
+		                </div>
+		                <div class = "modal-footer">
+                            <a class = "btn btn-default" data-dismiss = "modal" id="btnSubmit2">OK</a>
+		                    <!--<button class = "btn btn-primary" type = "submit">OK</button>-->
+		                </div>
+		            </form>
+					
+		        </div>
+		    </div>
+		</div>
+		
+		
+		<!--- -->
+		
+		<div class = "modal fade" id = "datetime3" role = "dialog">
+		    <div class = "modal-dialog">
+		        
+				
+				<div class = "modal-content">
+					
+					<!--
+					<div  id="contentWrap" class="alert alert-success">
+							<p id="success"><center>Thanks for your feedback</center></p>
+					</div>
+					-->
+					
+		            <form id="setDate3" class = "form-horizontal" >
+		                <div class = "modal-header">
+		                    <h4>Choose Date & Time</h4>
+		                </div>
+						
+		                <div  class = "modal-body" id="feedForm">
+						
+		                   <div class="row">
+						  <div class="col-xs-4">
+							<select name="MM" class="form-control" id="mm3" required >
+											<option value=0>month</option>
+											<option value=1>1</option>
+											<option value=2>2</option>
+											<option value=3>3</option>
+											<option value=4>4</option>
+											<option value=5>5</option>
+											<option value=6>6</option>
+											<option value=7>7</option>
+											<option value=8>8</option>
+											<option value=9>9</option>
+											<option value=10>10</option>
+											<option value=11>11</option>
+											<option value=12>12</option>
+											
+											
+							</select>
+						  </div>
+						  <div class="col-xs-4">
+							<select name="dd" class="form-control" id="dd3" required >
+											<option value=0>date</option>
+											<option value=1>1</option>
+											<option value=2>2</option>
+											<option value=3>3</option>
+											<option value=4>4</option>
+											<option value=5>5</option>
+											<option value=6>6</option>
+											<option value=7>7</option>
+											<option value=8>8</option>
+											<option value=9>9</option>
+											<option value=10>10</option>
+											<option value=11>11</option>
+											<option value=12>12</option>
+											<option value=13>13</option>
+											<option value=14>14</option>
+											<option value=15>15</option>
+											<option value=16>16</option>
+											<option value=17>17</option>
+											<option value=18>18</option>
+											<option value=19>19</option>
+											<option value=20>20</option>
+											<option value=21>21</option>
+											<option value=22>22</option>
+											<option value=23>23</option>
+											<option value=24>24</option>
+											<option value=25>25</option>
+											<option value=26>26</option>
+											<option value=27>27</option>
+											<option value=28>28</option>
+											<option value=29>29</option>
+											<option value=30>30</option>
+											<option value=31>31</option>
+											
+							</select>
+						  </div>
+						  <div class="col-xs-4">
+							<select name="YY" class="form-control" id="yy3" required >
+											<option value=0>year</option>
+											<option value=2014>2014</option>
+											<option value=2015>2015</option>
+											<option value=2016>2016</option>
+											<option value=2017>2017</option>
+											<option value=2018>2018</option>
+											<option value=2019>2019</option>
+											<option value=2020>2020</option>
+											
+											
+											
+							</select>
+						  </div>
+						  
+						  <div class="col-xs-4">
+							<select name="hh" class="form-control" id="hh3" required >
+											<option value=0>hour</option>
+											<option value=1>1</option>
+											<option value=2>2</option>
+											<option value=3>3</option>
+											<option value=4>4</option>
+											<option value=5>5</option>
+											<option value=6>6</option>
+											<option value=7>7</option>
+											<option value=8>8</option>
+											<option value=9>9</option>
+											<option value=10>10</option>
+											<option value=11>11</option>
+											<option value=12>12</option>
+											
+											
+							</select>
+						  </div>
+						  
+						  <div class="col-xs-4">
+							<select name="mm" class="form-control" id="mn3" required >
+											<option value=0>min</option>
+											<option value=00>00</option>
+											<option value=15>15</option>
+											<option value=30>30</option>
+											<option value=45>45</option>
+																	
+							</select>
+						  </div>
+						  
+						  <div class="col-xs-4">
+							<select name="Tformat" class="form-control" id="tf3" required >
+											<option value="AM">AM</option>
+											<option value="PM">PM</option>
+																											
+							</select>
+						  </div>
+						  
+						</div>
+		                
+		                </div>
+		                <div class = "modal-footer">
+                            <a class = "btn btn-default" data-dismiss = "modal" id="btnSubmit3">OK</a>
+		                    <!--<button class = "btn btn-primary" type = "submit">OK</button>-->
+		                </div>
+		            </form>
+					
+		        </div>
+		    </div>
+		</div>
+		
+		<!--- -->
+		
+		<div class = "modal fade" id = "datetime4" role = "dialog">
+		    <div class = "modal-dialog">
+		        
+				
+				<div class = "modal-content">
+					
+					<!--
+					<div  id="contentWrap" class="alert alert-success">
+							<p id="success"><center>Thanks for your feedback</center></p>
+					</div>
+					-->
+					
+		            <form id="setDate4" class = "form-horizontal" >
+		                <div class = "modal-header">
+		                    <h4>Choose Date & Time</h4>
+		                </div>
+						
+		                <div  class = "modal-body" id="feedForm">
+						
+		                   <div class="row">
+						  <div class="col-xs-4">
+							<select name="MM" class="form-control" id="mm4" required >
+											<option value=0>month</option>
+											<option value=1>1</option>
+											<option value=2>2</option>
+											<option value=3>3</option>
+											<option value=4>4</option>
+											<option value=5>5</option>
+											<option value=6>6</option>
+											<option value=7>7</option>
+											<option value=8>8</option>
+											<option value=9>9</option>
+											<option value=10>10</option>
+											<option value=11>11</option>
+											<option value=12>12</option>
+											
+											
+							</select>
+						  </div>
+						  <div class="col-xs-4">
+							<select name="dd" class="form-control" id="dd4" required >
+											<option value=0>date</option>
+											<option value=1>1</option>
+											<option value=2>2</option>
+											<option value=3>3</option>
+											<option value=4>4</option>
+											<option value=5>5</option>
+											<option value=6>6</option>
+											<option value=7>7</option>
+											<option value=8>8</option>
+											<option value=9>9</option>
+											<option value=10>10</option>
+											<option value=11>11</option>
+											<option value=12>12</option>
+											<option value=13>13</option>
+											<option value=14>14</option>
+											<option value=15>15</option>
+											<option value=16>16</option>
+											<option value=17>17</option>
+											<option value=18>18</option>
+											<option value=19>19</option>
+											<option value=20>20</option>
+											<option value=21>21</option>
+											<option value=22>22</option>
+											<option value=23>23</option>
+											<option value=24>24</option>
+											<option value=25>25</option>
+											<option value=26>26</option>
+											<option value=27>27</option>
+											<option value=28>28</option>
+											<option value=29>29</option>
+											<option value=30>30</option>
+											<option value=31>31</option>
+											
+							</select>
+						  </div>
+						  <div class="col-xs-4">
+							<select name="YY" class="form-control" id="yy4" required >
+											<option value=0>year</option>
+											<option value=2014>2014</option>
+											<option value=2015>2015</option>
+											<option value=2016>2016</option>
+											<option value=2017>2017</option>
+											<option value=2018>2018</option>
+											<option value=2019>2019</option>
+											<option value=2020>2020</option>
+											
+											
+											
+							</select>
+						  </div>
+						  
+						  <div class="col-xs-4">
+							<select name="hh" class="form-control" id="hh4" required >
+											<option value=0>hour</option>
+											<option value=1>1</option>
+											<option value=2>2</option>
+											<option value=3>3</option>
+											<option value=4>4</option>
+											<option value=5>5</option>
+											<option value=6>6</option>
+											<option value=7>7</option>
+											<option value=8>8</option>
+											<option value=9>9</option>
+											<option value=10>10</option>
+											<option value=11>11</option>
+											<option value=12>12</option>
+											
+											
+							</select>
+						  </div>
+						  
+						  <div class="col-xs-4">
+							<select name="mm" class="form-control" id="mn4" required >
+											<option value=0>min</option>
+											<option value=00>00</option>
+											<option value=15>15</option>
+											<option value=30>30</option>
+											<option value=45>45</option>
+																	
+							</select>
+						  </div>
+						  
+						  <div class="col-xs-4">
+							<select name="Tformat" class="form-control" id="tf4" required >
+											<option value="AM">AM</option>
+											<option value="PM">PM</option>
+																											
+							</select>
+						  </div>
+						  
+						</div>
+		                
+		                </div>
+		                <div class = "modal-footer">
+                            <a class = "btn btn-default" data-dismiss = "modal" id="btnSubmit4">OK</a>
+		                    <!--<button class = "btn btn-primary" type = "submit">OK</button>-->
+		                </div>
+		            </form>
+					
+		        </div>
+		    </div>
+		</div>
+		
+		<!-- --->
+		
+		
+		
+		
+		
+		
+		<script src = "http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+		<script src = "js/bootstrap.js"></script>
+		<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+		<script src="/socket.io/socket.io.js"></script>
+		<script>
+		jQuery(function($){
+			var socket = io.connect();
+			
+			var $nickForm = $('#setNick');
+			var $feedForm = $('#setNick1');
+			var $reserveForm = $('#reservation');
+			
+			var $nickError = $('#nickError');
+			
+			var $nickBox = $('#nickname');
+			var $nickBoxFrom = $('#fromWidget');
+			var $nickBoxTo = $('#toWidget');
+			
+			var $nameBox = $('#contact-name');
+			var $empIDBox = $('#contact-empID');
+			var $feedbackBox = $('#contact-feedback');
+			
+			
+			
+			
+			
+			
+			//var $messageForm = $('#send-message');
+			//var $messageBox = $('#message');
+			
+			var $chat = $('#chat');
+			var $thank = $('#thank');
+			
+			//var $schedule = $('#schedule');
+			
+			var $fromDate = new Date();
+			var $toDate  = new Date();
+			
+			
+			
+			
+			$nickForm.submit(function(e){
+				e.preventDefault();
+				//alert($nickBox.val());
+				var $fDate = new Date($nickBoxFrom.val());
+				var $tDate = new Date($nickBoxTo.val());
+				var $fDateNew = new Date();
+				var $tDateNew = new Date(2017,12,31,23,59,00,00);
+				//alert($nickBox.val());
+				
+				if ($nickBox.val() >= 5 && $nickBox.val() <= 14 ) {
+					
+					if (($nickBoxFrom.val() =="From Date" ||$nickBoxFrom.val() =="") && ($nickBoxTo.val()=="To Date" || $nickBoxTo.val()=="")){
+						
+						$("#chat").html("<font color='black'><strong>Current Reservations</strong></font><br/>");
+							socket.emit('new user', $nickBox.val(), $fDateNew, $tDateNew, function(data){
+								if(data){
+									//$('#nickWrap').hide();
+									//$('#contentWrap').show();
+									
+								} else{
+									//$nickError.html('No Schedule available');
+								}
+							});
+						
+					}
+					else {
+					
+						if(($nickBoxFrom.val() !="From Date" || $nickBoxFrom.val() !="") && ($nickBoxTo.val()=="To Date" || $nickBoxTo.val()=="") && isFinite($fDate)){
+							$("#chat").html("<font color='black'><strong>Current Reservations</strong></font><br/>");
+								socket.emit('new user', $nickBox.val(), $fDate, $tDateNew, function(data){
+									if(data){
+										//$('#nickWrap').hide();
+										//$('#contentWrap').show();
+										
+									} else{
+										//$nickError.html('No Schedule available');
+									}
+								});
+						}
+						else{
+						
+						
+							if(($nickBoxFrom.val() =="From Date" || $nickBoxFrom.val() =="") && ($nickBoxTo.val()!="To Date" || $nickBoxTo.val()!="") && isFinite($tDate)){
+								$("#chat").html("<font color='black'><strong>Current Reservations</strong></font><br/>");
+									socket.emit('new user', $nickBox.val(), $fDateNew, $tDate, function(data){
+										if(data){
+											//$('#nickWrap').hide();
+											//$('#contentWrap').show();
+											
+										} else{
+											//$nickError.html('No Schedule available');
+										}
+									});
+							}
+							else{
+							
+							
+							
+								if (($nickBoxFrom.val() !="From Date" || $nickBoxFrom.val() !="") && ($nickBoxTo.val()!="To Date" ||$nickBoxTo.val()!="") && isFinite($fDate) && isFinite($tDate) ) {
+										
+								
+										$("#chat").html("<font color='black'><strong>Current Reservations</strong></font><br/>");
+										socket.emit('new user', $nickBox.val(), $fDate, $tDate, function(data){
+											if(data){
+												//$('#nickWrap').hide();
+												//$('#contentWrap').show();
+												
+											} else{
+												//$nickError.html('No Schedule available');
+											}
+										});
+								}
+								else {
+										alert("Date are not in correct format");
+										return false;
+								}
+							}
+						}
+					}
+				}
+				else {
+					alert("Machine number must be within 5 - 14 ");
+					return false;
+				}
+				
+			});
+			
+			
+			socket.on('usernames', function(data){
+				fromDate = new Date(data.timeFrom);
+				toDate = new Date(data.timeTo);
+				fromMonth = fromDate.getMonth() + 1;
+				fromMonth = fromMonth < 10 ? '0'+fromMonth :fromMonth;
+				toMonth = toDate.getMonth() + 1;
+				toMonth = toMonth <10 ? '0'+toMonth :toMonth;
+				fromMin = fromDate.getMinutes() < 10 ? '0'+fromDate.getMinutes() : fromDate.getMinutes();
+				toMin = toDate.getMinutes() < 10 ? '0'+ toDate.getMinutes() : toDate.getMinutes();
+				fromDay = fromDate.getDate() < 10 ? '0'+fromDate.getDate() :fromDate.getDate();
+				toDay  =  toDate.getDate() < 10 ? '0'+toDate.getDate() : toDate.getDate() ;
+				fromHour = fromDate.getHours() < 10 ? '0'+fromDate.getHours() : fromDate.getHours();
+				toHour = toDate.getHours() < 10 ? '0'+toDate.getHours() : toDate.getHours() ;
+				
+				//$chat.append('<center><font color="black">' + fromMonth + "/"+fromDate.getUTCDate()+ " "+ fromDate.getUTCHours() + ":" + fromDate.getUTCMinutes()+" -- " + toMonth + "/"+ toDate.getUTCDate()+ " "+ toDate.getUTCHours() + ":" + toDate.getUTCMinutes() + "</font></center><br/>"); 
+				$chat.append('<center><font color="black">' + fromMonth + "/"+fromDay+ " "+ fromHour + ":" + fromMin+" -- " + toMonth + "/"+ toDay + " "+ toHour + ":" + toMin + "</font></center><br>"); 
+				//$chat.append('<font color="black">' + fromDate + "--" + toDate +  "</font><br/>"); 
+								
+								
+				//$chat.append('<center><font color="black">' + fromDate.getUTCMonth() + "/"+fromDate.getUTCDate()+ " "+ fromDate.getUTCHours() + ":" + fromDate.getUTCMinutes()+" -- " + toDate.getUTCMonth() + "/"+ toDate.getUTCDate()+ " "+ toDate.getUTCHours() + ":" + toDate.getUTCMinutes() + "</font></center><br/>"); 
+								
+			
+			});
+			
+			
+			$feedForm.submit(function(e){
+				e.preventDefault();
+				if ( $nameBox.val()=="" || $empIDBox.val() =="" || $feedbackBox.val()==""){
+					alert("Please enter all fields");
+					return false;
+				}
+				else {
+				socket.emit('feedback', $nameBox.val(), $empIDBox.val(), $feedbackBox.val(), function(data){
+					if(data){
+						$('#feedForm').hide();
+						//$('#contentWrap').show();
+						
+					} else{
+						//$nickError.html('No Schedule available');
+					}
+				});
+				}
+				//$nickBox.val('');
+			});
+			
+			
+			
+			$reserveForm.submit(function(e){
+				$("#msg").html("<font color='black'><strong></strong></font>");
+				e.preventDefault();
+				var $emp = $('#empID').val();
+				var $name = $('#name').val();
+				var $from = $('#from');
+				var $to = $('#to');
+				var $mc = $('#mc').val();
+				var $reason = $('#reason').val();
+			
+			
+				var fDate = new Date($from.val());
+				var tDate = new Date($to.val());
+				var today = new Date();
+				//alert(fDate);
+				//alert(tDate);
+				if(isFinite(fDate) && isFinite(tDate)){
+					if(fDate >= tDate){
+						alert("From Date must be less than To Date");
+						return false;
+					}
+					//console.log(today);
+					if(fDate < today){
+						alert("From Date must be greater than or equal to Today's Date");
+						return false;
+					}
+					$('#from').val(fDate);
+					$('#to').val(tDate);
+				}
+				else {
+					alert("Dates are not chosen");
+				}
+				
+				if($mc < 5 || $mc > 14){
+					alert("Machines are available from 5 - 14");
+					return false;
+				}
+				
+				if($emp < 99999) {
+					alert("Not a valid Employee Number");
+					return ;
+				}
+				
+				if($reason ==""){
+					alert("Please fill the reason");
+					return false;
+				}
+				
+				if($name ==""){
+					alert("Name can not be blank");
+					return false;
+				}
+				
+				socket.emit('reservation', $emp, $name, fDate,tDate,$mc,$reason, function(data){
+					if(data){
+									
+					} else{
+									
+					}
+				});
+		
+				
+			});
+			
+			socket.on('message', function(data){
+				alert(data.message);
+				$('#msg').append('<center><font color="red">' + "!!!" + data.message + "</font></center>"); 
+				
+			});
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			$("#btnSubmit").click(function(e){
+				e.preventDefault();
+				$(this).css('color','red');
+				socket.emit('like', function(data){
+					if(data){
+						//$('#feedForm').hide();
+						//$('#contentWrap').show();
+						
+					} else{
+						//$nickError.html('No Schedule available');
+					}
+				});
+				//$nickBox.val('');
+			});
+			
+			
+			
+			
+			
+			
+			
+			$("#btnSubmit1").click(function(e){
+				e.preventDefault();
+				
+				//var $newDate1 = new Date();
+				var dateString = $('#mm1').val() +"/" +$('#dd1').val() + "/" + $('#yy1').val() + " " + $('#hh1').val() + ":" + $('#mn1').val() +" " + $('#tf1').val();
+				//alert(dateString);
+	
+				var $newDate1 = new Date(dateString.toString());
+
+				//alert($newDate1);
+				$('#fromWidget').val($newDate1);
+				
+				//$nickBox.val('');
+			});
+			
+			
+			
+			
+			$("#btnSubmit2").click(function(e){
+				e.preventDefault();
+				
+				//var $newDate1 = new Date();
+				var dateString = $('#mm2').val() +"/" +$('#dd2').val() + "/" + $('#yy2').val() + " " + $('#hh2').val() + ":" + $('#mn2').val() +" " + $('#tf2').val();
+				//alert(dateString);
+	
+				var $newDate2 = new Date(dateString.toString());
+
+				//alert($newDate1);
+				$('#toWidget').val($newDate2);
+				
+				//$nickBox.val('');
+			});
+			
+			
+			$("#btnSubmit3").click(function(e){
+				e.preventDefault();
+				
+				//var $newDate1 = new Date();
+				var dateString = $('#mm3').val() +"/" +$('#dd3').val() + "/" + $('#yy3').val() + " " + $('#hh3').val() + ":" + $('#mn3').val() +" " + $('#tf3').val();
+				//alert(dateString);
+	
+				var $newDate3 = new Date(dateString.toString());
+
+				//alert($newDate1);
+				$('#from').val($newDate3);
+				
+				//$nickBox.val('');
+			});
+			
+			
+			$("#btnSubmit4").click(function(e){
+				e.preventDefault();
+				
+				//var $newDate1 = new Date();
+				var dateString = $('#mm4').val() +"/" +$('#dd4').val() + "/" + $('#yy4').val() + " " + $('#hh4').val() + ":" + $('#mn4').val() +" " + $('#tf4').val();
+				//alert(dateString);
+	
+				var $newDate4 = new Date(dateString.toString());
+
+				//alert($newDate1);
+				$('#to').val($newDate4);
+				
+				//$nickBox.val('');
+			});
+			
+			
+			
+				
+			socket.on('thanks', function(data){
+				$thank.append('<br><center><font color="black">' + data.message + "</font></center><br/>"); 
+			});
+			
+			
+		});
+	</script>
+	
+	<script type="text/javaScript">
+		function validateForm()
+		{
+			var empID=document.forms["myForm"]["empID"].value;
+			var name=document.forms["myForm"]["name"].value;
+			var stdate=document.forms["myForm"]["from"].value;
+			var endate=document.forms["myForm"]["to"].value;
+			var reason=document.forms["myForm"]["reason"].value;
+			var mc=document.forms["myForm"]["mc"].value;
+			
+			
+			//date = new Date();
+			//alert(date);
+			//alert(stdate);
+			//todayDate = new Date(date.getUTCFullYear(),date.getUTCMonth(),date.getUTCDate(),date.getUTCHours(),date.getUTCMinutes(),date.getUTCSeconds());
+			//alert(todayDate);
+			
+			if (empID <=99999)
+			{
+				alert(" Not a valid Employee Number");
+				return false;
+			}
+			
+			if (empID <= "")
+			{
+				alert(" Not a valid Employee Number");
+				return false;
+			}
+			
+			if (name == "")
+			{
+				alert("Please Enter a valid Name");
+				return false;
+			}
+			
+			
+			/*
+			var fromDate = new Date(stdate);
+			var toDate = new Date(endate);
+			//alert(toDate);
+			//fromDate = fromDate.addHours(5);
+			//toDate = toDate.addHours(5);
+			
+			alert(fromDate);
+			//alert(toDate);
+			if(!fromDate.valid()){
+				alert("Enter a valid From date");
+				return false;
+			}
+			
+			if(!toDate.valid()){
+				alert("Enter a valid To date");
+				return false;
+			}
+			
+			todayDate = new Date();
+			
+			//todayDate = new Date(date.getUTCFullYear(),date.getUTCMonth(),date.getUTCDate(),date.getUTCHours(),date.getUTCMinutes(),date.getUTCSeconds());
+			//alert(todayDate);
+			date = new Date();
+			date = fromDate;
+			//alert(date);
+			//fromDate = new Date(date.getUTCFullYear(),date.getUTCMonth(),date.getUTCDate(),date.getUTCHours(),date.getUTCMinutes(),date.getUTCSeconds());
+			//alert(fromDate);
+			
+			//date = toDate;
+			//alert(date);
+			
+			//toDate = new Date(date.getUTCFullYear(),date.getUTCMonth(),date.getUTCDate(),date.getUTCHours(),date.getUTCMinutes(),date.getUTCSeconds());
+			
+			//alert(toDate);
+			
+			if (fromDate <= todayDate)
+			{
+				//alert(todayDate);
+				//alert(fromDate);
+				alert(" From Date must be greater than today's");
+				return false;
+			}
+			
+			if (fromDate >= toDate)
+			{
+				alert(" From Date must be less than To Date & Time");
+				return false;
+			}
+			
+			document.forms["myForm"]["from"].value = fromDate;
+			document.forms["myForm"]["to"].value = toDate;
+			*/
+			if(mc <5 || mc > 14)
+			{
+				alert("Please enter Correct M/C number. M/C# 5 - 14 are available.");
+				return false;
+			}
+			
+			
+			
+			if(reason =="")
+			{
+				alert("Please fill the proper reason why you want to use the Lab machine");
+				return false;
+			}
+			
+		}
+		
+		Date.prototype.addHours= function(h){
+			var copiedDate = new Date(this.getTime());
+			
+			copiedDate.setHours(copiedDate.getHours()+h);
+			//alert("CopiedDate =" + copiedDate);
+			return copiedDate;
+		}
+		
+		Date.prototype.valid = function() {
+		  //alert("Hi");
+		  return isFinite(this);
+		}
+	
+	
+	function myFunction()
+	{
+		window.open("./index1.1.html");
+	}
+	
+	function validateSForm(){
+		var mc=document.forms["socketForm"]["mc"].value;
+		
+		var stdate=document.forms["socketForm"]["from"].value;
+		var endate=document.forms["socketForm"]["to"].value;
+		
+		if(isNaN(mc)){
+			alert("Please select a machine number");
+			return false;
+		}
+		if(mc <5 || mc > 14)
+		{
+				alert("Please enter Correct M/C number");
+				return false;
+		}
+		
+		
+	}
+	
+	
+	
+	</script>
+	</body>
+</html>
