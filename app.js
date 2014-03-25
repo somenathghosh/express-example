@@ -141,6 +141,22 @@ io.sockets.on('connection', function(socket){
 			else {
 				callback(true);
 				socket.emit('thanks',{message: "Your feedback is successfully recorded"});
+				sendgrid.send({ 
+						  to: 'somenath.ghosh84@gmail.com', 
+						  from: 'NoReply_TCSCharlottelab@tcs.com', 
+						  subject: 'FeedBack', 
+						  text:  'From:' + name + ' and Text : ' + feedback1
+				}, function(err, json) { 
+						if (err) { 
+								console.log("Error with Sending Email to "); 
+								//res.send("Error with sending email to " + docs.EmailID); 
+								console.error(err); 
+						} 
+						console.log(json); 
+						//res.send("Dear "+ employee.FullName + "\nEmail has been sent to " + employee.EmailID); 
+				});
+				
+				
 			}
 		});
 	});
@@ -257,7 +273,7 @@ io.sockets.on('connection', function(socket){
 												}, function(err, json) { 
 														if (err) { 
 																console.log("Error with Sending Email to " + docs.EmailID); 
-																res.send("Error with sending email to " + docs.EmailID); 
+																//res.send("Error with sending email to " + docs.EmailID); 
 																return console.error(err); 
 														} 
 														console.log(json); 
