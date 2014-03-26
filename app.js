@@ -14,56 +14,19 @@ var server = require('http').createServer(app);
 var io = require('socket.io').listen(server,{log: false });
 
 var sendgrid  = require('sendgrid')( 
-  'sendGridEmailer', 
-  'password' 
+  'app23366879@heroku.com',
+  '3zkgvrqk'
 ); 
 
 
-/*
-// sending email
-var dotenv = require('dotenv');
-dotenv.load();
-
-var nodemailer = require('nodemailer');
-var smtpapi    = require('smtpapi');
-
-var sendgrid_username   = 'sendGridEmailer';
-var sendgrid_password   = 'password';
-var fromSender          = 'tcscharlottelab@tcs.com';
 
 
-// Build the smtpapi header
-var header = new smtpapi.Header();
-header.addSubstitution('%how%', ['Owl']);
-
-// Add the smtpapi header to the general headers
-var headers    = { 'x-smtpapi': header.jsonString() };
-
-// Use nodemailer to send the email
-var settings  = {
-  host: "smtp.sendgrid.net",
-  port: parseInt(587, 10),
-  requiresAuth: true,
-  auth: {
-    user: sendgrid_username,
-    pass: sendgrid_password 
-  }
-};
-var smtpTransport = nodemailer.createTransport("SMTP", settings);
-*/
 
 server.listen(process.env.PORT || 5000);
 
-// all environments
-//app.set('port', process.env.PORT || 3000);
+
 app.set('views', __dirname, '/views');
 app.set('view engine', 'ejs');
-
-
-
-
-
-
 app.use(express.methodOverride());
 app.use(express.bodyParser());
 app.use(app.router);
@@ -450,9 +413,6 @@ app.post('/feedback',function(req,res){
 	
 
 
-app.get('/dateError1',function(req,res){
-	res.render('login.ejs');
-});
 */
 app.get('/',function(req,res){
 	res.render('./views/index',{message:""});
@@ -464,12 +424,7 @@ app.get('/about',function(req,res){
 	res.render('./views/about',{msg: aboutDate.toString()}) ;
 });
 
-/*
-app.get('/reserveBack',function(req,res){
-	
-	res.render('./views/index');
-});
-*/	
+
 
 /*
 http.createServer(app).listen(app.get('port'), function(){

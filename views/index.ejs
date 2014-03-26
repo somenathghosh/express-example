@@ -354,7 +354,7 @@
 					
 		            <form id="setNick1" class = "form-horizontal" action="/feedback" method ="POST">
 		                <div class = "modal-header">
-		                    <h4>TCS Lab Reservation Team FeedBack</h4>
+		                    <h4>TCS Lab Reservation Team Feedback</h4>
 		                </div>
 						<div id="thank"></div>
 		                <div  class = "modal-body" id="feedForm">
@@ -395,7 +395,7 @@
 		                </div>
 		                <div class = "modal-footer">
                             <a class = "btn btn-default" data-dismiss = "modal" id="btnClose" >Close</a>    
-		                    <button class = "btn btn-primary" type = "submit">Send</button>
+		                    <button class = "btn btn-primary" type = "submit" id="sendFeedback">Send</button>
 		                </div>
 		            </form>
 					
@@ -1212,8 +1212,11 @@
 			});
 			
 			$("#btnClose").click(function(e){
+				$('#contact-feedback').val('');
 				$('#feedForm').show();
+				$('#sendFeedback').show();
 				$('#thank').hide();
+				
 			});
 			
 			
@@ -1283,6 +1286,7 @@
 			});
 			
 			socket.on('message', function(data){
+			
 				$('#messageModal').modal('show');
 				$('#messageM').show();
 				$("#messageM").html("<font color='black' ><strong></strong></font>");
@@ -1396,6 +1400,7 @@
 				
 			socket.on('thanks', function(data){
 				$('#thank').show();
+				$('#sendFeedback').hide();
 				$("#thank").html("<font color='black'><strong></strong></font>");
 				$thank.append('<br><center><font color="black">' + data.message + "</font></center><br/>"); 
 			});
