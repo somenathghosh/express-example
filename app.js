@@ -7,7 +7,7 @@ var express = require('express');
 var http = require('http');
 var path = require('path');
 var mongoose = require('mongoose');
-var flash    = require('connect-flash');
+
 var users = {};
 var app = express();
 var server = require('http').createServer(app);
@@ -32,7 +32,7 @@ app.set('view engine', 'ejs');
 app.use(express.methodOverride());
 app.use(express.bodyParser());
 app.use(app.router);
-app.use(flash());
+
 app.use(express.static(path.join(__dirname, 'public')));
 
 mongoose.connect('mongodb://heroku:97aa100aa71b190805c41b70bed0e20b@troup.mongohq.com:10097/app22192444');
