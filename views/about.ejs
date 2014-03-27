@@ -108,7 +108,7 @@
 		
 		</div>
                
-               <div class = "modal fade" id = "contact" role = "dialog">
+        <div class = "modal fade" id = "contact" role = "dialog">
 		    <div class = "modal-dialog">
 		        
 				
@@ -122,15 +122,15 @@
 					
 		            <form id="setNick1" class = "form-horizontal" action="/feedback" method ="POST">
 		                <div class = "modal-header">
-		                    <h4>TCS Lab Reservation Team FeedBack</h4>
+		                    <h4>TCS Lab Reservation Team Feedback</h4>
 		                </div>
 						<div id="thank"></div>
 		                <div  class = "modal-body" id="feedForm">
 						
 		                    <div class = "form-group">
 		                        
-		                        <label for = "contact-name" class = "col-lg-2 control-label">Name:</label>
-		                        <div class = "col-lg-10">
+		                        <label for = "contact-name" class = "col-sm-2 control-label">Name:</label>
+		                        <div class = "col-sm-10">
 		                            
 		                            <input name="name" type = "text" class = "form-control" id = "contact-name" placeholder = "Full Name">
 		                            
@@ -140,10 +140,10 @@
 		                    
 		                    <div class = "form-group">
 		                        
-		                        <label for = "contact-email" class = "col-lg-2 control-label">Employee ID</label>
-		                        <div class = "col-lg-10">
+		                        <label for = "contact-email" class = "col-sm-2 control-label">Emp ID</label>
+		                        <div class = "col-sm-10">
 		                            
-		                            <input name="empID" type = "number" class = "form-control" id = "contact-empID" placeholder = "your TCS ID">
+		                            <input name="empID" type = "number" class = "form-control" id = "contact-empID" placeholder = "TCS ID">
 		                            
 		                        </div>
 		                        
@@ -151,8 +151,8 @@
 		                    
 		                    <div class = "form-group">
 		                        
-		                        <label for = "contact-msg" class = "col-lg-2 control-label">Message:</label>
-		                        <div class = "col-lg-10">
+		                        <label for = "contact-msg" class = "col-sm-2 control-label">Message:</label>
+		                        <div class = "col-sm-10">
 		                            
 		                            <textarea name="feedback" id="contact-feedback" class = "form-control" rows = "8"></textarea>
 		                            
@@ -162,8 +162,8 @@
 		                
 		                </div>
 		                <div class = "modal-footer">
-                            <a class = "btn btn-default" data-dismiss = "modal">Close</a>    
-		                    <button class = "btn btn-primary" type = "submit">Send</button>
+                            <a class = "btn btn-default" data-dismiss = "modal" id="btnClose" >Close</a>    
+		                    <button class = "btn btn-primary" type = "submit" id="sendFeedback">Send</button>
 		                </div>
 		            </form>
 					
@@ -244,7 +244,11 @@
 			
 			$feedForm.submit(function(e){
 				e.preventDefault();
-				
+				if ( $nameBox.val()=="" || $empIDBox.val() =="" || $feedbackBox.val()==""){
+					alert("Please enter all fields");
+					return false;
+				}
+				else {
 				socket.emit('feedback', $nameBox.val(), $empIDBox.val(), $feedbackBox.val(), function(data){
 					if(data){
 						$('#feedForm').hide();
@@ -254,27 +258,23 @@
 						//$nickError.html('No Schedule available');
 					}
 				});
+				}
 				//$nickBox.val('');
 			});
 			
-			
-			$("#btnSubmit").click(function(e){
-				e.preventDefault();
-				$(this).css('color','red');
-				socket.emit('like', function(data){
-					if(data){
-						//$('#feedForm').hide();
-						//$('#contentWrap').show();
-						
-					} else{
-						//$nickError.html('No Schedule available');
-					}
-				});
-				//$nickBox.val('');
+			$("#btnClose").click(function(e){
+				$('#contact-feedback').val('');
+				$('#feedForm').show();
+				$('#sendFeedback').show();
+				$('#thank').hide();
+				
 			});
 			
 				
 			socket.on('thanks', function(data){
+				$('#thank').show();
+				$('#sendFeedback').hide();
+				$("#thank").html("<font color='black'><strong></strong></font>");
 				$thank.append('<br><center><font color="black">' + data.message + "</font></center><br/>"); 
 			});
 			
