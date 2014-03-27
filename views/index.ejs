@@ -334,8 +334,9 @@
 				<p class = "navbar-text pull-left">&copy;This work is licensed under
 					<a href="http://www.tcs.com/Pages/default.aspx">Tata Consultacy Services </a></p>
 					
-					<a href = "#" class = "navbar-btn btn-default btn-sm btn pull-right" id="btnSubmit"><span class="glyphicon glyphicon-thumbs-up"></span> Like</a>
-					
+					<!--<a href = "#" class = "navbar-btn btn-default btn-sm btn pull-right" id="btnSubmit"><span class="glyphicon glyphicon-thumbs-up"></span> Like</a>-->
+					<button type="button" class = "navbar-btn btn-default btn-sm btn pull-right" id="btnSubmit"><span class="glyphicon glyphicon-thumbs-up"></span> Like</a>
+					</button>
 			</div>
 		
 		</div>
@@ -1296,6 +1297,16 @@
 			});
 			
 			
+			socket.on('errorM', function(data){
+			
+				$('#messageModal').modal('show');
+				$('#messageM').show();
+				$("#messageM").html("<font color='black' ><strong></strong></font>");
+				$("#messageM").append('<center><font color="black" face="trebuchet MS" size="5">' + 'Database Error, please try later. Please report via feedback' + "</font></center>"); 
+				//$('#msg').append('<center><font color="red">' + "!!!" + data.message + "</font></center>"); 
+				
+			});
+			
 			
 			
 			
@@ -1311,6 +1322,7 @@
 			
 			$("#btnSubmit").click(function(e){
 				e.preventDefault();
+				//$(this).tooltip('show');
 				$(this).css('color','red');
 				socket.emit('like', function(data){
 					if(data){
@@ -1321,6 +1333,7 @@
 						//$nickError.html('No Schedule available');
 					}
 				});
+				//$(this).popover('hide');
 				//$nickBox.val('');
 			});
 			

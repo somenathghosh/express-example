@@ -12,6 +12,7 @@
 	"ejs" : "~0.8.5", 	
 	"socket.io":"0.9.16",
 	"sendgrid": "0.3.0-rc.1.7",
+	"node-rest-client": "*",
 	
 	"mongoose" : "*"
 	
