@@ -15,7 +15,7 @@
 	
 		<style type="text/css">
 			body {
-				background-color: darkblue;
+				background-color: #19327D;
 				padding-bottom: 110px;
 				
 			}
@@ -1138,7 +1138,7 @@
 					else {
 					
 						if(($nickBoxFrom.val() !="From(MM/DD/YYYY HH:MM)" || $nickBoxFrom.val() !="") && ($nickBoxTo.val()=="To(MM/DD/YYYY HH:MM)" || $nickBoxTo.val()=="") && isFinite($fDate)){
-							$("#chat").html("<font color='black'><strong>Current Reservations</strong></font><br/>");
+							//$("#chat").html("<font color='black'><strong>Current Reservations</strong></font><br/>");
 								socket.emit('new user', $nickBox.val(), $fDate, $tDateNew, function(data){
 									if(data){
 										//$('#nickWrap').hide();
@@ -1153,7 +1153,7 @@
 						
 						
 							if(($nickBoxFrom.val() =="From(MM/DD/YYYY HH:MM)" || $nickBoxFrom.val() =="") && ($nickBoxTo.val()!="To(MM/DD/YYYY HH:MM)" || $nickBoxTo.val()!="") && isFinite($tDate)){
-								$("#chat").html("<font color='black'><strong>Current Reservations</strong></font><br/>");
+								//$("#chat").html("<font color='black'><strong>Current Reservations</strong></font><br/>");
 									socket.emit('new user', $nickBox.val(), $fDateNew, $tDate, function(data){
 										if(data){
 											//$('#nickWrap').hide();
@@ -1171,7 +1171,7 @@
 								if (($nickBoxFrom.val() !="From(MM/DD/YYYY HH:MM)" || $nickBoxFrom.val() !="") && ($nickBoxTo.val()!="To(MM/DD/YYYY HH:MM)" ||$nickBoxTo.val()!="") && isFinite($fDate) && isFinite($tDate) ) {
 										
 								
-										$("#chat").html("<font color='black'><strong>Current Reservations</strong></font><br/>");
+										//$("#chat").html("<font color='black'><strong>Current Reservations</strong></font><br/>");
 										socket.emit('new user', $nickBox.val(), $fDate, $tDate, function(data){
 											if(data){
 												//$('#nickWrap').hide();
@@ -1361,7 +1361,7 @@
 				}
 				
 				if($mc < 5 || $mc > 14){
-					alert("Machines are available from 5 - 14");
+					alert("Please Choose a machine Number");
 					return false;
 				}
 				
