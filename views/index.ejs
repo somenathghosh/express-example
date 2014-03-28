@@ -1343,11 +1343,11 @@
 				//alert(fDate);
 				//alert(tDate);
 				if($emp < 99999) {
-					alertM("Not a valid Employee Number");
+					alertM("Please enter a valid Employee Number");
 					return ;
 				}
 				
-				if($name =="" || $name == parseInt($name)){
+				if($name =="" || $name == parseInt($name) || $name =='Enter Full Name' ){
 					alertM("Name can not be blank or Numeric");
 					return false;
 				}
