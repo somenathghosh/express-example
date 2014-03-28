@@ -1330,6 +1330,18 @@
 				var today = new Date();
 				//alert(fDate);
 				//alert(tDate);
+				if($emp < 99999) {
+					alert("Not a valid Employee Number");
+					return ;
+				}
+				
+				if($name =="" || $name == parseInt($name)){
+					alert("Name can not be blank or Numeric");
+					return false;
+				}
+				
+				
+				
 				if(isFinite(fDate) && isFinite(tDate)){
 					if(fDate >= tDate){
 						alert("From Date must be less than To Date");
@@ -1345,6 +1357,7 @@
 				}
 				else {
 					alert("Dates are not chosen");
+					return false;
 				}
 				
 				if($mc < 5 || $mc > 14){
@@ -1352,20 +1365,14 @@
 					return false;
 				}
 				
-				if($emp < 99999) {
-					alert("Not a valid Employee Number");
-					return ;
-				}
+				
 				
 				if($reason ==""){
 					alert("Please fill the reason");
 					return false;
 				}
 				
-				if($name =="" || $name == parseInt($name)){
-					alert("Name can not be blank or Numeric");
-					return false;
-				}
+				
 				
 				socket.emit('reservation', $emp, $name, fDate,tDate,$mc,$reason, function(data){
 					if(data){
