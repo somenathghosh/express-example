@@ -51,20 +51,7 @@
 					<ul class = "nav navbar-nav navbar-right">
 					
 						<li class = "active"><a href = "/">Home</a></li>
-						<!--
-						<li><a href = "#">Blog</a></li>
-						<li class = "dropdown">
-							
-							<a href = "#" class = "dropdown-toggle" data-toggle = "dropdown">Social Media <b class = "caret"></b></a>
-							<ul class = "dropdown-menu">
-								<li><a href = "#">Twitter</a></li>
-								<li><a href = "#">Facebook</a></li>
-								<li><a href = "#">Google+</a></li>
-								
-							</ul>
 						
-						</li>
-						-->
 						<li><a href = "/about">About</a></li>
 						<li><a href = "#contact" data-toggle="modal">Feedback</a></li>
 					
@@ -146,13 +133,13 @@
 										
 										
 										<div class='input-group date' id='datetimepicker_1'>
-										<input id="fromWidget" class="form-control" type="text" value="From Date" style="color:#aaa" onfocus="this.value='';this.style.color='#000';this.onfocus='';"/>
+										<input id="fromWidget" class="form-control" type="text" value="From(MM/DD/YYYY HH:MM)" style="color:#aaa" onfocus="this.value='';this.style.color='#000';this.onfocus='';"/>
 										<span class="input-group-addon"><a href="#datetime1" data-toggle="modal"><span class="glyphicon glyphicon-calendar"></span></a></span>
 										</div>
 										
 										
 										<div class='input-group date' id='datetimepicker_2'>
-										<input id="toWidget" class="form-control" type="text" value="To Date" style="color:#aaa" onfocus="this.value='';this.style.color='#000';this.onfocus='';"/>
+										<input id="toWidget" class="form-control" type="text" value="To(MM/DD/YYYY HH:MM)" style="color:#aaa" onfocus="this.value='';this.style.color='#000';this.onfocus='';"/>
 										<span class="input-group-addon"><a href="#datetime2" data-toggle="modal"><span class="glyphicon glyphicon-calendar"></span></a></span>
 										</div>
 										
@@ -194,7 +181,7 @@
 					
 					<div class="col-lg-9 col-md-9 col-sm-9 ">
 						<div class="panel panel-success">
-							<div class="panel-heading"><center><font face="trebuchet MS" size="5">Registration</font><br><font face="trebuchet MS" size="3"></font></center></div>
+							<div class="panel-heading"><center><font face="trebuchet MS" size="5">Lab Reservation</font><br><font face="trebuchet MS" size="3"></font></center></div>
 							<!--
 							<div class="alert alert-danger">
 								<p id="Error"></p>
@@ -240,7 +227,7 @@
 										</div> -->
 										
 										<div class='input-group date' id='datetimepicker_3'>
-										<input id="from"  name="from" class="form-control" type="text" value="From Date" style="color:#aaa" onfocus="this.value='';this.style.color='#000';this.onfocus='';"/>
+										<input id="from"  name="from" class="form-control" type="text" value="From(MM/DD/YYYY HH:MM)" style="color:#aaa" onfocus="this.value='';this.style.color='#000';this.onfocus='';"/>
 										<span class="input-group-addon"><a href="#datetime3" data-toggle="modal"><span class="glyphicon glyphicon-calendar"></span></a></span>
 										</div>
 										
@@ -259,7 +246,7 @@
 										</div> -->
 										
 										<div class='input-group date' id='datetimepicker_4'>
-										<input id="to"  name="from" class="form-control" type="text" value="To Date" style="color:#aaa" onfocus="this.value='';this.style.color='#000';this.onfocus='';"/>
+										<input id="to"  name="from" class="form-control" type="text" value="To(MM/DD/YYYY HH:MM)" style="color:#aaa" onfocus="this.value='';this.style.color='#000';this.onfocus='';"/>
 										<span class="input-group-addon"><a href="#datetime4" data-toggle="modal"><span class="glyphicon glyphicon-calendar"></span></a></span>
 										</div>
 										
@@ -434,6 +421,48 @@
 		        </div>
 		    </div>
 		</div>
+		
+		
+		
+		<!--- Availability check Modal -->
+		
+		<div class = "modal fade" id = "messageModal2" role = "dialog">
+		    <div class = "modal-dialog">
+		        
+				
+				<div class = "modal-content">
+					
+				
+					
+		           
+		                <div class = "modal-header">
+		                  <strong> Current Reservations </strong> 
+		                </div>
+						
+		                <div  class = "modal-body" id="feedForm2" style="height:200px;overflow:auto">
+						
+
+							<div id="messageM2">
+							
+							
+							
+							
+							</div>
+		               
+		                </div>
+		                <div class = "modal-footer">
+                            <a class = "btn btn-default" data-dismiss = "modal"  >Close</a>    
+		                    
+		                </div>
+		           
+					
+		        </div>
+		    </div>
+		</div>
+		
+		
+		
+		
 		
 		
 		
@@ -1092,9 +1121,9 @@
 				
 				if ($nickBox.val() >= 5 && $nickBox.val() <= 14 ) {
 					
-					if (($nickBoxFrom.val() =="From Date" ||$nickBoxFrom.val() =="") && ($nickBoxTo.val()=="To Date" || $nickBoxTo.val()=="")){
+					if (($nickBoxFrom.val() =="From(MM/DD/YYYY HH:MM)" ||$nickBoxFrom.val() =="") && ($nickBoxTo.val()=="To(MM/DD/YYYY HH:MM)" || $nickBoxTo.val()=="")){
 						
-						$("#chat").html("<font color='black'><strong>Current Reservations</strong></font><br/>");
+						//$("#chat").html("<font color='black'><strong>Current Reservations</strong></font><br/>");
 							socket.emit('new user', $nickBox.val(), $fDateNew, $tDateNew, function(data){
 								if(data){
 									//$('#nickWrap').hide();
@@ -1108,7 +1137,7 @@
 					}
 					else {
 					
-						if(($nickBoxFrom.val() !="From Date" || $nickBoxFrom.val() !="") && ($nickBoxTo.val()=="To Date" || $nickBoxTo.val()=="") && isFinite($fDate)){
+						if(($nickBoxFrom.val() !="From(MM/DD/YYYY HH:MM)" || $nickBoxFrom.val() !="") && ($nickBoxTo.val()=="To(MM/DD/YYYY HH:MM)" || $nickBoxTo.val()=="") && isFinite($fDate)){
 							$("#chat").html("<font color='black'><strong>Current Reservations</strong></font><br/>");
 								socket.emit('new user', $nickBox.val(), $fDate, $tDateNew, function(data){
 									if(data){
@@ -1123,7 +1152,7 @@
 						else{
 						
 						
-							if(($nickBoxFrom.val() =="From Date" || $nickBoxFrom.val() =="") && ($nickBoxTo.val()!="To Date" || $nickBoxTo.val()!="") && isFinite($tDate)){
+							if(($nickBoxFrom.val() =="From(MM/DD/YYYY HH:MM)" || $nickBoxFrom.val() =="") && ($nickBoxTo.val()!="To(MM/DD/YYYY HH:MM)" || $nickBoxTo.val()!="") && isFinite($tDate)){
 								$("#chat").html("<font color='black'><strong>Current Reservations</strong></font><br/>");
 									socket.emit('new user', $nickBox.val(), $fDateNew, $tDate, function(data){
 										if(data){
@@ -1139,7 +1168,7 @@
 							
 							
 							
-								if (($nickBoxFrom.val() !="From Date" || $nickBoxFrom.val() !="") && ($nickBoxTo.val()!="To Date" ||$nickBoxTo.val()!="") && isFinite($fDate) && isFinite($tDate) ) {
+								if (($nickBoxFrom.val() !="From(MM/DD/YYYY HH:MM)" || $nickBoxFrom.val() !="") && ($nickBoxTo.val()!="To(MM/DD/YYYY HH:MM)" ||$nickBoxTo.val()!="") && isFinite($fDate) && isFinite($tDate) ) {
 										
 								
 										$("#chat").html("<font color='black'><strong>Current Reservations</strong></font><br/>");
@@ -1170,46 +1199,107 @@
 			
 			
 			socket.on('usernames', function(data){
-				fromDate = new Date(data.timeFrom);
-				toDate = new Date(data.timeTo);
-				fromMonth = fromDate.getMonth() + 1;
-				fromMonth = fromMonth < 10 ? '0'+fromMonth :fromMonth;
-				toMonth = toDate.getMonth() + 1;
-				toMonth = toMonth <10 ? '0'+toMonth :toMonth;
-				fromMin = fromDate.getMinutes() < 10 ? '0'+fromDate.getMinutes() : fromDate.getMinutes();
-				toMin = toDate.getMinutes() < 10 ? '0'+ toDate.getMinutes() : toDate.getMinutes();
-				fromDay = fromDate.getDate() < 10 ? '0'+fromDate.getDate() :fromDate.getDate();
-				toDay  =  toDate.getDate() < 10 ? '0'+toDate.getDate() : toDate.getDate() ;
-				fromHour = fromDate.getHours() < 10 ? '0'+fromDate.getHours() : fromDate.getHours();
-				toHour = toDate.getHours() < 10 ? '0'+toDate.getHours() : toDate.getHours() ;
+			
+				var month=new Array();
+				month[0]="Jan";
+				month[1]="Feb";
+				month[2]="Mar";
+				month[3]="Apr";
+				month[4]="May";
+				month[5]="Jun";
+				month[6]="Jul";
+				month[7]="Aug";
+				month[8]="Sep";
+				month[9]="Oct";
+				month[10]="Nov";
+				month[11]="Dec";
+			
+				$("#messageM2").html("<font color='black' ><strong></strong></font>");
+				//$("#messageM2").html("<div class="+'table-responsive'+"><table class="+'table'+"><tr><th>Emp ID</th><th>Name</th><th>From</th><th>To</th></tr>");
+				var htmlString= "<div class="+'table-responsive'+"><table class="+'table table-hover'+"><tr><th>Emp ID</th><th>Name</th><th>From Date & Time</th><th>To Date & Time</th></tr>";
+				
+				data.R.forEach( function(doc){
+					
+					//alert(doc.name);
+
+					fromDate = new Date(doc.from);
+					toDate = new Date(doc.to);
+					//fromMonth = fromDate.getMonth() + 1;
+					//fromMonth = fromMonth < 10 ? '0'+fromMonth :fromMonth;
+					fromMonth = month[fromDate.getMonth()];
+					fromYear = fromDate.getFullYear();
+					//toMonth = toDate.getMonth() + 1;
+					//toMonth = toMonth <10 ? '0'+toMonth :toMonth;
+					toMonth = month[toDate.getMonth()];
+					toYear = toDate.getFullYear();
+					
+					fromMin = fromDate.getMinutes() < 10 ? '0'+fromDate.getMinutes() : fromDate.getMinutes();
+					toMin = toDate.getMinutes() < 10 ? '0'+ toDate.getMinutes() : toDate.getMinutes();
+					fromDay = fromDate.getDate() < 10 ? '0'+fromDate.getDate() :fromDate.getDate();
+					toDay  =  toDate.getDate() < 10 ? '0'+toDate.getDate() : toDate.getDate() ;
+					fromHour = fromDate.getHours() < 10 ? '0'+fromDate.getHours() : fromDate.getHours();
+					toHour = toDate.getHours() < 10 ? '0'+toDate.getHours() : toDate.getHours() ;
+				
+				//$('#messageModal').modal('show');
+				//$('#messageM').show();
+				//$("#messageM").html("<font color='black' ><strong></strong></font>");
+				//$("#messageM").append
 				
 				//$chat.append('<center><font color="black">' + fromMonth + "/"+fromDate.getUTCDate()+ " "+ fromDate.getUTCHours() + ":" + fromDate.getUTCMinutes()+" -- " + toMonth + "/"+ toDate.getUTCDate()+ " "+ toDate.getUTCHours() + ":" + toDate.getUTCMinutes() + "</font></center><br/>"); 
-				$chat.append('<center><font color="black">' + fromMonth + "/"+fromDay+ " "+ fromHour + ":" + fromMin+" -- " + toMonth + "/"+ toDay + " "+ toHour + ":" + toMin + "</font></center><br>"); 
+				//$chat.append('<center><font color="black">' + fromMonth + "/"+fromDay+ " "+ fromHour + ":" + fromMin+" -- " + toMonth + "/"+ toDay + " "+ toHour + ":" + toMin + "</font></center><br>"); 
+					//$("#messageM2").append('<center><font color="black">' + doc.name+'('+doc.id+')  '+fromDay + "-"+fromMonth+'-'+ fromYear + '  '+ fromHour + ":" + fromMin+" -- " + toDay + "-"+ toMonth + "-"+ toYear+ '  '+  toHour + ":" + toMin + "</font></center><br>"); 
+					//$("#messageM2").append('<tr><td>'+ doc.id +'</td><td>'+doc.name+'</td><td>'+fromDay + "-"+fromMonth+'-'+ fromYear+'  '+ fromHour + ":" + fromMin+'</td><td>'+toDay + "-"+ toMonth + "-"+ toYear+ '  '+  toHour + ":" + toMin+'</td></tr>');
+					htmlString = htmlString + '<tr><td>'+ doc.id +'</td><td>'+doc.name+'</td><td>'+fromDay + "-"+fromMonth+'-'+ fromYear+'  '+ fromHour + ":" + fromMin+'</td><td>'+toDay + "-"+ toMonth + "-"+ toYear+ '  '+  toHour + ":" + toMin+'</td></tr>';
+					
+					
+					
+					
+					//<center><font color="black">' + doc.name+'('+doc.id+')  '+fromDay + "-"+fromMonth+'-'+ fromYear + '  '+ fromHour + ":" + fromMin+" -- " + toDay + "-"+ toMonth + "-"+ toYear+ '  '+  toHour + ":" + toMin + "</font></center><br>"); 
 				//$chat.append('<font color="black">' + fromDate + "--" + toDate +  "</font><br/>"); 
 								
 								
 				//$chat.append('<center><font color="black">' + fromDate.getUTCMonth() + "/"+fromDate.getUTCDate()+ " "+ fromDate.getUTCHours() + ":" + fromDate.getUTCMinutes()+" -- " + toDate.getUTCMonth() + "/"+ toDate.getUTCDate()+ " "+ toDate.getUTCHours() + ":" + toDate.getUTCMinutes() + "</font></center><br/>"); 
-								
-			
+							
+				});
+				htmlString = htmlString + '</div></table>' ;
+				//console.log(htmlString);
+				$("#messageM2").append(htmlString);
+				$('#messageModal2').modal('show');
+				//$('#messageM2').show();
 			});
 			
 			
 			$feedForm.submit(function(e){
 				e.preventDefault();
-				if ( $nameBox.val()=="" || $empIDBox.val() =="" || $feedbackBox.val()==""){
-					alert("Please enter all fields");
+				
+				if ( $nameBox.val()=="" || $nameBox.val() == parseInt($nameBox.val()) ){
+					
+					alert("Please enter valid Name");
 					return false;
 				}
+				
+				if ( $empIDBox.val()=="" || $empIDBox.val() != parseInt($empIDBox.val()) ){
+					
+					alert("Please enter valid Employee ID");
+					return false;
+				}
+				if ( $feedbackBox.val()=="" ){
+					
+					alert("Feedback can not be empty");
+					return false;
+				}
+				
+
 				else {
-				socket.emit('feedback', $nameBox.val(), $empIDBox.val(), $feedbackBox.val(), function(data){
-					if(data){
-						$('#feedForm').hide();
-						//$('#contentWrap').show();
-						
-					} else{
-						//$nickError.html('No Schedule available');
-					}
-				});
+					socket.emit('feedback', $nameBox.val(), $empIDBox.val(), $feedbackBox.val(), function(data){
+						if(data){
+							$('#feedForm').hide();
+							//$('#contentWrap').show();
+							
+						} else{
+							//$nickError.html('No Schedule available');
+						}
+					});
 				}
 				//$nickBox.val('');
 			});
@@ -1272,8 +1362,8 @@
 					return false;
 				}
 				
-				if($name ==""){
-					alert("Name can not be blank");
+				if($name =="" || $name == parseInt($name)){
+					alert("Name can not be blank or Numeric");
 					return false;
 				}
 				

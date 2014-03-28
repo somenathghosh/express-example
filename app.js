@@ -77,9 +77,11 @@ io.sockets.on('connection', function(socket){
 			else {
 				
 				callback(true);
+				socket.emit('usernames',{R: docs });
 				docs.forEach( function(doc){
 					
-					socket.emit('usernames',{timeFrom: doc.from.toString(), timeTo: doc.to.toString()});
+					//socket.emit('usernames',{empID: id.toString(), fName: name, timeFrom: doc.from.toString(), timeTo: doc.to.toString()});
+					//socket.emit('usernames',{doc: });
 				});
 			}
 			
@@ -227,7 +229,7 @@ io.sockets.on('connection', function(socket){
 								
 							else {
 							
-								console.log(doc.from);
+								//console.log(doc.from);
 								var empID = (emp).toString();
 								htmlBody = "Dear "+ name+ ",\nYour reservation has been confirmed.\n\n M/C# " + mc + "\n " + "FROM : " + new Date(fromDate) + "\n TO : " + new Date(toDate) +".";
 								htmlBody = htmlBody + "\n\nThanks,\nTCS Charlotte Lab Team.\n\nP.S. This is a system-generated email. Please do not reply."; 
@@ -319,7 +321,7 @@ app.get('/',function(req,res){
 });
 
 
-var aboutDate = new Date(2014,02,16,23,59,00,00);
+var aboutDate = new Date(2014,02,28,23,59,00,00);
 
 app.get('/about',function(req,res){
 	var newDate = new Date();

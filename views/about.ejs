@@ -4,11 +4,11 @@
                 <title>About</title>
                 <meta name="viewport" content="width=device-width, initial-scale=1.0">
                 <link href = "css/bootstrap.min.css" rel = "stylesheet">
-                <link href = "css/styles.css" rel = "stylesheet">
+                
         
 		<style type="text/css">
 			body {
-				background-color: darkblue;
+				background-color: #19327D;
 				padding-bottom: 110px;
 			}
 			
@@ -37,7 +37,7 @@
 				
 					<ul class = "nav navbar-nav navbar-right">
 					
-						<li class = "active"><a href = "/">Home</a></li>
+						<li ><a href = "/">Home</a></li>
 						<!--
 						<li><a href = "#">Blog</a></li>
 						<li class = "dropdown">
@@ -52,8 +52,8 @@
 						
 						</li>
 						-->
-						<li><a href = "/about">About</a></li>
-						<li><a href = "#contact" data-toggle="modal">feedback</a></li>
+						<li class = "active"><a href = "/about">About</a></li>
+						<li><a href = "#contact" data-toggle="modal">Feedback</a></li>
 					
 					</ul>
 				
@@ -73,12 +73,62 @@
                                    
                                     <div class = "page-header">
 																	
-                                        <h3>About This Project <small>Posted on <%=msg %></small></h3>
+                                        <h3>About This Project</h3>
                                     </div>
                                    
                                     
                                    
-                                    <p> <font>This project has been developed using <strong>NODE.JS</strong> and <strong>MongoDB</strong> as Database. And it has been Deployed on <strong>Heroku</strong> Cloud.</font></p>
+                                    <p> <font>This project has been developed using <strong>NODE.JS</strong> and <strong>MongoDB</strong> as Database. And it has been Deployed on <strong>Heroku</strong> Cloud.
+										<br><br> For any information about this project, you may contact following persons: <br>
+										
+										<div class="panel-group" id="accordion">
+										  <div class="panel panel-default">
+											<div class="panel-heading">
+											  <h4 class="panel-title">
+												<a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+												  Arvind R
+												</a>
+											  </h4>
+											</div>
+											<div id="collapseOne" class="panel-collapse collapse">
+											  <div class="panel-body">
+												Reachable via : arvind.kr@tcs.com   or  arvind.k.r@bankofamerica.com
+											  </div>
+											</div>
+										  </div>
+										  <div class="panel panel-default">
+											<div class="panel-heading">
+											  <h4 class="panel-title">
+												<a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
+												  Somenath Ghosh
+												</a>
+											  </h4>
+											</div>
+											<div id="collapseTwo" class="panel-collapse collapse">
+											  <div class="panel-body">
+												Reachable via : somenath.ghosh@tcs.com   or  somenath.ghosh@bankofamerica.com
+											  </div>
+											</div>
+										  </div>
+										  <div class="panel panel-default">
+											<div class="panel-heading">
+											  <h4 class="panel-title">
+												<a data-toggle="collapse" data-parent="#accordion" href="#collapseThree">
+												  Chandrasekhar Nampally
+												</a>
+											  </h4>
+											</div>
+											<div id="collapseThree" class="panel-collapse collapse">
+											  <div class="panel-body">
+												Reachable via : chandrasekhar.nampally@tcs.com   or  chandrasekhar.nampally@bankofamerica.com
+											  </div>
+											</div>
+										  </div>
+										</div>
+									
+									
+									
+									</font></p>
                                    
                                     <h4></h4>
                                    
@@ -245,8 +295,20 @@
 			
 			$feedForm.submit(function(e){
 				e.preventDefault();
-				if ( $nameBox.val()=="" || $empIDBox.val() =="" || $feedbackBox.val()==""){
-					alert("Please enter all fields");
+				if ( $nameBox.val()=="" || $nameBox.val() == parseInt($nameBox.val()) ){
+					
+					alert("Please enter valid Name");
+					return false;
+				}
+				
+				if ( $empIDBox.val()=="" || $empIDBox.val() != parseInt($empIDBox.val()) ){
+					
+					alert("Please enter valid Employee ID");
+					return false;
+				}
+				if ( $feedbackBox.val()=="" ){
+					
+					alert("Feedback can not be empty");
 					return false;
 				}
 				else {
