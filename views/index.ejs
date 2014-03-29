@@ -462,12 +462,19 @@
 		        
 				
 				<div class = "modal-content">
+				
+					<div class = "modal-header">
+		                <font color='red'><strong>Alert...!!! </strong> </font>
+						<a class = "pull-right" data-dismiss = "modal"  ><font color='red' size='4'><span class="glyphicon glyphicon-remove"></span></font></a> 
+							
+		            </div>
+						
+		            <div  class = "modal-body" id="feedForm2">
 	   
-		            <a class = "pull-right" data-dismiss = "modal"  ><font size='4'><span class="glyphicon glyphicon-remove"></span></font></a> 
-		                
+		            
 
 					<div id="AlertA"></div>
-
+					</div>
 					
 		        </div>
 		    </div>
@@ -1535,7 +1542,7 @@
 				$('#AlertModal').modal('show');
 				//$('#AlertA').show();
 				$("#AlertA").html("<font color='black' ><strong></strong></font>");
-				$("#AlertA").append('<center><font color="black" face="trebuchet MS" size="2">' + $m + "</font></center>"); 
+				$("#AlertA").append('<center><font color="black" face="trebuchet MS" size="3">' + $m + "</font></center>"); 
 				$('#AlertModal').modal('show');
 			};
 
