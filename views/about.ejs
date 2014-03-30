@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html>
         <head>
-                <title>About</title>
-                <meta name="viewport" content="width=device-width, initial-scale=1.0">
-                <link href = "css/bootstrap.min.css" rel = "stylesheet">
-                
-        
+            <title>About</title>
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <link href = "css/bootstrap.min.css" rel = "stylesheet">
+			<link rel="stylesheet" type="text/css" href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
+               
 		<style type="text/css">
 			body {
 				background-color: #19327D;
@@ -38,20 +38,7 @@
 					<ul class = "nav navbar-nav navbar-right">
 					
 						<li ><a href = "/">Home</a></li>
-						<!--
-						<li><a href = "#">Blog</a></li>
-						<li class = "dropdown">
-							
-							<a href = "#" class = "dropdown-toggle" data-toggle = "dropdown">Social Media <b class = "caret"></b></a>
-							<ul class = "dropdown-menu">
-								<li><a href = "#">Twitter</a></li>
-								<li><a href = "#">Facebook</a></li>
-								<li><a href = "#">Google+</a></li>
-								
-							</ul>
-						
-						</li>
-						-->
+					
 						<li class = "active"><a href = "/about">About</a></li>
 						<li><a href = "#contact" data-toggle="modal">Feedback</a></li>
 					
@@ -238,9 +225,38 @@
 		    </div>
 		</div>
 		
+		<!-- Alert Modal -->
+		
+		<div class = "modal fade"  id = "AlertModal" role = "dialog">
+		    <div class = "modal-dialog  modal-sm" style="top:50px;">
+		        
+				
+				<div class = "modal-content">
+				
+					<div class = "modal-header">
+		                <font color='red'><strong>Alert...!!! </strong> </font>
+						<a class = "pull-right" data-dismiss = "modal"  ><font color='red' size='4'><span class="glyphicon glyphicon-remove"></span></font></a> 
+							
+		            </div>
+						
+		            <div  class = "modal-body" id="feedForm2">
+	   
+		            
+
+					<div id="AlertA"></div>
+					</div>
+					
+		        </div>
+		    </div>
+		</div>
+		
+		
+		
+		
 		<script src = "http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 		<script src = "js/bootstrap.js"></script>
-		<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+		<script src="jq/jquery.plugin.js"></script>
+		
 		<script src="/socket.io/socket.io.js"></script>
 		<script>
 		jQuery(function($){
