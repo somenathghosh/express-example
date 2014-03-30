@@ -313,18 +313,18 @@
 				e.preventDefault();
 				if ( $nameBox.val()=="" || $nameBox.val() == parseInt($nameBox.val()) ){
 					
-					alert("Please enter valid Name");
+					alertM("Please enter valid Name");
 					return false;
 				}
 				
 				if ( $empIDBox.val()=="" || $empIDBox.val() != parseInt($empIDBox.val()) ){
 					
-					alert("Please enter valid Employee ID");
+					alertM("Please enter valid Employee ID");
 					return false;
 				}
 				if ( $feedbackBox.val()=="" ){
 					
-					alert("Feedback can not be empty");
+					alertM("Feedback can not be empty");
 					return false;
 				}
 				else {
@@ -358,151 +358,17 @@
 			});
 			
 			
+			var alertM = function($m) { 
+				$('#AlertModal').modal('show');
+				//$('#AlertA').show();
+				$("#AlertA").html("<font color='black' ><strong></strong></font>");
+				$("#AlertA").append('<center><font color="black" face="trebuchet MS" size="3">' + $m + "</font></center>"); 
+				$('#AlertModal').modal('show');
+			};
+			
 		});
 	</script>
 	
-	<script type="text/javaScript">
-		function validateForm()
-		{
-			var empID=document.forms["myForm"]["empID"].value;
-			var name=document.forms["myForm"]["name"].value;
-			var stdate=document.forms["myForm"]["from"].value;
-			var endate=document.forms["myForm"]["to"].value;
-			var reason=document.forms["myForm"]["reason"].value;
-			var mc=document.forms["myForm"]["mc"].value;
-			
-			
-			//date = new Date();
-			//alert(date);
-			//alert(stdate);
-			//todayDate = new Date(date.getUTCFullYear(),date.getUTCMonth(),date.getUTCDate(),date.getUTCHours(),date.getUTCMinutes(),date.getUTCSeconds());
-			//alert(todayDate);
-			
-			if (empID <=99999)
-			{
-				alert(" Not a valid Employee Number");
-				return false;
-			}
-			
-			if (empID <= "")
-			{
-				alert(" Not a valid Employee Number");
-				return false;
-			}
-			
-			if (name == "")
-			{
-				alert("Please Enter a valid Name");
-				return false;
-			}
-			
-			
-			
-			var fromDate = new Date(stdate);
-			var toDate = new Date(endate);
-			//alert(toDate);
-			//fromDate = fromDate.addHours(5);
-			//toDate = toDate.addHours(5);
-			
-			//alert(fromDate);
-			//alert(toDate);
-			if(!fromDate.valid()){
-				alert("Enter a valid From date");
-				return false;
-			}
-			
-			if(!toDate.valid()){
-				alert("Enter a valid To date");
-				return false;
-			}
-			
-			todayDate = new Date();
-			
-			//todayDate = new Date(date.getUTCFullYear(),date.getUTCMonth(),date.getUTCDate(),date.getUTCHours(),date.getUTCMinutes(),date.getUTCSeconds());
-			//alert(todayDate);
-			date = new Date();
-			date = fromDate;
-			//alert(date);
-			fromDate = new Date(date.getUTCFullYear(),date.getUTCMonth(),date.getUTCDate(),date.getUTCHours(),date.getUTCMinutes(),date.getUTCSeconds());
-			//alert(fromDate);
-			
-			date = toDate;
-			//alert(date);
-			
-			toDate = new Date(date.getUTCFullYear(),date.getUTCMonth(),date.getUTCDate(),date.getUTCHours(),date.getUTCMinutes(),date.getUTCSeconds());
-			
-			//alert(toDate);
-			
-			if (fromDate <= todayDate)
-			{
-				//alert(todayDate);
-				//alert(fromDate);
-				alert(" From Date must be greater than today's");
-				return false;
-			}
-			
-			if (fromDate >= toDate)
-			{
-				alert(" From Date must be less than To Date & Time");
-				return false;
-			}
-			
-			if(mc <5 || mc > 14)
-			{
-				alert("Please enter Correct M/C number");
-				return false;
-			}
-			
-			
-			
-			if(reason =="")
-			{
-				alert("Please fill the proper reason why you are using the system");
-				return false;
-			}
-			
-		}
-		
-		Date.prototype.addHours= function(h){
-			var copiedDate = new Date(this.getTime());
-			
-			copiedDate.setHours(copiedDate.getHours()+h);
-			//alert("CopiedDate =" + copiedDate);
-			return copiedDate;
-		}
-		
-		Date.prototype.valid = function() {
-		  //alert("Hi");
-		  return isFinite(this);
-		}
 	
-	
-	function myFunction()
-	{
-		window.open("./index1.1.html");
-	}
-	
-	function validateSForm(){
-		var mc=document.forms["socketForm"]["mc"].value;
-		
-		var stdate=document.forms["socketForm"]["from"].value;
-		var endate=document.forms["socketForm"]["to"].value;
-		
-		if(isNaN(mc)){
-			alert("Please select a machine number");
-			return false;
-		}
-		if(mc <5 || mc > 14)
-		{
-				alert("Please enter Correct M/C number");
-				return false;
-		}
-		
-		
-	}
-	
-	
-	
-	</script>
         </body>
 </html>
