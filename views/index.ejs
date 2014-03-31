@@ -432,7 +432,7 @@
 		                  <strong> Current Reservations </strong> 
 		                </div>
 						
-		                <div  class = "modal-body" id="feedForm2" style="height:200px;overflow:auto">
+		                <div  class = "modal-body" id="feedForm2" style="height:200px;overflow-y:scroll;overflow-x:scroll;">
 						
 
 							<div id="messageM2">
@@ -465,8 +465,8 @@
 				
 					<div class = "modal-header">
 		                <font color='red'><strong>Alert...!!! </strong> </font>
-						<a class = "pull-right" data-dismiss = "modal"  ><font color='red' size='4'><span class="glyphicon glyphicon-remove"></span></font></a> 
-							
+						<!--<a class = "pull-right" data-dismiss = "modal"  ><font color='red' size='4'><span class="glyphicon glyphicon-remove"></span></font></a> 
+						<a class = "btn btn-default" data-dismiss = "modal" id="btnClose" >Close</a>-->
 		            </div>
 						
 		            <div  class = "modal-body" id="feedForm2">
@@ -475,7 +475,10 @@
 
 					<div id="AlertA"></div>
 					</div>
-					
+					<div class = "modal-footer">
+                            <a class = "btn btn-default" data-dismiss = "modal"  >Close</a>    
+		                    
+		            </div>
 		        </div>
 		    </div>
 		</div>
@@ -1235,7 +1238,7 @@
 			
 				$("#messageM2").html("<font color='black' ><strong></strong></font>");
 				//$("#messageM2").html("<div class="+'table-responsive'+"><table class="+'table'+"><tr><th>Emp ID</th><th>Name</th><th>From</th><th>To</th></tr>");
-				var htmlString= "<div class="+'table-responsive'+"><table class="+'table table-hover'+"><tr><th>Emp ID</th><th>Name</th><th>From Date & Time</th><th>To Date & Time</th></tr>";
+				var htmlString= "<div class="+'table-responsive'+"><table class="+'table table-hover'+"><tr><th>Emp ID</th><th>Name</th><th>From Date & Time</th><th>To Date & Time</th><th>reason</th></tr>";
 				
 				data.R.forEach( function(doc){
 					
@@ -1268,7 +1271,7 @@
 				//$chat.append('<center><font color="black">' + fromMonth + "/"+fromDay+ " "+ fromHour + ":" + fromMin+" -- " + toMonth + "/"+ toDay + " "+ toHour + ":" + toMin + "</font></center><br>"); 
 					//$("#messageM2").append('<center><font color="black">' + doc.name+'('+doc.id+')  '+fromDay + "-"+fromMonth+'-'+ fromYear + '  '+ fromHour + ":" + fromMin+" -- " + toDay + "-"+ toMonth + "-"+ toYear+ '  '+  toHour + ":" + toMin + "</font></center><br>"); 
 					//$("#messageM2").append('<tr><td>'+ doc.id +'</td><td>'+doc.name+'</td><td>'+fromDay + "-"+fromMonth+'-'+ fromYear+'  '+ fromHour + ":" + fromMin+'</td><td>'+toDay + "-"+ toMonth + "-"+ toYear+ '  '+  toHour + ":" + toMin+'</td></tr>');
-					htmlString = htmlString + '<tr><td>'+ doc.id +'</td><td>'+doc.name+'</td><td>'+fromDay + "-"+fromMonth+'-'+ fromYear+'  '+ fromHour + ":" + fromMin+'</td><td>'+toDay + "-"+ toMonth + "-"+ toYear+ '  '+  toHour + ":" + toMin+'</td></tr>';
+					htmlString = htmlString + '<tr><td>'+ doc.id +'</td><td>'+doc.name+'</td><td>'+fromDay + "-"+fromMonth+'-'+ fromYear+'  '+ fromHour + ":" + fromMin+'</td><td>'+toDay + "-"+ toMonth + "-"+ toYear+ '  '+  toHour + ":" + toMin+'</td><td>'+doc.reason+'</td></tr>';
 					
 					
 					
