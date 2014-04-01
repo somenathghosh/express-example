@@ -329,3 +329,171 @@ app.get('/about',function(req,res){
 });
 
 
+app.post('/feedback', function(req, res){
+	var obj = {};
+	console.log('body: ' + JSON.stringify(req.body));
+	new feedBack({
+			id : parseInt(req.body.id),
+			name : req.body.name,
+			feedback : req.body.feedback,
+			postedON : new Date()
+			
+	}).save(function(err,doc){
+		if(err) {
+			console.log("Error from MongoDB: socket feedback " + err);
+			res.send({msg:'Database Error. Please try later.'});
+		}
+		else {
+			
+			res.send({msg:'You Feedback has been successfully recorded'});
+			sendgrid.send({ 
+					  to: 'somenath.ghosh84@gmail.com', 
+					  from: 'NoReply_TCSCharlottelab@tcs.com', 
+					  subject: 'FeedBack', 
+					  text:  'From:' + req.body.name + ' and Text : ' + req.body.feedback
+			}, function(err, json) { 
+					if (err) { 
+						console.log("Error with Sending Email to somenath.ghosh84@gmail.com "); 
+						console.error(err); 
+					} 
+					console.log(json); 
+			});
+			
+			
+		}
+	});
+	
+
+});
+
+
+
+app.post('/getReservation', function(req, res){
+	var obj = {};
+	console.log('body: ' + JSON.stringify(req.body));
+	User.find({to: {"$gte": req.body.from},from: {"$lte":req.body.to},mc: req.body.mc}).sort({from:1}).exec(function(err,docs){
+		if(err) {
+			console.log("Error from MongoDB:" + err);
+			res.send({msg:'Database Error'});
+		}
+		if(!docs){
+			res.send({msg:'No reservation found'});
+		}
+		else {
+			res.send({msg:'',R: docs });
+			
+		}
+			
+			
+		
+	});
+	
+
+});
+
+
+
+app.post('/doReservation', function(req, res){
+	var obj = {};
+	console.log('body: ' + JSON.stringify(req.body));
+	
+	
+	User.findOne({to: {"$gt": req.body.from},from: {"$lt":req.body.to},id: parseInt(req.body.emp)},function(err,docs){
+		
+		if(err){
+			console.log("Error from MongoDB-1:" + err);
+			res.send({message:'Database Error'});
+			
+		}
+		if(docs){
+			var msg = "You already have mc# " + docs.mc + " booked around same time";
+			res.send({message: msg});
+			
+			
+		}
+		else {
+			
+			User.findOne({to: {"$gt":req.body.from},from: {"$lt":req.body.to},mc: parseInt(req.body.mc)},function(err,user){
+			if (err) {
+				console.log("Error from MongoDB-2" + err);
+				res.send({message:'Database Error'});
+				
+			}
+			if(user) {
+				
+				var msg = "The selected slot is not available";
+				res.send({message:msg});
+				
+			}
+			else{
+
+				new User({
+							
+							id   	: parseInt(req.body.emp),
+							name 	: req.body.name,
+							from 	: req.body.from,
+							to   	: req.body.to,
+							reason 	: req.body.reason,
+							mc     	: parseInt(req.body.mc),
+							resDate : new Date()
+							
+						}).save(function(err, doc){
+							
+							if(err) {
+								console.log("Error from MongoDB-3:" + err);
+								res.send({message:'Database Error'});
+							}
+								
+							else {
+
+								var empID = (req.body.emp).toString();
+								htmlBody = "Dear "+ req.body.name+ ",\nYour reservation has been confirmed.\n\n M/C# " + req.body.mc + "\n " + "FROM : " + new Date(req.body.from) + "\n TO : " + new Date(req.body.to) +".";
+								htmlBody = htmlBody + "\n\nThanks,\nTCS Charlotte Lab Team.\n\nP.S. This is a system-generated email. Please do not reply."; 
+								CLTlab.findOne({employeeID : empID },function(err,docs){
+									if(err) {
+										console.log("Error from MongoDB: socket reservation CLTLab" + err);
+										
+									}
+									
+									if(docs) {
+										
+							
+										
+										if (docs.EmailID) {
+											
+											var args = {
+											  data: {"EmailID": docs.EmailID, "EmailText": htmlBody},
+											  headers:{"Content-Type": "application/json"} 
+											};
+
+
+											client.put("http://intense-ravine-4499.herokuapp.com/sendEmailforReservation/" + docs.EmailID, args, function(data,response) {
+												  // parsed response body as js object
+												console.log(data);
+												// raw response
+												console.log(response.statusCode);
+											});
+											
+										}
+									}
+
+										
+								});
+								
+								var msg = "Your reservation is successful at MC: " + req.body.mc;
+								res.send({message: msg });
+
+							}
+						});
+					}
+				});
+			
+			}
+
+		});
+	
+
+});
+
+
+

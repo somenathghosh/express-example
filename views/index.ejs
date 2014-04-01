@@ -9,7 +9,7 @@
 		<style type="text/css">
 			body {
 				background-color: #19327D;
-				padding-bottom: 110px;
+				
 				
 			}
 			
@@ -20,10 +20,7 @@
 			
 		</style>
 		
-		<script language="javascript" type="text/javascript" src="datetimepicker.js">
-
-			
-		</script>
+		
 
 	</head>
 	<body>
@@ -1092,7 +1089,7 @@
 		
 		<script src = "http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 		<script src = "js/bootstrap.js"></script>
-		<script src="jq/jquery.plugin.js"></script>
+	
 		
 		<script src="/socket.io/socket.io.js"></script>
 		<script>
@@ -1112,97 +1109,174 @@
 			var $nameBox = $('#contact-name');
 			var $empIDBox = $('#contact-empID');
 			var $feedbackBox = $('#contact-feedback');
-			
-			
-			
-			
-			
-			
-			//var $messageForm = $('#send-message');
-			//var $messageBox = $('#message');
+
 			
 			var $chat = $('#chat');
 			var $thank = $('#thank');
 			
-			//var $schedule = $('#schedule');
+
 			
 			var $fromDate = new Date();
 			var $toDate  = new Date();
-			
-			
-			
-			
+
 			$nickForm.submit(function(e){
 				e.preventDefault();
 				//alert($nickBox.val());
 				var $fDate = new Date($nickBoxFrom.val());
 				var $tDate = new Date($nickBoxTo.val());
 				var $fDateNew = new Date();
-				var $tDateNew = new Date(2017,12,31,23,59,00,00);
+				var $tDateNew = new Date(2050,12,31,23,59,00,00);
 				//alert($nickBox.val());
 				
 				if ($nickBox.val() >= 5 && $nickBox.val() <= 14 ) {
 					
 					if (($nickBoxFrom.val() =="From(MM/DD/YYYY HH:MM)" ||$nickBoxFrom.val() =="") && ($nickBoxTo.val()=="To(MM/DD/YYYY HH:MM)" || $nickBoxTo.val()=="")){
 						
-						//$("#chat").html("<font color='black'><strong>Current Reservations</strong></font><br/>");
-							socket.emit('new user', $nickBox.val(), $fDateNew, $tDateNew, function(data){
-								if(data){
-									//$('#nickWrap').hide();
-									//$('#contentWrap').show();
-									
-								} else{
-									//$nickError.html('No Schedule available');
+						var data = {};
+						data.mc = $nickBox.val();
+						data.from = $fDateNew;
+						data.to = $tDateNew;
+						
+						$.ajax({
+							type: 'POST',
+							data: JSON.stringify(data),
+							contentType: 'application/json',
+							url: '/getReservation',						
+							success: function(data) {
+								if(data.msg.length > 0){
+									$("#messageM2").html("<font color='black' ><strong></strong></font>");
+									$("#messageM2").append(data.msg);
+									$('#messageModal2').modal('show');
 								}
-							});
+								else{
+									showModal(data);
+									console.log('success');
+								}
+							},
+							error: function (error) {
+								$("#messageM2").html("<font color='black' ><strong></strong></font>");
+								$("#messageM2").append('Error Connecting to Server');
+								$('#messageModal2').modal('show');
+								
+							}
+							
+						});	
+							
 						
 					}
 					else {
 					
 						if(($nickBoxFrom.val() !="From(MM/DD/YYYY HH:MM)" || $nickBoxFrom.val() !="") && ($nickBoxTo.val()=="To(MM/DD/YYYY HH:MM)" || $nickBoxTo.val()=="") && isFinite($fDate)){
-							//$("#chat").html("<font color='black'><strong>Current Reservations</strong></font><br/>");
-								socket.emit('new user', $nickBox.val(), $fDate, $tDateNew, function(data){
-									if(data){
-										//$('#nickWrap').hide();
-										//$('#contentWrap').show();
-										
-									} else{
-										//$nickError.html('No Schedule available');
+							
+							var data = {};
+							data.mc = $nickBox.val();
+							data.from = $fDate;
+							data.to = $tDateNew;
+							
+							$.ajax({
+								type: 'POST',
+								data: JSON.stringify(data),
+								contentType: 'application/json',
+								url: '/getReservation',						
+								success: function(data) {
+									if(data.msg.length > 0){
+										$("#messageM2").html("<font color='black' ><strong></strong></font>");
+										$("#messageM2").append(data.msg);
+										$('#messageModal2').modal('show');
 									}
-								});
+									else{
+										showModal(data);
+										console.log('success');
+									}
+								},
+								error: function (error) {
+									$("#messageM2").html("<font color='black' ><strong></strong></font>");
+									$("#messageM2").append('Error Connecting to Server');
+									$('#messageModal2').modal('show');
+								}
+								
+							});	
+						
+						
+						
+						
+						
 						}
 						else{
 						
 						
 							if(($nickBoxFrom.val() =="From(MM/DD/YYYY HH:MM)" || $nickBoxFrom.val() =="") && ($nickBoxTo.val()!="To(MM/DD/YYYY HH:MM)" || $nickBoxTo.val()!="") && isFinite($tDate)){
-								//$("#chat").html("<font color='black'><strong>Current Reservations</strong></font><br/>");
-									socket.emit('new user', $nickBox.val(), $fDateNew, $tDate, function(data){
-										if(data){
-											//$('#nickWrap').hide();
-											//$('#contentWrap').show();
-											
-										} else{
-											//$nickError.html('No Schedule available');
+								
+								var data = {};
+								data.mc = $nickBox.val();
+								data.from = $fDateNew;
+								data.to = $tDate;
+								
+								$.ajax({
+									type: 'POST',
+									data: JSON.stringify(data),
+									contentType: 'application/json',
+									url: '/getReservation',						
+									success: function(data) {
+										if(data.msg.length > 0){
+											$("#messageM2").html("<font color='black' ><strong></strong></font>");
+											$("#messageM2").append(data.msg);
+											$('#messageModal2').modal('show');
 										}
-									});
+										else{
+											showModal(data);
+											console.log('success');
+										}
+									},
+									error: function (error) {
+										$("#messageM2").html("<font color='black' ><strong></strong></font>");
+										$("#messageM2").append('Error Connecting to Server');
+										$('#messageModal2').modal('show');
+									}
+									
+								});	
+								
+								
+								
+								
+								
 							}
 							else{
 							
 							
 							
 								if (($nickBoxFrom.val() !="From(MM/DD/YYYY HH:MM)" || $nickBoxFrom.val() !="") && ($nickBoxTo.val()!="To(MM/DD/YYYY HH:MM)" ||$nickBoxTo.val()!="") && isFinite($fDate) && isFinite($tDate) ) {
-										
-								
-										//$("#chat").html("<font color='black'><strong>Current Reservations</strong></font><br/>");
-										socket.emit('new user', $nickBox.val(), $fDate, $tDate, function(data){
-											if(data){
-												//$('#nickWrap').hide();
-												//$('#contentWrap').show();
-												
-											} else{
-												//$nickError.html('No Schedule available');
+									
+									var data = {};
+									data.mc = $nickBox.val();
+									data.from = $fDate;
+									data.to = $tDate;
+									
+									$.ajax({
+										type: 'POST',
+										data: JSON.stringify(data),
+										contentType: 'application/json',
+										url: '/getReservation',						
+										success: function(data) {
+											if(data.msg.length > 0){
+												$("#messageM2").html("<font color='black' ><strong></strong></font>");
+												$("#messageM2").append(data.msg);
+												$('#messageModal2').modal('show');
 											}
-										});
+											else{
+												showModal(data);
+												console.log('success');
+											}
+										},
+										error: function (error) {
+											$("#messageM2").html("<font color='black' ><strong></strong></font>");
+											$("#messageM2").append('Error Connecting to Server');
+											$('#messageModal2').modal('show');
+										}
+										
+									});	
+
+								
 								}
 								else {
 										alertM("Date(s) not in correct format");
@@ -1219,8 +1293,9 @@
 				
 			});
 			
+		
 			
-			socket.on('usernames', function(data){
+			var showModal =function($data){
 			
 				var month=new Array();
 				month[0]="Jan";
@@ -1237,21 +1312,21 @@
 				month[11]="Dec";
 			
 				$("#messageM2").html("<font color='black' ><strong></strong></font>");
-				//$("#messageM2").html("<div class="+'table-responsive'+"><table class="+'table'+"><tr><th>Emp ID</th><th>Name</th><th>From</th><th>To</th></tr>");
-				var htmlString= "<div class="+'table-responsive'+"><table class="+'table table-hover'+"><tr><th>Emp ID</th><th>Name</th><th>From Date & Time</th><th>To Date & Time</th></tr>";
 				
-				data.R.forEach( function(doc){
+				var htmlString= "<div class="+'table-responsive'+"><table class="+'table table-hover'+"><tr><th>Emp ID</th><th>Name</th><th>From Date & Time</th><th>To Date & Time</th><th>Action</th></tr>";
+				
+				
+				
+				$data.R.forEach( function(doc){
 					
-					//alert(doc.name);
-
+					
+					
 					fromDate = new Date(doc.from);
 					toDate = new Date(doc.to);
-					//fromMonth = fromDate.getMonth() + 1;
-					//fromMonth = fromMonth < 10 ? '0'+fromMonth :fromMonth;
+					
 					fromMonth = month[fromDate.getMonth()];
 					fromYear = fromDate.getFullYear();
-					//toMonth = toDate.getMonth() + 1;
-					//toMonth = toMonth <10 ? '0'+toMonth :toMonth;
+					
 					toMonth = month[toDate.getMonth()];
 					toYear = toDate.getFullYear();
 					
@@ -1262,38 +1337,24 @@
 					fromHour = fromDate.getHours() < 10 ? '0'+fromDate.getHours() : fromDate.getHours();
 					toHour = toDate.getHours() < 10 ? '0'+toDate.getHours() : toDate.getHours() ;
 				
-				//$('#messageModal').modal('show');
-				//$('#messageM').show();
-				//$("#messageM").html("<font color='black' ><strong></strong></font>");
-				//$("#messageM").append
 				
-				//$chat.append('<center><font color="black">' + fromMonth + "/"+fromDate.getUTCDate()+ " "+ fromDate.getUTCHours() + ":" + fromDate.getUTCMinutes()+" -- " + toMonth + "/"+ toDate.getUTCDate()+ " "+ toDate.getUTCHours() + ":" + toDate.getUTCMinutes() + "</font></center><br/>"); 
-				//$chat.append('<center><font color="black">' + fromMonth + "/"+fromDay+ " "+ fromHour + ":" + fromMin+" -- " + toMonth + "/"+ toDay + " "+ toHour + ":" + toMin + "</font></center><br>"); 
-					//$("#messageM2").append('<center><font color="black">' + doc.name+'('+doc.id+')  '+fromDay + "-"+fromMonth+'-'+ fromYear + '  '+ fromHour + ":" + fromMin+" -- " + toDay + "-"+ toMonth + "-"+ toYear+ '  '+  toHour + ":" + toMin + "</font></center><br>"); 
-					//$("#messageM2").append('<tr><td>'+ doc.id +'</td><td>'+doc.name+'</td><td>'+fromDay + "-"+fromMonth+'-'+ fromYear+'  '+ fromHour + ":" + fromMin+'</td><td>'+toDay + "-"+ toMonth + "-"+ toYear+ '  '+  toHour + ":" + toMin+'</td></tr>');
-					htmlString = htmlString + '<tr><td>'+ doc.id +'</td><td>'+doc.name+'</td><td>'+fromDay + "-"+fromMonth+'-'+ fromYear+'  '+ fromHour + ":" + fromMin+'</td><td>'+toDay + "-"+ toMonth + "-"+ toYear+ '  '+  toHour + ":" + toMin+'</td></tr>';
+					htmlString = htmlString + '<tr><td>'+ doc.id +'</td><td>'+doc.name+'</td><td>'+fromDay + "-"+fromMonth+'-'+ fromYear+'  '+ fromHour + ":" + fromMin+'</td><td>'+toDay + "-"+ toMonth + "-"+ toYear+ '  '+  toHour + ":" + toMin+'</td><td><a href = "/cancel?id=' +doc.id+'&from='+doc.from+'&to='+doc.to+'"'+ 'class = "btn btn-danger btn-sm" id="btnCancel">Cancel</a></td></tr>';
 					
 					
 					
 					
-					//<center><font color="black">' + doc.name+'('+doc.id+')  '+fromDay + "-"+fromMonth+'-'+ fromYear + '  '+ fromHour + ":" + fromMin+" -- " + toDay + "-"+ toMonth + "-"+ toYear+ '  '+  toHour + ":" + toMin + "</font></center><br>"); 
-				//$chat.append('<font color="black">' + fromDate + "--" + toDate +  "</font><br/>"); 
-								
-								
-				//$chat.append('<center><font color="black">' + fromDate.getUTCMonth() + "/"+fromDate.getUTCDate()+ " "+ fromDate.getUTCHours() + ":" + fromDate.getUTCMinutes()+" -- " + toDate.getUTCMonth() + "/"+ toDate.getUTCDate()+ " "+ toDate.getUTCHours() + ":" + toDate.getUTCMinutes() + "</font></center><br/>"); 
-							
 				});
 				htmlString = htmlString + '</div></table>' ;
 				//console.log(htmlString);
 				$("#messageM2").append(htmlString);
 				$('#messageModal2').modal('show');
-				//$('#messageM2').show();
-			});
+				
+			};
+			
 			
 			
 			$feedForm.submit(function(e){
 				e.preventDefault();
-				
 				if ( $nameBox.val()=="" || $nameBox.val() == parseInt($nameBox.val()) ){
 					
 					alertM("Please enter a valid Name");
@@ -1313,17 +1374,37 @@
 				
 
 				else {
-					socket.emit('feedback', $nameBox.val(), $empIDBox.val(), $feedbackBox.val(), function(data){
-						if(data){
+					var data = {};
+					data.name = $nameBox.val();
+					data.id = $empIDBox.val();
+					data.feedback = $feedbackBox.val();
+					
+					$.ajax({
+						type: 'POST',
+						data: JSON.stringify(data),
+						contentType: 'application/json',
+						url: '/feedback',						
+						success: function(data) {
+							console.log('success');
+							console.log(JSON.stringify(data.msg));
 							$('#feedForm').hide();
-							//$('#contentWrap').show();
-							
-						} else{
-							//$nickError.html('No Schedule available');
+							$('#thank').show();
+							$('#sendFeedback').hide();
+							$("#thank").html("<font color='black'><strong></strong></font>");
+							$thank.append('<br><center><font color="black">' + data.msg + "</font></center><br/>"); 
+						},
+						error: function (xhr, status, error) {
+							$('#feedForm').hide();
+							$('#thank').show();
+							$('#sendFeedback').hide();
+							$("#thank").html("<font color='black'><strong></strong></font>");
+							$thank.append('<br><center><font color="black">' + 'Error connecting to the server' + "</font></center><br/>"); 
 						}
+						
 					});
+				
 				}
-				//$nickBox.val('');
+			
 			});
 			
 			$("#btnClose").click(function(e){
@@ -1347,11 +1428,10 @@
 				var $reason = $('#reason').val();
 			
 			
-				var fDate = new Date($from.val());
-				var tDate = new Date($to.val());
-				var today = new Date();
-				//alert(fDate);
-				//alert(tDate);
+				var $fDate = new Date($from.val());
+				var $tDate = new Date($to.val());
+				var $today = new Date();
+			
 				if($emp < 99999) {
 					alertM("Please enter a valid Employee Number");
 					return ;
@@ -1364,18 +1444,18 @@
 				
 				
 				
-				if(isFinite(fDate) && isFinite(tDate)){
-					if(fDate >= tDate){
+				if(isFinite($fDate) && isFinite($tDate)){
+					if($fDate >= $tDate){
 						alertM("From Date must be less than To Date");
 						return false;
 					}
 					//console.log(today);
-					if(fDate < today){
+					if($fDate < $today){
 						alertM("From Date must be greater than or equal to Today's Date");
 						return false;
 					}
-					$('#from').val(fDate);
-					$('#to').val(tDate);
+					$('#from').val($fDate);
+					$('#to').val($tDate);
 				}
 				else {
 					alertM("Date(s) not in correct format or not chosen correctly");
@@ -1395,18 +1475,43 @@
 				}
 				
 				
+							
 				
-				socket.emit('reservation', $emp, $name, fDate,tDate,$mc,$reason, function(data){
-					if(data){
-									
-					} else{
-									
+				var data = {};
+				data.emp = $emp;
+				data.name = $name;
+				data.from = $fDate;
+				data.to = $tDate;
+				data.mc = $mc;
+				data.reason = $reason;
+				
+				$.ajax({
+					type: 'POST',
+					data: JSON.stringify(data),
+					contentType: 'application/json',
+					url: '/doReservation',						
+					success: function(data) {
+						
+						$("#messageM").html("<font color='black' ><strong></strong></font>");
+						$("#messageM").append("<center><font color='black' face='trebuchet MS' size='5' >"+data.message+"</font></center>");
+						$('#messageModal').modal('show');
+					
+						console.log('success');
+						
+					},
+					error: function (error) {
+						$("#messageM").html("<font color='black' ><strong></strong></font>");
+						$("#messageM").append('Error Connecting to Server');
+						$('#messageModal').modal('show');
 					}
-				});
+					
+				});	
+				
 		
 				
 			});
 			
+			/*
 			socket.on('message', function(data){
 			
 				$('#messageModal').modal('show');
@@ -1429,9 +1534,9 @@
 			});
 			
 			
+			*/
 			
-			
-			
+						
 			
 			
 			
@@ -1531,6 +1636,7 @@
 			
 			
 			
+			/*
 				
 			socket.on('thanks', function(data){
 				$('#thank').show();
@@ -1538,7 +1644,7 @@
 				$("#thank").html("<font color='black'><strong></strong></font>");
 				$thank.append('<br><center><font color="black">' + data.message + "</font></center><br/>"); 
 			});
-			
+			*/
 			
 			
 			var alertM = function($m) { 
@@ -1550,8 +1656,15 @@
 			};
 
 			
-			
-			
+			$('#btnCancel').click( function(e) {
+				e.preventDefault();
+				console.log($(this).attr('href'));
+				 $.get( $(this).attr('href'), function(msg) {
+					  alert( "Data Saved: " + msg );
+				 });
+				 return false; // don't follow the link!
+			});
+						
 			
 			
 		});
