@@ -1091,10 +1091,11 @@
 		<script src = "js/bootstrap.js"></script>
 	
 		
-		<script src="/socket.io/socket.io.js"></script>
+		<!--<script src="/socket.io/socket.io.js"></script>-->
+		
 		<script>
 		jQuery(function($){
-			var socket = io.connect();
+			//var socket = io.connect();
 			
 			var $nickForm = $('#setNick');
 			var $feedForm = $('#setNick1');
@@ -1121,12 +1122,12 @@
 
 			$nickForm.submit(function(e){
 				e.preventDefault();
-				//alert($nickBox.val());
+				
 				var $fDate = new Date($nickBoxFrom.val());
 				var $tDate = new Date($nickBoxTo.val());
 				var $fDateNew = new Date();
 				var $tDateNew = new Date(2050,12,31,23,59,00,00);
-				//alert($nickBox.val());
+			
 				
 				if ($nickBox.val() >= 5 && $nickBox.val() <= 14 ) {
 					
@@ -1136,6 +1137,13 @@
 						data.mc = $nickBox.val();
 						data.from = $fDateNew;
 						data.to = $tDateNew;
+						$("#messageM2").html("<font color='black' ><strong></strong></font>");
+						//$("#messageM2").append("<center><font color='black' ><strong>Wait.....!!!</strong></font><center>");
+						$("#messageM2").append('<div class="progress progress-striped active"><div class="progress-bar"  role="progressbar" aria-valuenow="92"'
+							+ 'aria-valuemin="0" aria-valuemax="100" style="width: 92%">' 
+							+ '<span class="sr-only">45% Complete</span></div></div>');
+						
+						$('#messageModal2').modal('show');
 						
 						$.ajax({
 							type: 'POST',
@@ -1144,16 +1152,19 @@
 							url: '/getReservation',						
 							success: function(data) {
 								if(data.msg.length > 0){
+									$('#messageModal2').modal('hide');
 									$("#messageM2").html("<font color='black' ><strong></strong></font>");
 									$("#messageM2").append(data.msg);
 									$('#messageModal2').modal('show');
 								}
 								else{
+									
 									showModal(data);
 									console.log('success');
 								}
 							},
 							error: function (error) {
+								
 								$("#messageM2").html("<font color='black' ><strong></strong></font>");
 								$("#messageM2").append('Error Connecting to Server');
 								$('#messageModal2').modal('show');
@@ -1168,10 +1179,17 @@
 					
 						if(($nickBoxFrom.val() !="From(MM/DD/YYYY HH:MM)" || $nickBoxFrom.val() !="") && ($nickBoxTo.val()=="To(MM/DD/YYYY HH:MM)" || $nickBoxTo.val()=="") && isFinite($fDate)){
 							
+							
+							$("#messageM2").html("<font color='black' ><strong></strong></font>");
+							$("#messageM2").append('<div class="progress progress-striped active"><div class="progress-bar"  role="progressbar" aria-valuenow="92"'
+								+ 'aria-valuemin="0" aria-valuemax="100" style="width: 92%">' 
+								+ '<span class="sr-only">45% Complete</span></div></div>');
+							$('#messageModal2').modal('show');
 							var data = {};
 							data.mc = $nickBox.val();
 							data.from = $fDate;
 							data.to = $tDateNew;
+							
 							
 							$.ajax({
 								type: 'POST',
@@ -1207,6 +1225,12 @@
 						
 							if(($nickBoxFrom.val() =="From(MM/DD/YYYY HH:MM)" || $nickBoxFrom.val() =="") && ($nickBoxTo.val()!="To(MM/DD/YYYY HH:MM)" || $nickBoxTo.val()!="") && isFinite($tDate)){
 								
+								
+								$("#messageM2").html("<font color='black' ><strong></strong></font>");
+								$("#messageM2").append('<div class="progress progress-striped active"><div class="progress-bar"  role="progressbar" aria-valuenow="92"'
+									+ 'aria-valuemin="0" aria-valuemax="100" style="width: 92%">' 
+									+ '<span class="sr-only">45% Complete</span></div></div>');
+								$('#messageModal2').modal('show');
 								var data = {};
 								data.mc = $nickBox.val();
 								data.from = $fDateNew;
@@ -1247,6 +1271,11 @@
 							
 								if (($nickBoxFrom.val() !="From(MM/DD/YYYY HH:MM)" || $nickBoxFrom.val() !="") && ($nickBoxTo.val()!="To(MM/DD/YYYY HH:MM)" ||$nickBoxTo.val()!="") && isFinite($fDate) && isFinite($tDate) ) {
 									
+									$("#messageM2").html("<font color='black' ><strong></strong></font>");
+									$("#messageM2").append('<div class="progress progress-striped active"><div class="progress-bar"  role="progressbar" aria-valuenow="92"'
+										+ 'aria-valuemin="0" aria-valuemax="100" style="width: 92%">' 
+										+ '<span class="sr-only">45% Complete</span></div></div>');
+									$('#messageModal2').modal('show');
 									var data = {};
 									data.mc = $nickBox.val();
 									data.from = $fDate;
@@ -1346,7 +1375,9 @@
 				});
 				htmlString = htmlString + '</div></table>' ;
 				//console.log(htmlString);
+				
 				$("#messageM2").append(htmlString);
+				
 				$('#messageModal2').modal('show');
 				
 			};
@@ -1374,6 +1405,16 @@
 				
 
 				else {
+				
+					$('#feedForm').hide();
+					$('#thank').show();
+					$('#sendFeedback').hide();
+					$("#thank").html("<font color='black'><strong></strong></font>");
+					$thank.append('<div class="progress progress-striped active"><div class="progress-bar"  role="progressbar" aria-valuenow="92"'
+										+ 'aria-valuemin="0" aria-valuemax="100" style="width: 92%">' 
+										+ '<span class="sr-only">45% Complete</span></div></div>');
+					
+					
 					var data = {};
 					data.name = $nameBox.val();
 					data.id = $empIDBox.val();
@@ -1387,9 +1428,7 @@
 						success: function(data) {
 							console.log('success');
 							console.log(JSON.stringify(data.msg));
-							$('#feedForm').hide();
-							$('#thank').show();
-							$('#sendFeedback').hide();
+							
 							$("#thank").html("<font color='black'><strong></strong></font>");
 							$thank.append('<br><center><font color="black">' + data.msg + "</font></center><br/>"); 
 						},
@@ -1474,7 +1513,11 @@
 					return false;
 				}
 				
-				
+				$("#messageM").html("<font color='black' ><strong></strong></font>");
+				$("#messageM").append('<div class="progress progress-striped active"><div class="progress-bar"  role="progressbar" aria-valuenow="92"'
+									+ 'aria-valuemin="0" aria-valuemax="100" style="width: 92%">' 
+									+ '<span class="sr-only">45% Complete</span></div></div>');
+				$('#messageModal').modal('show');
 							
 				
 				var data = {};
@@ -1545,7 +1588,7 @@
 			
 			
 			
-			
+			/*
 			$("#btnSubmit").click(function(e){
 				e.preventDefault();
 				//$(this).tooltip('show');
@@ -1562,7 +1605,7 @@
 				//$(this).popover('hide');
 				//$nickBox.val('');
 			});
-			
+			*/
 			
 			
 			
