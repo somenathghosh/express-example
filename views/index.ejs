@@ -1139,8 +1139,8 @@
 						data.to = $tDateNew;
 						$("#messageM2").html("<font color='black' ><strong></strong></font>");
 						//$("#messageM2").append("<center><font color='black' ><strong>Wait.....!!!</strong></font><center>");
-						$("#messageM2").append('<div class="progress progress-striped active"><div class="progress-bar"  role="progressbar" aria-valuenow="92"'
-							+ 'aria-valuemin="0" aria-valuemax="100" style="width: 92%">' 
+						$("#messageM2").append('<div class="progress progress-striped active"><div class="progress-bar"  role="progressbar" aria-valuenow="100"'
+							+ 'aria-valuemin="0" aria-valuemax="100" style="width: 100%">' 
 							+ '<span class="sr-only">45% Complete</span></div></div>');
 						
 						$('#messageModal2').modal('show');
@@ -1181,8 +1181,8 @@
 							
 							
 							$("#messageM2").html("<font color='black' ><strong></strong></font>");
-							$("#messageM2").append('<div class="progress progress-striped active"><div class="progress-bar"  role="progressbar" aria-valuenow="92"'
-								+ 'aria-valuemin="0" aria-valuemax="100" style="width: 92%">' 
+							$("#messageM2").append('<div class="progress progress-striped active"><div class="progress-bar"  role="progressbar" aria-valuenow="100"'
+								+ 'aria-valuemin="0" aria-valuemax="100" style="width: 100%">' 
 								+ '<span class="sr-only">45% Complete</span></div></div>');
 							$('#messageModal2').modal('show');
 							var data = {};
@@ -1227,8 +1227,8 @@
 								
 								
 								$("#messageM2").html("<font color='black' ><strong></strong></font>");
-								$("#messageM2").append('<div class="progress progress-striped active"><div class="progress-bar"  role="progressbar" aria-valuenow="92"'
-									+ 'aria-valuemin="0" aria-valuemax="100" style="width: 92%">' 
+								$("#messageM2").append('<div class="progress progress-striped active"><div class="progress-bar"  role="progressbar" aria-valuenow="100"'
+									+ 'aria-valuemin="0" aria-valuemax="100" style="width: 100%">' 
 									+ '<span class="sr-only">45% Complete</span></div></div>');
 								$('#messageModal2').modal('show');
 								var data = {};
@@ -1272,8 +1272,8 @@
 								if (($nickBoxFrom.val() !="From(MM/DD/YYYY HH:MM)" || $nickBoxFrom.val() !="") && ($nickBoxTo.val()!="To(MM/DD/YYYY HH:MM)" ||$nickBoxTo.val()!="") && isFinite($fDate) && isFinite($tDate) ) {
 									
 									$("#messageM2").html("<font color='black' ><strong></strong></font>");
-									$("#messageM2").append('<div class="progress progress-striped active"><div class="progress-bar"  role="progressbar" aria-valuenow="92"'
-										+ 'aria-valuemin="0" aria-valuemax="100" style="width: 92%">' 
+									$("#messageM2").append('<div class="progress progress-striped active"><div class="progress-bar"  role="progressbar" aria-valuenow="100"'
+										+ 'aria-valuemin="0" aria-valuemax="100" style="width: 100%">' 
 										+ '<span class="sr-only">45% Complete</span></div></div>');
 									$('#messageModal2').modal('show');
 									var data = {};
@@ -1410,8 +1410,8 @@
 					$('#thank').show();
 					$('#sendFeedback').hide();
 					$("#thank").html("<font color='black'><strong></strong></font>");
-					$thank.append('<div class="progress progress-striped active"><div class="progress-bar"  role="progressbar" aria-valuenow="92"'
-										+ 'aria-valuemin="0" aria-valuemax="100" style="width: 92%">' 
+					$thank.append('<div class="progress progress-striped active"><div class="progress-bar"  role="progressbar" aria-valuenow="100"'
+										+ 'aria-valuemin="0" aria-valuemax="100" style="width: 100%">' 
 										+ '<span class="sr-only">45% Complete</span></div></div>');
 					
 					
@@ -1514,8 +1514,8 @@
 				}
 				
 				$("#messageM").html("<font color='black' ><strong></strong></font>");
-				$("#messageM").append('<div class="progress progress-striped active"><div class="progress-bar"  role="progressbar" aria-valuenow="92"'
-									+ 'aria-valuemin="0" aria-valuemax="100" style="width: 92%">' 
+				$("#messageM").append('<div class="progress progress-striped active"><div class="progress-bar"  role="progressbar" aria-valuenow="100"'
+									+ 'aria-valuemin="0" aria-valuemax="100" style="width: 100%">' 
 									+ '<span class="sr-only">45% Complete</span></div></div>');
 				$('#messageModal').modal('show');
 							
@@ -1553,63 +1553,6 @@
 		
 				
 			});
-			
-			/*
-			socket.on('message', function(data){
-			
-				$('#messageModal').modal('show');
-				$('#messageM').show();
-				$("#messageM").html("<font color='black' ><strong></strong></font>");
-				$("#messageM").append('<center><font color="black" face="trebuchet MS" size="5">' + data.message + "</font></center>"); 
-				//$('#msg').append('<center><font color="red">' + "!!!" + data.message + "</font></center>"); 
-				
-			});
-			
-			
-			socket.on('errorM', function(data){
-			
-				$('#messageModal').modal('show');
-				$('#messageM').show();
-				$("#messageM").html("<font color='black' ><strong></strong></font>");
-				$("#messageM").append('<center><font color="black" face="trebuchet MS" size="5">' + 'Database Error, please try later. Please report via feedback' + "</font></center>"); 
-				//$('#msg').append('<center><font color="red">' + "!!!" + data.message + "</font></center>"); 
-				
-			});
-			
-			
-			*/
-			
-						
-			
-			
-			
-			
-			
-			
-			
-			
-			/*
-			$("#btnSubmit").click(function(e){
-				e.preventDefault();
-				//$(this).tooltip('show');
-				$(this).css('color','red');
-				socket.emit('like', function(data){
-					if(data){
-						//$('#feedForm').hide();
-						//$('#contentWrap').show();
-						
-					} else{
-						//$nickError.html('No Schedule available');
-					}
-				});
-				//$(this).popover('hide');
-				//$nickBox.val('');
-			});
-			*/
-			
-			
-			
-			
 			
 			
 			$("#btnSubmit1").click(function(e){
@@ -1679,15 +1622,6 @@
 			
 			
 			
-			/*
-				
-			socket.on('thanks', function(data){
-				$('#thank').show();
-				$('#sendFeedback').hide();
-				$("#thank").html("<font color='black'><strong></strong></font>");
-				$thank.append('<br><center><font color="black">' + data.message + "</font></center><br/>"); 
-			});
-			*/
 			
 			
 			var alertM = function($m) { 
