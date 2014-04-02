@@ -29,9 +29,15 @@ var client = new Client();
 
 app.set('views', __dirname, '/views');
 app.set('view engine', 'ejs');
+
+app.use(express.cookieParser());
+app.use(express.session({secret: '8hdfv89823rnbvd09032eu233nvdfv'}));
+
 app.use(express.methodOverride());
 app.use(express.bodyParser());
 app.use(app.router);
+
+
 
 app.use(express.static(path.join(__dirname, 'public')));
 
@@ -266,15 +272,52 @@ app.post('/doReservation', function(req, res){
 
 app.post('/DelReservation', function(req, res){
 	var obj = {};
-	//console.log('body: ' + JSON.stringify(req.body));
-	User.remove({to: req.body.to,from: req.body.from, id: req.body.emp},function(err){
+	
+	if(req.session.empID){
+		User.remove({to: req.body.to,from: req.body.from, id: req.session.empID},function(err){
+			if(err) {
+				console.log("Error from MongoDB:" + err);
+				res.send({msg:'Database Error'});
+			}
+			
+			else {
+				res.send({msg:''});
+				
+			}
+				
+				
+			
+		});
+	}
+	else{
+		//console.log(req.session);
+		res.send({msg:'NoUser'});
+	}
+
+});
+
+
+
+app.post('/LoginReservation', function(req, res){
+	
+	var empID = (req.body.emp).toString();
+	
+	//console.log(req.body.pass);
+	//console.log(req.body.emp);
+	
+	CLTlab.findOne({employeeID : empID, password: req.body.pass},function(err,doc){
 		if(err) {
+		
 			console.log("Error from MongoDB:" + err);
 			res.send({msg:'Database Error'});
 		}
 		
-		else {
-			res.send({msg:''});
+		if(doc){
+			req.session.empID = req.body.emp;
+			res.send({msg:doc.FullName});
+		}
+		if(!doc) {
+			res.send({msg:'Wrong'});
 			
 		}
 			
@@ -285,6 +328,14 @@ app.post('/DelReservation', function(req, res){
 
 });
 
+
+app.post('/LogoutReservation', function(req, res){
+	
+	//console.log('In Logout');
+	req.session.destroy();
+	res.send({msg:'LogOut'});
+
+});
 
 
 

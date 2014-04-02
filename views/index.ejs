@@ -30,24 +30,42 @@
 				
 				<a href = "#" class = "navbar-brand"><font face="trebuchet MS" size="5" color="white">Reservation</font></a>
 				
+				
+				
 				<button class = "navbar-toggle" data-toggle = "collapse" data-target = ".navHeaderCollapse">
 					<span class = "icon-bar"></span>
 					<span class = "icon-bar"></span>
 					<span class = "icon-bar"></span>
 				</button>
 				
-				<div class = "collapse navbar-collapse navHeaderCollapse">
 				
+				
+				<div class = "collapse navbar-collapse navHeaderCollapse">
+					
+					<div id='Login-group'>
+						<form class="navbar-form navbar-right" role="search">
+						<div class="form-group"><a href = "#login" class="btn btn-success btn-sm" data-toggle="modal">
+								<font color='white'>Login</font></a></div>
+						</form>
+					</div>
+					<div id="Login-Name"></div>
 					<ul class = "nav navbar-nav navbar-right">
 					
-						<li class = "active"><a href = "/">Home</a></li>
+						<li class = "active"><a href = "#home" data-toggle="tab" >Home</a></li>
 						
-						<li><a href = "/about">About</a></li>
+						<li><a href = "#about" data-toggle="tab" >About</a></li>
 						<li><a href = "#contact" data-toggle="modal">Feedback</a></li>
-					
+						<li></li>
+						
 					</ul>
+					
+					
 				
 				</div>
+				
+				
+				
+				
 				
 			</div>
 		</div>
@@ -64,8 +82,8 @@
 		
 		</div>
 		-->
-		
-	
+	<div class="tab-content">	
+		<div class="tab-pane fade in active" id="home">
 		
 		<div class = "container">
 		<div class="panel panel-default">
@@ -305,6 +323,110 @@
 				</div>
 			
 		</div>
+		</div>
+		
+		<div class="tab-pane fade" id="about">
+			 <div class = "container">
+                     <div class = "row">
+                   
+                        <div class = "col-lg-9">
+                       
+                            <div class = "panel panel-default">
+                           
+                                <div class = "panel-body">
+                                   
+                                    <div class = "page-header">
+																	
+                                        <h3>About This Project</h3>
+                                    </div>
+                                   
+                                    
+                                   
+                                    <p> <font>This project has been developed using <strong>NODE.JS</strong> and <strong>MongoDB</strong> as Database. And it has been Deployed on <strong>Heroku</strong> Cloud.
+										<br><br> For any information about this project, you may contact following persons: <br>
+										
+										<div class="panel-group" id="accordion">
+										  <div class="panel panel-default">
+											<div class="panel-heading">
+											  <h4 class="panel-title">
+												<a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+												  Arvind Radhakrishnen
+												</a>
+											  </h4>
+											</div>
+											<div id="collapseOne" class="panel-collapse collapse">
+											  <div class="panel-body">
+												Reachable via : arvind.kr@tcs.com   or  arvind.k.r@bankofamerica.com
+											  </div>
+											</div>
+										  </div>
+										  <div class="panel panel-default">
+											<div class="panel-heading">
+											  <h4 class="panel-title">
+												<a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
+												  Somenath Ghosh
+												</a>
+											  </h4>
+											</div>
+											<div id="collapseTwo" class="panel-collapse collapse">
+											  <div class="panel-body">
+												Reachable via : somenath.ghosh@tcs.com   or  somenath.ghosh@bankofamerica.com
+											  </div>
+											</div>
+										  </div>
+										  <div class="panel panel-default">
+											<div class="panel-heading">
+											  <h4 class="panel-title">
+												<a data-toggle="collapse" data-parent="#accordion" href="#collapseThree">
+												  Chandrasekhar Nampally
+												</a>
+											  </h4>
+											</div>
+											<div id="collapseThree" class="panel-collapse collapse">
+											  <div class="panel-body">
+												Reachable via : chandrasekhar.nampally@tcs.com   or  chandrasekhar.nampally@bankofamerica.com
+											  </div>
+											</div>
+										  </div>
+										  
+										  <div class="panel panel-default">
+											<div class="panel-heading">
+											  <h4 class="panel-title">
+												<a data-toggle="collapse" data-parent="#accordion" href="#collapsefour">
+												  Prasun Sharma
+												</a>
+											  </h4>
+											</div>
+											<div id="collapsefour" class="panel-collapse collapse">
+											  <div class="panel-body">
+												Reachable via : prasun.sharma@tcs.com   or  prasun.sharma@bankofamerica.com
+											  </div>
+											</div>
+										  </div>
+										  
+										</div>
+									
+									
+									
+									</font></p>
+                                   
+                                    <h4></h4>
+                                   
+                                    <p> </p>
+                                   
+                                   
+                                </div>
+                           
+                            </div>
+                       
+                        </div>
+                       
+                      </div>
+                   
+                </div>
+			</div>
+		</div>
+		
 		
 		<!--
 		<div class = "navbar navbar-inverse navbar-fixed-bottom">
@@ -375,13 +497,82 @@
 		                </div>
 		                <div class = "modal-footer">
                             <a class = "btn btn-default" data-dismiss = "modal" id="btnClose" >Close</a>    
-		                    <button class = "btn btn-primary" data-loading-text="sending..." type = "button" id="sendFeedback">Send</button>
+		                    <button class = "btn btn-success" data-loading-text="sending..." type = "button" id="sendFeedback">Send</button>
 		                </div>
 		            </form>
 					
 		        </div>
 		    </div>
 		</div>
+		
+		<!--- ----->
+		
+		<div class = "modal fade" id = "login" role = "dialog">
+		    <div class = "modal-dialog">
+		        
+				
+				<div class = "modal-content">
+					
+					<!--
+					<div  id="contentWrap" class="alert alert-success">
+							<p id="success"><center>Thanks for your feedback</center></p>
+					</div>
+					-->
+					
+		            <form id="loginForm" class = "form-horizontal" action="/login" method ="POST">
+		                <div class = "modal-header">
+		                    <h4>Log In</h4>
+		                </div>
+						<div id="thank"></div>
+		                <div  class = "modal-body" id="LoginForm1">
+						
+		                    <div class = "form-group">
+		                        
+		                        <label for = "Login-empID" class = "col-sm-2 control-label pull-left" >Employee</label>
+		                        <div class = "col-sm-10">
+		                            
+		                            <input name="name" type = "number" class = "form-control" id = "Login-empID" placeholder = "Emp ID">
+		                            
+		                        </div>
+		                        
+		                    </div>
+		                    
+		                    <div class = "form-group">
+		                        
+		                        <label for = "Login-Password" class = "col-sm-2 control-label">Password</label>
+		                        <div class = "col-sm-10">
+		                            
+		                            <input name="empID" type = "password" class = "form-control" id = "Login-Password" placeholder = "password">
+		                            
+		                        </div>
+		                        
+		                    </div>
+		                    
+		                    
+		                
+		                </div>
+		                <div class = "modal-footer">
+                            <a class = "btn btn-default" data-dismiss = "modal" id="btnClose" >Close</a>    
+		                    <button class = "btn btn-success" data-loading-text="Wait..." type = "button" id="sendLogin">Send</button>
+		                </div>
+		            </form>
+					
+		        </div>
+		    </div>
+		</div>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		<!-- -->
+		
+		
 		
 		
 		<div class = "modal fade" id = "messageModal" role = "dialog">
@@ -1083,52 +1274,7 @@
 		<!-- --->
 		
 		
-        <div class="modal fade" id="myModal" role = "dialog" >
-        <div class = "modal-dialog">
-		        
-				
-		<div class = "modal-content">
-		  <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal">x</button>
-            <h3>Login</h3>
-          </div>
-          <div class="modal-body">
-            
-            
-			<div class = "form-group">
-		                        
-				<label for = "contact-email" class = "col-sm-2 control-label">Emp ID</label>
-				<div class = "col-sm-10">
-					
-					<input name="empID" type = "number" class = "form-control" id = "Login-empID" placeholder = "TCS ID">
-					
-				</div>
-				
-			</div>
-			<br><br>
-			<div class = "form-group">
-				
-				<label for = "contact-msg" class = "col-sm-2 control-label">Password:</label>
-				<div class = "col-sm-10">
-					
-					<input name="password" id="Login-Password" class = "form-control"></input>
-					
-				</div>
-				
-			</div>
-              
-            
-          </div>
-          <div class="modal-footer">
-            <p><button type="button" class="btn btn-primary" id="Login-Button">Sign in</button>
-                
-            </p>
-			
-			
-          </div>
-        </div>
-        </div>
-        </div>
+        
 		
 		
 		
@@ -1476,6 +1622,7 @@
 						},
 						error: function (xhr, status, error) {
 							$('#feedForm').hide();
+							btn.button('reset');
 							$('#thank').show();
 							$('#sendFeedback').hide();
 							$("#thank").html("<font color='black'><strong></strong></font>");
@@ -1515,7 +1662,7 @@
 			
 				if($emp < 99999) {
 					alertM("Please enter a valid Employee Number");
-					return ;
+					return false;
 				}
 				
 				if($name =="" || $name == parseInt($name) || $name =='Enter Full Name' ){
@@ -1587,6 +1734,7 @@
 						$("#messageM").html("<font color='black' ><strong></strong></font>");
 						$("#messageM").append('Error Connecting to Server');
 						$('#messageModal').modal('show');
+						btn.button('reset');
 					}
 					
 				});	
@@ -1700,45 +1848,118 @@
 					url: '/DelReservation',						
 					success: function(data) {
 						
+						if(data.msg =='NoUser'){
+							btn.button('reset');
+						}
+						else{
 						
-					
-					console.log('success');
-					btn.button('reset');
-					btn.html('Done');
-					$divID = 'divCancel' + $res[1]+ $res[2]+$res[3];
-					$('.'+$divID).hide();
-					
-						
+							console.log('success');
+							btn.button('reset');
+							btn.html('Done');
+							$divID = 'divCancel' + $res[1]+ $res[2]+$res[3];
+							$('.'+$divID).hide();
+							
+						}
 					},
 					error: function (error) {
 						$('#messageModal2').modal('hide');
 						$("#messageM").html("<font color='black' ><strong></strong></font>");
 						$("#messageM").append('Error Connecting to Server');
 						$('#messageModal').modal('show');
+						btn.button('reset');
 					}
 					
 				});	
 				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				//$('#myModal').modal('show');
-				
 			});
+			
+			
+			
+			$('#sendLogin').click(function(e){
+				e.preventDefault();
+				
+				//alert($('#Login-empID').val());
+				
+				if($('#Login-empID').val() ==""){
+					alertM('Please enter Employee ID');
+					return false;
+				}
+				
+				if($('#Login-Password').val() == ""){
+					alertM('Please enter Password');
+					return false;
+				}
+				var btn = $(this);
+				btn.button('loading');
+				var data = {};
+				data.emp = $('#Login-empID').val();
+				data.pass = $('#Login-Password').val();
+				
+				$.ajax({
+					type: 'POST',
+					data: JSON.stringify(data),
+					contentType: 'application/json',
+					url: '/LoginReservation',						
+					success: function(data) {
 						
+						if(data.msg =='Wrong'){
+							alertM('Wrong UserID or Password');
+						}
+						
+						else{
+						
+							console.log('success');
+							btn.button('reset');
+							$('#login').modal('hide');
+							$('#Login-group').hide();
+							$("#Login-Name").append('<form class="navbar-form navbar-right" role="search">'
+									+' <div class="form-group"><buttton class="btn btn-success btn-sm logout">'
+									+ '<font color="white">Logout</font></button></div>'
+									+'</form>');
+						}
+						
+						
+					},
+					error: function (error) {
+						btn.button('reset');
+						$("#messageM").html("<font color='black' ><strong></strong></font>");
+						$("#messageM").append('Error Connecting to Server');
+						$('#messageModal').modal('show');
+					}
+					
+				});	
+			
+			});
+			
+			
+			$(document).on('click', '.logout', function(e){
+				
+				var data = {};
+				
+				$.ajax({
+					type: 'POST',
+					data: JSON.stringify(data),
+					contentType: 'application/json',
+					url: '/LogoutReservation',						
+					success: function(data) {
+						console.log('success');
+					
+						//$('#login').modal('hide');
+						$('#Login-group').show();
+						$("#Login-Name").html("<font color='black' ><strong></strong></font>");
+						
+											
+						
+					},
+					error: function (error) {
+						
+						$("#messageM").html("<font color='black' ><strong></strong></font>");
+						$("#messageM").append('Error Connecting to Server');
+						$('#messageModal').modal('show');
+					}
+				});
+			});
+			
 			
 			
 		});
