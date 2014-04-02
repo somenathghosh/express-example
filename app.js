@@ -274,20 +274,35 @@ app.post('/DelReservation', function(req, res){
 	var obj = {};
 	
 	if(req.session.empID){
-		User.remove({to: req.body.to,from: req.body.from, id: req.session.empID},function(err){
+		User.findOne({to: req.body.to,from: req.body.from, id: req.session.empID},function(err,doc){
 			if(err) {
 				console.log("Error from MongoDB:" + err);
 				res.send({msg:'Database Error'});
 			}
 			
-			else {
-				res.send({msg:''});
-				
-			}
-				
-				
+			if(doc) {
 			
+				User.remove({to: req.body.to,from: req.body.from, id: req.session.empID},function(err){
+					if(err) {
+						console.log("Error from MongoDB:" + err);
+						res.send({msg:'Database Error'});
+					}
+					
+					else {
+						res.send({msg:''});
+						
+					}
+						
+						
+					
+				});
+			}
+			
+			if(!doc){
+				res.send({msg:'NoUser'});
+			}
 		});
+		
 	}
 	else{
 		//console.log(req.session);
