@@ -264,3 +264,27 @@ app.post('/doReservation', function(req, res){
 
 
 
+app.post('/DelReservation', function(req, res){
+	var obj = {};
+	//console.log('body: ' + JSON.stringify(req.body));
+	User.remove({to: req.body.to,from: req.body.from, id: req.body.emp},function(err){
+		if(err) {
+			console.log("Error from MongoDB:" + err);
+			res.send({msg:'Database Error'});
+		}
+		
+		else {
+			res.send({msg:''});
+			
+		}
+			
+			
+		
+	});
+	
+
+});
+
+
+
+

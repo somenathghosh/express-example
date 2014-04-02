@@ -1083,6 +1083,52 @@
 		<!-- --->
 		
 		
+        <div class="modal fade" id="myModal" role = "dialog" >
+        <div class = "modal-dialog">
+		        
+				
+		<div class = "modal-content">
+		  <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">x</button>
+            <h3>Login</h3>
+          </div>
+          <div class="modal-body">
+            
+            
+			<div class = "form-group">
+		                        
+				<label for = "contact-email" class = "col-sm-2 control-label">Emp ID</label>
+				<div class = "col-sm-10">
+					
+					<input name="empID" type = "number" class = "form-control" id = "Login-empID" placeholder = "TCS ID">
+					
+				</div>
+				
+			</div>
+			<br><br>
+			<div class = "form-group">
+				
+				<label for = "contact-msg" class = "col-sm-2 control-label">Password:</label>
+				<div class = "col-sm-10">
+					
+					<input name="password" id="Login-Password" class = "form-control"></input>
+					
+				</div>
+				
+			</div>
+              
+            
+          </div>
+          <div class="modal-footer">
+            <p><button type="button" class="btn btn-primary" id="Login-Button">Sign in</button>
+                
+            </p>
+			
+			
+          </div>
+        </div>
+        </div>
+        </div>
 		
 		
 		
@@ -1361,11 +1407,11 @@
 					toHour = toDate.getHours() < 10 ? '0'+toDate.getHours() : toDate.getHours() ;
 				
 				
-					htmlString = htmlString + '<tr><td>'+ doc.id +'</td><td>'+doc.name+'</td><td>'+fromDay 
+					htmlString = htmlString + '<tr class="divCancel' +doc.id+''+doc.from+''+doc.to+'"'+'><td>'+ doc.id +'</td><td>'+doc.name+'</td><td>'+fromDay 
 						+ "-"+fromMonth+'-'+ fromYear+'  '+ fromHour + ":"
 						+ fromMin+'</td><td>'+toDay + "-"+ toMonth + "-"+ toYear+ '  '+  toHour + ":" 
-						+ toMin+'</td><td><a href="#" class="btn btn-danger btn-sm" '
-						+  'id="btnCancel_' +doc.id+'_'+doc.from+'_'+doc.to+'"'+'>Cancel</a></td></tr>';
+						+ toMin+'</td><td><button class="btn btn-danger btn-sm btnDelete" data-loading-text="Wait..."'
+						+  'id="btnCancel_' +doc.id+'_'+doc.from+'_'+doc.to+'"'+'>Cancel</button></td></tr>';
 					
 					
 					
@@ -1535,6 +1581,7 @@
 						console.log('success');
 						btn.button('reset');
 						
+						
 					},
 					error: function (error) {
 						$("#messageM").html("<font color='black' ><strong></strong></font>");
@@ -1627,14 +1674,70 @@
 			};
 			
 			
-			$(".btnDelete").click(function(e) {
+			
+			
+			$(document).on('click', '.btnDelete', function(e){ 
 				e.preventDefault();
+				
+				var btn = $(this);
+				btn.button('loading');
+				
 				var $id = this.id;
-				AlertM($id);
-				return false;
+				//alertM($id);
+				
+				var $res = $id.split("_");
+				
+				var data = {};
+				data.emp = $res[1];
+				
+				data.from = $res[2];
+				data.to = $res[3];
+				
+				$.ajax({
+					type: 'POST',
+					data: JSON.stringify(data),
+					contentType: 'application/json',
+					url: '/DelReservation',						
+					success: function(data) {
+						
+						
+					
+					console.log('success');
+					btn.button('reset');
+					btn.html('Done');
+					$divID = 'divCancel' + $res[1]+ $res[2]+$res[3];
+					$('.'+$divID).hide();
+					
+						
+					},
+					error: function (error) {
+						$('#messageModal2').modal('hide');
+						$("#messageM").html("<font color='black' ><strong></strong></font>");
+						$("#messageM").append('Error Connecting to Server');
+						$('#messageModal').modal('show');
+					}
+					
+				});	
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				//$('#myModal').modal('show');
+				
 			});
-			
-			
 						
 			
 			
