@@ -97,8 +97,8 @@ app.get('/',function(req,res){
 
 
 app.get('/about',function(req,res){
-	var newDate = new Date();
-	res.render('./views/about',{msg: aboutDate.toString()}) ;
+	
+	res.render('./views/about') ;
 });
 
 
