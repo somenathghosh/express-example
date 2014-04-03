@@ -1307,11 +1307,13 @@
 			var $chat = $('#chat');
 			var $thank = $('#thank');
 			
+			
 
 			
 			var $fromDate = new Date();
 			var $toDate  = new Date();
-
+			
+			var $sessionData = "";
 			
 			$('#checkButton').click(function(e){
 				e.preventDefault();
@@ -1831,6 +1833,7 @@
 			$(document).on('click', '.btnDelete', function(e){ 
 				e.preventDefault();
 				
+				if($sessionData !=""){
 				var btn = $(this);
 				btn.button('loading');
 				
@@ -1875,6 +1878,11 @@
 					}
 					
 				});	
+				}
+				else{
+					alertM('Please login to active this functionality');
+					return false;
+				}
 				
 			});
 			
@@ -1922,6 +1930,8 @@
 									+' <div class="form-group"><font color="white">Welcome! '+ (data.msg).split(" ")[0] +" " +'</font><buttton class="btn btn-success btn-sm logout">'
 									+ '<font color="white">Logout</font></button></div>'
 									+'</form>');
+							
+							$sessionData = data.msg;
 						}
 						
 						
@@ -1953,6 +1963,7 @@
 						//$('#login').modal('hide');
 						$('#Login-group').show();
 						$("#Login-Name").html("<font color='black' ><strong></strong></font>");
+						$sessionData = "";
 						
 											
 						
