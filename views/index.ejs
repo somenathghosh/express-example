@@ -42,23 +42,23 @@
 				
 				<div class = "collapse navbar-collapse navHeaderCollapse">
 					
-					<div id='Login-group'>
+					<div class="row">
 						<form class="navbar-form navbar-right" role="search">
-						<div class="form-group"><a href = "#login" class="btn btn-success btn-sm" data-toggle="modal">
+						<div class="form-group" id='Login-group'><a href = "#login" class="btn btn-success btn-sm" data-toggle="modal">
 								<font color='white'>Login</font></a></div>
 						</form>
+					
+						<div id="Login-Name"></div>
+						<ul class = "nav navbar-nav navbar-right">
+						
+							<li class = "active"><a href = "#home" data-toggle="tab" >Home</a></li>
+							
+							<li><a href = "#about" data-toggle="tab" >About</a></li>
+							<li><a href = "#contact" data-toggle="modal">Feedback</a></li>
+							<li></li>
+							
+						</ul>
 					</div>
-					<div id="Login-Name"></div>
-					<ul class = "nav navbar-nav navbar-right">
-					
-						<li class = "active"><a href = "#home" data-toggle="tab" >Home</a></li>
-						
-						<li><a href = "#about" data-toggle="tab" >About</a></li>
-						<li><a href = "#contact" data-toggle="modal">Feedback</a></li>
-						<li></li>
-						
-					</ul>
-					
 					
 				
 				</div>
@@ -1904,6 +1904,7 @@
 						
 						if(data.msg =='Wrong'){
 							alertM('Wrong UserID or Password');
+							btn.button('reset');
 						}
 						
 						else{
@@ -1913,7 +1914,7 @@
 							$('#login').modal('hide');
 							$('#Login-group').hide();
 							$("#Login-Name").append('<form class="navbar-form navbar-right" role="search">'
-									+' <div class="form-group"><buttton class="btn btn-success btn-sm logout">'
+									+' <div class="form-group"><font color="white">Welcome! '+ (data.msg).split(" ")[0] +" " +'</font><buttton class="btn btn-success btn-sm logout">'
 									+ '<font color="white">Logout</font></button></div>'
 									+'</form>');
 						}
