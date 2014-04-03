@@ -552,8 +552,8 @@
 		                
 		                </div>
 		                <div class = "modal-footer">
-                            <a class = "btn btn-default" data-dismiss = "modal" id="btnClose" >Close</a>    
-		                    <button class = "btn btn-success" data-loading-text="Wait..." type = "button" id="sendLogin">Send</button>
+                            <a class = "btn btn-default" data-dismiss = "modal" id="btnClose10" >Close</a>    
+		                    <button class = "btn btn-success" data-loading-text="Wait..." type = "button" id="sendLogin">Login</button>
 		                </div>
 		            </form>
 					
@@ -1834,53 +1834,58 @@
 				e.preventDefault();
 				
 				if($sessionData !=""){
-				var btn = $(this);
-				btn.button('loading');
-				
-				var $id = this.id;
-				//alertM($id);
-				
-				var $res = $id.split("_");
-				
-				var data = {};
-				data.emp = $res[1];
-				
-				data.from = $res[2];
-				data.to = $res[3];
-				
-				$.ajax({
-					type: 'POST',
-					data: JSON.stringify(data),
-					contentType: 'application/json',
-					url: '/DelReservation',						
-					success: function(data) {
-						
-						if(data.msg =='NoUser'){
-							btn.button('reset');
-						}
-						else{
-						
-							console.log('success');
-							btn.button('reset');
-							btn.html('Done');
-							$divID = 'divCancel' + $res[1]+ $res[2]+$res[3];
-							
-							
-							
-						}
-					},
-					error: function (error) {
-						
-						$("#messageM").html("<font color='black' ><strong></strong></font>");
-						$("#messageM").append('Error Connecting to Server');
-						$('#messageModal').modal('show');
-						btn.button('reset');
-					}
+					var btn = $(this);
+					btn.button('loading');
 					
-				});	
+					var $id = this.id;
+					//alertM($id);
+					
+					var $res = $id.split("_");
+					
+					var data = {};
+					data.emp = $res[1];
+					
+					data.from = $res[2];
+					data.to = $res[3];
+					if($sessionData == $res[1]){
+						$.ajax({
+							type: 'POST',
+							data: JSON.stringify(data),
+							contentType: 'application/json',
+							url: '/DelReservation',						
+							success: function(data) {
+								
+								if(data.msg =='NoUser'){
+									btn.button('reset');
+								}
+								else{
+								
+									console.log('success');
+									btn.button('reset');
+									btn.html('Done');
+									$divID = 'divCancel' + $res[1]+ $res[2]+$res[3];
+									
+									
+									
+								}
+							},
+							error: function (error) {
+								
+								$("#messageM").html("<font color='black' ><strong></strong></font>");
+								$("#messageM").append('Error Connecting to Server');
+								$('#messageModal').modal('show');
+								btn.button('reset');
+							}
+							
+						});	
+					}
+					else {
+						alertM("You are not authorized");
+						return false;
+					}
 				}
 				else{
-					alertM('Please login to active this functionality');
+					alertM('Please login to cancel this reservation');
 					return false;
 				}
 				
