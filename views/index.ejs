@@ -1352,7 +1352,7 @@
 								else{
 									
 									showModal(data);
-									console.log('success');
+									//console.log('success');
 									btn.button('reset');
 								}
 							},
@@ -1394,7 +1394,7 @@
 									}
 									else{
 										showModal(data);
-										console.log('success');
+										//console.log('success');
 										btn.button('reset');
 									}
 								},
@@ -1440,7 +1440,7 @@
 										}
 										else{
 											showModal(data);
-											console.log('success');
+											//console.log('success');
 											btn.button('reset');
 										}
 									},
@@ -1484,7 +1484,7 @@
 											}
 											else{
 												showModal(data);
-												console.log('success');
+												//console.log('success');
 												btn.button('reset');
 											}
 										},
@@ -1570,7 +1570,7 @@
 					
 				});
 				htmlString = htmlString + '</div></table>' ;
-				console.log(htmlString);
+				//console.log(htmlString);
 				
 				$("#messageM2").append(htmlString);
 				
@@ -1617,8 +1617,8 @@
 						contentType: 'application/json',
 						url: '/feedback',						
 						success: function(data) {
-							console.log('success');
-							console.log(JSON.stringify(data.msg));
+							//console.log('success');
+							//console.log(JSON.stringify(data.msg));
 							btn.button('reset');
 							$('#feedForm').hide();
 							$('#thank').show();
@@ -1731,7 +1731,7 @@
 						$("#messageM").append("<center><font color='black' face='trebuchet MS' size='5' >"+data.message+"</font></center>");
 						$('#messageModal').modal('show');
 					
-						console.log('success');
+						//console.log('success');
 						btn.button('reset');
 						
 						
@@ -1847,6 +1847,7 @@
 					
 					data.from = $res[2];
 					data.to = $res[3];
+					//console.log($sessionData + '  '+ $res[1]);
 					if($sessionData == $res[1]){
 						$.ajax({
 							type: 'POST',
@@ -1860,7 +1861,7 @@
 								}
 								else{
 								
-									console.log('success');
+									//console.log('success');
 									btn.button('reset');
 									btn.html('Done');
 									$divID = 'divCancel' + $res[1]+ $res[2]+$res[3];
@@ -1880,12 +1881,13 @@
 						});	
 					}
 					else {
-						alertM("You are not authorized");
+						alertM("Authentication Failed");
+						btn.button('reset');
 						return false;
 					}
 				}
 				else{
-					alertM('Please login to cancel this reservation');
+					alertM('Please login to cancel the reservation');
 					return false;
 				}
 				
@@ -1927,16 +1929,17 @@
 						
 						else{
 						
-							console.log('success');
+							//console.log('success');
 							btn.button('reset');
 							$('#login').modal('hide');
 							$('#Login-group').hide();
 							$("#Login-Name").append('<form class="navbar-form navbar-right" role="search">'
-									+' <div class="form-group"><font color="white">Welcome! '+ (data.msg).split(" ")[0] +" " +'</font><buttton class="btn btn-success btn-sm logout">'
+									+' <div class="form-group"><font color="white">Welcome! '+ (data.name).split(" ")[0] +" " +'</font><buttton class="btn btn-success btn-sm logout">'
 									+ '<font color="white">Logout</font></button></div>'
 									+'</form>');
 							
-							$sessionData = data.msg;
+							//console.log(data.emp);
+							$sessionData = data.emp;
 						}
 						
 						
@@ -1963,7 +1966,7 @@
 					contentType: 'application/json',
 					url: '/LogoutReservation',						
 					success: function(data) {
-						console.log('success');
+						//console.log('success');
 					
 						//$('#login').modal('hide');
 						$('#Login-group').show();

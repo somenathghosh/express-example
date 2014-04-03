@@ -329,7 +329,8 @@ app.post('/LoginReservation', function(req, res){
 		
 		if(doc){
 			req.session.empID = req.body.emp;
-			res.send({msg:doc.FullName});
+			//console.log(doc.employeeID);
+			res.send({msg:' ', emp:empID, name:doc.FullName});
 		}
 		if(!doc) {
 			res.send({msg:'Wrong'});
