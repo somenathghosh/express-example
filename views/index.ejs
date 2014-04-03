@@ -1312,6 +1312,7 @@
 			var $fromDate = new Date();
 			var $toDate  = new Date();
 
+			
 			$('#checkButton').click(function(e){
 				e.preventDefault();
 				
@@ -1354,7 +1355,7 @@
 								}
 							},
 							error: function (error) {
-								
+								btn.button('reset');
 								$("#messageM2").html("<font color='black' ><strong></strong></font>");
 								$("#messageM2").append('Error Connecting to Server');
 								$('#messageModal2').modal('show');
@@ -1399,6 +1400,7 @@
 									$("#messageM2").html("<font color='black' ><strong></strong></font>");
 									$("#messageM2").append('Error Connecting to Server');
 									$('#messageModal2').modal('show');
+									btn.button('reset');
 								}
 								
 							});	
@@ -1444,6 +1446,7 @@
 										$("#messageM2").html("<font color='black' ><strong></strong></font>");
 										$("#messageM2").append('Error Connecting to Server');
 										$('#messageModal2').modal('show');
+										btn.button('reset');
 									}
 									
 								});	
@@ -1487,6 +1490,7 @@
 											$("#messageM2").html("<font color='black' ><strong></strong></font>");
 											$("#messageM2").append('Error Connecting to Server');
 											$('#messageModal2').modal('show');
+											btn.button('reset');
 										}
 										
 									});	
@@ -1528,7 +1532,7 @@
 			
 				$("#messageM2").html("<font color='black' ><strong></strong></font>");
 				
-				var htmlString= "<div class="+'table-responsive'+"><table class="+'table table-hover'+"><tr><th>Emp ID</th><th>Name</th><th>From Date & Time</th><th>To Date & Time</th><th>Action</th></tr>";
+				var htmlString= "<div class="+'table-responsive'+"><table id='mytable' class="+'table table-hover'+"><tr><th>Emp ID</th><th>Name</th><th>From Date & Time</th><th>To Date & Time</th><th>Action</th></tr>";
 				
 				
 				
@@ -1857,12 +1861,13 @@
 							btn.button('reset');
 							btn.html('Done');
 							$divID = 'divCancel' + $res[1]+ $res[2]+$res[3];
-							$('.'+$divID).hide();
+							
+							
 							
 						}
 					},
 					error: function (error) {
-						$('#messageModal2').modal('hide');
+						
 						$("#messageM").html("<font color='black' ><strong></strong></font>");
 						$("#messageM").append('Error Connecting to Server');
 						$('#messageModal').modal('show');
