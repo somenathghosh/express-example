@@ -1,1909 +1,426 @@
 <!DOCTYPE html>
-<html>
-	<head>
-		<title>TCS Lab Reservation System</title>
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<link href = "css/bootstrap.min.css" rel = "stylesheet">
-		
-		<link rel="stylesheet" type="text/css" href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
-		<style type="text/css">
-			body {
-				background-color: #19327D;
-				
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Charlotte Lab</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+
+    <!-- Fonts -->
+    <link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+
+    <!-- Custom Theme CSS -->
+    <link href="css/grayscale.css" rel="stylesheet">
+	<style type="text/css">
+			.form-signin
+			{
+				max-width: 330px;
+				padding: 15px;
+				margin: 0 auto;
 				
 			}
-			
-			#contentWrap{
-			display: none;
+			.form-signin .form-signin-heading, .form-signin .checkbox
+			{
+				margin-bottom: 10px;
+			}
+			.form-signin .checkbox
+			{
+				font-weight: normal;
+			}
+			.form-signin .form-control
+			{
+				position: relative;
+				font-size: 16px;
+				height: auto;
+				padding: 10px;
+				-webkit-box-sizing: border-box;
+				-moz-box-sizing: border-box;
+				box-sizing: border-box;
+			}
+			.form-signin .form-control:focus
+			{
+				z-index: 2;
+			}
+			.form-signin input[type="text"]
+			{
+				margin-bottom: -1px;
+				border-bottom-left-radius: 0;
+				border-bottom-right-radius: 0;
+			}
+			.form-signin input[type="password"]
+			{
+				margin-bottom: 10px;
+				border-top-left-radius: 0;
+				border-top-right-radius: 0;
+			}
+			.account-wall
+			{
+				margin-top: 20px;
+				padding: 40px 0px 20px 0px;
+				background-color: #f7f7f7;
+				-moz-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+				-webkit-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+				box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+				border-radius : 10px;
+			}
+			.login-title
+			{
+				color: #555;
+				font-size: 18px;
+				font-weight: 400;
+				display: block;
+			}
+			.profile-img
+			{
+				width: 96px;
+				height: 96px;
+				margin: 0 auto 10px;
+				display: block;
+				-moz-border-radius: 50%;
+				-webkit-border-radius: 50%;
+				border-radius: 50%;
+			}
+			.need-help
+			{
+				margin-top: 10px;
+			}
+			.new-account
+			{
+				display: block;
+				margin-top: 10px;
 			}
 			
+			.ladda-button{position:relative}.ladda-button .ladda-spinner{position:absolute;z-index:2;display:inline-block;width:32px;height:32px;top:50%;margin-top:-16px;opacity:0;pointer-events:none}.ladda-button .ladda-label{position:relative;z-index:3}.ladda-button .ladda-progress{position:absolute;width:0;height:100%;left:0;top:0;background:rgba(0,0,0,0.2);visibility:hidden;opacity:0;-webkit-transition:0.1s linear all !important;-moz-transition:0.1s linear all !important;-ms-transition:0.1s linear all !important;-o-transition:0.1s linear all !important;transition:0.1s linear all !important}.ladda-button[data-loading] .ladda-progress{opacity:1;visibility:visible}.ladda-button,.ladda-button .ladda-spinner,.ladda-button .ladda-label{-webkit-transition:0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) all !important;-moz-transition:0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) all !important;-ms-transition:0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) all !important;-o-transition:0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) all !important;transition:0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) all !important}.ladda-button[data-style=zoom-in],.ladda-button[data-style=zoom-in] .ladda-spinner,.ladda-button[data-style=zoom-in] .ladda-label,.ladda-button[data-style=zoom-out],.ladda-button[data-style=zoom-out] .ladda-spinner,.ladda-button[data-style=zoom-out] .ladda-label{-webkit-transition:0.3s ease all !important;-moz-transition:0.3s ease all !important;-ms-transition:0.3s ease all !important;-o-transition:0.3s ease all !important;transition:0.3s ease all !important}.ladda-button[data-style=expand-right] .ladda-spinner{right:14px}.ladda-button[data-style=expand-right][data-size="s"] .ladda-spinner,.ladda-button[data-style=expand-right][data-size="xs"] .ladda-spinner{right:4px}.ladda-button[data-style=expand-right][data-loading]{padding-right:56px}.ladda-button[data-style=expand-right][data-loading] .ladda-spinner{opacity:1}.ladda-button[data-style=expand-right][data-loading][data-size="s"],.ladda-button[data-style=expand-right][data-loading][data-size="xs"]{padding-right:40px}.ladda-button[data-style=expand-left] .ladda-spinner{left:14px}.ladda-button[data-style=expand-left][data-size="s"] .ladda-spinner,.ladda-button[data-style=expand-left][data-size="xs"] .ladda-spinner{left:4px}.ladda-button[data-style=expand-left][data-loading]{padding-left:56px}.ladda-button[data-style=expand-left][data-loading] .ladda-spinner{opacity:1}.ladda-button[data-style=expand-left][data-loading][data-size="s"],.ladda-button[data-style=expand-left][data-loading][data-size="xs"]{padding-left:40px}.ladda-button[data-style=expand-up]{overflow:hidden}.ladda-button[data-style=expand-up] .ladda-spinner{top:-32px;left:50%;margin-left:-16px}.ladda-button[data-style=expand-up][data-loading]{padding-top:54px}.ladda-button[data-style=expand-up][data-loading] .ladda-spinner{opacity:1;top:14px;margin-top:0}.ladda-button[data-style=expand-up][data-loading][data-size="s"],.ladda-button[data-style=expand-up][data-loading][data-size="xs"]{padding-top:32px}.ladda-button[data-style=expand-up][data-loading][data-size="s"] .ladda-spinner,.ladda-button[data-style=expand-up][data-loading][data-size="xs"] .ladda-spinner{top:4px}.ladda-button[data-style=expand-down]{overflow:hidden}.ladda-button[data-style=expand-down] .ladda-spinner{top:62px;left:50%;margin-left:-16px}.ladda-button[data-style=expand-down][data-size="s"] .ladda-spinner,.ladda-button[data-style=expand-down][data-size="xs"] .ladda-spinner{top:40px}.ladda-button[data-style=expand-down][data-loading]{padding-bottom:54px}.ladda-button[data-style=expand-down][data-loading] .ladda-spinner{opacity:1}.ladda-button[data-style=expand-down][data-loading][data-size="s"],.ladda-button[data-style=expand-down][data-loading][data-size="xs"]{padding-bottom:32px}.ladda-button[data-style=slide-left]{overflow:hidden}.ladda-button[data-style=slide-left] .ladda-label{position:relative}.ladda-button[data-style=slide-left] .ladda-spinner{left:100%;margin-left:-16px}.ladda-button[data-style=slide-left][data-loading] .ladda-label{opacity:0;left:-100%}.ladda-button[data-style=slide-left][data-loading] .ladda-spinner{opacity:1;left:50%}.ladda-button[data-style=slide-right]{overflow:hidden}.ladda-button[data-style=slide-right] .ladda-label{position:relative}.ladda-button[data-style=slide-right] .ladda-spinner{right:100%;margin-left:-16px}.ladda-button[data-style=slide-right][data-loading] .ladda-label{opacity:0;left:100%}.ladda-button[data-style=slide-right][data-loading] .ladda-spinner{opacity:1;left:50%}.ladda-button[data-style=slide-up]{overflow:hidden}.ladda-button[data-style=slide-up] .ladda-label{position:relative}.ladda-button[data-style=slide-up] .ladda-spinner{left:50%;margin-left:-16px;margin-top:1em}.ladda-button[data-style=slide-up][data-loading] .ladda-label{opacity:0;top:-1em}.ladda-button[data-style=slide-up][data-loading] .ladda-spinner{opacity:1;margin-top:-16px}.ladda-button[data-style=slide-down]{overflow:hidden}.ladda-button[data-style=slide-down] .ladda-label{position:relative}.ladda-button[data-style=slide-down] .ladda-spinner{left:50%;margin-left:-16px;margin-top:-2em}.ladda-button[data-style=slide-down][data-loading] .ladda-label{opacity:0;top:1em}.ladda-button[data-style=slide-down][data-loading] .ladda-spinner{opacity:1;margin-top:-16px}.ladda-button[data-style=zoom-out]{overflow:hidden}.ladda-button[data-style=zoom-out] .ladda-spinner{left:50%;margin-left:-16px;-webkit-transform:scale(2.5);-moz-transform:scale(2.5);-ms-transform:scale(2.5);-o-transform:scale(2.5);transform:scale(2.5)}.ladda-button[data-style=zoom-out] .ladda-label{position:relative;display:inline-block}.ladda-button[data-style=zoom-out][data-loading] .ladda-label{opacity:0;-webkit-transform:scale(0.5);-moz-transform:scale(0.5);-ms-transform:scale(0.5);-o-transform:scale(0.5);transform:scale(0.5)}.ladda-button[data-style=zoom-out][data-loading] .ladda-spinner{opacity:1;-webkit-transform:none;-moz-transform:none;-ms-transform:none;-o-transform:none;transform:none}.ladda-button[data-style=zoom-in]{overflow:hidden}.ladda-button[data-style=zoom-in] .ladda-spinner{left:50%;margin-left:-16px;-webkit-transform:scale(0.2);-moz-transform:scale(0.2);-ms-transform:scale(0.2);-o-transform:scale(0.2);transform:scale(0.2)}.ladda-button[data-style=zoom-in] .ladda-label{position:relative;display:inline-block}.ladda-button[data-style=zoom-in][data-loading] .ladda-label{opacity:0;-webkit-transform:scale(2.2);-moz-transform:scale(2.2);-ms-transform:scale(2.2);-o-transform:scale(2.2);transform:scale(2.2)}.ladda-button[data-style=zoom-in][data-loading] .ladda-spinner{opacity:1;-webkit-transform:none;-moz-transform:none;-ms-transform:none;-o-transform:none;transform:none}.ladda-button[data-style=contract]{overflow:hidden;width:100px}.ladda-button[data-style=contract] .ladda-spinner{left:50%;margin-left:-16px}.ladda-button[data-style=contract][data-loading]{border-radius:50%;width:52px}.ladda-button[data-style=contract][data-loading] .ladda-label{opacity:0}.ladda-button[data-style=contract][data-loading] .ladda-spinner{opacity:1}.ladda-button[data-style=contract-overlay]{overflow:hidden;width:100px;box-shadow:0px 0px 0px 3000px rgba(0,0,0,0)}.ladda-button[data-style=contract-overlay] .ladda-spinner{left:50%;margin-left:-16px}.ladda-button[data-style=contract-overlay][data-loading]{border-radius:50%;width:52px;box-shadow:0px 0px 0px 3000px rgba(0,0,0,0.8)}.ladda-button[data-style=contract-overlay][data-loading] .ladda-label{opacity:0}.ladda-button[data-style=contract-overlay][data-loading] .ladda-spinner{opacity:1}
+
+
 			
 		</style>
-		
-		
+</head>
 
-	</head>
-	<body>
-	
-		<div class = "navbar navbar-inverse navbar-static-top">
-			<div class = "container">
-				
-				<a href = "#" class = "navbar-brand"><font face="trebuchet MS" size="5" color="white">Reservation</font></a>
-				
-				
-				
-				<button class = "navbar-toggle" data-toggle = "collapse" data-target = ".navHeaderCollapse">
-					<span class = "icon-bar"></span>
-					<span class = "icon-bar"></span>
-					<span class = "icon-bar"></span>
-				</button>
-				
-				
-				
-				<div class = "collapse navbar-collapse navHeaderCollapse">
-					
-					<div class="row">
-						<form class="navbar-form navbar-right" role="search">
-						<div class="form-group" id='Login-group'><a href = "#login" class="btn btn-success btn-sm" data-toggle="modal">
-								<font color='white'>Login</font></a></div>
-						</form>
-					
-						<div id="Login-Name"></div>
-						<ul class = "nav navbar-nav navbar-right">
-						
-							<li class = "active"><a href = "/">Home</a></li>
-							
-							<li><a href = "/about" >About</a></li>
-							<li><a href = "#contact" data-toggle="modal">Feedback</a></li>
-							<li></li>
-							
-						</ul>
-					</div>
-					
-				
-				</div>
-				
-				
-				
-				
-				
-			</div>
-		</div>
-		
-		<!--
-		<div class = "container">
-		
-			<div class = "jumbotron text-center">
-				<h1><font face="trebuchet MS" ><span class="fa fa-globe"></span> TCS Charlotte Lab</font></h1>
-				
-				
-				
-			</div>
-		
-		</div>
-		-->
-	
-		
-		<div class = "container">
-		<div class="panel panel-default">
-			<div class = "panel-heading">
-			<center>
-				<h1><font face="trebuchet MS" size="8"><span class="fa fa-globe"></span> TCS Charlotte Lab</font></h1></center>
-							
-			</div>
-		</div>
-		</div>
-		
-		
-		
+<body id="page-top" data-spy="scroll" data-target=".navbar-custom">
+
+    <nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
         <div class="container">
-			
-		
-				<div class="row">
-					<div class="col-lg-3 col-md-3 col-sm-3">
-						<div class="panel panel-success">
-							<div class="panel-heading"><center><font face="trebuchet MS" size="5">Availability</font><br></center></div>
-							<div class="panel-body" style="height:400px;overflow:auto">
-							<div id="nickWrap" >
-							<!--
-							<div class="alert alert-danger">
-								<p id="nickError"></p>
-							</div>
-							-->
-							<form class="form form-horizontal" id="setNick">
-								<div class="control-group">
-									<!--label class="control-label">Email</label-->
-									<div class="controls">
-										<!--<input type="Number" id="nickname" name="mc" placeholder="Machine Number" class="form-control">-->
-										<select name="mc" class="form-control" id="nickname" required >
-											<option value=1>Select Machine Number</option>
-											<option value=5>5</option>
-											<option value=6>6</option>
-											<option value=7>7</option>
-											<option value=8>8</option>
-											<option value=9>9</option>
-											<option value=10>10</option>
-											<option value=11>11</option>
-											<option value=12>12</option>
-											<option value=13>13</option>
-											<option value=14>14</option>
-										</select>
-										<!--<input id="fromWidget" type="text" class="form-control" placeholder="From Date MM/DD/YYYY HH:MM PM/AM"></input>
-										
-										<div class='input-group date' id='datetimepicker1'>
-										<input id="fromWidget" class="form-control" type="text" value="From Date" style="color:#aaa" onfocus="this.value='';this.style.color='#000';this.onfocus='';"/>
-										<span class="input-group-addon"><a href="javascript:NewCal('fromWidget','mmddyyyy','true',12)"><img src="cal.gif" width="16" height="16" border="0" alt="Pick a date"></a></span>
-										</div>
-										-->
-										
-										
-										
-										
-										<div class='input-group date' id='datetimepicker_1'>
-										<input id="fromWidget" class="form-control" type="text" value="From(MM/DD/YYYY HH:MM)" style="color:#aaa" onfocus="this.value='';this.style.color='#000';this.onfocus='';"/>
-										<span class="input-group-addon"><a href="#datetime1" data-toggle="modal"><span class="glyphicon glyphicon-calendar"></span></a></span>
-										</div>
-										
-										
-										<div class='input-group date' id='datetimepicker_2'>
-										<input id="toWidget" class="form-control" type="text" value="To(MM/DD/YYYY HH:MM)" style="color:#aaa" onfocus="this.value='';this.style.color='#000';this.onfocus='';"/>
-										<span class="input-group-addon"><a href="#datetime2" data-toggle="modal"><span class="glyphicon glyphicon-calendar"></span></a></span>
-										</div>
-										
-										
-										
-										<!--<input id="toWidget" type="text" class="form-control" placeholder="To Date MM/DD/YYYY HH:MM PM/AM" ></input>
-										
-										
-										<div class='input-group date' id='datetimepicker1'>
-										<input id="toWidget" class="form-control" type="text"value="To Date" style="color:#aaa" onfocus="this.value='';this.style.color='#000';this.onfocus='';" />
-										<span class="input-group-addon"><a href="javascript:NewCal('toWidget','mmddyyyy','true',12)"><img src="cal.gif" width="16" height="16" border="0" alt="Pick a date"></a></span>
-										</div>
-										-->
-										<br>
-										<center><button id="checkButton"  class = "btn btn-success btn-large" data-loading-text="Loading..." type = "button" >Check</button><center>
-										
-										<div id="contentWrap2">
-											<div id="chatWrap">
-												<div id="chat">											
-												
-												</div>
-							
-											</div>
-							<!--<div id="users"></div>-->
-										</div>
-									</div>
-								</div>
-							</form>
-							</div>
-							</div>
-							
-						
-	
-						</div>
-					</div>
-					
-								
+            <div class="navbar-header page-scroll">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-main-collapse">
+                    <i class="fa fa-bars"></i>
+                </button>
+                <a class="navbar-brand" href="#page-top">
+                    <font size="5"><i class="fa fa-globe"></i>  <span class="light">Lab</span></font>
+                </a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse navbar-right navbar-main-collapse">
+                <ul class="nav navbar-nav">
+                    <!-- Hidden li included to remove active class from about link when scrolled up past about section -->
+                    <li class="hidden">
+                        <a href="#page-top"></a>
+                    </li>
+                    <li class="page-scroll">
+                        <a href="#myReservation">My Reservation</a>
+                    </li>
+					<li class="page-scroll">
+                        <a href="#about">About</a>
+                    </li>
 					
 					
-					<div class="col-lg-9 col-md-9 col-sm-9 ">
-						<div class="panel panel-success">
-							<div class="panel-heading"><center><font face="trebuchet MS" size="5">Lab Reservation</font><br><font face="trebuchet MS" size="3"></font></center></div>
-							<!--
-							<div class="alert alert-danger">
-								<p id="Error"></p>
-							</div>
-							-->
-							
-								
-							<div class="panel-body" style="height:400px;overflow:auto">
-							
-								
-							
-							<div id="formWrap" >
-							<form name ="myForm" id="reservation" class="form form-horizontal">
-								<div class="control-group">
-									<!--label class="control-label">Email</label-->
-									
-									<div id="msg">
-									
-									</div>
-									<div class="controls">
-										<div class="table-responsive">
-										<table class="table" width="100%">
-										
-																		
-										<tr>
-												<td width="15%" align="left"> <font color="green">Employee ID</font></td>
-												<td width="85%"><input name="empID" id="empID" type="number" placeholder="Enter TCS Employee Number" class="form-control"></td>
-										</tr>
-										
-										<tr>
-												<td width="15%" align="left"><font color="green">Full Name</font></td>
-												<td width="85%"><input name="name"  id="name" type="text" value="Enter Full Name" style="color:#aaa" onfocus="this.value='';this.style.color='#000';this.onfocus='';" class="form-control"></td>
-										</tr>	
-											
-										
-										<tr>
-												<td width="15%" align="left"><font color="green">From Date</font></td>
-												<td width="85%">
-										<!--		
-										<div class='input-group date' id='datetimepicker1'>
-										<input id="from" name="from" class="form-control" type="text" placeholder="Select From Date" />
-										<span class="input-group-addon"><a href="javascript:NewCal('from','mmddyyyy','true',12)"><img src="cal.gif" width="16" height="16" border="0" alt="Pick a date"></a></span>
-										</div> -->
-										
-										<div class='input-group date' id='datetimepicker_3'>
-										<input id="from"  name="from" class="form-control" type="text" value="From(MM/DD/YYYY HH:MM)" style="color:#aaa" onfocus="this.value='';this.style.color='#000';this.onfocus='';"/>
-										<span class="input-group-addon"><a href="#datetime3" data-toggle="modal"><span class="glyphicon glyphicon-calendar"></span></a></span>
-										</div>
-										
-										
-										</tr>
-										
-										
-										<tr>
-												<td width="15%" align="left"><font color="green">To Date</font></td>
-												<td width="85%">
-												
-										<!--
-										<div class='input-group date' id='datetimepicker1'>
-										<input id="to" name="to" class="form-control" type="text" placeholder="Select To Date" />
-										<span class="input-group-addon"><a href="javascript:NewCal('to','mmddyyyy','true',12)"><img src="cal.gif" width="16" height="16" border="0" alt="Pick a date"></a></span>
-										</div> -->
-										
-										<div class='input-group date' id='datetimepicker_4'>
-										<input id="to"  name="from" class="form-control" type="text" value="To(MM/DD/YYYY HH:MM)" style="color:#aaa" onfocus="this.value='';this.style.color='#000';this.onfocus='';"/>
-										<span class="input-group-addon"><a href="#datetime4" data-toggle="modal"><span class="glyphicon glyphicon-calendar"></span></a></span>
-										</div>
-										
-										</tr>
-										
-										<tr>
-												<td width="15%" align="left"><font color="green">Machine #</font></td>
-												<td width="85%">
-												
-										<!--<input type="Number" id="inputEmail" name="mc" placeholder="Provide Machine Number" class="form-control">-->
-										
-										<select name="mc" id="mc" class="form-control" id="inputEmail" required >
-											<option value=1>Select Machine number</option>
-											<option value=5>5</option>
-											<option value=6>6</option>
-											<option value=7>7</option>
-											<option value=8>8</option>
-											<option value=9>9</option>
-											<option value=10>10</option>
-											<option value=11>11</option>
-											<option value=12>12</option>
-											<option value=13>13</option>
-											<option value=14>14</option>
-										</select>
-										
-										</tr>
-										
-										<tr>
-												<td width="15%" align="left"><font color="green">Usage Reason</font></td>
-												<td width="85%">
-												
-										<textarea name="reason" id="reason" type="text" placeholder="Provide reason why you want to use LAB machine" class="form-control"></textarea>
-																								
-										</tr>
-										
-														
-										
-										<!--<input type="text" name="to" class="form-control" placeholder="To Date MM/DD/YYYY HH:MM PM/AM">-->
-										
-																			
-										
-										
-										
-										<!--
-										<tr>
-												<td width="15%"></td>
-												<td width="85%">
-												
-										<!--<center><button class = "btn btn-success btn-large" type = "submit">Reserve</button><center>-->
-										
-										<!--
-										</tr>
-										-->
-										
-										</table>
-										<center><button id="reserverButton" class = "btn btn-success btn-large" data-loading-text="Wait..." type = "button">Reserve</button><center>
-										</div>
-										
-									</div>
-								</div>
-							</form>
-							</div>
-							</div>
-						</div>
-					</div>
+                    <li class="page-scroll">
+                        <a href="#download">Feedback</a>
+                    </li>
+                    <li class="page-scroll">
+                        <a href="#contact">Contact</a>
+                    </li>
+                </ul>
+				<form class="navbar-form navbar-left" role="search">
+				<div class="form-group">
+				  <input type="text" class="form-control" placeholder="Search">
 				</div>
-			</div>
-		
-		
-		
-		
-		<!--
-		<div class = "navbar navbar-inverse navbar-fixed-bottom">
-		
-			<div class = "container-fluid">
-				<p class = "navbar-text pull-left">&copy;This work is licensed under
-					<a href="http://www.tcs.com/Pages/default.aspx">Tata Consultancy Services </a></p>
-					
-					<!--<a href = "#" class = "navbar-btn btn-default btn-sm btn pull-right" id="btnSubmit"><span class="glyphicon glyphicon-thumbs-up"></span> Like</a>-->
-				<!--	<button type="button" class = "navbar-btn btn-default btn-sm btn pull-right" id="btnSubmit"><span class="glyphicon glyphicon-thumbs-up"></span> Like</a>
-					</button>
-			</div>
-		
-		</div>
-		-->
-		<div class = "modal fade" id = "contact" role = "dialog">
-		    <div class = "modal-dialog">
-		        
 				
-				<div class = "modal-content">
-					
-					<!--
-					<div  id="contentWrap" class="alert alert-success">
-							<p id="success"><center>Thanks for your feedback</center></p>
-					</div>
-					-->
-					
-		            <form id="setNick1" class = "form-horizontal" action="/feedback" method ="POST">
-		                <div class = "modal-header">
-		                    <h4>TCS Lab Reservation Team Feedback</h4>
-		                </div>
-						<div id="thank"></div>
-		                <div  class = "modal-body" id="feedForm">
-						
-		                    <div class = "form-group">
-		                        
-		                        <label for = "contact-name" class = "col-sm-2 control-label">Name:</label>
-		                        <div class = "col-sm-10">
-		                            
-		                            <input name="name" type = "text" class = "form-control" id = "contact-name" placeholder = "Full Name">
-		                            
-		                        </div>
-		                        
-		                    </div>
-		                    
-		                    <div class = "form-group">
-		                        
-		                        <label for = "contact-email" class = "col-sm-2 control-label">Emp ID</label>
-		                        <div class = "col-sm-10">
-		                            
-		                            <input name="empID" type = "number" class = "form-control" id = "contact-empID" placeholder = "TCS ID">
-		                            
-		                        </div>
-		                        
-		                    </div>
-		                    
-		                    <div class = "form-group">
-		                        
-		                        <label for = "contact-msg" class = "col-sm-2 control-label">Message:</label>
-		                        <div class = "col-sm-10">
-		                            
-		                            <textarea name="feedback" id="contact-feedback" class = "form-control" rows = "8"></textarea>
-		                            
-		                        </div>
-		                        
-		                    </div>
-		                
-		                </div>
-		                <div class = "modal-footer">
-                            <a class = "btn btn-default" data-dismiss = "modal" id="btnClose" >Close</a>    
-		                    <button class = "btn btn-success" data-loading-text="sending..." type = "button" id="sendFeedback">Send</button>
-		                </div>
-		            </form>
-					
-		        </div>
-		    </div>
-		</div>
-		
-		<!--- ----->
-		
-		<div class = "modal fade" id = "login" role = "dialog">
-		    <div class = "modal-dialog">
-		        
-				
-				<div class = "modal-content">
-					
-					<!--
-					<div  id="contentWrap" class="alert alert-success">
-							<p id="success"><center>Thanks for your feedback</center></p>
-					</div>
-					-->
-					
-		            <form id="loginForm" class = "form-horizontal" action="/login" method ="POST">
-		                <div class = "modal-header">
-		                    <h4>Log In</h4>
-		                </div>
-						<div id="thank"></div>
-		                <div  class = "modal-body" id="LoginForm1">
-						
-		                    <div class = "form-group">
-		                        
-		                        <label for = "Login-empID" class = "col-sm-2 control-label pull-left" >Employee</label>
-		                        <div class = "col-sm-10">
-		                            
-		                            <input name="name" type = "number" class = "form-control" id = "Login-empID" placeholder = "Emp ID">
-		                            
-		                        </div>
-		                        
-		                    </div>
-		                    
-		                    <div class = "form-group">
-		                        
-		                        <label for = "Login-Password" class = "col-sm-2 control-label">Password</label>
-		                        <div class = "col-sm-10">
-		                            
-		                            <input name="empID" type = "password" class = "form-control" id = "Login-Password" placeholder = "password">
-		                            
-		                        </div>
-		                        
-		                    </div>
-		                    
-		                    
-		                
-		                </div>
-		                <div class = "modal-footer">
-                            <a class = "btn btn-default" data-dismiss = "modal" id="btnClose10" >Close</a>    
-		                    <button class = "btn btn-success" data-loading-text="Wait..." type = "button" id="sendLogin">Login</button>
-		                </div>
-		            </form>
-					
-		        </div>
-		    </div>
-		</div>
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		<!-- -->
-		
-		
-		
-		
-		<div class = "modal fade" id = "messageModal" role = "dialog">
-		    <div class = "modal-dialog">
-		        
-				
-				<div class = "modal-content">
-					
-				
-					
-		           
-		                <div class = "modal-header">
-		                   
-		                </div>
-						
-		                <div  class = "modal-body" id="feedForm">
-						
-						<div id="messageM"></div>
-		                
-		                </div>
-		                <div class = "modal-footer">
-                            <a class = "btn btn-default" data-dismiss = "modal"  >Close</a>    
-		                    
-		                </div>
-		           
-					
-		        </div>
-		    </div>
-		</div>
-		
-		
-		
-		<!--- Availability check Modal -->
-		
-		<div class = "modal fade" id = "messageModal2" role = "dialog">
-		    <div class = "modal-dialog">
-		        
-				
-				<div class = "modal-content">
-					
-				
-					
-		           
-		                <div class = "modal-header">
-		                  <strong> Current Reservations </strong> 
-		                </div>
-						
-		                <div  class = "modal-body" id="feedForm2" style="height:200px;overflow-y:scroll;overflow-x:scroll;">
-						
+			  </form>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
 
-							<div id="messageM2">
-							
-							
-							
-							
-							</div>
-		               
-		                </div>
-		                <div class = "modal-footer" id="messageM2Close" >
-                            <a class = "btn btn-default" data-dismiss = "modal" >Close</a>    
-		                    
-		                </div>
-		           
-					
-		        </div>
-		    </div>
-		</div>
-		
-		
-		
-		<!-- Alert Modal -->
-		
-		<div class = "modal fade"  id = "AlertModal" role = "dialog">
-		    <div class = "modal-dialog  modal-sm" style="top:50px;">
-		        
-				
-				<div class = "modal-content">
-				
-					<div class = "modal-header">
-		                <font color='red'><strong>Alert...!!! </strong> </font>
-						<!--<a class = "pull-right" data-dismiss = "modal"  ><font color='red' size='4'><span class="glyphicon glyphicon-remove"></span></font></a> 
-						<a class = "btn btn-default" data-dismiss = "modal" id="btnClose" >Close</a>-->
-		            </div>
+    <section class="intro">
+        <div class="intro-body">
+            <div class="container">
+                <div class="row">
+                    
+                        <!--<h1 class="brand-heading">L A B</h1>-->
 						
-		            <div  class = "modal-body" id="feedForm2">
-	   
-		            
+						
+						 <div class="col-sm-6 col-md-4 col-md-offset-4">
+							
+							<div class="account-wall">
+								
+								<img class="profile-img" src="https://lh5.googleusercontent.com/-b0-k99FZlyE/AAAAAAAAAAI/AAAAAAAAAAA/eu7opA4byxI/photo.jpg?sz=120"
+									alt="">
+								<form class="form-signin">
+								<input type="text" class="form-control" placeholder="TCS ID" required autofocus>
+								
+								<input type="password" class="form-control" placeholder="Password" required>
+								<button class="btn btn-lg btn-success btn-block ladda-button" data-style="expand-right"" type="button">
+									<span class="ladda-label">Sign in</span></button>
+								
+								
+								</form>
+							</div>
+							<a href="#" class="text-center new-account">Create an account </a>
+						</div>
+						
+						
+						
+                        
+						
+						<!--
+                        <div class="page-scroll">
+                            <a href="#about" class="btn btn-circle">
+                                <i class="fa fa-angle-double-down animated"></i>
+                            </a>
+                        </div>
+						-->
+                    
+                </div>
+            </div>
+        </div>
+    </section>
+	
+	<!--
+	 <section id="myReservation" class="content-section text-center">
+        <div class="download-section">
+            <div class="container">
+                <div class="col-lg-8 col-lg-offset-2">
+                    <h2>My Reservation</h2>
+                    <p></p>
+                    
+                </div>
+            </div>
+        </div>
+    </section>
 
-					<div id="AlertA"></div>
-					</div>
-					<div class = "modal-footer">
-                            <a class = "btn btn-default" data-dismiss = "modal"  >Close</a>    
-		                    
-		            </div>
-		        </div>
-		    </div>
-		</div>
-		
-		
-		
-		
-		
-		
-		
-		
-		<!--  From Date Availability -->
-		
-		<div class = "modal fade" id = "datetime1" role = "dialog">
-		    <div class = "modal-dialog">
-		        
-				
-				<div class = "modal-content">
-					
-					<!--
-					<div  id="contentWrap" class="alert alert-success">
-							<p id="success"><center>Thanks for your feedback</center></p>
-					</div>
-					-->
-					
-		            <form id="setDate1" class = "form-horizontal" >
-		                <div class = "modal-header">
-		                    <h4>Choose Date & Time</h4>
-		                </div>
-						
-		                <div  class = "modal-body" id="feedForm">
-							
-		                  <div class="row">
-							  <div class="col-xs-4">
-								<select name="MM" class="form-control" id="mm1" required >
-												<option value=0>month</option>
-												<option value=1>Jan</option>
-												<option value=2>Feb</option>
-												<option value=3>Mar</option>
-												<option value=4>Apr</option>
-												<option value=5>May</option>
-												<option value=6>Jun</option>
-												<option value=7>Jul</option>
-												<option value=8>Aug</option>
-												<option value=9>Sep</option>
-												<option value=10>Oct</option>
-												<option value=11>Nov</option>
-												<option value=12>Dec</option>
-												
-												
-								</select>
-							  </div>
-							  <div class="col-xs-4">
-								<select name="dd" class="form-control" id="dd1" required >
-												<option value=0>date</option>
-												<option value=1>1</option>
-												<option value=2>2</option>
-												<option value=3>3</option>
-												<option value=4>4</option>
-												<option value=5>5</option>
-												<option value=6>6</option>
-												<option value=7>7</option>
-												<option value=8>8</option>
-												<option value=9>9</option>
-												<option value=10>10</option>
-												<option value=11>11</option>
-												<option value=12>12</option>
-												<option value=13>13</option>
-												<option value=14>14</option>
-												<option value=15>15</option>
-												<option value=16>16</option>
-												<option value=17>17</option>
-												<option value=18>18</option>
-												<option value=19>19</option>
-												<option value=20>20</option>
-												<option value=21>21</option>
-												<option value=22>22</option>
-												<option value=23>23</option>
-												<option value=24>24</option>
-												<option value=25>25</option>
-												<option value=26>26</option>
-												<option value=27>27</option>
-												<option value=28>28</option>
-												<option value=29>29</option>
-												<option value=30>30</option>
-												<option value=31>31</option>
-												
-								</select>
-							  </div>
-							  <div class="col-xs-4">
-								<select name="YY" class="form-control" id="yy1" required >
-												<option value=0>year</option>
-												<option value=2014>2014</option>
-												<option value=2015>2015</option>
-												<option value=2016>2016</option>
-												<option value=2017>2017</option>
-												<option value=2018>2018</option>
-												<option value=2019>2019</option>
-												<option value=2020>2020</option>
-												
-												
-												
-								</select>
-							  </div>
-						  </div>
-						  <br>
-						  <div class="row">
-						  <div class="col-xs-4">
-							<select name="hh" class="form-control" id="hh1" required >
-											<option value=0>hour</option>
-											<option value=1>1</option>
-											<option value=2>2</option>
-											<option value=3>3</option>
-											<option value=4>4</option>
-											<option value=5>5</option>
-											<option value=6>6</option>
-											<option value=7>7</option>
-											<option value=8>8</option>
-											<option value=9>9</option>
-											<option value=10>10</option>
-											<option value=11>11</option>
-											<option value=12>12</option>
-											
-											
-							</select>
-						  </div>
-						  
-						  <div class="col-xs-4">
-							<select name="mm" class="form-control" id="mn1" required >
-											<option value=0>min</option>
-											<option value=00>00</option>
-											<option value=15>15</option>
-											<option value=30>30</option>
-											<option value=45>45</option>
-																	
-							</select>
-						  </div>
-						  
-						  <div class="col-xs-4">
-							<select name="Tformat" class="form-control" id="tf1" required >
-											<option value="AM">AM</option>
-											<option value="PM">PM</option>
-																											
-							</select>
-						  </div>
-						  
-						</div>
-		                </div>
-		      
-		                <div class = "modal-footer">
-                            <a class = "btn btn-default" data-dismiss = "modal" id="btnSubmit1">OK</a>
-		                    <!--<button class = "btn btn-primary" type = "submit">OK</button>-->
-		                </div>
-		            </form>
-					
-		        </div>
-		    </div>
-		</div>
-		
-		<!-- This is for TO DATE -Availability -->
-		
-		<div class = "modal fade" id = "datetime2" role = "dialog">
-		    <div class = "modal-dialog">
-		        
-				
-				<div class = "modal-content">
-					
-					<!--
-					<div  id="contentWrap" class="alert alert-success">
-							<p id="success"><center>Thanks for your feedback</center></p>
-					</div>
-					-->
-					
-		            <form id="setDate2" class = "form-horizontal" >
-		                <div class = "modal-header">
-		                    <h4>Choose Date & Time</h4>
-		                </div>
-						
-		                <div  class = "modal-body" id="feedForm">
-						
-		                  <div class="row">
-							  <div class="col-xs-4">
-								<select name="MM" class="form-control" id="mm2" required >
-												<option value=0>month</option>
-												<option value=1>Jan</option>
-												<option value=2>Feb</option>
-												<option value=3>Mar</option>
-												<option value=4>Apr</option>
-												<option value=5>May</option>
-												<option value=6>Jun</option>
-												<option value=7>Jul</option>
-												<option value=8>Aug</option>
-												<option value=9>Sep</option>
-												<option value=10>Oct</option>
-												<option value=11>Nov</option>
-												<option value=12>Dec</option>
-												
-												
-								</select>
-							  </div>
-							  <div class="col-xs-4">
-								<select name="dd" class="form-control" id="dd2" required >
-												<option value=0>date</option>
-												<option value=1>1</option>
-												<option value=2>2</option>
-												<option value=3>3</option>
-												<option value=4>4</option>
-												<option value=5>5</option>
-												<option value=6>6</option>
-												<option value=7>7</option>
-												<option value=8>8</option>
-												<option value=9>9</option>
-												<option value=10>10</option>
-												<option value=11>11</option>
-												<option value=12>12</option>
-												<option value=13>13</option>
-												<option value=14>14</option>
-												<option value=15>15</option>
-												<option value=16>16</option>
-												<option value=17>17</option>
-												<option value=18>18</option>
-												<option value=19>19</option>
-												<option value=20>20</option>
-												<option value=21>21</option>
-												<option value=22>22</option>
-												<option value=23>23</option>
-												<option value=24>24</option>
-												<option value=25>25</option>
-												<option value=26>26</option>
-												<option value=27>27</option>
-												<option value=28>28</option>
-												<option value=29>29</option>
-												<option value=30>30</option>
-												<option value=31>31</option>
-												
-								</select>
-							  </div>
-							  <div class="col-xs-4">
-								<select name="YY" class="form-control" id="yy2" required >
-												<option value=0>year</option>
-												<option value=2014>2014</option>
-												<option value=2015>2015</option>
-												<option value=2016>2016</option>
-												<option value=2017>2017</option>
-												<option value=2018>2018</option>
-												<option value=2019>2019</option>
-												<option value=2020>2020</option>
-												
-												
-												
-								</select>
-							  </div>
-						  </div>
-						  <br>
-						  <div class="row">
-							  <div class="col-xs-4">
-								<select name="hh" class="form-control" id="hh2" required >
-												<option value=0>hour</option>
-												<option value=1>1</option>
-												<option value=2>2</option>
-												<option value=3>3</option>
-												<option value=4>4</option>
-												<option value=5>5</option>
-												<option value=6>6</option>
-												<option value=7>7</option>
-												<option value=8>8</option>
-												<option value=9>9</option>
-												<option value=10>10</option>
-												<option value=11>11</option>
-												<option value=12>12</option>
-												
-												
-								</select>
-							  </div>
-							  
-							  <div class="col-xs-4">
-								<select name="mm" class="form-control" id="mn2" required >
-												<option value=0>min</option>
-												<option value=00>00</option>
-												<option value=15>15</option>
-												<option value=30>30</option>
-												<option value=45>45</option>
-																		
-								</select>
-							  </div>
-							  
-							  <div class="col-xs-4">
-								<select name="Tformat" class="form-control" id="tf2" required >
-												<option value="AM">AM</option>
-												<option value="PM">PM</option>
-																												
-								</select>
-							  </div>
-							</div>
-						</div>
-		                
-		                
-		                <div class = "modal-footer">
-                            <a class = "btn btn-default" data-dismiss = "modal" id="btnSubmit2">OK</a>
-		                    <!--<button class = "btn btn-primary" type = "submit">OK</button>-->
-		                </div>
-		            </form>
-					
-		        </div>
-		    </div>
-		</div>
-		
-		
-		<!--- -->
-		
-		<div class = "modal fade" id = "datetime3" role = "dialog">
-		    <div class = "modal-dialog">
-		        
-				
-				<div class = "modal-content">
-					
-					<!--
-					<div  id="contentWrap" class="alert alert-success">
-							<p id="success"><center>Thanks for your feedback</center></p>
-					</div>
-					-->
-					
-		            <form id="setDate3" class = "form-horizontal" >
-		                <div class = "modal-header">
-		                    <h4>Choose Date & Time</h4>
-		                </div>
-						
-		                <div  class = "modal-body" id="feedForm">
-						
-		                 <div class="row">
-						  <div class="col-xs-4">
-							<select name="MM" class="form-control" id="mm3" required >
-											<option value=0>month</option>
-												<option value=1>Jan</option>
-												<option value=2>Feb</option>
-												<option value=3>Mar</option>
-												<option value=4>Apr</option>
-												<option value=5>May</option>
-												<option value=6>Jun</option>
-												<option value=7>Jul</option>
-												<option value=8>Aug</option>
-												<option value=9>Sep</option>
-												<option value=10>Oct</option>
-												<option value=11>Nov</option>
-												<option value=12>Dec</option>
-											
-											
-							</select>
-						  </div>
-						  <div class="col-xs-4">
-							<select name="dd" class="form-control" id="dd3" required >
-											<option value=0>date</option>
-											<option value=1>1</option>
-											<option value=2>2</option>
-											<option value=3>3</option>
-											<option value=4>4</option>
-											<option value=5>5</option>
-											<option value=6>6</option>
-											<option value=7>7</option>
-											<option value=8>8</option>
-											<option value=9>9</option>
-											<option value=10>10</option>
-											<option value=11>11</option>
-											<option value=12>12</option>
-											<option value=13>13</option>
-											<option value=14>14</option>
-											<option value=15>15</option>
-											<option value=16>16</option>
-											<option value=17>17</option>
-											<option value=18>18</option>
-											<option value=19>19</option>
-											<option value=20>20</option>
-											<option value=21>21</option>
-											<option value=22>22</option>
-											<option value=23>23</option>
-											<option value=24>24</option>
-											<option value=25>25</option>
-											<option value=26>26</option>
-											<option value=27>27</option>
-											<option value=28>28</option>
-											<option value=29>29</option>
-											<option value=30>30</option>
-											<option value=31>31</option>
-											
-							</select>
-						  </div>
-						  <div class="col-xs-4">
-							<select name="YY" class="form-control" id="yy3" required >
-											<option value=0>year</option>
-											<option value=2014>2014</option>
-											<option value=2015>2015</option>
-											<option value=2016>2016</option>
-											<option value=2017>2017</option>
-											<option value=2018>2018</option>
-											<option value=2019>2019</option>
-											<option value=2020>2020</option>
-											
-											
-											
-							</select>
-						  </div>
-						  </div>
-						  <br>
-						  <div class="row">
-						  <div class="col-xs-4">
-							<select name="hh" class="form-control" id="hh3" required >
-											<option value=0>hour</option>
-											<option value=1>1</option>
-											<option value=2>2</option>
-											<option value=3>3</option>
-											<option value=4>4</option>
-											<option value=5>5</option>
-											<option value=6>6</option>
-											<option value=7>7</option>
-											<option value=8>8</option>
-											<option value=9>9</option>
-											<option value=10>10</option>
-											<option value=11>11</option>
-											<option value=12>12</option>
-											
-											
-							</select>
-						  </div>
-						  
-						  <div class="col-xs-4">
-							<select name="mm" class="form-control" id="mn3" required >
-											<option value=0>min</option>
-											<option value=00>00</option>
-											<option value=15>15</option>
-											<option value=30>30</option>
-											<option value=45>45</option>
-																	
-							</select>
-						  </div>
-						  
-						  <div class="col-xs-4">
-							<select name="Tformat" class="form-control" id="tf3" required >
-											<option value="AM">AM</option>
-											<option value="PM">PM</option>
-																											
-							</select>
-						  </div>
-						  </div>
-						</div>
-		                
-		               
-		                <div class = "modal-footer">
-                            <a class = "btn btn-default" data-dismiss = "modal" id="btnSubmit3">OK</a>
-		                    <!--<button class = "btn btn-primary" type = "submit">OK</button>-->
-		                </div>
-		            </form>
-					
-		        </div>
-		    </div>
-		</div>
-		
-		<!--- -->
-		
-		<div class = "modal fade" id = "datetime4" role = "dialog">
-		    <div class = "modal-dialog">
-		        
-				
-				<div class = "modal-content">
-					
-					<!--
-					<div  id="contentWrap" class="alert alert-success">
-							<p id="success"><center>Thanks for your feedback</center></p>
-					</div>
-					-->
-					
-		            <form id="setDate4" class = "form-horizontal" >
-		                <div class = "modal-header">
-		                    <h4>Choose Date & Time</h4>
-		                </div>
-						
-		                <div  class = "modal-body" id="feedForm">
-						
-		                   <div class="row">
-						  <div class="col-xs-4">
-							<select name="MM" class="form-control" id="mm4" required >
-											<option value=0>month</option>
-											<option value=1>Jan</option>
-												<option value=2>Feb</option>
-												<option value=3>Mar</option>
-												<option value=4>Apr</option>
-												<option value=5>May</option>
-												<option value=6>Jun</option>
-												<option value=7>Jul</option>
-												<option value=8>Aug</option>
-												<option value=9>Sep</option>
-												<option value=10>Oct</option>
-												<option value=11>Nov</option>
-												<option value=12>Dec</option>
-											
-											
-							</select>
-						  </div>
-						  <div class="col-xs-4">
-							<select name="dd" class="form-control" id="dd4" required >
-											<option value=0>date</option>
-											<option value=1>1</option>
-											<option value=2>2</option>
-											<option value=3>3</option>
-											<option value=4>4</option>
-											<option value=5>5</option>
-											<option value=6>6</option>
-											<option value=7>7</option>
-											<option value=8>8</option>
-											<option value=9>9</option>
-											<option value=10>10</option>
-											<option value=11>11</option>
-											<option value=12>12</option>
-											<option value=13>13</option>
-											<option value=14>14</option>
-											<option value=15>15</option>
-											<option value=16>16</option>
-											<option value=17>17</option>
-											<option value=18>18</option>
-											<option value=19>19</option>
-											<option value=20>20</option>
-											<option value=21>21</option>
-											<option value=22>22</option>
-											<option value=23>23</option>
-											<option value=24>24</option>
-											<option value=25>25</option>
-											<option value=26>26</option>
-											<option value=27>27</option>
-											<option value=28>28</option>
-											<option value=29>29</option>
-											<option value=30>30</option>
-											<option value=31>31</option>
-											
-							</select>
-						  </div>
-						  <div class="col-xs-4">
-							<select name="YY" class="form-control" id="yy4" required >
-											<option value=0>year</option>
-											<option value=2014>2014</option>
-											<option value=2015>2015</option>
-											<option value=2016>2016</option>
-											<option value=2017>2017</option>
-											<option value=2018>2018</option>
-											<option value=2019>2019</option>
-											<option value=2020>2020</option>
-											
-											
-											
-							</select>
-						  </div>
-						  </div>
-						  <br>
-						  <div class="row">
-						  <div class="col-xs-4">
-							<select name="hh" class="form-control" id="hh4" required >
-											<option value=0>hour</option>
-											<option value=1>1</option>
-											<option value=2>2</option>
-											<option value=3>3</option>
-											<option value=4>4</option>
-											<option value=5>5</option>
-											<option value=6>6</option>
-											<option value=7>7</option>
-											<option value=8>8</option>
-											<option value=9>9</option>
-											<option value=10>10</option>
-											<option value=11>11</option>
-											<option value=12>12</option>
-											
-											
-							</select>
-						  </div>
-						  
-						  <div class="col-xs-4">
-							<select name="mm" class="form-control" id="mn4" required >
-											<option value=0>min</option>
-											<option value=00>00</option>
-											<option value=15>15</option>
-											<option value=30>30</option>
-											<option value=45>45</option>
-																	
-							</select>
-						  </div>
-						  
-						  <div class="col-xs-4">
-							<select name="Tformat" class="form-control" id="tf4" required >
-											<option value="AM">AM</option>
-											<option value="PM">PM</option>
-																											
-							</select>
-						  </div>
-						  
-						</div>
-		                
-		                </div>
-		                <div class = "modal-footer">
-                            <a class = "btn btn-default" data-dismiss = "modal" id="btnSubmit4">OK</a>
-		                    <!--<button class = "btn btn-primary" type = "submit">OK</button>-->
-		                </div>
-		            </form>
-					
-		        </div>
-		    </div>
-		</div>
-		
-		<!-- --->
-		
-		
+    <section id="about" class="container content-section text-center">
         
 		
 		
-		
-		
-		<script src = "http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-		<script src = "js/bootstrap.js"></script>
-	
-		
-		<!--<script src="/socket.io/socket.io.js"></script>-->
-		
-		<script>
-		jQuery(function($){
-			//var socket = io.connect();
-			
-			var $nickForm = $('#setNick');
-			var $feedForm = $('#setNick1');
-			var $reserveForm = $('#reservation');
-			
-			var $nickError = $('#nickError');
-			
-			var $nickBox = $('#nickname');
-			var $nickBoxFrom = $('#fromWidget');
-			var $nickBoxTo = $('#toWidget');
-			
-			var $nameBox = $('#contact-name');
-			var $empIDBox = $('#contact-empID');
-			var $feedbackBox = $('#contact-feedback');
-
-			
-			var $chat = $('#chat');
-			var $thank = $('#thank');
-			
-			
-
-			
-			var $fromDate = new Date();
-			var $toDate  = new Date();
-			
-			var $sessionData = "";
-			
-			
-			
-			$('#checkButton').click(function(e){
-				e.preventDefault();
-				
-				
-			
-			
-				var $fDate = new Date($nickBoxFrom.val());
-				var $tDate = new Date($nickBoxTo.val());
-				var $fDateNew = new Date();
-				var $tDateNew = new Date(2050,12,31,23,59,00,00);
-			
-				
-				if ($nickBox.val() >= 5 && $nickBox.val() <= 14 ) {
-					
-					if (($nickBoxFrom.val() =="From(MM/DD/YYYY HH:MM)" ||$nickBoxFrom.val() =="") && ($nickBoxTo.val()=="To(MM/DD/YYYY HH:MM)" || $nickBoxTo.val()=="")){
-						
-						var data = {};
-						data.mc = $nickBox.val();
-						data.from = $fDateNew;
-						data.to = $tDateNew;
-						
-						
-						var btn = $(this);
-						btn.button('loading');
-						$.ajax({
-							type: 'POST',
-							data: JSON.stringify(data),
-							contentType: 'application/json',
-							url: '/getReservation',						
-							success: function(data) {
-								if(data.msg.length > 0){
-									
-									$("#messageM2").html("<font color='black' ><strong></strong></font>");
-									$("#messageM2").append(data.msg);
-									$('#messageModal2').modal('show');
-									
-								}
-								else{
-									
-									showModal(data);
-									//console.log('success');
-									btn.button('reset');
-								}
-							},
-							error: function (error) {
-								btn.button('reset');
-								$("#messageM2").html("<font color='black' ><strong></strong></font>");
-								$("#messageM2").append('Error Connecting to Server');
-								$('#messageModal2').modal('show');
-								
-							}
-							
-						});	
-							
-						
-					}
-					else {
-					
-						if(($nickBoxFrom.val() !="From(MM/DD/YYYY HH:MM)" || $nickBoxFrom.val() !="") && ($nickBoxTo.val()=="To(MM/DD/YYYY HH:MM)" || $nickBoxTo.val()=="") && isFinite($fDate)){
-							
-							
-							
-							var data = {};
-							data.mc = $nickBox.val();
-							data.from = $fDate;
-							data.to = $tDateNew;
-							var btn = $(this);
-							btn.button('loading');
-							
-							$.ajax({
-								type: 'POST',
-								data: JSON.stringify(data),
-								contentType: 'application/json',
-								url: '/getReservation',						
-								success: function(data) {
-									if(data.msg.length > 0){
-										$("#messageM2").html("<font color='black' ><strong></strong></font>");
-										$("#messageM2").append(data.msg);
-										$('#messageModal2').modal('show');
-									}
-									else{
-										showModal(data);
-										//console.log('success');
-										btn.button('reset');
-									}
-								},
-								error: function (error) {
-									$("#messageM2").html("<font color='black' ><strong></strong></font>");
-									$("#messageM2").append('Error Connecting to Server');
-									$('#messageModal2').modal('show');
-									btn.button('reset');
-								}
-								
-							});	
-						
-						
-						
-						
-						
-						}
-						else{
-						
-						
-							if(($nickBoxFrom.val() =="From(MM/DD/YYYY HH:MM)" || $nickBoxFrom.val() =="") && ($nickBoxTo.val()!="To(MM/DD/YYYY HH:MM)" || $nickBoxTo.val()!="") && isFinite($tDate)){
-								
-								
-								
-								var data = {};
-								data.mc = $nickBox.val();
-								data.from = $fDateNew;
-								data.to = $tDate;
-								
-								var btn = $(this);
-								btn.button('loading');
-								
-								$.ajax({
-									type: 'POST',
-									data: JSON.stringify(data),
-									contentType: 'application/json',
-									url: '/getReservation',						
-									success: function(data) {
-										if(data.msg.length > 0){
-											$("#messageM2").html("<font color='black' ><strong></strong></font>");
-											$("#messageM2").append(data.msg);
-											$('#messageModal2').modal('show');
-										}
-										else{
-											showModal(data);
-											//console.log('success');
-											btn.button('reset');
-										}
-									},
-									error: function (error) {
-										$("#messageM2").html("<font color='black' ><strong></strong></font>");
-										$("#messageM2").append('Error Connecting to Server');
-										$('#messageModal2').modal('show');
-										btn.button('reset');
-									}
-									
-								});	
-								
-								
-								
-								
-								
-							}
-							else{
-							
-							
-							
-								if (($nickBoxFrom.val() !="From(MM/DD/YYYY HH:MM)" || $nickBoxFrom.val() !="") && ($nickBoxTo.val()!="To(MM/DD/YYYY HH:MM)" ||$nickBoxTo.val()!="") && isFinite($fDate) && isFinite($tDate) ) {
-									
-									var btn = $(this);
-									btn.button('loading');
-									var data = {};
-									data.mc = $nickBox.val();
-									data.from = $fDate;
-									data.to = $tDate;
-									
-									$.ajax({
-										type: 'POST',
-										data: JSON.stringify(data),
-										contentType: 'application/json',
-										url: '/getReservation',						
-										success: function(data) {
-											if(data.msg.length > 0){
-												$("#messageM2").html("<font color='black' ><strong></strong></font>");
-												$("#messageM2").append(data.msg);
-												$('#messageModal2').modal('show');
-											}
-											else{
-												showModal(data);
-												//console.log('success');
-												btn.button('reset');
-											}
-										},
-										error: function (error) {
-											$("#messageM2").html("<font color='black' ><strong></strong></font>");
-											$("#messageM2").append('Error Connecting to Server');
-											$('#messageModal2').modal('show');
-											btn.button('reset');
-										}
+		<div class = "container">
+                     <div class = "row">
+                   
+                        <div class = "col-md-offset-1 col-md-9">
+                       
+                            <div class = "panel panel-default">
+                           
+                                <div class = "panel-body">
+                                   
+                                    <div class = "page-header">
+																	
+                                        <h3><font color="black">About This Project</font></h3>
+                                    </div>
+                                   
+                                    
+                                   
+                                    <p> <font color="black">This project has been developed using <strong>NODE.JS</strong> and <strong>MongoDB</strong> as Database. And it has been Deployed on <strong>Heroku</strong> Cloud.
+										<br><br> For any information about this project, you may contact following persons: <br>
 										
-									});	
-
-								
-								}
-								else {
-										alertM("Date(s) not in correct format");
-										return false;
-								}
-							}
-						}
-					}
-				}
-				else {
-					alertM("Please choose a machine number.");
-					return false;
-				}
-				
-			});
-			
+										<div class="panel-group" id="accordion">
+										  <div class="panel panel-default">
+											<div class="panel-heading">
+											  <h4 class="panel-title">
+												<a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+												  Arvind Radhakrishnen
+												</a>
+											  </h4>
+											</div>
+											<div id="collapseOne" class="panel-collapse collapse">
+											  <div class="panel-body">
+												Reachable via : arvind.kr@tcs.com   or  arvind.k.r@bankofamerica.com
+											  </div>
+											</div>
+										  </div>
+										  <div class="panel panel-default">
+											<div class="panel-heading">
+											  <h4 class="panel-title">
+												<a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
+												  Somenath Ghosh
+												</a>
+											  </h4>
+											</div>
+											<div id="collapseTwo" class="panel-collapse collapse">
+											  <div class="panel-body">
+												Reachable via : somenath.ghosh@tcs.com   or  somenath.ghosh@bankofamerica.com
+											  </div>
+											</div>
+										  </div>
+										  <div class="panel panel-default">
+											<div class="panel-heading">
+											  <h4 class="panel-title">
+												<a data-toggle="collapse" data-parent="#accordion" href="#collapseThree">
+												  Chandrasekhar Nampally
+												</a>
+											  </h4>
+											</div>
+											<div id="collapseThree" class="panel-collapse collapse">
+											  <div class="panel-body">
+												Reachable via : chandrasekhar.nampally@tcs.com   or  chandrasekhar.nampally@bankofamerica.com
+											  </div>
+											</div>
+										  </div>
+										  
+										  <div class="panel panel-default">
+											<div class="panel-heading">
+											  <h4 class="panel-title">
+												<a data-toggle="collapse" data-parent="#accordion" href="#collapsefour">
+												  Prasun Sharma
+												</a>
+											  </h4>
+											</div>
+											<div id="collapsefour" class="panel-collapse collapse">
+											  <div class="panel-body">
+												Reachable via : prasun.sharma@tcs.com   or  prasun.sharma@bankofamerica.com
+											  </div>
+											</div>
+										  </div>
+										  
+										</div>
+									
+									
+									
+									</font></p>
+                                   
+                                    <h4></h4>
+                                   
+                                    <p> </p>
+                                   
+                                   
+                                </div>
+                           
+                            </div>
+                       
+                        </div>
+                       
+                      </div>
+                   
+                </div>
 		
-			
-			var showModal =function($data){
-			
-				var month=new Array();
-				month[0]="Jan";
-				month[1]="Feb";
-				month[2]="Mar";
-				month[3]="Apr";
-				month[4]="May";
-				month[5]="Jun";
-				month[6]="Jul";
-				month[7]="Aug";
-				month[8]="Sep";
-				month[9]="Oct";
-				month[10]="Nov";
-				month[11]="Dec";
-			
-				$("#messageM2").html("<font color='black' ><strong></strong></font>");
-				
-				var htmlString= "<div class="+'table-responsive'+"><table id='mytable' class="+'table table-hover'+"><tr><th>Emp ID</th><th>Name</th><th>From Date & Time</th><th>To Date & Time</th><th>Action</th></tr>";
-				
-				
-				
-				$data.R.forEach( function(doc){
-					
-					
-					
-					fromDate = new Date(doc.from);
-					toDate = new Date(doc.to);
-					
-					fromMonth = month[fromDate.getMonth()];
-					fromYear = fromDate.getFullYear();
-					
-					toMonth = month[toDate.getMonth()];
-					toYear = toDate.getFullYear();
-					
-					fromMin = fromDate.getMinutes() < 10 ? '0'+fromDate.getMinutes() : fromDate.getMinutes();
-					toMin = toDate.getMinutes() < 10 ? '0'+ toDate.getMinutes() : toDate.getMinutes();
-					fromDay = fromDate.getDate() < 10 ? '0'+fromDate.getDate() :fromDate.getDate();
-					toDay  =  toDate.getDate() < 10 ? '0'+toDate.getDate() : toDate.getDate() ;
-					fromHour = fromDate.getHours() < 10 ? '0'+fromDate.getHours() : fromDate.getHours();
-					toHour = toDate.getHours() < 10 ? '0'+toDate.getHours() : toDate.getHours() ;
-				
-				
-					htmlString = htmlString + '<tr id="divCancel' +doc.id+''+doc.from+''+doc.to+'"'+'><td>'+ doc.id +'</td><td>'+doc.name+'</td><td>'+fromDay 
-						+ "-"+fromMonth+'-'+ fromYear+'  '+ fromHour + ":"
-						+ fromMin+'</td><td>'+toDay + "-"+ toMonth + "-"+ toYear+ '  '+  toHour + ":" 
-						+ toMin+'</td><td><button class="btn btn-danger btn-sm btnDelete" data-loading-text="Wait..."'
-						+  'id="btnCancel_' +doc.id+'_'+doc.from+'_'+doc.to+'"'+'>Cancel</button></td></tr>';
-					
-					
-					
-					
-				});
-				htmlString = htmlString + '</div></table>' ;
-				
-				//console.log(htmlString);
-				
-				$("#messageM2").append(htmlString);
-				
-				$('#messageModal2').modal({backdrop:false});
-				$('#messageModal2').modal('show');
-				
-			};
-			
-			
-			
-			$('#sendFeedback').click(function(e){
-				e.preventDefault();
-				if ( $nameBox.val()=="" || $nameBox.val() == parseInt($nameBox.val()) ){
-					
-					alertM("Please enter a valid Name");
-					return false;
-				}
-				
-				if ( $empIDBox.val()=="" || $empIDBox.val() != parseInt($empIDBox.val()) ){
-					
-					alertM("Please enter a valid Employee ID");
-					return false;
-				}
-				if ( $feedbackBox.val()=="" ){
-					
-					alertM("Feedback can not be empty");
-					return false;
-				}
-				
-
-				else {
-					
-					
-					var btn = $(this);
-					btn.button('loading');
-					
-					var data = {};
-					data.name = $nameBox.val();
-					data.id = $empIDBox.val();
-					data.feedback = $feedbackBox.val();
-					
-					$.ajax({
-						type: 'POST',
-						data: JSON.stringify(data),
-						contentType: 'application/json',
-						url: '/feedback',						
-						success: function(data) {
-							//console.log('success');
-							//console.log(JSON.stringify(data.msg));
-							btn.button('reset');
-							$('#feedForm').hide();
-							$('#thank').show();
-							$('#sendFeedback').hide();
-							$("#thank").html("<font color='black'><strong></strong></font>");
-							$thank.append('<br><center><font color="black">' + data.msg + "</font></center><br/>"); 
-						},
-						error: function (xhr, status, error) {
-							$('#feedForm').hide();
-							btn.button('reset');
-							$('#thank').show();
-							$('#sendFeedback').hide();
-							$("#thank").html("<font color='black'><strong></strong></font>");
-							$thank.append('<br><center><font color="black">' + 'Error connecting to the server' + "</font></center><br/>"); 
-						}
-						
-					});
-				
-				}
-			
-			});
-			
-			$("#btnClose").click(function(e){
-				$('#contact-feedback').val('');
-				$('#feedForm').show();
-				$('#sendFeedback').show();
-				$('#thank').hide();
-				
-			});
-			
-			
-			
-			$('#reserverButton').click(function(e){
-				$("#msg").html("<font color='black'><strong></strong></font>");
-				e.preventDefault();
-				var $emp = $('#empID').val();
-				var $name = $('#name').val();
-				var $from = $('#from');
-				var $to = $('#to');
-				var $mc = $('#mc').val();
-				var $reason = $('#reason').val();
-			
-			
-				var $fDate = new Date($from.val());
-				var $tDate = new Date($to.val());
-				var $today = new Date();
-			
-				if($emp < 99999) {
-					alertM("Please enter a valid Employee Number");
-					return false;
-				}
-				
-				if($name =="" || $name == parseInt($name) || $name =='Enter Full Name' ){
-					alertM("Name can not be blank or Numeric");
-					return false;
-				}
-				
-				
-				
-				if(isFinite($fDate) && isFinite($tDate)){
-					if($fDate >= $tDate){
-						alertM("From Date must be less than To Date");
-						return false;
-					}
-					//console.log(today);
-					if($fDate < $today){
-						alertM("From Date must be greater than or equal to Today's Date");
-						return false;
-					}
-					$('#from').val($fDate);
-					$('#to').val($tDate);
-				}
-				else {
-					alertM("Date(s) not in correct format or not chosen correctly");
-					return false;
-				}
-				
-				if($mc < 5 || $mc > 14){
-					alertM("Please Choose a machine Number");
-					return false;
-				}
-				
-				
-				
-				if($reason ==""){
-					alertM("Please fill the reason");
-					return false;
-				}
-				
-				var btn = $(this);
-				btn.button('loading');
-				
-				
-				var data = {};
-				data.emp = $emp;
-				data.name = $name;
-				data.from = $fDate;
-				data.to = $tDate;
-				data.mc = $mc;
-				data.reason = $reason;
-				
-				$.ajax({
-					type: 'POST',
-					data: JSON.stringify(data),
-					contentType: 'application/json',
-					url: '/doReservation',						
-					success: function(data) {
-						
-						$("#messageM").html("<font color='black' ><strong></strong></font>");
-						$("#messageM").append("<center><font color='black' face='trebuchet MS' size='5' >"+data.message+"</font></center>");
-						$('#messageModal').modal('show');
-					
-						//console.log('success');
-						btn.button('reset');
-						
-						
-					},
-					error: function (error) {
-						$("#messageM").html("<font color='black' ><strong></strong></font>");
-						$("#messageM").append('Error Connecting to Server');
-						$('#messageModal').modal('show');
-						btn.button('reset');
-					}
-					
-				});	
-				
 		
-				
-			});
-			
-			
-			$("#btnSubmit1").click(function(e){
-				e.preventDefault();
-				
-				//var $newDate1 = new Date();
-				var dateString = $('#mm1').val() +"/" +$('#dd1').val() + "/" + $('#yy1').val() + " " + $('#hh1').val() + ":" + $('#mn1').val() +" " + $('#tf1').val();
-				//alert(dateString);
-	
-				var $newDate1 = new Date(dateString.toString());
+    </section>
 
-				//alert($newDate1);
-				$('#fromWidget').val($newDate1);
-				
-				//$nickBox.val('');
-			});
-			
-			
-			
-			
-			$("#btnSubmit2").click(function(e){
-				e.preventDefault();
-				
-				//var $newDate1 = new Date();
-				var dateString = $('#mm2').val() +"/" +$('#dd2').val() + "/" + $('#yy2').val() + " " + $('#hh2').val() + ":" + $('#mn2').val() +" " + $('#tf2').val();
-				//alert(dateString);
+    <section id="download" class="content-section text-center">
+        <div class="download-section">
+            <div class="container">
+                <div class="col-lg-8 col-lg-offset-2">
+                    <h2>Feedback</h2>
+                    <p></p>
+                    <a href="http://startbootstrap.com/grayscale" class="btn btn-default btn-lg">Send</a>
+                </div>
+            </div>
+        </div>
+    </section>
 	
-				var $newDate2 = new Date(dateString.toString());
-
-				//alert($newDate1);
-				$('#toWidget').val($newDate2);
-				
-				//$nickBox.val('');
-			});
-			
-			
-			$("#btnSubmit3").click(function(e){
-				e.preventDefault();
-				
-				//var $newDate1 = new Date();
-				var dateString = $('#mm3').val() +"/" +$('#dd3').val() + "/" + $('#yy3').val() + " " + $('#hh3').val() + ":" + $('#mn3').val() +" " + $('#tf3').val();
-				//alert(dateString);
 	
-				var $newDate3 = new Date(dateString.toString());
 
-				//alert($newDate1);
-				$('#from').val($newDate3);
-				
-				//$nickBox.val('');
-			});
-			
-			
-			$("#btnSubmit4").click(function(e){
-				e.preventDefault();
-				
-				//var $newDate1 = new Date();
-				var dateString = $('#mm4').val() +"/" +$('#dd4').val() + "/" + $('#yy4').val() + " " + $('#hh4').val() + ":" + $('#mn4').val() +" " + $('#tf4').val();
-				//alert(dateString);
+    <section id="contact" class="container content-section text-center">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2">
+                <h2>Contact Us</h2>
+                <p hidden>Feel free to email us to provide some feedback on our templates, give us suggestions for new templates and themes, or to just say hello!</p>
+                <p></p>
+                <ul class="list-inline banner-social-buttons">
+                    <li><a href="https://twitter.com/SBootstrap" class="btn btn-default btn-lg"><i class="fa fa-twitter fa-fw"></i> <span class="network-name">Twitter</span></a>
+                    </li>
+                    <li><a href="https://github.com/IronSummitMedia/startbootstrap" class="btn btn-default btn-lg"><i class="fa fa-github fa-fw"></i> <span class="network-name">Github</span></a>
+                    </li>
+                    <li><a href="https://plus.google.com/+Startbootstrap/posts" class="btn btn-default btn-lg"><i class="fa fa-google-plus fa-fw"></i> <span class="network-name">Google+</span></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </section>
+	-->
+   
+
+    <!-- Core JavaScript Files -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
+
+    
+    <!-- Custom Theme JavaScript -->
+    <script src="js/grayscale.js"></script>
+	<script>
 	
-				var $newDate4 = new Date(dateString.toString());
+			/*
+Ref:
+http://www.jqueryscript.net/demo/Buttons-with-Built-in-Loading-Indicators-For-Bootsrap-3-Ladda-Bootstrap/
+*/
 
-				//alert($newDate1);
-				$('#to').val($newDate4);
-				
-				//$nickBox.val('');
-			});
-			
-			
-			
-			
-			
-			var alertM = function($m) { 
-				$('#AlertModal').modal('show');
-				//$('#AlertA').show();
-				$("#AlertA").html("<font color='black' ><strong></strong></font>");
-				$("#AlertA").append('<center><font color="black" face="trebuchet MS" size="3">' + $m + "</font></center>"); 
-				$('#AlertModal').modal('show');
-			};
-			
-			
-			
-			
-			$(document).on('click', '.btnDelete', function(e){ 
-				e.preventDefault();
-				
-				if($sessionData !=""){
-					var btn = $(this);
-					btn.button('loading');
-					
-					var $id = this.id;
-					//alertM($id);
-					
-					var $res = $id.split("_");
-					
-					var data = {};
-					data.emp = $res[1];
-					
-					data.from = $res[2];
-					data.to = $res[3];
-					//console.log($sessionData + '  '+ $res[1]);
-					if($sessionData == $res[1]){
-						$.ajax({
-							type: 'POST',
-							data: JSON.stringify(data),
-							contentType: 'application/json',
-							url: '/DelReservation',						
-							success: function(data) {
-								
-								if(data.msg =='NoUser'){
-									btn.button('reset');
-								}
-								else{
-								
-									//console.log('success');
-									btn.button('reset');
-									btn.html('Done');
-									$divID = 'divCancel' + $res[1]+ $res[2]+$res[3];
-									
-									//console.log($divID.trim());
-									
-									$('#'+$divID.trim()).hide();
-									$('#'+$divID.trim()).html("<font color='black' ><strong></strong></font>");
-									//$('#messageM2Close a').trigger("click");
-									//$('#messageModal2').hide();
-									//$fGenModal();
-									
-									
-									
-									
-									
-								}
-							},
-							error: function (error) {
-								
-								$("#messageM").html("<font color='black' ><strong></strong></font>");
-								$("#messageM").append('Error Connecting to Server');
-								$('#messageModal').modal('show');
-								btn.button('reset');
-							}
-							
-						});	
-					}
-					else {
-						alertM("Authentication Failed");
-						btn.button('reset');
-						return false;
-					}
-				}
-				else{
-					alertM('Please login to cancel the reservation');
-					return false;
-				}
-				
-			});
-			
-			
-			
-			$('#sendLogin').click(function(e){
-				e.preventDefault();
-				
-				//alert($('#Login-empID').val());
-				
-				if($('#Login-empID').val() ==""){
-					alertM('Please enter Employee ID');
-					return false;
-				}
-				
-				if($('#Login-Password').val() == ""){
-					alertM('Please enter Password');
-					return false;
-				}
-				var btn = $(this);
-				btn.button('loading');
-				var data = {};
-				data.emp = $('#Login-empID').val();
-				data.pass = $('#Login-Password').val();
-				
-				$.ajax({
-					type: 'POST',
-					data: JSON.stringify(data),
-					contentType: 'application/json',
-					url: '/LoginReservation',						
-					success: function(data) {
-						
-						if(data.msg =='Wrong'){
-							alertM('Wrong UserID or Password');
-							btn.button('reset');
+$(window).load(function(){
+            // Bind normal buttons
+			Ladda.bind( 'div:not(.progress-demo) button', { timeout: 1500 } );
+
+			// Bind progress buttons and simulate loading progress
+			Ladda.bind( '.progress-demo button', {
+				callback: function( instance ) {
+					var progress = 0;
+					var interval = setInterval( function() {
+						progress = Math.min( progress + Math.random() * 0.1, 1 );
+						instance.setProgress( progress );
+
+						if( progress === 1 ) {
+							instance.stop();
+							clearInterval( interval );
 						}
-						
-						else{
-						
-							//console.log('success');
-							btn.button('reset');
-							$('#login').modal('hide');
-							$('#Login-group').hide();
-							$("#Login-Name").append('<form class="navbar-form navbar-right" role="search">'
-									+' <div class="form-group"><font color="white">Welcome! '+ (data.name).split(" ")[0] +" " +'</font><buttton class="btn btn-success btn-sm logout">'
-									+ '<font color="white">Logout</font></button></div>'
-									+'</form>');
-							
-							//console.log(data.emp);
-							$sessionData = data.emp;
-						}
-						
-						
-					},
-					error: function (error) {
-						btn.button('reset');
-						$("#messageM").html("<font color='black' ><strong></strong></font>");
-						$("#messageM").append('Error Connecting to Server');
-						$('#messageModal').modal('show');
-					}
-					
-				});	
-			
-			});
-			
-			
-			$(document).on('click', '.logout', function(e){
-				
-				var data = {};
-				
-				$.ajax({
-					type: 'POST',
-					data: JSON.stringify(data),
-					contentType: 'application/json',
-					url: '/LogoutReservation',						
-					success: function(data) {
-						//console.log('success');
-					
-						//$('#login').modal('hide');
-						$('#Login-group').show();
-						$("#Login-Name").html("<font color='black' ><strong></strong></font>");
-						$sessionData = "";
-						
-											
-						
-					},
-					error: function (error) {
-						
-						$("#messageM").html("<font color='black' ><strong></strong></font>");
-						$("#messageM").append('Error Connecting to Server');
-						$('#messageModal').modal('show');
-					}
-				});
-			});
-			
-			
-			
-		});
-	</script>
-	
+					}, 200 );
+				}
+			} );
 
-	</body>
+			// You can control loading explicitly using the JavaScript API
+			// as outlined below:
+
+			// var l = Ladda.create( document.querySelector( 'button' ) );
+			// l.start();
+			// l.stop();
+			// l.toggle();
+			// l.isLoading();
+			// l.setProgress( 0-1 );
+});
+
+
+/*
+Files:
+spin.min.js
+ladda.min.js"
+*/
+
+/*!
+ * Copyright (c) 2011-2013 Felix Gnass
+ * Licensed under the MIT license
+ */
+(function(t,e){"object"==typeof exports?module.exports=e():"function"==typeof define&&define.amd?define(e):t.Spinner=e()})(this,function(){"use strict";function t(t,e){var i,n=document.createElement(t||"div");for(i in e)n[i]=e[i];return n}function e(t){for(var e=1,i=arguments.length;i>e;e++)t.appendChild(arguments[e]);return t}function i(t,e,i,n){var o=["opacity",e,~~(100*t),i,n].join("-"),r=.01+100*(i/n),a=Math.max(1-(1-t)/e*(100-r),t),s=u.substring(0,u.indexOf("Animation")).toLowerCase(),l=s&&"-"+s+"-"||"";return f[o]||(c.insertRule("@"+l+"keyframes "+o+"{"+"0%{opacity:"+a+"}"+r+"%{opacity:"+t+"}"+(r+.01)+"%{opacity:1}"+(r+e)%100+"%{opacity:"+t+"}"+"100%{opacity:"+a+"}"+"}",c.cssRules.length),f[o]=1),o}function n(t,e){var i,n,o=t.style;if(void 0!==o[e])return e;for(e=e.charAt(0).toUpperCase()+e.slice(1),n=0;d.length>n;n++)if(i=d[n]+e,void 0!==o[i])return i}function o(t,e){for(var i in e)t.style[n(t,i)||i]=e[i];return t}function r(t){for(var e=1;arguments.length>e;e++){var i=arguments[e];for(var n in i)void 0===t[n]&&(t[n]=i[n])}return t}function a(t){for(var e={x:t.offsetLeft,y:t.offsetTop};t=t.offsetParent;)e.x+=t.offsetLeft,e.y+=t.offsetTop;return e}function s(t){return this===void 0?new s(t):(this.opts=r(t||{},s.defaults,p),void 0)}function l(){function i(e,i){return t("<"+e+' xmlns="urn:schemas-microsoft.com:vml" class="spin-vml">',i)}c.addRule(".spin-vml","behavior:url(#default#VML)"),s.prototype.lines=function(t,n){function r(){return o(i("group",{coordsize:u+" "+u,coordorigin:-l+" "+-l}),{width:u,height:u})}function a(t,a,s){e(f,e(o(r(),{rotation:360/n.lines*t+"deg",left:~~a}),e(o(i("roundrect",{arcsize:n.corners}),{width:l,height:n.width,left:n.radius,top:-n.width>>1,filter:s}),i("fill",{color:n.color,opacity:n.opacity}),i("stroke",{opacity:0}))))}var s,l=n.length+n.width,u=2*l,d=2*-(n.width+n.length)+"px",f=o(r(),{position:"absolute",top:d,left:d});if(n.shadow)for(s=1;n.lines>=s;s++)a(s,-2,"progid:DXImageTransform.Microsoft.Blur(pixelradius=2,makeshadow=1,shadowopacity=.3)");for(s=1;n.lines>=s;s++)a(s);return e(t,f)},s.prototype.opacity=function(t,e,i,n){var o=t.firstChild;n=n.shadow&&n.lines||0,o&&o.childNodes.length>e+n&&(o=o.childNodes[e+n],o=o&&o.firstChild,o=o&&o.firstChild,o&&(o.opacity=i))}}var u,d=["webkit","Moz","ms","O"],f={},c=function(){var i=t("style",{type:"text/css"});return e(document.getElementsByTagName("head")[0],i),i.sheet||i.styleSheet}(),p={lines:12,length:7,width:5,radius:10,rotate:0,corners:1,color:"#000",direction:1,speed:1,trail:100,opacity:.25,fps:20,zIndex:2e9,className:"spinner",top:"auto",left:"auto",position:"relative"};s.defaults={},r(s.prototype,{spin:function(e){this.stop();var i,n,r=this,s=r.opts,l=r.el=o(t(0,{className:s.className}),{position:s.position,width:0,zIndex:s.zIndex}),d=s.radius+s.length+s.width;if(e&&(e.insertBefore(l,e.firstChild||null),n=a(e),i=a(l),o(l,{left:("auto"==s.left?n.x-i.x+(e.offsetWidth>>1):parseInt(s.left,10)+d)+"px",top:("auto"==s.top?n.y-i.y+(e.offsetHeight>>1):parseInt(s.top,10)+d)+"px"})),l.setAttribute("role","progressbar"),r.lines(l,r.opts),!u){var f,c=0,p=(s.lines-1)*(1-s.direction)/2,h=s.fps,m=h/s.speed,g=(1-s.opacity)/(m*s.trail/100),v=m/s.lines;(function y(){c++;for(var t=0;s.lines>t;t++)f=Math.max(1-(c+(s.lines-t)*v)%m*g,s.opacity),r.opacity(l,t*s.direction+p,f,s);r.timeout=r.el&&setTimeout(y,~~(1e3/h))})()}return r},stop:function(){var t=this.el;return t&&(clearTimeout(this.timeout),t.parentNode&&t.parentNode.removeChild(t),this.el=void 0),this},lines:function(n,r){function a(e,i){return o(t(),{position:"absolute",width:r.length+r.width+"px",height:r.width+"px",background:e,boxShadow:i,transformOrigin:"left",transform:"rotate("+~~(360/r.lines*l+r.rotate)+"deg) translate("+r.radius+"px"+",0)",borderRadius:(r.corners*r.width>>1)+"px"})}for(var s,l=0,d=(r.lines-1)*(1-r.direction)/2;r.lines>l;l++)s=o(t(),{position:"absolute",top:1+~(r.width/2)+"px",transform:r.hwaccel?"translate3d(0,0,0)":"",opacity:r.opacity,animation:u&&i(r.opacity,r.trail,d+l*r.direction,r.lines)+" "+1/r.speed+"s linear infinite"}),r.shadow&&e(s,o(a("#000","0 0 4px #000"),{top:"2px"})),e(n,e(s,a(r.color,"0 0 1px rgba(0,0,0,.1)")));return n},opacity:function(t,e,i){t.childNodes.length>e&&(t.childNodes[e].style.opacity=i)}});var h=o(t("group"),{behavior:"url(#default#VML)"});return!n(h,"transform")&&h.adj?l():u=n(h,"animation"),s});
+
+
+/*!
+ * Ladda 0.8.0 (2013-09-05, 18:54)
+ * http://lab.hakim.se/ladda
+ * MIT licensed
+ *
+ * Copyright (C) 2013 Hakim El Hattab, http://hakim.se
+ */
+ 
+(function(t,e){"object"==typeof exports?module.exports=e():"function"==typeof define&&define.amd?define(["spin"],e):t.Ladda=e(t.Spinner)})(this,function(t){"use strict";function e(t){if(t===void 0)return console.warn("Ladda button target must be defined."),void 0;t.querySelector(".ladda-label")||(t.innerHTML='<span class="ladda-label">'+t.innerHTML+"</span>");var e=i(t),n=document.createElement("span");n.className="ladda-spinner",t.appendChild(n);var r,a={start:function(){return t.setAttribute("disabled",""),t.setAttribute("data-loading",""),clearTimeout(r),e.spin(n),this.setProgress(0),this},startAfter:function(t){return clearTimeout(r),r=setTimeout(function(){a.start()},t),this},stop:function(){return t.removeAttribute("disabled"),t.removeAttribute("data-loading"),clearTimeout(r),r=setTimeout(function(){e.stop()},1e3),this},toggle:function(){return this.isLoading()?this.stop():this.start(),this},setProgress:function(e){e=Math.max(Math.min(e,1),0);var n=t.querySelector(".ladda-progress");0===e&&n&&n.parentNode?n.parentNode.removeChild(n):(n||(n=document.createElement("div"),n.className="ladda-progress",t.appendChild(n)),n.style.width=(e||0)*t.offsetWidth+"px")},enable:function(){return this.stop(),this},disable:function(){return this.stop(),t.setAttribute("disabled",""),this},isLoading:function(){return t.hasAttribute("data-loading")}};return o.push(a),a}function n(t,n){n=n||{};var r=[];"string"==typeof t?r=a(document.querySelectorAll(t)):"object"==typeof t&&"string"==typeof t.nodeName&&(r=[t]);for(var i=0,o=r.length;o>i;i++)(function(){var t=r[i];if("function"==typeof t.addEventListener){var a=e(t),o=-1;t.addEventListener("click",function(){a.startAfter(1),"number"==typeof n.timeout&&(clearTimeout(o),o=setTimeout(a.stop,n.timeout)),"function"==typeof n.callback&&n.callback.apply(null,[a])},!1)}})()}function r(){for(var t=0,e=o.length;e>t;t++)o[t].stop()}function i(e){var n,r=e.offsetHeight;r>32&&(r*=.8),e.hasAttribute("data-spinner-size")&&(r=parseInt(e.getAttribute("data-spinner-size"),10)),e.hasAttribute("data-spinner-color")&&(n=e.getAttribute("data-spinner-color"));var i=12,a=.2*r,o=.6*a,s=7>a?2:3;return new t({color:n||"#fff",lines:i,radius:a,length:o,width:s,zIndex:"auto",top:"auto",left:"auto",className:""})}function a(t){for(var e=[],n=0;t.length>n;n++)e.push(t[n]);return e}var o=[];return{bind:n,create:e,stopAll:r}});
+
+</script>
+
+</body>
+
 </html>

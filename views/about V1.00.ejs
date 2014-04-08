@@ -1,0 +1,983 @@
+<!DOCTYPE html>
+<html>
+        <head>
+            <title>About</title>
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <link href = "css/bootstrap.min.css" rel = "stylesheet">
+			<link rel="stylesheet" type="text/css" href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
+               
+		<style type="text/css">
+			body {
+				background-color: #19327D;
+				padding-bottom: 110px;
+			}
+			
+			#contentWrap{
+			display: none;
+			}
+			
+		</style>
+		</head>
+		
+		
+        <body>
+               
+            <div class = "navbar navbar-inverse navbar-static-top">
+			<div class = "container">
+				
+				<a href = "#" class = "navbar-brand"><font face="trebuchet MS" size="5" color="white">Reservation</font></a>
+				
+				<button class = "navbar-toggle" data-toggle = "collapse" data-target = ".navHeaderCollapse">
+					<span class = "icon-bar"></span>
+					<span class = "icon-bar"></span>
+					<span class = "icon-bar"></span>
+				</button>
+				
+				<div class = "collapse navbar-collapse navHeaderCollapse">
+				
+					<ul class = "nav navbar-nav navbar-right">
+					
+						<li ><a href = "/">Home</a></li>
+					
+						<li class = "active"><a href = "/about">About</a></li>
+						<li><a href = "#contact" data-toggle="modal">Feedback</a></li>
+					
+					</ul>
+				
+				</div>
+				
+			</div>
+			</div>
+               
+        <div class = "container">
+                     <div class = "row">
+                   
+                        <div class = "col-lg-9">
+                       
+                            <div class = "panel panel-default">
+                           
+                                <div class = "panel-body">
+                                   
+                                    <div class = "page-header">
+																	
+                                        <h3>About This Project</h3>
+                                    </div>
+                                   
+                                    
+                                   
+                                    <p> <font>This project has been developed using <strong>NODE.JS</strong> and <strong>MongoDB</strong> as Database. And it has been Deployed on <strong>Heroku</strong> Cloud.
+										<br><br> For any information about this project, you may contact following persons: <br>
+										
+										<div class="panel-group" id="accordion">
+										  <div class="panel panel-default">
+											<div class="panel-heading">
+											  <h4 class="panel-title">
+												<a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+												  Arvind Radhakrishnen
+												</a>
+											  </h4>
+											</div>
+											<div id="collapseOne" class="panel-collapse collapse">
+											  <div class="panel-body">
+												Reachable via : arvind.kr@tcs.com   or  arvind.k.r@bankofamerica.com
+											  </div>
+											</div>
+										  </div>
+										  <div class="panel panel-default">
+											<div class="panel-heading">
+											  <h4 class="panel-title">
+												<a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
+												  Somenath Ghosh
+												</a>
+											  </h4>
+											</div>
+											<div id="collapseTwo" class="panel-collapse collapse">
+											  <div class="panel-body">
+												Reachable via : somenath.ghosh@tcs.com   or  somenath.ghosh@bankofamerica.com
+											  </div>
+											</div>
+										  </div>
+										  <div class="panel panel-default">
+											<div class="panel-heading">
+											  <h4 class="panel-title">
+												<a data-toggle="collapse" data-parent="#accordion" href="#collapseThree">
+												  Chandrasekhar Nampally
+												</a>
+											  </h4>
+											</div>
+											<div id="collapseThree" class="panel-collapse collapse">
+											  <div class="panel-body">
+												Reachable via : chandrasekhar.nampally@tcs.com   or  chandrasekhar.nampally@bankofamerica.com
+											  </div>
+											</div>
+										  </div>
+										  
+										  <div class="panel panel-default">
+											<div class="panel-heading">
+											  <h4 class="panel-title">
+												<a data-toggle="collapse" data-parent="#accordion" href="#collapsefour">
+												  Prasun Sharma
+												</a>
+											  </h4>
+											</div>
+											<div id="collapsefour" class="panel-collapse collapse">
+											  <div class="panel-body">
+												Reachable via : prasun.sharma@tcs.com   or  prasun.sharma@bankofamerica.com
+											  </div>
+											</div>
+										  </div>
+										  
+										</div>
+									
+									
+									
+									</font></p>
+                                   
+                                    <h4></h4>
+                                   
+                                    <p> </p>
+                                   
+                                   
+                                </div>
+                           
+                            </div>
+                       
+                        </div>
+                       
+                      </div>
+                   
+                </div>
+               
+        <!--       	
+		<div class = "navbar navbar-inverse navbar-fixed-bottom">
+		
+			<div class = "container">
+				<p class = "navbar-text pull-left">&copy;This work is licensed under
+					<a href="http://www.tcs.com/Pages/default.aspx">Tata Consultacy Services </a></p>
+					
+					<a href = "#" class = "navbar-btn btn-default btn-sm btn pull-right" id="btnSubmit"><span class="glyphicon glyphicon-thumbs-up"></span> Like</a>
+				
+			</div>
+		
+		</div>
+        -->
+		
+        <div class = "modal fade" id = "contact" role = "dialog">
+		    <div class = "modal-dialog">
+		        
+				
+				<div class = "modal-content">
+					
+					<!--
+					<div  id="contentWrap" class="alert alert-success">
+							<p id="success"><center>Thanks for your feedback</center></p>
+					</div>
+					-->
+					
+		            <form id="setNick1" class = "form-horizontal" action="/feedback" method ="POST">
+		                <div class = "modal-header">
+		                    <h4>TCS Lab Reservation Team Feedback</h4>
+		                </div>
+						<div id="thank"></div>
+		                <div  class = "modal-body" id="feedForm">
+						
+		                    <div class = "form-group">
+		                        
+		                        <label for = "contact-name" class = "col-sm-2 control-label">Name:</label>
+		                        <div class = "col-sm-10">
+		                            
+		                            <input name="name" type = "text" class = "form-control" id = "contact-name" placeholder = "Full Name">
+		                            
+		                        </div>
+		                        
+		                    </div>
+		                    
+		                    <div class = "form-group">
+		                        
+		                        <label for = "contact-email" class = "col-sm-2 control-label">Emp ID</label>
+		                        <div class = "col-sm-10">
+		                            
+		                            <input name="empID" type = "number" class = "form-control" id = "contact-empID" placeholder = "TCS ID">
+		                            
+		                        </div>
+		                        
+		                    </div>
+		                    
+		                    <div class = "form-group">
+		                        
+		                        <label for = "contact-msg" class = "col-sm-2 control-label">Message:</label>
+		                        <div class = "col-sm-10">
+		                            
+		                            <textarea name="feedback" id="contact-feedback" class = "form-control" rows = "8"></textarea>
+		                            
+		                        </div>
+		                        
+		                    </div>
+		                
+		                </div>
+		                <div class = "modal-footer">
+                            <a class = "btn btn-default" data-dismiss = "modal" id="btnClose" >Close</a>    
+		                    <button class = "btn btn-success" type = "submit" id="sendFeedback">Send</button>
+		                </div>
+		            </form>
+					
+		        </div>
+		    </div>
+		</div>
+		
+		<!-- Alert Modal -->
+		
+		<div class = "modal fade"  id = "AlertModal" role = "dialog">
+		    <div class = "modal-dialog  modal-sm" style="top:50px;">
+		        
+				
+				<div class = "modal-content">
+				
+					<div class = "modal-header">
+		                <font color='red'><strong>Alert...!!! </strong> </font>
+						<a class = "pull-right" data-dismiss = "modal"  ><font color='red' size='4'><span class="glyphicon glyphicon-remove"></span></font></a> 
+							
+		            </div>
+						
+		            <div  class = "modal-body" id="feedForm2">
+	   
+		            
+
+					<div id="AlertA"></div>
+					</div>
+					
+		        </div>
+		    </div>
+		</div>
+		
+		
+		
+		
+		<script src = "http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+		<script src = "js/bootstrap.js"></script>
+		
+		<script>
+		jQuery(function($){
+			//var socket = io.connect();
+			
+			var $nickForm = $('#setNick');
+			var $feedForm = $('#setNick1');
+			var $reserveForm = $('#reservation');
+			
+			var $nickError = $('#nickError');
+			
+			var $nickBox = $('#nickname');
+			var $nickBoxFrom = $('#fromWidget');
+			var $nickBoxTo = $('#toWidget');
+			
+			var $nameBox = $('#contact-name');
+			var $empIDBox = $('#contact-empID');
+			var $feedbackBox = $('#contact-feedback');
+
+			
+			var $chat = $('#chat');
+			var $thank = $('#thank');
+			
+			
+
+			
+			var $fromDate = new Date();
+			var $toDate  = new Date();
+			
+			var $sessionData = "";
+			
+			
+			
+			$('#checkButton').click(function(e){
+				e.preventDefault();
+				
+				
+			
+			
+				var $fDate = new Date($nickBoxFrom.val());
+				var $tDate = new Date($nickBoxTo.val());
+				var $fDateNew = new Date();
+				var $tDateNew = new Date(2050,12,31,23,59,00,00);
+			
+				
+				if ($nickBox.val() >= 5 && $nickBox.val() <= 14 ) {
+					
+					if (($nickBoxFrom.val() =="From(MM/DD/YYYY HH:MM)" ||$nickBoxFrom.val() =="") && ($nickBoxTo.val()=="To(MM/DD/YYYY HH:MM)" || $nickBoxTo.val()=="")){
+						
+						var data = {};
+						data.mc = $nickBox.val();
+						data.from = $fDateNew;
+						data.to = $tDateNew;
+						
+						
+						var btn = $(this);
+						btn.button('loading');
+						$.ajax({
+							type: 'POST',
+							data: JSON.stringify(data),
+							contentType: 'application/json',
+							url: '/getReservation',						
+							success: function(data) {
+								if(data.msg.length > 0){
+									
+									$("#messageM2").html("<font color='black' ><strong></strong></font>");
+									$("#messageM2").append(data.msg);
+									$('#messageModal2').modal('show');
+									
+								}
+								else{
+									
+									showModal(data);
+									//console.log('success');
+									btn.button('reset');
+								}
+							},
+							error: function (error) {
+								btn.button('reset');
+								$("#messageM2").html("<font color='black' ><strong></strong></font>");
+								$("#messageM2").append('Error Connecting to Server');
+								$('#messageModal2').modal('show');
+								
+							}
+							
+						});	
+							
+						
+					}
+					else {
+					
+						if(($nickBoxFrom.val() !="From(MM/DD/YYYY HH:MM)" || $nickBoxFrom.val() !="") && ($nickBoxTo.val()=="To(MM/DD/YYYY HH:MM)" || $nickBoxTo.val()=="") && isFinite($fDate)){
+							
+							
+							
+							var data = {};
+							data.mc = $nickBox.val();
+							data.from = $fDate;
+							data.to = $tDateNew;
+							var btn = $(this);
+							btn.button('loading');
+							
+							$.ajax({
+								type: 'POST',
+								data: JSON.stringify(data),
+								contentType: 'application/json',
+								url: '/getReservation',						
+								success: function(data) {
+									if(data.msg.length > 0){
+										$("#messageM2").html("<font color='black' ><strong></strong></font>");
+										$("#messageM2").append(data.msg);
+										$('#messageModal2').modal('show');
+									}
+									else{
+										showModal(data);
+										//console.log('success');
+										btn.button('reset');
+									}
+								},
+								error: function (error) {
+									$("#messageM2").html("<font color='black' ><strong></strong></font>");
+									$("#messageM2").append('Error Connecting to Server');
+									$('#messageModal2').modal('show');
+									btn.button('reset');
+								}
+								
+							});	
+						
+						
+						
+						
+						
+						}
+						else{
+						
+						
+							if(($nickBoxFrom.val() =="From(MM/DD/YYYY HH:MM)" || $nickBoxFrom.val() =="") && ($nickBoxTo.val()!="To(MM/DD/YYYY HH:MM)" || $nickBoxTo.val()!="") && isFinite($tDate)){
+								
+								
+								
+								var data = {};
+								data.mc = $nickBox.val();
+								data.from = $fDateNew;
+								data.to = $tDate;
+								
+								var btn = $(this);
+								btn.button('loading');
+								
+								$.ajax({
+									type: 'POST',
+									data: JSON.stringify(data),
+									contentType: 'application/json',
+									url: '/getReservation',						
+									success: function(data) {
+										if(data.msg.length > 0){
+											$("#messageM2").html("<font color='black' ><strong></strong></font>");
+											$("#messageM2").append(data.msg);
+											$('#messageModal2').modal('show');
+										}
+										else{
+											showModal(data);
+											//console.log('success');
+											btn.button('reset');
+										}
+									},
+									error: function (error) {
+										$("#messageM2").html("<font color='black' ><strong></strong></font>");
+										$("#messageM2").append('Error Connecting to Server');
+										$('#messageModal2').modal('show');
+										btn.button('reset');
+									}
+									
+								});	
+								
+								
+								
+								
+								
+							}
+							else{
+							
+							
+							
+								if (($nickBoxFrom.val() !="From(MM/DD/YYYY HH:MM)" || $nickBoxFrom.val() !="") && ($nickBoxTo.val()!="To(MM/DD/YYYY HH:MM)" ||$nickBoxTo.val()!="") && isFinite($fDate) && isFinite($tDate) ) {
+									
+									var btn = $(this);
+									btn.button('loading');
+									var data = {};
+									data.mc = $nickBox.val();
+									data.from = $fDate;
+									data.to = $tDate;
+									
+									$.ajax({
+										type: 'POST',
+										data: JSON.stringify(data),
+										contentType: 'application/json',
+										url: '/getReservation',						
+										success: function(data) {
+											if(data.msg.length > 0){
+												$("#messageM2").html("<font color='black' ><strong></strong></font>");
+												$("#messageM2").append(data.msg);
+												$('#messageModal2').modal('show');
+											}
+											else{
+												showModal(data);
+												//console.log('success');
+												btn.button('reset');
+											}
+										},
+										error: function (error) {
+											$("#messageM2").html("<font color='black' ><strong></strong></font>");
+											$("#messageM2").append('Error Connecting to Server');
+											$('#messageModal2').modal('show');
+											btn.button('reset');
+										}
+										
+									});	
+
+								
+								}
+								else {
+										alertM("Date(s) not in correct format");
+										return false;
+								}
+							}
+						}
+					}
+				}
+				else {
+					alertM("Please choose a machine number.");
+					return false;
+				}
+				
+			});
+			
+		
+			
+			var showModal =function($data){
+			
+				var month=new Array();
+				month[0]="Jan";
+				month[1]="Feb";
+				month[2]="Mar";
+				month[3]="Apr";
+				month[4]="May";
+				month[5]="Jun";
+				month[6]="Jul";
+				month[7]="Aug";
+				month[8]="Sep";
+				month[9]="Oct";
+				month[10]="Nov";
+				month[11]="Dec";
+			
+				$("#messageM2").html("<font color='black' ><strong></strong></font>");
+				
+				var htmlString= "<div class="+'table-responsive'+"><table id='mytable' class="+'table table-hover'+"><tr><th>Emp ID</th><th>Name</th><th>From Date & Time</th><th>To Date & Time</th><th>Action</th></tr>";
+				
+				
+				
+				$data.R.forEach( function(doc){
+					
+					
+					
+					fromDate = new Date(doc.from);
+					toDate = new Date(doc.to);
+					
+					fromMonth = month[fromDate.getMonth()];
+					fromYear = fromDate.getFullYear();
+					
+					toMonth = month[toDate.getMonth()];
+					toYear = toDate.getFullYear();
+					
+					fromMin = fromDate.getMinutes() < 10 ? '0'+fromDate.getMinutes() : fromDate.getMinutes();
+					toMin = toDate.getMinutes() < 10 ? '0'+ toDate.getMinutes() : toDate.getMinutes();
+					fromDay = fromDate.getDate() < 10 ? '0'+fromDate.getDate() :fromDate.getDate();
+					toDay  =  toDate.getDate() < 10 ? '0'+toDate.getDate() : toDate.getDate() ;
+					fromHour = fromDate.getHours() < 10 ? '0'+fromDate.getHours() : fromDate.getHours();
+					toHour = toDate.getHours() < 10 ? '0'+toDate.getHours() : toDate.getHours() ;
+				
+				
+					htmlString = htmlString + '<tr id="divCancel' +doc.id+''+doc.from+''+doc.to+'"'+'><td>'+ doc.id +'</td><td>'+doc.name+'</td><td>'+fromDay 
+						+ "-"+fromMonth+'-'+ fromYear+'  '+ fromHour + ":"
+						+ fromMin+'</td><td>'+toDay + "-"+ toMonth + "-"+ toYear+ '  '+  toHour + ":" 
+						+ toMin+'</td><td><button class="btn btn-danger btn-sm btnDelete" data-loading-text="Wait..."'
+						+  'id="btnCancel_' +doc.id+'_'+doc.from+'_'+doc.to+'"'+'>Cancel</button></td></tr>';
+					
+					
+					
+					
+				});
+				htmlString = htmlString + '</div></table>' ;
+				
+				console.log(htmlString);
+				
+				$("#messageM2").append(htmlString);
+				
+				$('#messageModal2').modal({backdrop:false});
+				$('#messageModal2').modal('show');
+				
+			};
+			
+			
+			
+			$('#sendFeedback').click(function(e){
+				e.preventDefault();
+				if ( $nameBox.val()=="" || $nameBox.val() == parseInt($nameBox.val()) ){
+					
+					alertM("Please enter a valid Name");
+					return false;
+				}
+				
+				if ( $empIDBox.val()=="" || $empIDBox.val() != parseInt($empIDBox.val()) ){
+					
+					alertM("Please enter a valid Employee ID");
+					return false;
+				}
+				if ( $feedbackBox.val()=="" ){
+					
+					alertM("Feedback can not be empty");
+					return false;
+				}
+				
+
+				else {
+					
+					
+					var btn = $(this);
+					btn.button('loading');
+					
+					var data = {};
+					data.name = $nameBox.val();
+					data.id = $empIDBox.val();
+					data.feedback = $feedbackBox.val();
+					
+					$.ajax({
+						type: 'POST',
+						data: JSON.stringify(data),
+						contentType: 'application/json',
+						url: '/feedback',						
+						success: function(data) {
+							//console.log('success');
+							//console.log(JSON.stringify(data.msg));
+							btn.button('reset');
+							$('#feedForm').hide();
+							$('#thank').show();
+							$('#sendFeedback').hide();
+							$("#thank").html("<font color='black'><strong></strong></font>");
+							$thank.append('<br><center><font color="black">' + data.msg + "</font></center><br/>"); 
+						},
+						error: function (xhr, status, error) {
+							$('#feedForm').hide();
+							btn.button('reset');
+							$('#thank').show();
+							$('#sendFeedback').hide();
+							$("#thank").html("<font color='black'><strong></strong></font>");
+							$thank.append('<br><center><font color="black">' + 'Error connecting to the server' + "</font></center><br/>"); 
+						}
+						
+					});
+				
+				}
+			
+			});
+			
+			$("#btnClose").click(function(e){
+				$('#contact-feedback').val('');
+				$('#feedForm').show();
+				$('#sendFeedback').show();
+				$('#thank').hide();
+				
+			});
+			
+			
+			
+			$('#reserverButton').click(function(e){
+				$("#msg").html("<font color='black'><strong></strong></font>");
+				e.preventDefault();
+				var $emp = $('#empID').val();
+				var $name = $('#name').val();
+				var $from = $('#from');
+				var $to = $('#to');
+				var $mc = $('#mc').val();
+				var $reason = $('#reason').val();
+			
+			
+				var $fDate = new Date($from.val());
+				var $tDate = new Date($to.val());
+				var $today = new Date();
+			
+				if($emp < 99999) {
+					alertM("Please enter a valid Employee Number");
+					return false;
+				}
+				
+				if($name =="" || $name == parseInt($name) || $name =='Enter Full Name' ){
+					alertM("Name can not be blank or Numeric");
+					return false;
+				}
+				
+				
+				
+				if(isFinite($fDate) && isFinite($tDate)){
+					if($fDate >= $tDate){
+						alertM("From Date must be less than To Date");
+						return false;
+					}
+					//console.log(today);
+					if($fDate < $today){
+						alertM("From Date must be greater than or equal to Today's Date");
+						return false;
+					}
+					$('#from').val($fDate);
+					$('#to').val($tDate);
+				}
+				else {
+					alertM("Date(s) not in correct format or not chosen correctly");
+					return false;
+				}
+				
+				if($mc < 5 || $mc > 14){
+					alertM("Please Choose a machine Number");
+					return false;
+				}
+				
+				
+				
+				if($reason ==""){
+					alertM("Please fill the reason");
+					return false;
+				}
+				
+				var btn = $(this);
+				btn.button('loading');
+				
+				
+				var data = {};
+				data.emp = $emp;
+				data.name = $name;
+				data.from = $fDate;
+				data.to = $tDate;
+				data.mc = $mc;
+				data.reason = $reason;
+				
+				$.ajax({
+					type: 'POST',
+					data: JSON.stringify(data),
+					contentType: 'application/json',
+					url: '/doReservation',						
+					success: function(data) {
+						
+						$("#messageM").html("<font color='black' ><strong></strong></font>");
+						$("#messageM").append("<center><font color='black' face='trebuchet MS' size='5' >"+data.message+"</font></center>");
+						$('#messageModal').modal('show');
+					
+						//console.log('success');
+						btn.button('reset');
+						
+						
+					},
+					error: function (error) {
+						$("#messageM").html("<font color='black' ><strong></strong></font>");
+						$("#messageM").append('Error Connecting to Server');
+						$('#messageModal').modal('show');
+						btn.button('reset');
+					}
+					
+				});	
+				
+		
+				
+			});
+			
+			
+			$("#btnSubmit1").click(function(e){
+				e.preventDefault();
+				
+				//var $newDate1 = new Date();
+				var dateString = $('#mm1').val() +"/" +$('#dd1').val() + "/" + $('#yy1').val() + " " + $('#hh1').val() + ":" + $('#mn1').val() +" " + $('#tf1').val();
+				//alert(dateString);
+	
+				var $newDate1 = new Date(dateString.toString());
+
+				//alert($newDate1);
+				$('#fromWidget').val($newDate1);
+				
+				//$nickBox.val('');
+			});
+			
+			
+			
+			
+			$("#btnSubmit2").click(function(e){
+				e.preventDefault();
+				
+				//var $newDate1 = new Date();
+				var dateString = $('#mm2').val() +"/" +$('#dd2').val() + "/" + $('#yy2').val() + " " + $('#hh2').val() + ":" + $('#mn2').val() +" " + $('#tf2').val();
+				//alert(dateString);
+	
+				var $newDate2 = new Date(dateString.toString());
+
+				//alert($newDate1);
+				$('#toWidget').val($newDate2);
+				
+				//$nickBox.val('');
+			});
+			
+			
+			$("#btnSubmit3").click(function(e){
+				e.preventDefault();
+				
+				//var $newDate1 = new Date();
+				var dateString = $('#mm3').val() +"/" +$('#dd3').val() + "/" + $('#yy3').val() + " " + $('#hh3').val() + ":" + $('#mn3').val() +" " + $('#tf3').val();
+				//alert(dateString);
+	
+				var $newDate3 = new Date(dateString.toString());
+
+				//alert($newDate1);
+				$('#from').val($newDate3);
+				
+				//$nickBox.val('');
+			});
+			
+			
+			$("#btnSubmit4").click(function(e){
+				e.preventDefault();
+				
+				//var $newDate1 = new Date();
+				var dateString = $('#mm4').val() +"/" +$('#dd4').val() + "/" + $('#yy4').val() + " " + $('#hh4').val() + ":" + $('#mn4').val() +" " + $('#tf4').val();
+				//alert(dateString);
+	
+				var $newDate4 = new Date(dateString.toString());
+
+				//alert($newDate1);
+				$('#to').val($newDate4);
+				
+				//$nickBox.val('');
+			});
+			
+			
+			
+			
+			
+			var alertM = function($m) { 
+				$('#AlertModal').modal('show');
+				//$('#AlertA').show();
+				$("#AlertA").html("<font color='black' ><strong></strong></font>");
+				$("#AlertA").append('<center><font color="black" face="trebuchet MS" size="3">' + $m + "</font></center>"); 
+				$('#AlertModal').modal('show');
+			};
+			
+			
+			
+			
+			$(document).on('click', '.btnDelete', function(e){ 
+				e.preventDefault();
+				
+				if($sessionData !=""){
+					var btn = $(this);
+					btn.button('loading');
+					
+					var $id = this.id;
+					//alertM($id);
+					
+					var $res = $id.split("_");
+					
+					var data = {};
+					data.emp = $res[1];
+					
+					data.from = $res[2];
+					data.to = $res[3];
+					//console.log($sessionData + '  '+ $res[1]);
+					if($sessionData == $res[1]){
+						$.ajax({
+							type: 'POST',
+							data: JSON.stringify(data),
+							contentType: 'application/json',
+							url: '/DelReservation',						
+							success: function(data) {
+								
+								if(data.msg =='NoUser'){
+									btn.button('reset');
+								}
+								else{
+								
+									//console.log('success');
+									btn.button('reset');
+									btn.html('Done');
+									$divID = 'divCancel' + $res[1]+ $res[2]+$res[3];
+									
+									//console.log($divID.trim());
+									
+									$('#'+$divID.trim()).hide();
+									$('#'+$divID.trim()).html("<font color='black' ><strong></strong></font>");
+									//$('#messageM2Close a').trigger("click");
+									//$('#messageModal2').hide();
+									//$fGenModal();
+									
+									
+									
+									
+									
+								}
+							},
+							error: function (error) {
+								
+								$("#messageM").html("<font color='black' ><strong></strong></font>");
+								$("#messageM").append('Error Connecting to Server');
+								$('#messageModal').modal('show');
+								btn.button('reset');
+							}
+							
+						});	
+					}
+					else {
+						alertM("Authentication Failed");
+						btn.button('reset');
+						return false;
+					}
+				}
+				else{
+					alertM('Please login to cancel the reservation');
+					return false;
+				}
+				
+			});
+			
+			
+			
+			$('#sendLogin').click(function(e){
+				e.preventDefault();
+				
+				//alert($('#Login-empID').val());
+				
+				if($('#Login-empID').val() ==""){
+					alertM('Please enter Employee ID');
+					return false;
+				}
+				
+				if($('#Login-Password').val() == ""){
+					alertM('Please enter Password');
+					return false;
+				}
+				var btn = $(this);
+				btn.button('loading');
+				var data = {};
+				data.emp = $('#Login-empID').val();
+				data.pass = $('#Login-Password').val();
+				
+				$.ajax({
+					type: 'POST',
+					data: JSON.stringify(data),
+					contentType: 'application/json',
+					url: '/LoginReservation',						
+					success: function(data) {
+						
+						if(data.msg =='Wrong'){
+							alertM('Wrong UserID or Password');
+							btn.button('reset');
+						}
+						
+						else{
+						
+							//console.log('success');
+							btn.button('reset');
+							$('#login').modal('hide');
+							$('#Login-group').hide();
+							$("#Login-Name").append('<form class="navbar-form navbar-right" role="search">'
+									+' <div class="form-group"><font color="white">Welcome! '+ (data.name).split(" ")[0] +" " +'</font><buttton class="btn btn-success btn-sm logout">'
+									+ '<font color="white">Logout</font></button></div>'
+									+'</form>');
+							
+							//console.log(data.emp);
+							$sessionData = data.emp;
+						}
+						
+						
+					},
+					error: function (error) {
+						btn.button('reset');
+						$("#messageM").html("<font color='black' ><strong></strong></font>");
+						$("#messageM").append('Error Connecting to Server');
+						$('#messageModal').modal('show');
+					}
+					
+				});	
+			
+			});
+			
+			
+			$(document).on('click', '.logout', function(e){
+				
+				var data = {};
+				
+				$.ajax({
+					type: 'POST',
+					data: JSON.stringify(data),
+					contentType: 'application/json',
+					url: '/LogoutReservation',						
+					success: function(data) {
+						//console.log('success');
+					
+						//$('#login').modal('hide');
+						$('#Login-group').show();
+						$("#Login-Name").html("<font color='black' ><strong></strong></font>");
+						$sessionData = "";
+						
+											
+						
+					},
+					error: function (error) {
+						
+						$("#messageM").html("<font color='black' ><strong></strong></font>");
+						$("#messageM").append('Error Connecting to Server');
+						$('#messageModal').modal('show');
+					}
+				});
+			});
+			
+			
+			
+		});
+		</script>
+	
+	
+        </body>
+</html>
