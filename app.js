@@ -317,10 +317,10 @@ app.post('/LoginReservation', function(req, res){
 	
 	var empID = (req.body.emp).toString();
 	
-	//console.log(req.body.pass);
-	//console.log(req.body.emp);
+	console.log(req.body.pass);
+	console.log(req.body.emp);
 	
-	CLTlab.findOne({employeeID : empID, password: req.body.pass},function(err,doc){
+	CLTlab.findOne({EmployeeID : empID, password: req.body.pass},function(err,doc){
 		if(err) {
 		
 			console.log("Error from MongoDB:" + err);
@@ -330,7 +330,7 @@ app.post('/LoginReservation', function(req, res){
 		if(doc){
 			req.session.empID = req.body.emp;
 			//console.log(doc.employeeID);
-			res.send({msg:' ', emp:empID, name:doc.FullName});
+			res.send({msg:'success', emp:empID, name:doc.FullName});
 		}
 		if(!doc) {
 			res.send({msg:'Wrong'});
@@ -338,6 +338,101 @@ app.post('/LoginReservation', function(req, res){
 		}
 			
 			
+		
+	});
+	
+
+});
+
+
+
+
+
+
+app.post('/SignUpReservation', function(req, res){
+	
+	
+	var empID = (req.body.employee).toString();
+	console.log(req.body.name);
+	console.log(req.body.employee);
+	
+	CLTlab.findOne({EmployeeID : empID },function(err,doc){
+		if(err) {
+		
+			console.log("Error from MongoDB:" + err);
+			res.send({msg:'Database Error'});
+		}
+		
+		if(doc){
+			res.send({msg:'AE'});
+		}
+		if(!doc) {
+			new CLTlab({
+			
+				EmployeeID : empID , 
+				password : req.body.pass, 
+				FullName: req.body.name, 
+				EmailID : req.body.email
+			
+			}).save(function(err,doc){
+				if(err){
+					console.log('Database Insert Err' + err);
+					res.send({msg:'Database Error'});
+				}
+				
+				if(doc){
+					res.send({msg:'sucess'});
+				}			
+			});
+			
+		}	
+		
+	});
+	
+
+});
+
+
+
+
+app.post('/availReservation', function(req, res){
+	
+	var data ={};
+	var i = 0;
+	console.log(req.body.mc);
+	console.log(req.body.fDate);
+	
+	
+	User.find({to: {"$gt":req.body.fDate},from: {"$lt":req.body.tDate},mc: parseInt(req.body.mc)}).sort({from:1}).exec(function(err,docs){
+		if(err) {
+		
+			console.log("Error from MongoDB:" + err);
+			res.send({msg:'Database Error'});
+		}
+		if(docs){
+			console.log(docs);
+			docs.forEach( function(doc){
+			
+				var diff = (doc.to - doc.from)/(3600*1000);
+				console.log(diff);
+				//var fromMin = doc.from.getMinutes() < 10 ? '0'+ doc.from.getMinutes() : doc.from.getMinutes();
+				//var toMin = doc.to.getMinutes() < 10 ? '0'+ doc.to.getMinutes() : doc.to.getMinutes();
+				//var fromHour = doc.from.getHours() < 10 ? '0'+ doc.from.getHours() : doc.from.getHours();
+				//var toHour = doc.to.getHours() < 10 ? '0'+ doc.to.getHours() : doc.to.getHours() ;
+				for (var j=0;j<diff;j++){
+					var fHour = (doc.from.getHours() + j) <10 ? '0' + (doc.from.getHours() + j) : (doc.from.getHours() + j);
+					var fHour1 = (doc.from.getHours() + j + 1) < 10 ? '0' + (doc.from.getHours() + j + 1) : (doc.from.getHours() + j + 1); 
+					data[fHour+':00-'+fHour1+':00'] = i;
+					i +=1;
+				}
+			});
+			console.log(data);
+			res.send({msg:data});
+		}
+		
+		if(!docs){
+			res.send({msg:'Free'});
+		}
 		
 	});
 	

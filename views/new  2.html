@@ -1,21 +1,65 @@
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <title>jQuery UI Datepicker - Default functionality</title>
-  <link rel="stylesheet" href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
-  <script src="//code.jquery.com/jquery-1.9.1.js"></script>
-  <script src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
-  <link rel="stylesheet" href="/resources/demos/style.css">
-  <script>
-  $(function() {
-    $( "#datepicker" ).datepicker();
-  });
-  </script>
-</head>
-<body>
- 
-<p>Date: <input type="text" id="datepicker"></p>
- 
- 
-</body>
-</html>
+onclick="$('#timetable123').removeClass('hidden').addClass('visible'); $('#timetable1235').removeClass('hidden').addClass('visible'); $('#submitbutton123').removeClass('hidden').addClass('visible');"
+
+
+
+<div  class="table-responsive" style="height:300px;overflow-y:scroll;overflow-x:scroll;">
+		<table class="table table-hover" width="100%">
+			
+			<tr>
+				<td><button type="button" id="timebutton0" value="8amto9am" class="btn btn-success btn-md">05:00am-06:00am</button></td>
+				<td><button type="button" id="timebutton1" value="9amto10am" class="btn btn-success btn-md">06:00am-07:00am</button></td>
+				<td><button type="button" id="timebutton2" value="11amto12pm" class="btn btn-danger btn-md">07:00am-08:00am</button></td>
+			</tr>
+			
+			<tr>
+				<td><button type="button" id="timebutton0" value="8amto9am" class="btn btn-success btn-md">08:00am-09:00am</button></td>
+				<td><button type="button" id="timebutton1" value="9amto10am" class="btn btn-success btn-md">09:00am-10:00am</button></td>
+				<td><button type="button" id="timebutton2" value="11amto12pm" class="btn btn-danger btn-md">10:00am-11:00am</button></td>
+			</tr>
+			<tr>
+				<td><button type="button" id="timebutton3" value="4pmto5pm" class="btn btn-success btn-md">11:00am-12:00pm</button></td>
+				<td><button type="button" id="timebutton4" value="5pmto6pm" class="btn btn-danger btn-md">12:00pm-13:00pm</button></td>
+				<td><button type="button" id="timebutton5" value="6pmto7pm" class="btn btn-success btn-md">13:00pm-14:00pm</button></td>
+			</tr>
+			<tr>
+				<td><button type="button" id="timebutton6" value="10pmto11pm" class="btn btn-success btn-md ">14:00pm-15:00pm</button></td>
+				<td><button type="button" id="timebutton7" value="11pmto12pm" class="btn btn-success btn-md">15:00pm-16:00pm</button></td>
+				<td><button type="button" id="timebutton8" value="12amto1am" class="btn btn-success btn-md">16:00pm-17:00pm</button></td>
+			</tr>
+			<tr>
+				<td><button type="button" id="timebutton9" value="4amto5am" class="btn btn-success btn-md">17:00pm-18:00pm</button></td>
+				<td><button type="button" id="timebutton10" value="5amto6am" class="btn btn-danger btn-md">18:00pm-19:00pm</button></td>
+				<td><button type="button" id="timebutton11" value="6amto7am" class="btn btn-success btn-md">19:00pm-20:00pm</button></td>
+			</tr>
+		</table>
+	</div>							
+	<!--
+	<div class="table-responsive visible-xs">
+		<table id="timetable1235" class="table table-hover hidden">
+			<h4><caption>Available Times</caption></h4>
+			<th colspan=1>
+				<center>Times</center>
+			</th>
+			<tr>
+				<td><button type="submit" id="timebutton12" value="8amto9am" class="btn btn-success btn-md">8:00am-9:00am</button></td>
+			</tr>
+			<tr>
+				<td><button type="submit" id="timebutton13" value="4pmto5pm" class="btn btn-success btn-md">4:00pm-5:00pm</button></td>
+			</tr>
+			<tr>
+				<td><button type="submit" id="timebutton14" value="10pmto11pm" class="btn btn-success btn-md">10:00pm-11:00pm</button></td>
+			</tr>
+			<tr>
+				<td><button type="submit" id="timebutton15" value="4amto5am" class="btn btn-success btn-md">4:00am-5:00am</button></td>
+			</tr>
+		</table>
+	</div> -->
+	
+	<a href="#download">
+	<button type="button" id="submitbutton123" class="btn btn-default btn-md hidden" onclick="$('#download').removeClass('hidden').addClass('visible'); ">Select Time</button></td>
+	</a>
+	
+	<!-- Old info goes here --> 
+</div>
+
+								
