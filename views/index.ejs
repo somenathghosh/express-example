@@ -411,7 +411,7 @@
 							
 							</div>
 							<a href="#download">
-								<button type="button" id="submitbutton123" class="btn btn-default btn-md hidden" onclick="$('#download').removeClass('hidden').addClass('visible'); ">Select Time</button></td>
+								<button type="button" id="submitbutton123" class="btn btn-default btn-md hidden" >Done</button></td>
 							</a>
 						</div>
 					</div>
@@ -476,12 +476,12 @@
  						<div class="panel-heading">Please Enter Your Statement of Purpose</div>
  						<!-- Table -->
  						<div class="input-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
- 							<textarea rows="6" class="form-control col-lg-12 col-md-12 col-sm-12 col-xs-12" placeholder="" style="width:100%;"></textarea>
+ 							<textarea id="reserveComment" rows="6" class="form-control col-lg-12 col-md-12 col-sm-12 col-xs-12" placeholder="" style="width:100%;"></textarea>
  						</div>
 					</div>
 					<p></p>
-					<form id="reserve" name="reserve" action="/finalizereservation" method="post">
-						<button type="submit" id="reservebutton" value="reserve1" class="btn btn-default btn-lg" data-toggle="modal" data-target="#myModal2">Reserve</button>
+					<form id="reserve" name="reserve" >
+						<button type="submit" id="reservebutton" value="reserve1" class="btn btn-default btn-lg" data-loading-text="Wait..." >Reserve</button>
 					</form>
 					</div>
              </div>
@@ -566,12 +566,13 @@
 			$( "#datepicker" ).datepicker();
 			$( "#datepicker2" ).datepicker();
 			//alert('Hello');
-			var $sessionData = "";
+			var $sessionData = {};
 			var $mc = '';
 			var dataR = {};
 			var timeRange = '00:00-00:00';
 			var arrayOfBlockedTime  = {};
-		
+			var $nDate = new Date();
+			
 			$('#sendLogin').click(function(e){
 				e.preventDefault();
 				
@@ -605,7 +606,7 @@
 						else if(data.msg= 'success'){
 						
 							btn.button('reset');
-							$sessionData.id= data.emp;
+							$sessionData.emp= data.emp;
 							$sessionData.name = data.name;
 							$(".ulClass li:nth-child(2)").removeClass("hidden");
 							$(".ulClass li:nth-child(5)").removeClass("hidden");
@@ -729,7 +730,7 @@
 		
 			$(".ulClass li:nth-child(6)").click(function(e){
 				e.preventDefault();
-				$sessionData = "";
+				$sessionData = {};
 				//alert($sessionData);
 				window.location.href ='/';
 			});
@@ -744,6 +745,11 @@
 		
 			$('#SubmitForTimeslot').click(function(e){
 				e.preventDefault();
+				
+				if(!$('#submitbutton123').hasClass('hidden')){
+					$('#submitbutton123').addClass('hidden')		
+				}
+				
 				$date = $('#datepicker2').val();
 				if($date == '' || isFinite($date)){
 					alert('Please select date');
@@ -808,7 +814,7 @@
 						}
 						htmlString = htmlString + '</tr></table>';
 						$('#AvailablityTable').html('');
-						console.log(htmlString);
+						//console.log(htmlString);
 						$('#AvailablityTable').html(htmlString);
 						$('#submitbutton123').removeClass('hidden');
 						
@@ -866,8 +872,8 @@
 			
 			var checkTime = function($value){
 				
-				$fValue = $value.split('-')[0].split(':')[0];
-				$tValue = $value.split('-')[1].split(':')[0];
+				var $fValue = $value.split('-')[0].split(':')[0];
+				var $tValue = $value.split('-')[1].split(':')[0];
 				
 				alert($fValue  +  ' ' + $tValue);
 				var flag = false;
@@ -888,9 +894,122 @@
 				
 				
 			};
-		
-		
-		
+			$(document).on('click', '#submitbutton123', function(e){
+			
+				alert('submitbutton123');
+				if(timeRange == '00:00-00:00'){
+					alert('Please select');
+					return false;
+				}
+				$sessionData.mc = $mc;
+				$sessionData.from = new Date($nDate.getFullYear(),$nDate.getMonth(),$nDate.getDate(),timeRange.split('-')[0].split(':')[0],timeRange.split('-')[0].split(':')[1],00,00);
+				$sessionData.to = new Date($nDate.getFullYear(),$nDate.getMonth(),$nDate.getDate(),timeRange.split('-')[1].split(':')[0],timeRange.split('-')[1].split(':')[1],00,00);
+				
+				console.log($sessionData);
+				
+				
+				$('#download').removeClass('hidden').addClass('visible');
+			});
+			
+			
+			
+			
+			
+			$('#reservebutton').click(function(e){
+				e.preventDefault();
+				if($('#reserveComment').val() == ''){
+					alert('Please enter comment');
+					return false;
+				}
+				else {
+					var btn = $(this);
+					btn.button('loading');
+					$sessionData.reason = $('#reserveComment').val();
+					$.ajax({
+						type: 'POST',
+						data: JSON.stringify($sessionData),
+						contentType: 'application/json',
+						url: '/doReservation',						
+						success: function(data) {
+							btn.button('reset');
+							alert(data.message);
+							timeRange == '00:00-00:00';
+							$sessionData.mc = '';
+							$sessionData.from = '';
+							$sessionData.to   = '';
+							$sessionData.reason = '';
+							$('#AvailablityTable').html('<img src="http://www.travislayne.com/images/loading.gif" class="icon" />');
+							
+							$.ajax({
+								type: 'POST',
+								data: JSON.stringify(dataR),
+								contentType: 'application/json',
+								url: '/availReservation',						
+								success: function(data) {
+									arrayOfBlockedTime = data.msg;
+									//$('#AvailablityTable').html('<img src="http://www.travislayne.com/images/loading.gif" class="icon" />');
+									//btn.button('reset');
+									var htmlString = '<div  class="table-responsive" style="height:300px;overflow-y:scroll;overflow-x:scroll;">';
+									htmlString = htmlString + '<table class="table table-hover" width="100%">';
+									//console.log(array['08:00-09:01']);
+									//console.log();
+									
+									htmlString = htmlString+ '<tr>';
+									var btnClass = '';
+									for(var i=0;i<=23;i++){
+										
+										if(i%3 == 0 && i !=0 ) {
+											htmlString = htmlString + '</tr>';
+											htmlString = htmlString + '<tr>';
+										}
+										
+										var f = i < 10 ? '0'+ i.toString() : i.toString();
+										var t = (i+1) < 10 ? '0'+ (i+1).toString() : (i+1).toString();
+										var timeString = f +':00-'+t+':00';
+										
+										if(data.msg[timeString] != undefined){
+										
+											btnClass = 'btn-danger';
+										}
+										else {
+											btnClass = 'btn-success clickable';
+										}
+										htmlString = htmlString + '<td><button type="button" id="'+timeString+'" value="'+timeString+'" class="btn '
+																+ btnClass+' btn-md">'+timeString+'</button></td>';
+										
+										
+								
+										
+									
+									}
+									htmlString = htmlString + '</tr></table>';
+									$('#AvailablityTable').html('');
+									//console.log(htmlString);
+									$('#AvailablityTable').html(htmlString);
+									//$('#submitbutton123').removeClass('hidden');
+									
+									
+								},
+								error: function (error) {
+									//btn.button('reset');
+									alert('error connecting to Server');
+								}
+								
+							});	
+										
+									},
+									error: function (error) {
+										btn.button('reset');
+										alert('error connecting Server');
+									}
+									
+								});	
+									
+							
+							
+							}
+							
+						});
 		
 		
 		
