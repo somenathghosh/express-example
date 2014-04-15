@@ -118,7 +118,7 @@
 
 <body id="page-top" data-spy="scroll" data-target=".navbar-custom">
 
-    <nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
+    <nav class="navbar navbar-custom navbar-static-top" role="navigation">
         <div class="container">
             <div class="navbar-header page-scroll">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-main-collapse">
@@ -130,7 +130,7 @@
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="hidden-xs">
+            <div >
 				<div class="collapse navbar-collapse navbar-right navbar-main-collapse">
 					<ul class="nav navbar-nav ulClass">
 						<!-- Hidden li included to remove active class from about link when scrolled up past about section -->
@@ -141,7 +141,7 @@
 							<a id="aReservation" href="#reservation" ><center><i class="glyphicon glyphicon-th-list"></i></center></a>
 						</li>
 						<li class="page-scroll" style="text-align:left">
-							<a id="aAbout" href="#about"><center><i class="glyphicon glyphicon-info-sign"></i></center></a>
+							<a id="aAbout" href="#about"><center><i class="glyphicon glyphicon-info-sign" style="float:left"></i></center></a>
 						</li>
 						<li class="page-scroll hidden" style="text-align:left">
 								<!-- Button trigger modal -->
@@ -158,21 +158,25 @@
 							<a href="/"><center><i class="glyphicon glyphicon-log-out"></i></center></a>
 						</li>
 					</ul>
-					<form class="navbar-form navbar-left" role="search">
+				
+					<form class="navbar-form navbar-left form-inline" role="search">
 						<div class="form-group">
 						<input type="text" class="form-control" id="searchAutoComplete" placeholder="Find">
 						</div>
 						<button type="submit" id="serachSubmit" class="btn btn-default">Submit</button>
 					</form>
+						
+					
+					
 				</div>
 			</div>
 			
-			
+			<!--
 			
 			<div class="visible-xs">
 				<div class="collapse navbar-collapse navbar-right navbar-main-collapse">
 					<ul class="nav navbar-nav ulClass" style="font-size:0.75em">
-						<!-- Hidden li included to remove active class from about link when scrolled up past about section -->
+						<!-- Hidden li included to remove active class from about link when scrolled up past about section --><!--
 						<li class="hidden">
 							<a href="#page-top"></a>
 						</li>
