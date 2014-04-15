@@ -74,6 +74,18 @@ var CLTlab = mongoose.model('charlottelabauthentication',Schema);
 
 
 
+var Schema = new mongoose.Schema({
+	
+	sw : String,
+	mc   : new Array()
+	
+
+	
+},{ collection : 'SWInventory' });
+	
+var Inv = mongoose.model('SWInventory',Schema);
+
+
 var feedSchema = new mongoose.Schema({
 	id       : Number,
 	name     : String,
@@ -129,7 +141,7 @@ app.post('/feedback', function(req, res){
 						console.log("Error with Sending Email to somenath.ghosh84@gmail.com "); 
 						console.error(err); 
 					} 
-					console.log(json); 
+					//console.log(json); 
 			});
 			
 			
@@ -316,8 +328,8 @@ app.post('/LoginReservation', function(req, res){
 	
 	var empID = (req.body.emp).toString();
 	
-	console.log(req.body.pass);
-	console.log(req.body.emp);
+	//console.log(req.body.pass);
+	//console.log(req.body.emp);
 	
 	CLTlab.findOne({EmployeeID : empID, password: req.body.pass},function(err,doc){
 		if(err) {
@@ -352,8 +364,8 @@ app.post('/SignUpReservation', function(req, res){
 	
 	
 	var empID = (req.body.employee).toString();
-	console.log(req.body.name);
-	console.log(req.body.employee);
+	//console.log(req.body.name);
+	//console.log(req.body.employee);
 	
 	CLTlab.findOne({EmployeeID : empID },function(err,doc){
 		if(err) {
@@ -398,8 +410,8 @@ app.post('/availReservation', function(req, res){
 	
 	var data ={};
 	var i = 0;
-	console.log(req.body.mc);
-	console.log(req.body.fDate);
+	//console.log(req.body.mc);
+	//console.log(req.body.fDate);
 	
 	
 	User.find({to: {"$gt":req.body.fDate},from: {"$lt":req.body.tDate},mc: parseInt(req.body.mc)}).sort({from:1}).exec(function(err,docs){
@@ -409,11 +421,11 @@ app.post('/availReservation', function(req, res){
 			res.send({msg:'Database Error'});
 		}
 		if(docs){
-			console.log(docs);
+			//console.log(docs);
 			docs.forEach( function(doc){
 			
 				var diff = (doc.to - doc.from)/(3600*1000);
-				console.log(diff);
+				//console.log(diff);
 				//var fromMin = doc.from.getMinutes() < 10 ? '0'+ doc.from.getMinutes() : doc.from.getMinutes();
 				//var toMin = doc.to.getMinutes() < 10 ? '0'+ doc.to.getMinutes() : doc.to.getMinutes();
 				//var fromHour = doc.from.getHours() < 10 ? '0'+ doc.from.getHours() : doc.from.getHours();
@@ -425,7 +437,7 @@ app.post('/availReservation', function(req, res){
 					i +=1;
 				}
 			});
-			console.log(data);
+			//console.log(data);
 			res.send({msg:data});
 		}
 		
@@ -446,6 +458,54 @@ app.post('/LogoutReservation', function(req, res){
 	res.send({msg:'LogOut'});
 
 });
+
+
+
+app.post('/getSoftwareList', function(req, res){
+	//console.log('into getSW');
+	Inv.find(function(err,items){
+		if(err) {
+		
+			console.log("Error from MongoDB:" + err);
+			res.send({msg:'Database Error'});
+		}
+		if(items){
+			var arr = [];
+			for(var i=0;i < items.length ; i++){
+				//console.log(items[i].sw);
+				arr.push(items[i].sw);
+			}
+			//console.log(arr);
+			res.send({sw:arr});
+		}
+	});
+	
+	
+
+});
+
+
+app.post('/getMachineNumbers', function(req, res){
+	//console.log(req.body.sw);
+	Inv.findOne({sw:req.body.sw},{mc:1,_id:0},function(err,doc){
+		if(err) {
+		
+			console.log("Error from MongoDB:" + err);
+			res.send({msg:'Database Error'});
+		}
+		if(doc){
+			//console.log(doc.mc);
+			res.send({mc:doc.mc});
+		
+		}
+		
+		
+		
+	});
+
+});
+
+
 
 
 
