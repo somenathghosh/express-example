@@ -144,7 +144,7 @@ app.post('/feedback', function(req, res){
 app.post('/getReservation', function(req, res){
 	var obj = {};
 	//console.log('body: ' + JSON.stringify(req.body));
-	User.find({to: {"$gte": req.body.from},from: {"$lte":req.body.to},mc: req.body.mc}).sort({from:1}).exec(function(err,docs){
+	User.find({id: req.body.emp}).sort({from:1}).exec(function(err,docs){
 		if(err) {
 			console.log("Error from MongoDB:" + err);
 			res.send({msg:'Database Error'});
@@ -167,8 +167,7 @@ app.post('/getReservation', function(req, res){
 
 
 app.post('/doReservation', function(req, res){
-	var obj = {};
-	//console.log('body: ' + JSON.stringify(req.body));
+	
 	
 	
 	User.findOne({to: {"$gt": req.body.from},from: {"$lt":req.body.to},id: parseInt(req.body.emp)},function(err,docs){
@@ -274,7 +273,7 @@ app.post('/DelReservation', function(req, res){
 	var obj = {};
 	
 	if(req.session.empID){
-		User.findOne({to: req.body.to,from: req.body.from, id: req.session.empID},function(err,doc){
+		User.findOne({_id: req.body.id},function(err,doc){
 			if(err) {
 				console.log("Error from MongoDB:" + err);
 				res.send({msg:'Database Error'});
@@ -282,7 +281,7 @@ app.post('/DelReservation', function(req, res){
 			
 			if(doc) {
 			
-				User.remove({to: req.body.to,from: req.body.from, id: req.session.empID},function(err){
+				User.remove({_id:req.body.id, id: req.session.empID},function(err){
 					if(err) {
 						console.log("Error from MongoDB:" + err);
 						res.send({msg:'Database Error'});
@@ -422,7 +421,7 @@ app.post('/availReservation', function(req, res){
 				for (var j=0;j<diff;j++){
 					var fHour = (doc.from.getHours() + j) <10 ? '0' + (doc.from.getHours() + j) : (doc.from.getHours() + j);
 					var fHour1 = (doc.from.getHours() + j + 1) < 10 ? '0' + (doc.from.getHours() + j + 1) : (doc.from.getHours() + j + 1); 
-					data[fHour+':00-'+fHour1+':00'] = i;
+					data[fHour+':00-'+fHour1+':00'] = fHour+':00-'+fHour1+':00';
 					i +=1;
 				}
 			});
