@@ -197,6 +197,10 @@ jQuery(function($){
 		
 	});
 	
+	$(".ulClass li:nth-child(5)").click(function(e){
+		$("#inventoryControl").removeClass("hidden");
+	});
+	
 	$('.WButton').click(function(e){
 		$('#timeslot').removeClass('hidden').addClass('visible'); 
 		$mc = this.value;
@@ -752,7 +756,7 @@ jQuery(function($){
 	
 	var availableTags = [];
 	
-
+	
 	$.ajax({
 		type: 'POST',
 		data: JSON.stringify(dataR),
@@ -760,10 +764,12 @@ jQuery(function($){
 		url: '/getSoftwareList',						
 		success: function(data) {
 			availableTags = data.sw;
+			
 			$( "#searchAutoComplete" ).autocomplete({
 				source: availableTags
 			});
-			//console.log(availableTags);
+			
+			
 			
 		},
 		error: function (xhr, status, error) {
@@ -771,7 +777,7 @@ jQuery(function($){
 		}
 			
 	});
-			
+	
 	$('#serachSubmit').click(function(e){
 		e.preventDefault();
 		//console.log(availableTags.indexOf($('#searchAutoComplete').val()));
