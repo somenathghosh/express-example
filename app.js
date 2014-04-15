@@ -495,7 +495,7 @@ app.post('/getMachineNumbers', function(req, res){
 		}
 		if(doc){
 			//console.log(doc.mc);
-			res.send({mc:doc.mc});
+			res.send({msg:doc.mc});
 		
 		}
 		

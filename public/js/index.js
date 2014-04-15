@@ -787,8 +787,8 @@ jQuery(function($){
 			contentType: 'application/json',
 			url: '/getMachineNumbers',						
 			success: function(data) {
-				//console.log(data.mc.mc);
-				alert('That S/W is available at these machines:  '+ data.mc.mc);
+				//console.log(data.msg);
+				alert('That S/W is available at these machines:  '+ data.msg);
 				
 			},
 			error: function (xhr, status, error) {
