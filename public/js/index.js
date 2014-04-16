@@ -725,9 +725,9 @@ jQuery(function($){
 	$('#sendFeedback').click(function(e){
 		e.preventDefault();
 		
-		if ( $('#contact-feedback').val()=="" ){
+		if ( $('#contact-feedback').val()=='' ){
 			
-			alertM("Feedback can not be empty");
+			alert("Feedback can not be empty");
 			return false;
 		}
 
