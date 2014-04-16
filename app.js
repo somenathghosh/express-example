@@ -470,7 +470,7 @@ app.post('/getSoftwareList', function(req, res){
 			res.send({msg:'Database Error'});
 		}
 		if(items){
-			
+			//console.log(items);
 			var arr = [];
 			for(var i=0;i < items.length ; i++){
 				//console.log(items[i].sw);
@@ -498,6 +498,55 @@ app.post('/getMachineNumbers', function(req, res){
 			//console.log(doc.mc);
 			res.send({msg:doc.mc});
 		
+		}
+		
+		if(!doc){
+			//console.log(doc.mc);
+			res.send({msg:'NF'});
+		
+		}
+		
+		
+		
+	});
+
+});
+
+
+
+
+app.post('/addSoftware', function(req, res){
+	
+	Inv.findOne({sw:req.body.sw},function(err,doc){
+		if(err) {
+		
+			console.log("Error from MongoDB:" + err);
+			res.send({msg:'Database Error'});
+		}
+		if(doc){
+			//console.log(doc.mc);
+			res.send({msg:'AA'});
+		
+		}
+		if(!doc){
+			new Inv({
+			
+				sw : req.body.sw , 
+				mc : req.body.mc
+				
+			
+			}).save(function(err,doc){
+				if(err){
+					console.log('Database Insert Err' + err);
+					res.send({msg:'Database Error'});
+				}
+				
+				if(doc){
+					res.send({msg:'sucess'});
+				}			
+			});
+			
+			
 		}
 		
 		

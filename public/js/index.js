@@ -47,10 +47,13 @@ jQuery(function($){
 					btn.button('reset');
 					$sessionData.emp= data.emp;
 					$sessionData.name = data.name;
-					$(".ulClass li:nth-child(2)").removeClass("hidden");
-					$(".ulClass li:nth-child(5)").removeClass("hidden");
-					$(".ulClass li:nth-child(6)").removeClass("hidden");
+					$(".ulClass li:nth-child(3)").removeClass("hidden");
 					$(".ulClass li:nth-child(4)").removeClass("hidden");
+					$(".ulClass li:nth-child(6)").removeClass("hidden");
+					$(".ulClass li:nth-child(8)").removeClass("hidden");
+					$(".ulClass li:nth-child(5)").removeClass("hidden");
+					$(".ulClass li:nth-child(7)").removeClass("hidden");
+					$(".ulClass li:nth-child(7)").html('<a href="#"><center><i class="glyphicon glyphicon-user"></i>'+' 	Welcome ' + $sessionData.name.split(' ')[0]+'</center></a>')
 					$("#loginform").addClass("hidden");
 					$("#workStationList").removeClass("hidden").addClass("intro");
 				}
@@ -167,7 +170,7 @@ jQuery(function($){
 	});
 
 
-	$(".ulClass li:nth-child(6)").click(function(e){
+	$(".ulClass li:nth-child(8)").click(function(e){
 		e.preventDefault();
 		$sessionData = {};
 		$mc = '';
@@ -175,7 +178,7 @@ jQuery(function($){
 		timeRange = '00:00-00:00';
 		arrayOfBlockedTime  = {};
 		$nDate = new Date();
-		
+		$(".ulClass li:nth-child(6)").html('');
 		$.ajax({
 			type: 'POST',
 			data: JSON.stringify(dataR),
@@ -197,9 +200,26 @@ jQuery(function($){
 		
 	});
 	
-	$(".ulClass li:nth-child(5)").click(function(e){
-		$("#inventoryControl").removeClass("hidden");
+	$(".ulClass li:nth-child(6)").click(function(e){
+		if($("#inventoryControl").hasClass("hidden")){
+			$("#inventoryControl").removeClass("hidden").addClass("visible");
+		}
+		else{
+			$("#inventoryControl").removeClass("visible").addClass("hidden");
+		}
 	});
+	
+	$(".ulClass li:nth-child(4)").click(function(e){
+		
+		if($("#about").hasClass("hidden")){
+			$("#about").removeClass("hidden").addClass("visible");
+		}
+		else{
+			$("#about").removeClass("visible").addClass("hidden");
+		}
+	});
+	
+	
 	
 	$('.WButton').click(function(e){
 		$('#timeslot').removeClass('hidden').addClass('visible'); 
@@ -361,7 +381,7 @@ jQuery(function($){
 				
 			}
 			
-			alert(timeRange);
+			//alert(timeRange);
 		}
 		else{
 			alert('Already Selected');
@@ -392,7 +412,7 @@ jQuery(function($){
 			$fValue = eString;
 			
 		}
-		alert(flag);
+		//alert(flag);
 		return flag;
 		
 		
@@ -400,7 +420,7 @@ jQuery(function($){
 	};
 	$(document).on('click', '#submitbutton123', function(e){
 	
-		alert('submitbutton123');
+		//alert('submitbutton123');
 		if(timeRange == '00:00-00:00'){
 			alert('Please select');
 			return false;
@@ -464,6 +484,8 @@ jQuery(function($){
 					$('#datepicker2').val('');
 					$('#reserveComment').val('');
 					$('#machineNumber').html('');
+					$( ".ulClass li:nth-child(2)" ).trigger( "click" );
+					//$( "#workStationList" ).trigger( "click" );
 								
 				},
 				error: function (error) {
@@ -565,13 +587,18 @@ jQuery(function($){
 	};
 	
 	
-	$('.ulClass li:nth-child(2)').click(function(e){
+	$('.ulClass li:nth-child(3)').click(function(e){
 		//e.preventDefault();
-		$('#reservation').removeClass('hidden').addClass('visible');
+		if($('#reservation').hasClass('hidden')){
+			$('#reservation').removeClass('hidden').addClass('visible');
+		}
+		else{
+			$('#reservation').removeClass('visible').addClass('hidden');
+			return false;
+		}
 		var data = {};
 		data.emp = $sessionData.emp;
-		var btn = $(this);
-		btn.button('loading');
+		
 		$.ajax({
 			type: 'POST',
 			data: JSON.stringify(data),
@@ -586,11 +613,11 @@ jQuery(function($){
 					
 					showModal(data);
 					
-					btn.button('reset');
+					
 				}
 			},
 			error: function (error) {
-				btn.button('reset');
+				
 				alert('Error connecting to server');
 				
 			}
@@ -618,7 +645,7 @@ jQuery(function($){
 	
 		$("#myReservation").html("");
 		
-		var htmlString= "<div class="+'table-responsive'+"><table id='mytable' class="+'table table-hover'+"><tr><th>Emp ID</th><th>Name</th><th>From Date & Time</th><th>To Date & Time</th><th>Action</th></tr>";
+		var htmlString= "<center><div class="+'table-responsive'+"><table id='mytable' class="+'table table-hover'+"><tr><th>WorkStation</th><th>From Date & Time</th><th>To Date & Time</th><th>Action</th></tr></center>";
 		
 		
 		
@@ -643,7 +670,7 @@ jQuery(function($){
 			toHour = toDate.getHours() < 10 ? '0'+toDate.getHours() : toDate.getHours() ;
 		
 		
-			htmlString = htmlString + '<tr id=tr'+doc._id+'><td>'+ doc.id +'</td><td>'+doc.name+'</td><td>'+fromDay 
+			htmlString = htmlString + '<tr id=tr'+doc._id+'><td>'+doc.mc+'</td><td>'+fromDay 
 				+ "-"+fromMonth+'-'+ fromYear+'  '+ fromHour + ":"
 				+ fromMin+'</td><td>'+toDay + "-"+ toMonth + "-"+ toYear+ '  '+  toHour + ":" 
 				+ toMin+'</td><td><button class="btn btn-danger btn-sm btnDelete" data-loading-text="Wait..."'
@@ -756,6 +783,16 @@ jQuery(function($){
 	
 	var availableTags = [];
 	
+	var PossibleSoftwares = ['TCS Mastercraft','Eclipse','JBOSS Webserver','Tomcat Webserver','Jetty Webserver','PHP','Python','Java jdk','Ruby',
+	
+		'COBOL','MongoDB','Heroku Toolbelt','NodeJS','Git Bash','Git Shell for Windows','MySQL','Oracle','Datastage','Informatica','C','C++','Microsoft Visual Studio',
+		'MS Visual Studio','MS Office','Robomongo','Google Chrome','Oracle VM','Virtual Machine','Mozilla Firefox','Android Dev Kit','iOS Dev Kit','X-code','Objective-C',
+		'Notepad++','Opera Browser','IE','Anti-Virus','McAfee','Norton','Windows','Mircosoft'
+	];
+	
+	$( "#Software" ).autocomplete({
+				source: PossibleSoftwares
+	});
 	
 	$.ajax({
 		type: 'POST',
@@ -793,8 +830,12 @@ jQuery(function($){
 			contentType: 'application/json',
 			url: '/getMachineNumbers',						
 			success: function(data) {
-				//console.log(data.msg);
-				alert('That S/W is available at these machines:  '+ data.msg);
+				if(data.msg=='NF'){
+					alert('This S/W is not found');
+				}
+				else{
+					alert('That S/W is available at these machines:  '+ data.msg);
+				}
 				
 			},
 			error: function (xhr, status, error) {
@@ -803,9 +844,42 @@ jQuery(function($){
 			
 		});
 		
+	});
+	
+	$('#siriachaSubmit').click(function(e){
+		e.preventDefault();
+		
+		if($('#Software').val() == ''){
+			alert('Please select/add software');
+			return false;
+		}
+		var allVals = $('.ws:checked').map(function() {return this.value;}).get().join(',');
+		//console.log(allVals);
+		
+		var data ={}
+		data.sw = $('#Software').val();
+		data.mc = allVals;
+		$.ajax({
+			type: 'POST',
+			data: JSON.stringify(data),
+			contentType: 'application/json',
+			url: '/addSoftware',						
+			success: function(data) {
+				//console.log(data.msg);
+				availableTags.push($('#Software').val());
+				
+			},
+			error: function (xhr, status, error) {
+				alert('Error connecting to Server');
+			}
+			
+		});
+		
+		
+		
 	});		
 		
-			
+	
 			
 			
 			
