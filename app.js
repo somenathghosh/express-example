@@ -77,6 +77,7 @@ var CLTlab = mongoose.model('charlottelabauthentication',Schema);
 var Schema = new mongoose.Schema({
 	
 	sw : String,
+	sw_name : String,
 	mc   : new Array()
 	
 
@@ -85,6 +86,7 @@ var Schema = new mongoose.Schema({
 	
 var Inv = mongoose.model('SWInventory',Schema);
 
+var InvUpdate = mongoose.model('SWInventory',Schema);
 
 var feedSchema = new mongoose.Schema({
 	id       : Number,
@@ -474,7 +476,7 @@ app.post('/getSoftwareList', function(req, res){
 			var arr = [];
 			for(var i=0;i < items.length ; i++){
 				//console.log(items[i].sw);
-				arr.push(items[i].sw);
+				arr.push(items[i].sw_name);
 			}
 			//console.log(arr);
 			res.send({sw:arr});
@@ -488,7 +490,7 @@ app.post('/getSoftwareList', function(req, res){
 
 app.post('/getMachineNumbers', function(req, res){
 	//console.log(req.body.sw);
-	Inv.findOne({sw:req.body.sw},{mc:1,_id:0},function(err,doc){
+	Inv.findOne({sw:req.body.sw.toUpperCase()},{mc:1,_id:0},function(err,doc){
 		if(err) {
 		
 			console.log("Error from MongoDB:" + err);
@@ -517,7 +519,7 @@ app.post('/getMachineNumbers', function(req, res){
 
 app.post('/addSoftware', function(req, res){
 	
-	Inv.findOne({sw:req.body.sw},function(err,doc){
+	Inv.findOne({sw:req.body.sw.toUpperCase()},function(err,doc){
 		if(err) {
 		
 			console.log("Error from MongoDB:" + err);
@@ -525,13 +527,66 @@ app.post('/addSoftware', function(req, res){
 		}
 		if(doc){
 			//console.log(doc.mc);
-			res.send({msg:'AA'});
+			var docArr = doc.mc;
+			//console.log(docArr);
+			
+			var reqArr = req.body.mc;
+			//console.log(reqArr + ' ' + reqArr.length);
+			
+			var arr = [];
+			
+			for(var i=0;i< reqArr.length ; i++){
+				if(docArr.indexOf(reqArr[i]) == -1){
+					arr.push(reqArr[i]);
+				}
+					
+			}
+			
+			
+			if(arr.length ==0){
+				res.send({msg:'AA'});
+			}
+			else{
+				for (var i=0 ; i <docArr.length ; i++){
+					arr.push(docArr[i]);
+				}
+				//console.log('Update' + arr);
+				//res.send({msg:'Update'});
+				doc.mc=arr;
+				doc.save(function(err,doc){
+				
+					if(err){
+						console.log('Database Insert Err' + err);
+						res.send({msg:'Database Error'});
+					}
+					
+					if(doc){
+						//console.log(doc);
+						res.send({msg:'success'});
+					}			
+				});
+				/*
+				InvUpdate.update({_id: doc._id},{$set :{mc:arr}},function(err,doc){
+				
+					if(err){
+						console.log('Database Insert Err' + err);
+						res.send({msg:'Database Error'});
+					}
+					
+					if(doc){
+						console.log(doc);
+						res.send({msg:'success'});
+					}			
+				});
+				*/
+			}	
 		
 		}
 		if(!doc){
 			new Inv({
 			
-				sw : req.body.sw , 
+				sw : req.body.sw.toUpperCase(),
+				sw_name : req.body.sw,
 				mc : req.body.mc
 				
 			
@@ -542,7 +597,7 @@ app.post('/addSoftware', function(req, res){
 				}
 				
 				if(doc){
-					res.send({msg:'sucess'});
+					res.send({msg:'success'});
 				}			
 			});
 			

@@ -240,7 +240,7 @@ jQuery(function($){
 		
 		$date = $('#datepicker2').val();
 		$('#machineNumber').html('');
-		$('#machineNumber').html('<font color ="black" size="5">'+$mc+'</font>' );
+		$('#machineNumber').html('<font color ="black" size="5"> Workstation: '+' '+ $mc+'</font>' );
 		$dateToday = new Date();
 		$nDate = new Date($date);
 		$fdate = new Date($nDate.getFullYear(),$nDate.getMonth(),$nDate.getDate(),00,00,00,00);
@@ -780,6 +780,12 @@ jQuery(function($){
 		
 	});
 	
+	var filterArray = function($arr){
+			uniqueArray = $arr.filter(function(elem, pos, self) {
+				return self.indexOf(elem) == pos;
+			});
+			return uniqueArray;
+	};
 	
 	var availableTags = [];
 	
@@ -787,7 +793,7 @@ jQuery(function($){
 	
 		'COBOL','MongoDB','Heroku Toolbelt','NodeJS','Git Bash','Git Shell for Windows','MySQL','Oracle','Datastage','Informatica','C','C++','Microsoft Visual Studio',
 		'MS Visual Studio','MS Office','Robomongo','Google Chrome','Oracle VM','Virtual Machine','Mozilla Firefox','Android Dev Kit','iOS Dev Kit','X-code','Objective-C',
-		'Notepad++','Opera Browser','IE','Anti-Virus','McAfee','Norton','Windows','Mircosoft'
+		'Notepad++','Opera Browser','IE','Anti-Virus','McAfee','Norton','Windows','Mircosoft','TCS Application Analyzer'
 	];
 	
 	$( "#Software" ).autocomplete({
@@ -801,11 +807,12 @@ jQuery(function($){
 		url: '/getSoftwareList',						
 		success: function(data) {
 			availableTags = data.sw;
-			
+			filterArray(availableTags);
 			$( "#searchAutoComplete" ).autocomplete({
 				source: availableTags
 			});
-			
+			PossibleSoftwares.concat(availableTags);
+			filterArray(PossibleSoftwares);
 			
 			
 		},
@@ -853,12 +860,19 @@ jQuery(function($){
 			alert('Please select/add software');
 			return false;
 		}
-		var allVals = $('.ws:checked').map(function() {return this.value;}).get().join(',');
+		var allVals = $('.ws:checked').map(function() {return this.value;});
 		//console.log(allVals);
-		
+		var mcArr = [];
 		var data ={}
 		data.sw = $('#Software').val();
-		data.mc = allVals;
+		
+		for(var i=0 ; i< allVals.length ; i++){
+			console.log(allVals[i]);
+			mcArr.push(parseInt(allVals[i]));
+		}
+		console.log(allVals.length);
+		data.mc = mcArr;
+		console.log(data.mc);
 		$.ajax({
 			type: 'POST',
 			data: JSON.stringify(data),
@@ -866,14 +880,21 @@ jQuery(function($){
 			url: '/addSoftware',						
 			success: function(data) {
 				//console.log(data.msg);
-				availableTags.push($('#Software').val());
-				
+				if(data.msg =='success'){
+					availableTags.push($('#Software').val()); filterArray(availableTags);
+					PossibleSoftwares.push($('#Software').val());filterArray(PossibleSoftwares);
+					alert('S/W successfully added');
+				}
+				if(data.msg =='AA'){
+					alert('That S/W is already available at those machines');
+				}
 			},
 			error: function (xhr, status, error) {
 				alert('Error connecting to Server');
 			}
 			
 		});
+		
 		
 		
 		
